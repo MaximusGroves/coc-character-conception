@@ -9,7 +9,7 @@ export type AppState = {
 }
 
 const defaultState: AppState = {
-  appName: 'App Name',
+  appName: 'Call of Cthulhu - Character Conception',
 }
 
 export type AppFunctions = {
