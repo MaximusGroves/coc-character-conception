@@ -36,3 +36,14 @@
     transform: rotate(360deg);
   }
 }
+
+@font-face {
+  font-family: 'SFComicScript';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/SFComicScript.eot') format('embedded-opentype'),
+    /* IE6-IE8 */ url('/fonts/SFComicScript.woff2') format('woff2'),
+    /* Super Modern Browsers */ url('/fonts/SFComicScript.woff') format('woff'),
+    /* Modern Browsers */ url('/fonts/SFComicScript.ttf') format('truetype'),
+    /* Safari, Android, iOS */ url('/fonts/SFComicScript.svg') format('svg'); /* Legacy iOS */
+}
