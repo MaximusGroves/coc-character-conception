@@ -7,7 +7,7 @@ import {
   FormControl,
   FormLabel,
 } from '@material-ui/core'
-import styles from './ArchetypeList.style'
+// import styles from './ArchetypeList.style'
 
 import { Characteristic, CharacteristicKeys } from '../../data/types'
 
@@ -17,7 +17,6 @@ type Props = {
 }
 
 const CharacteristicRadioGroup: FC<Props> = (props) => {
-  const classes = styles()
   const { selection, onSelection } = props
 
   return (

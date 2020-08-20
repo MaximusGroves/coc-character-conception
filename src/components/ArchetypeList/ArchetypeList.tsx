@@ -1,13 +1,11 @@
 import React, { FC } from 'react'
 import { Grid } from '@material-ui/core'
-import styles from './ArchetypeList.style'
+// import styles from './ArchetypeList.style'
 import { archetypes } from '../../data/archetypes'
 import CharacteristicRadioGroup from './CharacteristicRadioGroup'
 import ArchetypeItem from './ArchetypeItem'
 
 const ArchetypeList: FC = () => {
-  const classes = styles()
-
   const [charFilter, setCharFilter] = React.useState<string>('All')
 
   const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
