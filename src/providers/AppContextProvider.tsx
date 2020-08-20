@@ -1,5 +1,6 @@
 import React, { useState, createContext, FC } from 'react'
 import { creatorSteps } from '../components/CreatorStepper/CreatorStepper'
+import { Archetype } from '../data/archetypes'
 
 export type ContextProps = {
   children: React.ReactNode
@@ -8,6 +9,7 @@ export type ContextProps = {
 export type AppState = {
   appName: string
   creatorStep: number
+  selectedArchetype?: Archetype
 }
 
 const defaultState: AppState = {
@@ -19,6 +21,7 @@ export type AppFunctions = {
   setAppState: Function
   nextStep: Function
   prevStep: Function
+  selectArchetype: Function
 }
 
 type ContextValues = {
@@ -31,7 +34,7 @@ export const AppContext = createContext<ContextValues | undefined>(undefined)
 const AppContextProvider: FC<ContextProps> = (props) => {
   const [state, setAppState] = useState<AppState>(defaultState)
 
-  const { creatorStep } = state
+  const { creatorStep, selectedArchetype } = state
 
   const nextStep = () => {
     if (creatorStep < creatorSteps.skills) {
@@ -45,7 +48,15 @@ const AppContextProvider: FC<ContextProps> = (props) => {
     }
   }
 
-  const api = { setAppState, nextStep, prevStep }
+  const selectArchetype = (newSelection: Archetype) => {
+    if (newSelection === selectedArchetype) {
+      setAppState({ ...state, selectedArchetype: undefined })
+    } else {
+      setAppState({ ...state, selectedArchetype: newSelection })
+    }
+  }
+
+  const api = { setAppState, nextStep, prevStep, selectArchetype }
 
   return (
     <AppContext.Provider value={{ state, api }}>

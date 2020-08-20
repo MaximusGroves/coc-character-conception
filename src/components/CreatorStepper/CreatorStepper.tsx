@@ -32,17 +32,33 @@ const CreatorStepper: FC = () => {
   ]
 
   const { state, api } = useAppContext()
-  const { creatorStep } = state
+  const { creatorStep, selectedArchetype } = state
 
   const { prevStep, nextStep } = api
 
   const currentWidth = useWidth()
 
+  const getSelection = (step: number) => {
+    switch (step) {
+      case 0:
+        return selectedArchetype?.name || ''
+      case 1:
+        return ''
+      case 2:
+        return ''
+      case 3:
+        return ''
+      case 4:
+        return ''
+    }
+  }
+
   return (
-    <div className={classes.stepperRoot}>
+    <div>
       <Stepper
         activeStep={creatorStep}
         alternativeLabel={currentWidth === 'sm' || currentWidth === 'xs'}
+        className={classes.stepper}
       >
         {steps.map((label, index) => {
           const stepProps: { completed?: boolean } = {}
@@ -57,6 +73,11 @@ const CreatorStepper: FC = () => {
             <Step key={label} {...stepProps}>
               <StepLabel {...labelProps}>
                 {(currentWidth !== 'xs' || index === creatorStep) && label}
+                {(currentWidth !== 'xs' || index === creatorStep) && (
+                  <Typography className={classes.selectionStyle}>
+                    {getSelection(index)}
+                  </Typography>
+                )}
               </StepLabel>
             </Step>
           )
@@ -69,9 +90,7 @@ const CreatorStepper: FC = () => {
             <ArrowBack />
           </IconButton>
         </Grid>
-        <Grid item>
-          <Typography>{currentWidth}</Typography>
-        </Grid>
+
         <Grid item>
           <IconButton color="primary" onClick={() => nextStep()}>
             <ArrowForward />

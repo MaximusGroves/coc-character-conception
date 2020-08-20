@@ -1,14 +1,6 @@
 import { makeStyles } from '@material-ui/core'
 
 const styles = makeStyles({
-  
-
-  item2: {
-    padding: 20,
-    backgroundImage: 'url(/pulp3.jpg)',
-    backgroundPosition: 'center top',
-  },
-
   title: {
     fontFamily: 'SFComicScript',
 
@@ -32,6 +24,30 @@ const styles = makeStyles({
     backgroundColor: 'rgba(0,0,0,0.3)',
   },
 
+  archetypeItem: {
+    // padding: 20,
+    backgroundImage: 'url(/pulp3.jpg)',
+    backgroundPosition: 'center top',
+    '&:hover': {
+      boxShadow:
+        '0px 7px 8px -4px rgba(22, 155, 30,0.4),0px 12px 17px 2px rgba(22, 155, 30,0.28),0px 5px 22px 4px rgba(22, 155, 30 ,0.24)',
+      cursor: 'pointer',
+    },
+    userSelect: 'none',
+  },
+
+  archetypeSelected: {
+    boxShadow:
+      '0px 8px 9px -5px rgba(122, 40, 203,0.6),0px 15px 22px 2px rgba(122, 40, 203,0.42),0px 6px 28px 5px rgba(122, 40, 203,0.36)!important',
+  },
+
+  button: {
+    padding: 20,
+    textTransform: 'none',
+    textAlign: 'left',
+    flexDirection: 'column',
+  },
+
   // item0: {
   //   // minWidth: 300,
   //   padding: 20,
@@ -42,6 +58,11 @@ const styles = makeStyles({
   //   // minWidth: 300,
   //   padding: 20,
   //   backgroundImage: 'url(/pulp2.jpg)',
+  //   backgroundPosition: 'center top',
+  // },
+  // item2: {
+  //   padding: 20,
+  //   backgroundImage: 'url(/pulp3.jpg)',
   //   backgroundPosition: 'center top',
   // },
   // item3: {
