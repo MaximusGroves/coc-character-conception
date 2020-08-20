@@ -11,12 +11,13 @@ import {
 import styles from './CreatorStepper.style'
 import { useAppContext } from '../../providers/AppContextProvider'
 import { ArrowBack, ArrowForward } from '@material-ui/icons'
+import { useWidth } from '../../providers/AppThemeProvider'
 
 export enum creatorSteps {
   archetype = 0,
   occupation,
   talents,
-  characteristics,
+  Characteristic,
   skills,
 }
 
@@ -27,7 +28,7 @@ const CreatorStepper: FC = () => {
     'Select Archetype',
     'Select Occupation',
     'Select Talents',
-    'Roll Characteristics',
+    'Roll Characteristic',
     'Allocate Skills',
   ]
 
@@ -36,9 +37,14 @@ const CreatorStepper: FC = () => {
 
   const { prevStep, nextStep } = api
 
+  const currentWidth = useWidth()
+
   return (
-    <div className={classes.root}>
-      <Stepper activeStep={creatorStep}>
+    <div className={classes.stepperRoot}>
+      <Stepper
+        activeStep={creatorStep}
+        alternativeLabel={currentWidth === 'sm' || currentWidth === 'xs'}
+      >
         {steps.map((label, index) => {
           const stepProps: { completed?: boolean } = {}
           const labelProps: { optional?: React.ReactNode } = {}
@@ -50,17 +56,22 @@ const CreatorStepper: FC = () => {
           // }
           return (
             <Step key={label} {...stepProps}>
-              <StepLabel {...labelProps}>{label}</StepLabel>
+              <StepLabel {...labelProps}>
+                {(currentWidth !== 'xs' || index === creatorStep) && label}
+              </StepLabel>
             </Step>
           )
         })}
       </Stepper>
 
-      <Grid container className={classes.buttons}>
+      <Grid container className={classes.buttons} justify="center">
         <Grid item>
           <IconButton color="primary" onClick={() => prevStep()}>
             <ArrowBack />
           </IconButton>
+        </Grid>
+        <Grid item>
+          <Typography>{currentWidth}</Typography>
         </Grid>
         <Grid item>
           <IconButton color="primary" onClick={() => nextStep()}>

@@ -1,12 +1,7 @@
 import { makeStyles } from '@material-ui/core'
 
 const styles = makeStyles({
-  root: {
-    maxWidth: 2000,
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    // padding: 20,
-  },
+  stepperRoot: {},
   buttons: {
     paddingLeft: 24,
   },

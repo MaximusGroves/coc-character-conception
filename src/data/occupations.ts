@@ -1,13 +1,13 @@
 import {
-  CharacteristicName,
+  Characteristic,
   OccupationName,
   SkillName,
   ArchetypeName,
-} from './names'
+} from './types'
 
 export type Occupation = {
   name: OccupationName
-  skillFormula: Array<OccupationSkillFormula>,
+  skillFormula: Array<OccupationSkillFormula>
   creditRatingMin: number
   creditRatingMax: number
   contacts: Array<string>

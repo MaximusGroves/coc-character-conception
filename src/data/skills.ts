@@ -1,9 +1,9 @@
 import {
-  CharacteristicName,
+  Characteristic,
   OccupationName,
   SkillName,
   ArchetypeName,
-} from './names'
+} from './types'
 
 export type Skill = {
   name: SkillName
@@ -13,4 +13,3 @@ export type Skill = {
 const makeSkill = (name: SkillName, startingValue: number): Skill => {
   return { name, startingValue }
 }
-

@@ -1,4 +1,10 @@
-export enum CharacteristicName {
+function keyList<T>(arg: T): Array<keyof typeof arg> {
+  return Object.keys(arg).map((val) => {
+    return val as keyof typeof arg
+  })
+}
+
+export enum Characteristic {
   STR = 'Strength',
   CON = 'Constitution',
   SIZ = 'Size',
@@ -8,6 +14,8 @@ export enum CharacteristicName {
   POW = 'Power',
   EDU = 'Education',
 }
+
+export const CharacteristicKeys = keyList(Characteristic)
 
 export enum ArchetypeName {
   Adventurer = 'Adventurer',
@@ -33,6 +41,8 @@ export enum ArchetypeName {
   ThrillSeeker = 'Thrill Seeker',
   TwoFisted = 'Two-Fisted',
 }
+
+export const ArchetypeNameKeys = keyList(ArchetypeName)
 
 export enum OccupationName {
   Actor = 'Actor',
@@ -103,20 +113,22 @@ export enum OccupationName {
   Zealot = 'Zealot',
 }
 
+export const OccupationNameKeys = keyList(OccupationName)
+
 export enum SkillName {
   Accounting = 'Accounting',
   AnimalHandling = 'Animal Handling',
-  Anthropology = 'Anthropology ',
+  Anthropology = 'Anthropology',
   Appraise = 'Appraise',
   Archaeology = 'Archaeology',
   ArtOrCraft = 'Art and Craft',
-  Artillery = 'Artillery ',
-  Charm = 'Charm ',
-  Climb = 'Climb ',
+  Artillery = 'Artillery',
+  Charm = 'Charm',
+  Climb = 'Climb',
   ComputerUse = 'Computer Use',
   CreditRating = 'Credit Rating',
   CthulhuMythos = 'Cthulhu Mythos',
-  Demolitions = 'Demolitions ',
+  Demolitions = 'Demolitions',
   Disguise = 'Disguise',
   Diving = 'Diving',
   Dodge = 'Dodge',
@@ -173,3 +185,5 @@ export enum SkillName {
   Throw = 'Throw',
   Track = 'Track',
 }
+
+export const SkillNameKeys = keyList(SkillName)

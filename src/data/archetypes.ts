@@ -1,13 +1,13 @@
 import {
-  CharacteristicName,
+  Characteristic,
   OccupationName,
   SkillName,
   ArchetypeName,
-} from './names'
+} from './types'
 
 export type Archetype = {
   name: ArchetypeName
-  core: Array<CharacteristicName>
+  core: Array<Characteristic>
   occupations: Array<OccupationName>
   bonusSkills: Array<SkillName>
   talents: Array<string>
@@ -17,7 +17,7 @@ export type Archetype = {
 
 const makeArchetypeOption = (
   name: ArchetypeName,
-  core: Array<CharacteristicName>,
+  core: Array<Characteristic>,
   occupations: Array<OccupationName>,
   bonusSkills: Array<SkillName>,
   traits: Array<string>,
@@ -29,7 +29,7 @@ const makeArchetypeOption = (
 
 const adventurerOptions = makeArchetypeOption(
   ArchetypeName.Adventurer,
-  [CharacteristicName.DEX, CharacteristicName.APP],
+  [Characteristic.DEX, Characteristic.APP],
   [
     OccupationName.Actor,
     OccupationName.Archaeologist,
@@ -76,7 +76,7 @@ const adventurerOptions = makeArchetypeOption(
 
 const beefCakeOptions = makeArchetypeOption(
   ArchetypeName.Beefcake,
-  [CharacteristicName.STR],
+  [Characteristic.STR],
   [
     OccupationName.Athlete,
     OccupationName.BeatCop,
@@ -119,7 +119,7 @@ const beefCakeOptions = makeArchetypeOption(
 
 const bonVivantOptions = makeArchetypeOption(
   ArchetypeName.BonVivant,
-  [CharacteristicName.SIZ],
+  [Characteristic.SIZ],
   [
     OccupationName.Actor,
     OccupationName.Artist,
@@ -165,7 +165,7 @@ const bonVivantOptions = makeArchetypeOption(
 
 const coldBloodedOptions = makeArchetypeOption(
   ArchetypeName.ColdBlooded,
-  [CharacteristicName.INT],
+  [Characteristic.INT],
   [],
   [],
   [],
@@ -175,7 +175,7 @@ const coldBloodedOptions = makeArchetypeOption(
 
 const dreamerOptions = makeArchetypeOption(
   ArchetypeName.Dreamer,
-  [CharacteristicName.POW],
+  [Characteristic.POW],
   [],
   [],
   [],
@@ -185,7 +185,7 @@ const dreamerOptions = makeArchetypeOption(
 
 const eggHeadOptions = makeArchetypeOption(
   ArchetypeName.Egghead,
-  [CharacteristicName.INT, CharacteristicName.EDU],
+  [Characteristic.INT, Characteristic.EDU],
   [],
   [],
   [],
@@ -195,7 +195,7 @@ const eggHeadOptions = makeArchetypeOption(
 
 const explorerOptions = makeArchetypeOption(
   ArchetypeName.Explorer,
-  [CharacteristicName.DEX, CharacteristicName.POW],
+  [Characteristic.DEX, Characteristic.POW],
   [],
   [],
   [],
@@ -205,7 +205,7 @@ const explorerOptions = makeArchetypeOption(
 
 const femmeFataleOptions = makeArchetypeOption(
   ArchetypeName.FemmeFatale,
-  [CharacteristicName.APP, CharacteristicName.INT],
+  [Characteristic.APP, Characteristic.INT],
   [],
   [],
   [],
@@ -215,7 +215,7 @@ const femmeFataleOptions = makeArchetypeOption(
 
 const greaseMoneyOptions = makeArchetypeOption(
   ArchetypeName.GreaseMonkey,
-  [CharacteristicName.INT],
+  [Characteristic.INT],
   [],
   [],
   [],
@@ -225,7 +225,7 @@ const greaseMoneyOptions = makeArchetypeOption(
 
 const hardBoiledOptions = makeArchetypeOption(
   ArchetypeName.HardBoiled,
-  [CharacteristicName.CON],
+  [Characteristic.CON],
   [],
   [],
   [],
@@ -235,7 +235,7 @@ const hardBoiledOptions = makeArchetypeOption(
 
 const harlequinOptions = makeArchetypeOption(
   ArchetypeName.Harlequin,
-  [CharacteristicName.APP],
+  [Characteristic.APP],
   [],
   [],
   [],
@@ -245,7 +245,7 @@ const harlequinOptions = makeArchetypeOption(
 
 const hunterOptions = makeArchetypeOption(
   ArchetypeName.Hunter,
-  [CharacteristicName.INT, CharacteristicName.CON],
+  [Characteristic.INT, Characteristic.CON],
   [],
   [],
   [],
@@ -255,7 +255,7 @@ const hunterOptions = makeArchetypeOption(
 
 const mysticOptions = makeArchetypeOption(
   ArchetypeName.Mystic,
-  [CharacteristicName.POW],
+  [Characteristic.POW],
   [],
   [],
   [],
@@ -265,7 +265,7 @@ const mysticOptions = makeArchetypeOption(
 
 const outsiderOptions = makeArchetypeOption(
   ArchetypeName.Outsider,
-  [CharacteristicName.INT, CharacteristicName.CON],
+  [Characteristic.INT, Characteristic.CON],
   [],
   [],
   [],
@@ -275,7 +275,7 @@ const outsiderOptions = makeArchetypeOption(
 
 const rogueOptions = makeArchetypeOption(
   ArchetypeName.Rogue,
-  [CharacteristicName.DEX, CharacteristicName.APP],
+  [Characteristic.DEX, Characteristic.APP],
   [],
   [],
   [],
@@ -285,7 +285,7 @@ const rogueOptions = makeArchetypeOption(
 
 const scholarOptions = makeArchetypeOption(
   ArchetypeName.Scholar,
-  [CharacteristicName.EDU],
+  [Characteristic.EDU],
   [],
   [],
   [],
@@ -295,7 +295,7 @@ const scholarOptions = makeArchetypeOption(
 
 const seekerOptions = makeArchetypeOption(
   ArchetypeName.Seeker,
-  [CharacteristicName.INT],
+  [Characteristic.INT],
   [],
   [],
   [],
@@ -305,7 +305,7 @@ const seekerOptions = makeArchetypeOption(
 
 const sidekickOptions = makeArchetypeOption(
   ArchetypeName.Sidekick,
-  [CharacteristicName.DEX, CharacteristicName.CON],
+  [Characteristic.DEX, Characteristic.CON],
   [],
   [],
   [],
@@ -315,7 +315,7 @@ const sidekickOptions = makeArchetypeOption(
 
 const steadfastOptions = makeArchetypeOption(
   ArchetypeName.Steadfast,
-  [CharacteristicName.CON],
+  [Characteristic.CON],
   [],
   [],
   [],
@@ -325,7 +325,7 @@ const steadfastOptions = makeArchetypeOption(
 
 const swashbucklerOptions = makeArchetypeOption(
   ArchetypeName.Swashbuckler,
-  [CharacteristicName.DEX, CharacteristicName.APP],
+  [Characteristic.DEX, Characteristic.APP],
   [],
   [],
   [],
@@ -335,7 +335,7 @@ const swashbucklerOptions = makeArchetypeOption(
 
 const thrillSeekerOptions = makeArchetypeOption(
   ArchetypeName.ThrillSeeker,
-  [CharacteristicName.DEX, CharacteristicName.POW],
+  [Characteristic.DEX, Characteristic.POW],
   [],
   [],
   [],
@@ -345,7 +345,7 @@ const thrillSeekerOptions = makeArchetypeOption(
 
 const twoFistedOptions = makeArchetypeOption(
   ArchetypeName.TwoFisted,
-  [CharacteristicName.STR, CharacteristicName.SIZ],
+  [Characteristic.STR, Characteristic.SIZ],
   [],
   [],
   [],
