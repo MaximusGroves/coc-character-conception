@@ -2,6 +2,7 @@ import React, { useState, createContext, FC } from 'react'
 import { CreatorStepKeys } from '../data/types'
 import { Archetype } from '../data/archetypes'
 import { Occupation } from '../data/occupations'
+import { Talent } from '../data/talents'
 
 export type ContextProps = {
   children: React.ReactNode
@@ -12,6 +13,7 @@ export type AppState = {
   creatorStep: number
   selectedArchetype?: Archetype
   selectedOccupation?: Occupation
+  selectedTalent?: Talent
 }
 
 const defaultState: AppState = {
@@ -25,6 +27,7 @@ export type AppFunctions = {
   prevStep: Function
   selectArchetype: Function
   selectOccupation: Function
+  selectTalent: Function
 }
 
 type ContextValues = {
@@ -37,7 +40,7 @@ export const AppContext = createContext<ContextValues | undefined>(undefined)
 const AppContextProvider: FC<ContextProps> = (props) => {
   const [state, setAppState] = useState<AppState>(defaultState)
 
-  const { creatorStep, selectedArchetype, selectedOccupation } = state
+  const { creatorStep, selectedArchetype, selectedOccupation, selectedTalent } = state
 
   const nextStep = () => {
     if (creatorStep < CreatorStepKeys.length - 1) {
@@ -67,12 +70,20 @@ const AppContextProvider: FC<ContextProps> = (props) => {
     }
   }
 
+  const selectTalent = (newSelection: Talent) => {
+    if (newSelection === selectedTalent) {
+      setAppState({ ...state, selectedTalent: undefined })
+    } else {
+      setAppState({ ...state, selectedTalent: newSelection })
+    }
+  }
   const api = {
     setAppState,
     nextStep,
     prevStep,
     selectArchetype,
     selectOccupation,
+    selectTalent,
   }
 
   return (

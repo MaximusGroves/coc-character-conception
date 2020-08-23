@@ -4,6 +4,7 @@ import CreatorStepper from '../CreatorStepper/CreatorStepper'
 import { useAppContext } from '../../providers/AppContextProvider'
 import ArchetypeList from '../ArchetypeList/ArchetypeList'
 import OccupationList from '../OccupationList/OccupationList'
+import TalentList from '../TalentList/TalentList'
 
 const Home: FC = () => {
   const classes = styles()
@@ -15,6 +16,7 @@ const Home: FC = () => {
       <CreatorStepper />
       {creatorStep === 0 && <ArchetypeList />}
       {creatorStep === 1 && <OccupationList />}
+      {creatorStep === 2 && <TalentList /> }
     </div>
   )
 }

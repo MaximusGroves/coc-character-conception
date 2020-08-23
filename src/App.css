@@ -20,6 +20,14 @@
     /* Safari, Android, iOS */ url('/fonts/Diploma.svg') format('svg'); /* Legacy iOS */
 }
 
+@font-face {
+  font-family: 'Lobster';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/Lobster-Regular.ttf') format('truetype');
+}
+
+
 .App {
   /* display: flex; */
   margin: 0;
