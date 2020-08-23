@@ -1,9 +1,9 @@
 import React, { FC } from 'react'
 import { Grid } from '@material-ui/core'
 // import styles from './OccupationList.style'
-import { archetypeList } from '../../data/archetypes'
+// import { archetypeList } from '../../data/archetypes'
 import { occupations } from '../../data/occupations'
-import CharacteristicRadioGroup from './CharacteristicRadioGroup'
+// import CharacteristicRadioGroup from './CharacteristicRadioGroup'
 import OccupationItem from './OccupationItem'
 
 const OccupationList: FC = () => {

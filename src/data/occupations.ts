@@ -2,7 +2,7 @@ import {
   Characteristic,
   OccupationName,
   SkillName,
-  ArchetypeName,
+  // ArchetypeName,
 } from './types'
 
 export type Occupation = {

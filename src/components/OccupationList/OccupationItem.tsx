@@ -8,7 +8,7 @@ import {
   Fade,
 } from '@material-ui/core'
 import styles from './OccupationList.style'
-import { Archetype } from '../../data/archetypes'
+// import { Archetype } from '../../data/archetypes'
 import { useAppContext } from '../../providers/AppContextProvider'
 import { ReactComponent as Sigil } from '../../assets/Sigil_of_the_Gateway.svg'
 import clsx from 'clsx'
