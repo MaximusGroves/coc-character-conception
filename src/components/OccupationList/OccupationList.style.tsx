@@ -18,11 +18,13 @@ const styles = makeStyles((theme) => ({
     fontStyle: 'italic',
   },
   divider: {
-    marginLeft: -20,
-    marginRight: -20,
-    marginTop: 10,
+    marginTop: 4,
     color: 'black',
     backgroundColor: 'rgba(0,0,0,0.3)',
+    maxWidth: 'calc( 100% - 80px )',
+
+    marginLeft: 'auto',
+    marginRight: 'auto',
   },
 
   occupationItem: {
@@ -40,6 +42,7 @@ const styles = makeStyles((theme) => ({
 
     border: '15px solid transparent',
     borderImage: 'url(/img/diplomaBorder600.png) 50 round',
+    backgroundColor: '#FFFDEB',
   },
 
   occupationSelected: {
@@ -48,12 +51,16 @@ const styles = makeStyles((theme) => ({
     transform: 'scale(102%)',
   },
 
+  gridParent: {
+    width: '100%',
+  },
+
   button: {
     padding: 20,
     textTransform: 'none',
     textAlign: 'center',
     flexDirection: 'column',
-    width: '100%',
+    width: 'calc( 100% + 30px )',
     marginLeft: '-15px',
     marginRight: '-15px',
     marginTop: '-15px',
@@ -81,6 +88,7 @@ const styles = makeStyles((theme) => ({
     position: 'relative',
     textAlign: 'center',
     paddingBottom: 80,
+    // width: '100%',
   },
 
   // item0: {

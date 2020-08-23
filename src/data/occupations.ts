@@ -8,6 +8,7 @@ import {
 export type Occupation = {
   name: OccupationName
   skillFormula: Array<OccupationSkillFormula>
+  idealCharacteristics: Array<Characteristic>
   creditRatingMin: number
   creditRatingMax: number
   contacts: Array<string>
@@ -42,6 +43,31 @@ export const occSkillChars: {
   eduInt: [Characteristic.EDU, Characteristic.INT],
 }
 
+/**
+ * Takes the array of occupation skill formulas and returns the array of ideal characteristics
+ *
+ * @param formulas the array of occupation skill formulas
+ */
+export const getIdealCharacteristics = (
+  formulas: Array<OccupationSkillFormula>
+): Array<Characteristic> => {
+  let occupationCharacteristics: Array<Characteristic> = []
+
+  formulas.map((formula) => {
+    occSkillChars[formula].map((char: Characteristic) => {
+      occupationCharacteristics.push(char)
+      return true
+    })
+    return true
+  })
+
+  occupationCharacteristics = occupationCharacteristics.filter((char) => {
+    return occupationCharacteristics.length === 1 || char !== Characteristic.EDU
+  })
+
+  return occupationCharacteristics
+}
+
 const makeOccupation = (
   name: OccupationName,
   skillFormula: Array<OccupationSkillFormula>,
@@ -50,9 +76,11 @@ const makeOccupation = (
   contacts: Array<string>,
   skills: Array<SkillName>
 ): Occupation => {
+  const idealCharacteristics = getIdealCharacteristics(skillFormula)
   return {
     name,
     skillFormula,
+    idealCharacteristics,
     creditRatingMin,
     creditRatingMax,
     contacts,
@@ -329,7 +357,14 @@ const federalAgent = makeOccupation(
   []
 )
 
-const gambler = makeOccupation(OccupationName.Gambler, [], 0, 100, [], [])
+const gambler = makeOccupation(
+  OccupationName.Gambler,
+  [OccupationSkillFormula.eduApp, OccupationSkillFormula.eduDex],
+  0,
+  100,
+  [],
+  []
+)
 
 const gangsterBoss = makeOccupation(
   OccupationName.GangsterBoss,
@@ -404,7 +439,7 @@ const hobo = makeOccupation(
 )
 
 const hooker = makeOccupation(
-  OccupationName.ActorFilm,
+  OccupationName.Hooker,
   [OccupationSkillFormula.eduApp],
   0,
   100,
@@ -673,73 +708,79 @@ const zealot = makeOccupation(
   []
 )
 
-export const occupations = [
-  actorFilm,
-  actorStageRadio,
-  agencyDetective,
-  archaeologist,
-  artist,
-  athlete,
-  author,
-  aviator,
-  bankRobber,
-  bartenderWaitress,
-  beatCop,
-  bigGameHunter,
-  bountyHunter,
-  boxerWrestler,
-  butler,
-  catBurglar,
-  chauffeur,
-  confidenceTrickster,
-  criminal,
-  cultLeader,
-  dilettante,
-  doctorOfMedicine,
-  drifter,
-  electedOfficial,
-  engineer,
-  entertainer,
-  exorcist,
-  explorer,
-  federalAgent,
-  gambler,
-  gangsterBoss,
-  gangsterUnderling,
-  getAwayDriver,
-  gunMoll,
-  gentlemanOrLady,
-  hiredMuscle,
-  hitMan,
-  hobo,
-  hooker,
-  itinerantWorker,
-  investigativeJournalist,
-  laborer,
-  librarian,
-  mechanic,
-  militaryOfficer,
-  missionary,
-  musician,
-  nurse,
-  occultist,
-  parapsychologist,
-  photographer,
-  policeDetective,
-  priest,
-  privateInvestigator,
-  professor,
-  ranger,
-  reporter,
-  sailor,
-  scientist,
-  secretary,
-  soldier,
-  spy,
-  streetPunk,
-  studentIntern,
-  tribeMember,
-  unionActivist,
-  yogi,
-  zealot,
-]
+export const occupations: {
+  [key in keyof typeof OccupationName]: Occupation
+} = {
+  ActorFilm: actorFilm,
+  ActorStageRadio: actorStageRadio,
+  AgencyDetective: agencyDetective,
+  Archaeologist: archaeologist,
+  Artist: artist,
+  Athlete: athlete,
+  Author: author,
+  Aviator: aviator,
+  BankRobber: bankRobber,
+  BartenderWaitress: bartenderWaitress,
+  BeatCop: beatCop,
+  BigGameHunter: bigGameHunter,
+  BountyHunter: bountyHunter,
+  BoxerWrestler: boxerWrestler,
+  Butler: butler,
+  CatBurglar: catBurglar,
+  Chauffeur: chauffeur,
+  ConfidenceTrickster: confidenceTrickster,
+  Criminal: criminal,
+  CultLeader: cultLeader,
+  Dilettante: dilettante,
+  DoctorOfMedicine: doctorOfMedicine,
+  Drifter: drifter,
+  ElectedOfficial: electedOfficial,
+  Engineer: engineer,
+  Entertainer: entertainer,
+  Exorcist: exorcist,
+  Explorer: explorer,
+  FederalAgent: federalAgent,
+  Gambler: gambler,
+  GangsterBoss: gangsterBoss,
+  GangsterUnderling: gangsterUnderling,
+  GetAwayDriver: getAwayDriver,
+  GunMoll: gunMoll,
+  GentlemanOrLady: gentlemanOrLady,
+  HiredMuscle: hiredMuscle,
+  HitMan: hitMan,
+  Hobo: hobo,
+  Hooker: hooker,
+  ItinerantWorker: itinerantWorker,
+  InvestigativeJournalist: investigativeJournalist,
+  Laborer: laborer,
+  Librarian: librarian,
+  Mechanic: mechanic,
+  MilitaryOfficer: militaryOfficer,
+  Missionary: missionary,
+  Musician: musician,
+  Nurse: nurse,
+  Occultist: occultist,
+  Parapsychologist: parapsychologist,
+  Photographer: photographer,
+  PoliceDetective: policeDetective,
+  Priest: priest,
+  PrivateInvestigator: privateInvestigator,
+  Professor: professor,
+  Ranger: ranger,
+  Reporter: reporter,
+  Sailor: sailor,
+  Scientist: scientist,
+  Secretary: secretary,
+  Soldier: soldier,
+  Spy: spy,
+  StreetPunk: streetPunk,
+  StudentIntern: studentIntern,
+  TribeMember: tribeMember,
+  UnionActivist: unionActivist,
+  Yogi: yogi,
+  Zealot: zealot,
+}
+
+export const occupationList = Object.values(occupations).map((val) => {
+  return val as Occupation
+})
