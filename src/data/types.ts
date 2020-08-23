@@ -174,7 +174,7 @@ export enum SkillName {
   FirearmsCustom = 'Firearms, Custom',
   FirearmsHandgun = 'Firearms, Handgun',
   FirearmsRifleShotgun = 'Firearms, Rifle/Shotgun',
-  FirearmSubmachineGun = 'Firearms, Submachine Gun',
+  FirearmsSubmachineGun = 'Firearms, Submachine Gun',
   FirearmsMachineGun = 'Firearms, Machine Gun',
   FirearmsFlamethrower = 'Firearms, Flamethrower',
   HeavyWeapons = 'Heavy Weapons',
@@ -206,15 +206,16 @@ export enum SkillName {
   PsychicTelekinesis = 'Psychic, Telekinesis', //requires psychic talent
   Psychoanalysis = 'Psychoanalysis',
   Psychology = 'Psychology',
+
   ReadLips = 'Read Lips',
   Ride = 'Ride',
 
   ScienceCustom = 'Science, Custom',
   ScienceAstronomy = 'Science, Astronomy',
+  ScienceBiology = 'Science, Geology',
   ScienceChemistry = 'Science, Chemistry',
   SciencePhysics = 'Science, Physics',
   ScienceGeology = 'Science, Geology',
-  ScienceBiology = 'Science, Geology',
 
   SleightOfHand = 'Sleight of Hand',
   SpotHidden = 'Spot Hidden',
@@ -243,7 +244,7 @@ export const allFirearms = (): Array<SkillName> => {
     SkillName.FirearmsCustom,
     SkillName.FirearmsHandgun,
     SkillName.FirearmsRifleShotgun,
-    SkillName.FirearmSubmachineGun,
+    SkillName.FirearmsSubmachineGun,
     SkillName.FirearmsMachineGun,
     SkillName.FirearmsFlamethrower,
   ]

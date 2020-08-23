@@ -24,10 +24,11 @@ const OccupationItem: FC<Props> = (props) => {
   const { state, api } = useAppContext()
   const { selectOccupation } = api
   const { selectedOccupation } = state
+  const { name, idealCharacteristics } = occupation
   const selected = selectedOccupation === occupation
 
   return (
-    <Grid item sm={12} md={6} lg={4}>
+    <Grid item sm={12} md={6} lg={4} className={classes.gridParent}>
       <Paper
         className={clsx(
           classes.occupationItem,
@@ -51,13 +52,24 @@ const OccupationItem: FC<Props> = (props) => {
             </Fade>
 
             <Typography variant="h2" className={classes.title}>
-              {occupation.name}
+              {name}
             </Typography>
             <Divider className={classes.divider} />
 
             <Typography variant="body2" className={classes.flavorText}>
-              {occupation.name}
+              {name}
             </Typography>
+
+            <div className={classes.characteristic}>
+              <Typography variant="h5">
+                {idealCharacteristics.map((characteristic, charIndex) => (
+                  <span key={name + '-' + characteristic}>
+                    <b>{characteristic}</b>
+                    {charIndex + 1 < idealCharacteristics.length && ' or '}
+                  </span>
+                ))}
+              </Typography>
+            </div>
           </div>
         </Button>
       </Paper>
