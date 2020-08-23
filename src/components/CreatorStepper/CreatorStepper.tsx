@@ -17,7 +17,7 @@ const CreatorStepper: FC = () => {
   const classes = styles()
 
   const { state, api } = useAppContext()
-  const { creatorStep, selectedArchetype, selectedOccupation } = state
+  const { creatorStep, selectedArchetype, selectedOccupation, selectedTalent } = state
 
   const { prevStep, nextStep } = api
 
@@ -30,7 +30,7 @@ const CreatorStepper: FC = () => {
       case 1:
         return selectedOccupation?.name || ''
       case 2:
-        return ''
+        return selectedTalent?.name || '' 
       case 3:
         return ''
       case 4:
@@ -45,7 +45,7 @@ const CreatorStepper: FC = () => {
       case 1:
         return classes.selectionStyleOccupation
       case 2:
-        return classes.selectionStyle
+        return classes.selectionStyleTalent
       case 3:
         return classes.selectionStyle
       case 4:

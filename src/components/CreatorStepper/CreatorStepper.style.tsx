@@ -27,6 +27,20 @@ const styles = makeStyles((theme) => ({
       textAlign: 'center',
     },
   },
+
+  selectionStyleTalent: {
+    fontFamily: 'Lobster',
+    textAlign: 'left',
+    lineHeight: '22px',
+    fontSize: 25,
+    marginLeft: -4,
+    marginRight: 2,
+    [theme.breakpoints.down('sm')]: {
+      textAlign: 'center',
+    },
+  },
+
+
   stepper: {
     minHeight: 42,
     paddingTop: 20,
