@@ -10,29 +10,14 @@ import {
 import styles from './CreatorStepper.style'
 import { useAppContext } from '../../providers/AppContextProvider'
 import { ArrowBack, ArrowForward } from '@material-ui/icons'
+import { CreatorSteps, CreatorStepKeys } from '../../data/types'
 import { useWidth } from '../../providers/AppThemeProvider'
-
-export enum creatorSteps {
-  archetype = 0,
-  occupation,
-  talents,
-  Characteristic,
-  skills,
-}
 
 const CreatorStepper: FC = () => {
   const classes = styles()
 
-  const steps = [
-    'Select Archetype',
-    'Select Occupation',
-    'Select Talents',
-    'Roll Characteristic',
-    'Allocate Skills',
-  ]
-
   const { state, api } = useAppContext()
-  const { creatorStep, selectedArchetype } = state
+  const { creatorStep, selectedArchetype, selectedOccupation } = state
 
   const { prevStep, nextStep } = api
 
@@ -43,13 +28,28 @@ const CreatorStepper: FC = () => {
       case 0:
         return selectedArchetype?.name || ''
       case 1:
-        return ''
+        return selectedOccupation?.name || ''
       case 2:
         return ''
       case 3:
         return ''
       case 4:
         return ''
+    }
+  }
+
+  const getSelectionStyle = (step: number) => {
+    switch (step) {
+      case 0:
+        return classes.selectionStyle
+      case 1:
+        return classes.selectionStyleOccupation
+      case 2:
+        return classes.selectionStyle
+      case 3:
+        return classes.selectionStyle
+      case 4:
+        return classes.selectionStyle
     }
   }
 
@@ -60,7 +60,7 @@ const CreatorStepper: FC = () => {
         alternativeLabel={currentWidth === 'sm' || currentWidth === 'xs'}
         className={classes.stepper}
       >
-        {steps.map((label, index) => {
+        {CreatorStepKeys.map((key, index) => {
           const stepProps: { completed?: boolean } = {}
           const labelProps: { optional?: React.ReactNode } = {}
           // if (isStepOptional(index)) {
@@ -70,11 +70,12 @@ const CreatorStepper: FC = () => {
           //   stepProps.completed = false;
           // }
           return (
-            <Step key={label} {...stepProps}>
+            <Step key={CreatorSteps[key]} {...stepProps}>
               <StepLabel {...labelProps}>
-                {(currentWidth !== 'xs' || index === creatorStep) && label}
+                {(currentWidth !== 'xs' || index === creatorStep) &&
+                  CreatorSteps[key]}
                 {(currentWidth !== 'xs' || index === creatorStep) && (
-                  <Typography className={classes.selectionStyle}>
+                  <Typography className={getSelectionStyle(index)}>
                     {getSelection(index)}
                   </Typography>
                 )}

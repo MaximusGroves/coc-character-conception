@@ -7,36 +7,38 @@ import {
   Button,
   Fade,
 } from '@material-ui/core'
-import styles from './ArchetypeList.style'
+import styles from './OccupationList.style'
 import { Archetype } from '../../data/archetypes'
 import { useAppContext } from '../../providers/AppContextProvider'
 import { ReactComponent as Sigil } from '../../assets/Sigil_of_the_Gateway.svg'
 import clsx from 'clsx'
+import { Occupation } from '../../data/occupations'
 
 type Props = {
-  archetype: Archetype
-  keyName: string
+  occupation: Occupation
 }
 
-const ArchetypeItem: FC<Props> = (props) => {
+const OccupationItem: FC<Props> = (props) => {
   const classes = styles()
-  const { archetype } = props
+  const { occupation } = props
   const { state, api } = useAppContext()
-  const { selectArchetype } = api
-  const { selectedArchetype } = state
-  const selected = selectedArchetype === archetype
+  const { selectOccupation } = api
+  const { selectedOccupation } = state
+  const selected = selectedOccupation === occupation
 
   return (
     <Grid item sm={12} md={6} lg={4}>
       <Paper
         className={clsx(
-          classes.archetypeItem,
-          selected && classes.archetypeSelected
+          classes.occupationItem,
+          selected && classes.occupationSelected
         )}
       >
         <Button
           className={classes.button}
-          onClick={() => selectArchetype(archetype)}
+          onClick={() => {
+            selectOccupation(occupation)
+          }}
           TouchRippleProps={{
             classes: {
               child: selected ? classes.rippleDeselect : classes.ripple,
@@ -49,21 +51,12 @@ const ArchetypeItem: FC<Props> = (props) => {
             </Fade>
 
             <Typography variant="h2" className={classes.title}>
-              {archetype.name}
+              {occupation.name}
             </Typography>
             <Divider className={classes.divider} />
-            <div className={classes.characteristic}>
-              <Typography variant="h5">
-                {archetype.core.map((characteristic, charIndex) => (
-                  <span key={archetype.name + '-' + characteristic}>
-                    <b>{characteristic}</b>
-                    {charIndex + 1 < archetype.core.length && ' or '}
-                  </span>
-                ))}
-              </Typography>
-            </div>
+
             <Typography variant="body2" className={classes.flavorText}>
-              {archetype.description}
+              {occupation.name}
             </Typography>
           </div>
         </Button>
@@ -72,4 +65,4 @@ const ArchetypeItem: FC<Props> = (props) => {
   )
 }
 
-export default ArchetypeItem
+export default OccupationItem

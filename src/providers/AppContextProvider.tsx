@@ -1,6 +1,7 @@
 import React, { useState, createContext, FC } from 'react'
-import { creatorSteps } from '../components/CreatorStepper/CreatorStepper'
+import { CreatorStepKeys } from '../data/types'
 import { Archetype } from '../data/archetypes'
+import { Occupation } from '../data/occupations'
 
 export type ContextProps = {
   children: React.ReactNode
@@ -10,6 +11,7 @@ export type AppState = {
   appName: string
   creatorStep: number
   selectedArchetype?: Archetype
+  selectedOccupation?: Occupation
 }
 
 const defaultState: AppState = {
@@ -22,6 +24,7 @@ export type AppFunctions = {
   nextStep: Function
   prevStep: Function
   selectArchetype: Function
+  selectOccupation: Function
 }
 
 type ContextValues = {
@@ -34,16 +37,16 @@ export const AppContext = createContext<ContextValues | undefined>(undefined)
 const AppContextProvider: FC<ContextProps> = (props) => {
   const [state, setAppState] = useState<AppState>(defaultState)
 
-  const { creatorStep, selectedArchetype } = state
+  const { creatorStep, selectedArchetype, selectedOccupation } = state
 
   const nextStep = () => {
-    if (creatorStep < creatorSteps.skills) {
+    if (creatorStep < CreatorStepKeys.length - 1) {
       setAppState({ ...state, creatorStep: creatorStep + 1 })
     }
   }
 
   const prevStep = () => {
-    if (creatorStep > creatorSteps.archetype) {
+    if (creatorStep > 0) {
       setAppState({ ...state, creatorStep: creatorStep - 1 })
     }
   }
@@ -56,7 +59,21 @@ const AppContextProvider: FC<ContextProps> = (props) => {
     }
   }
 
-  const api = { setAppState, nextStep, prevStep, selectArchetype }
+  const selectOccupation = (newSelection: Occupation) => {
+    if (newSelection === selectedOccupation) {
+      setAppState({ ...state, selectedOccupation: undefined })
+    } else {
+      setAppState({ ...state, selectedOccupation: newSelection })
+    }
+  }
+
+  const api = {
+    setAppState,
+    nextStep,
+    prevStep,
+    selectArchetype,
+    selectOccupation,
+  }
 
   return (
     <AppContext.Provider value={{ state, api }}>

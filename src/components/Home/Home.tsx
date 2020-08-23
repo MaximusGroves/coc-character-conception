@@ -1,8 +1,9 @@
 import React, { FC } from 'react'
 import styles from './Home.style'
-import CreatorStepper, { creatorSteps } from '../CreatorStepper/CreatorStepper'
+import CreatorStepper from '../CreatorStepper/CreatorStepper'
 import { useAppContext } from '../../providers/AppContextProvider'
 import ArchetypeList from '../ArchetypeList/ArchetypeList'
+import OccupationList from '../OccupationList/OccupationList'
 
 const Home: FC = () => {
   const classes = styles()
@@ -12,7 +13,8 @@ const Home: FC = () => {
   return (
     <div className={classes.root}>
       <CreatorStepper />
-      {creatorStep === creatorSteps.archetype && <ArchetypeList />}
+      {creatorStep === 0 && <ArchetypeList />}
+      {creatorStep === 1 && <OccupationList />}
     </div>
   )
 }

@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import { Grid } from '@material-ui/core'
 // import styles from './ArchetypeList.style'
-import { archetypes } from '../../data/archetypes'
+import { archetypeList } from '../../data/archetypes'
 import CharacteristicRadioGroup from './CharacteristicRadioGroup'
 import ArchetypeItem from './ArchetypeItem'
 
@@ -12,7 +12,7 @@ const ArchetypeList: FC = () => {
     setCharFilter((event.target as HTMLInputElement).value)
   }
 
-  const filteredArchetypes = archetypes.filter((archetype) => {
+  const filteredArchetypes = archetypeList.filter((archetype) => {
     return (
       charFilter === 'All' ||
       archetype.core.find((val) => {
@@ -30,7 +30,11 @@ const ArchetypeList: FC = () => {
 
       <Grid container direction="row" spacing={3}>
         {filteredArchetypes.map((archetype) => (
-          <ArchetypeItem archetype={archetype} />
+          <ArchetypeItem
+            archetype={archetype}
+            key={archetype.name}
+            keyName={archetype.name}
+          />
         ))}
       </Grid>
     </div>

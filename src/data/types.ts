@@ -4,6 +4,16 @@ function keyList<T>(arg: T): Array<keyof typeof arg> {
   })
 }
 
+export enum CreatorSteps {
+  archetype = 'Select Archetype',
+  occupation = 'Select Occupation',
+  talents = 'Select Talents',
+  characteristics = 'Roll Characteristics',
+  skills = 'Allocate Skills',
+}
+
+export const CreatorStepKeys = keyList(CreatorSteps)
+
 export enum Characteristic {
   STR = 'Strength',
   CON = 'Constitution',
@@ -45,18 +55,20 @@ export enum ArchetypeName {
 export const ArchetypeNameKeys = keyList(ArchetypeName)
 
 export enum OccupationName {
-  Actor = 'Actor',
+  ActorFilm = 'Actor, Film',
+  ActorStageRadio = 'Actor, Stage & Radio',
+  AgencyDetective = 'Agency Detective',
   Archaeologist = 'Archaeologist',
   Artist = 'Artist',
   Athlete = 'Athlete',
   Author = 'Author',
   Aviator = 'Aviator',
   BankRobber = 'Bank Robber',
-  BartenderWaitress = 'Bartender/Waitress',
+  BartenderWaitress = 'Bartender / Waitress',
   BeatCop = 'Beat Cop',
   BigGameHunter = 'Big Game Hunter',
   BountyHunter = 'Bounty Hunter',
-  BoxerWrestler = 'Boxer/Wrestler',
+  BoxerWrestler = 'Boxer / Wrestler',
   Butler = 'Butler',
   CatBurglar = 'Cat Burglar',
   Chauffeur = 'Chauffeur',
@@ -77,7 +89,7 @@ export enum OccupationName {
   GangsterUnderling = 'Gangster, Underling',
   GetAwayDriver = 'Get-Away Driver',
   GunMoll = 'Gun Moll',
-  GentlemanOrLady = 'Gentleman/Lady',
+  GentlemanOrLady = 'Gentleman / Lady',
   HiredMuscle = 'Hired Muscle',
   HitMan = 'Hit Man',
   Hobo = 'Hobo',
@@ -106,7 +118,7 @@ export enum OccupationName {
   Soldier = 'Soldier',
   Spy = 'Spy',
   StreetPunk = 'Street Punk',
-  StudentIntern = 'Student/Intern',
+  StudentIntern = 'Student / Intern',
   TribeMember = 'Tribe Member',
   UnionActivist = 'Union Activist',
   Yogi = 'Yogi',
@@ -117,14 +129,21 @@ export const OccupationNameKeys = keyList(OccupationName)
 
 export enum SkillName {
   Accounting = 'Accounting',
-  AnimalHandling = 'Animal Handling',
-  Anthropology = 'Anthropology',
   Appraise = 'Appraise',
+
+  AnimalHandling = 'Animal Handling',
+
+  Anthropology = 'Anthropology',
   Archaeology = 'Archaeology',
-  ArtOrCraft = 'Art and Craft',
+
+  ArtCraftCustom = 'Art/Craft, Custom',
+  ArtCraftActing = 'Art/Craft, Acting',
+  ArtCraftPhotography = 'Art/Craft, Photography',
+
   Artillery = 'Artillery',
   Charm = 'Charm',
   Climb = 'Climb',
+  Cryptography = 'Cryptography',
   ComputerUse = 'Computer Use',
   CreditRating = 'Credit Rating',
   CthulhuMythos = 'Cthulhu Mythos',
@@ -135,23 +154,31 @@ export enum SkillName {
   DriveAuto = 'Drive Auto',
   ElectricalRepair = 'Electrical Repair',
   FastTalk = 'Fast Talk',
-  Fighting = 'Fighting',
+
+  FightingCustom = 'Fighting, Custom',
+  FightingStriking = 'Fighting, Striking',
+  FightingGrappling = 'Fighting, Grappling',
+  FightingThrows = 'Fighting, Throws',
+  FightingDirty = 'Fighting, Dirty',
+  FightingStreet = 'Fighting, Street',
+
   Axe = 'Axe',
   Bow = 'Bow',
-  Brawl = 'Brawl',
   Chainsaw = 'Chainsaw',
   Flail = 'Flail',
   Garrote = 'Garrote',
   Sword = 'Sword',
   Whip = 'Whip',
-  Firearms = 'Firearms',
-  Flamethrower = 'Flamethrower',
-  Handgun = 'Handgun',
-  HeavyWeapons = 'Heavy Weapons',
-  MachineGun = 'Machine Gun',
-  RifleShotgun = 'Rifle/Shotgun',
   Spear = 'Spear',
-  SubmachineGun = 'Submachine Gun',
+
+  FirearmsCustom = 'Firearms, Custom',
+  FirearmsHandgun = 'Firearms, Handgun',
+  FirearmsRifleShotgun = 'Firearms, Rifle/Shotgun',
+  FirearmSubmachineGun = 'Firearms, Submachine Gun',
+  FirearmsMachineGun = 'Firearms, Machine Gun',
+  FirearmsFlamethrower = 'Firearms, Flamethrower',
+  HeavyWeapons = 'Heavy Weapons',
+
   FirstAid = 'First Aid',
   History = 'History',
   Hypnosis = 'Hypnosis',
@@ -172,11 +199,23 @@ export enum SkillName {
   HeavyMachinery = 'Heavy Machinery',
   Persuade = 'Persuade',
   Pilot = 'Pilot',
+  PsychicClairvoyance = 'Psychic, Clairvoyance', //requires psychic talent
+  PsychicDivination = 'Psychic, Divination', //requires psychic talent
+  PsychicMedium = 'Psychic, Medium', //requires psychic talent
+  PsychicPsychometry = 'Psychic, Psychometry', //requires psychic talent
+  PsychicTelekinesis = 'Psychic, Telekinesis', //requires psychic talent
   Psychoanalysis = 'Psychoanalysis',
   Psychology = 'Psychology',
   ReadLips = 'Read Lips',
   Ride = 'Ride',
-  Science = 'Science',
+
+  ScienceCustom = 'Science, Custom',
+  ScienceAstronomy = 'Science, Astronomy',
+  ScienceChemistry = 'Science, Chemistry',
+  SciencePhysics = 'Science, Physics',
+  ScienceGeology = 'Science, Geology',
+  ScienceBiology = 'Science, Geology',
+
   SleightOfHand = 'Sleight of Hand',
   SpotHidden = 'Spot Hidden',
   Stealth = 'Stealth',
@@ -187,3 +226,44 @@ export enum SkillName {
 }
 
 export const SkillNameKeys = keyList(SkillName)
+
+export const allFighting = (): Array<SkillName> => {
+  return [
+    SkillName.FightingCustom,
+    SkillName.FightingGrappling,
+    SkillName.FightingStriking,
+    SkillName.FightingThrows,
+    SkillName.FightingDirty,
+    SkillName.FightingStreet,
+  ]
+}
+
+export const allFirearms = (): Array<SkillName> => {
+  return [
+    SkillName.FirearmsCustom,
+    SkillName.FirearmsHandgun,
+    SkillName.FirearmsRifleShotgun,
+    SkillName.FirearmSubmachineGun,
+    SkillName.FirearmsMachineGun,
+    SkillName.FirearmsFlamethrower,
+  ]
+}
+
+export const allArtsCrafts = (): Array<SkillName> => {
+  return [
+    SkillName.ArtCraftCustom,
+    SkillName.ArtCraftActing,
+    SkillName.ArtCraftPhotography,
+  ]
+}
+
+export const allScience = (): Array<SkillName> => {
+  return [
+    SkillName.ScienceCustom,
+    SkillName.ScienceAstronomy,
+    SkillName.ScienceBiology,
+    SkillName.ScienceChemistry,
+    SkillName.ScienceGeology,
+    SkillName.SciencePhysics,
+  ]
+}

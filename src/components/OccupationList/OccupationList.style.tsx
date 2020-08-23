@@ -2,7 +2,8 @@ import { makeStyles } from '@material-ui/core'
 
 const styles = makeStyles((theme) => ({
   title: {
-    fontFamily: 'SFComicScript',
+    fontFamily: 'Diploma',
+    // wordBreak: 'break-word',
 
     // textAlign: 'left',
   },
@@ -24,10 +25,11 @@ const styles = makeStyles((theme) => ({
     backgroundColor: 'rgba(0,0,0,0.3)',
   },
 
-  archetypeItem: {
+  occupationItem: {
     // padding: 20,
-    backgroundImage: 'url(/img/pulp3.jpg)',
-    backgroundPosition: 'center top',
+    // backgroundImage: 'url(/img/pulp3.jpg)',
+    // backgroundPosition: 'center top',
+    textAlign: 'center',
     '&:hover': {
       boxShadow:
         '0px 7px 8px -4px rgba(22, 155, 30,0.4),0px 12px 17px 2px rgba(22, 155, 30,0.28),0px 5px 22px 4px rgba(22, 155, 30 ,0.24)',
@@ -35,9 +37,12 @@ const styles = makeStyles((theme) => ({
     },
     userSelect: 'none',
     transition: 'transform 0.3s, box-shadow 0.3s',
+
+    border: '15px solid transparent',
+    borderImage: 'url(/img/diplomaBorder600.png) 50 round',
   },
 
-  archetypeSelected: {
+  occupationSelected: {
     boxShadow:
       '0px 8px 9px -5px rgba(122, 40, 203,0.6),0px 15px 22px 2px rgba(122, 40, 203,0.42),0px 6px 28px 5px rgba(122, 40, 203,0.36)!important',
     transform: 'scale(102%)',
@@ -46,8 +51,13 @@ const styles = makeStyles((theme) => ({
   button: {
     padding: 20,
     textTransform: 'none',
-    textAlign: 'left',
+    textAlign: 'center',
     flexDirection: 'column',
+    width: '100%',
+    marginLeft: '-15px',
+    marginRight: '-15px',
+    marginTop: '-15px',
+    marginBottom: '-15px',
   },
 
   ripple: {
@@ -62,12 +72,14 @@ const styles = makeStyles((theme) => ({
     width: 80,
     height: 80,
     position: 'absolute',
-    right: -8,
+    left: '50%',
+    transform: 'translateX(-50%)',
     bottom: -8,
   },
 
   itemContainer: {
     position: 'relative',
+    textAlign: 'center',
     paddingBottom: 80,
   },
 
