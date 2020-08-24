@@ -13,8 +13,7 @@ type sectionProps = {
 const TalentListSection: FC<sectionProps> = (props) => {
   const classes = styles()
 
-  const { section } = props
-  console.log(section)
+  //const { section } = props
   /*
   const [charFilter, setCharFilter] = React.useState<string>('All')
 
