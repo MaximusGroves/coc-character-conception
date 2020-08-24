@@ -40,7 +40,15 @@ const themeProps = {
       main: purple,
     },
   },
-
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 940,
+      lg: 1280,
+      xl: 1920,
+    },
+  },
   overrides: {
     MuiStepper: {
       horizontal: {
