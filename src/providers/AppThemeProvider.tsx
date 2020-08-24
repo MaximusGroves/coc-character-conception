@@ -22,14 +22,22 @@ export const hex2rgb = (hex: string) => {
     : null
 }
 
+export const green = '#169B1E'
+export const purple = '#7A28CB'
+export const red = '#A30015'
+export const gold = '#F1C40F'
+export const darkPurple = '#290025'
+export const darkGreen = '#006400'
+export const deepGreen = '#008001'
+export const brightGreen = '#2BAB27'
+
 const themeProps = {
   palette: {
     primary: {
-      main: '#169b1e',
+      main: green,
     },
     secondary: {
-      main: '#7A28CB',
-      // main: '#F1C40F',
+      main: purple,
     },
   },
 
@@ -41,6 +49,16 @@ const themeProps = {
         paddingRight: 0,
         marginLeft: -8,
         marginRight: -8,
+      },
+    },
+    MuiAccordionSummary: {
+      content: {
+        margin: '0!important',
+      },
+    },
+    MuiAccordion: {
+      root: {
+        margin: '0!important',
       },
     },
   },

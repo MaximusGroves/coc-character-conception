@@ -2,18 +2,26 @@ import React, { FC } from 'react'
 
 import Header from './components/Header/Header'
 import Home from './components/Home/Home'
-
+import { Hidden } from '@material-ui/core'
 import { useAppContext } from './providers/AppContextProvider'
-import './App.css'
+import './fonts.css'
+import HomeMobile from './components/HomeMobile/HomeMobile'
+import styles from './App.style'
 
 const App: FC = () => {
   const { state } = useAppContext()
   const { appName } = state
+  const classes = styles()
 
   return (
-    <div className="App">
+    <div className={classes.app}>
       <Header appName={appName} />
-      <Home />
+      <Hidden smDown>
+        <Home />
+      </Hidden>
+      <Hidden mdUp>
+        <HomeMobile />
+      </Hidden>
     </div>
   )
 }
