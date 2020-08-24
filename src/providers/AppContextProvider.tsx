@@ -13,7 +13,7 @@ export type AppState = {
   creatorStep: number
   selectedArchetype?: Archetype
   selectedOccupation?: Occupation
-  selectedTalent?: Talent
+  selectedTalent?: Array<Talent>
 }
 
 const defaultState: AppState = {
@@ -71,12 +71,18 @@ const AppContextProvider: FC<ContextProps> = (props) => {
   }
 
   const selectTalent = (newSelection: Talent) => {
-    if (newSelection === selectedTalent) {
-      setAppState({ ...state, selectedTalent: undefined })
+    var _tempTalents = selectedTalent || new Array<Talent>(2)
+    const _talent = _tempTalents.indexOf(newSelection)
+    if (_talent === 0 || _talent === 1) {
+      if (_tempTalents && _tempTalents[0] === newSelection) delete _tempTalents[0]
+      if (_tempTalents && _tempTalents[1] === newSelection) delete _tempTalents[1]
     } else {
-      setAppState({ ...state, selectedTalent: newSelection })
+      if (_tempTalents && _tempTalents[0] === undefined && !(_tempTalents[1] && _tempTalents[1].type === newSelection.type)) _tempTalents[0] = newSelection
+      else if (_tempTalents && _tempTalents[1] === undefined && !(_tempTalents[0] && _tempTalents[0].type === newSelection.type)) _tempTalents[1] = newSelection
     }
+    setAppState({ ...state, selectedTalent: _tempTalents })
   }
+
   const api = {
     setAppState,
     nextStep,
