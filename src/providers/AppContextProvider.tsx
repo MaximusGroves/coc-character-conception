@@ -67,7 +67,7 @@ const AppContextProvider: FC<ContextProps> = (props) => {
   const setStep = (newStep: number | undefined) => {
     // if (newStep > 0 && newStep < CreatorStepKeys.length) {
     console.log('setStep', newStep)
-    if (creatorStep != undefined && creatorStep === newStep) {
+    if (creatorStep !== undefined && creatorStep === newStep) {
       setAppState({ ...state, creatorStep: undefined })
     } else {
       setAppState({ ...state, creatorStep: newStep })
