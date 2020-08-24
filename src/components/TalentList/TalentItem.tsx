@@ -23,7 +23,8 @@ const TalentItem: FC<Props> = (props) => {
   const { state, api } = useAppContext()
   const { selectTalent } = api
   const { selectedTalent } = state
-  const selected = selectedTalent === talent
+
+  const selected = (selectedTalent && (selectedTalent[0] === talent || selectedTalent[1] === talent)) 
 
   return (
     <div>
