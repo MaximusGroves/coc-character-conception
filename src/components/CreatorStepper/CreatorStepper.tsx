@@ -30,7 +30,10 @@ const CreatorStepper: FC = () => {
       case 1:
         return selectedOccupation?.name || ''
       case 2:
-        return selectedTalent?.name || '' 
+        if(selectedTalent && selectedTalent[0] && !selectedTalent[1]) return selectedTalent[0].name
+        else if(selectedTalent && selectedTalent[1] && !selectedTalent[0]) return selectedTalent[1].name
+        else if(selectedTalent && selectedTalent[0] && selectedTalent[1]) return (<Grid><Typography className={getSelectionStyle(2)}>{selectedTalent[0].name}</Typography><Typography className={getSelectionStyle(2)}>{selectedTalent[1].name}</Typography></Grid>)
+        return selectedTalent || '' 
       case 3:
         return ''
       case 4:
