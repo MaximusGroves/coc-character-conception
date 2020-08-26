@@ -12,14 +12,20 @@ import { useAppContext } from '../../providers/AppContextProvider'
 import { ArrowBack, ArrowForward } from '@material-ui/icons'
 import { CreatorSteps, CreatorStepKeys } from '../../data/types'
 import { useWidth } from '../../providers/AppThemeProvider'
+import clsx from 'clsx'
 
 const CreatorStepper: FC = () => {
   const classes = styles()
 
   const { state, api } = useAppContext()
-  const { creatorStep, selectedArchetype, selectedOccupation, selectedTalent } = state
+  const {
+    creatorStep,
+    selectedArchetype,
+    selectedOccupation,
+    selectedTalent,
+  } = state
 
-  const { prevStep, nextStep } = api
+  const { nextStep, prevStep } = api
 
   const currentWidth = useWidth()
 
@@ -44,7 +50,7 @@ const CreatorStepper: FC = () => {
   const getSelectionStyle = (step: number) => {
     switch (step) {
       case 0:
-        return classes.selectionStyle
+        return classes.selectionStyleArchetype
       case 1:
         return classes.selectionStyleOccupation
       case 2:
@@ -57,51 +63,70 @@ const CreatorStepper: FC = () => {
   }
 
   return (
-    <div>
-      <Stepper
-        activeStep={creatorStep}
-        alternativeLabel={currentWidth === 'sm' || currentWidth === 'xs'}
-        className={classes.stepper}
-      >
-        {CreatorStepKeys.map((key, index) => {
-          const stepProps: { completed?: boolean } = {}
-          const labelProps: { optional?: React.ReactNode } = {}
-          // if (isStepOptional(index)) {
-          //   labelProps.optional = <Typography variant="caption">Optional</Typography>;
-          // }
-          // if (isStepSkipped(index)) {
-          //   stepProps.completed = false;
-          // }
-          return (
-            <Step key={CreatorSteps[key]} {...stepProps}>
-              <StepLabel {...labelProps}>
-                {(currentWidth !== 'xs' || index === creatorStep) &&
-                  CreatorSteps[key]}
-                {(currentWidth !== 'xs' || index === creatorStep) && (
-                  <Typography className={getSelectionStyle(index)}>
-                    {getSelection(index)}
-                  </Typography>
-                )}
-              </StepLabel>
-            </Step>
-          )
-        })}
-      </Stepper>
-
-      <Grid container className={classes.buttons} justify="center">
-        <Grid item>
-          <IconButton color="primary" onClick={() => prevStep()}>
-            <ArrowBack />
-          </IconButton>
-        </Grid>
-
-        <Grid item>
-          <IconButton color="primary" onClick={() => nextStep()}>
-            <ArrowForward />
-          </IconButton>
-        </Grid>
+    <Grid
+      container
+      direction="row"
+      alignItems="center"
+      justify="space-between"
+      className={classes.stepperRoot}
+    >
+      <Grid item>
+        <IconButton
+          color="primary"
+          onClick={() => prevStep()}
+          className={classes.btnLeft}
+        >
+          <ArrowBack />
+        </IconButton>
       </Grid>
-    </div>
+
+      <Grid item className={classes.stepperParent}>
+        <Stepper
+          activeStep={creatorStep}
+          alternativeLabel={currentWidth === 'sm' || currentWidth === 'xs'}
+          className={classes.stepper}
+        >
+          {CreatorStepKeys.map((key, index) => {
+            const stepProps: { completed?: boolean } = {}
+            const labelProps: { optional?: React.ReactNode } = {}
+            // if (isStepOptional(index)) {
+            //   labelProps.optional = <Typography variant="caption">Optional</Typography>;
+            // }
+            // if (isStepSkipped(index)) {
+            //   stepProps.completed = false;
+            // }
+            return (
+              <Step key={CreatorSteps[key]} {...stepProps}>
+                <StepLabel {...labelProps}>
+                  {(currentWidth !== 'xs' || index === creatorStep) &&
+                    CreatorSteps[key]}
+                  {(currentWidth !== 'xs' || index === creatorStep) && (
+                    <Typography
+                      className={clsx(
+                        classes.selectionStyle,
+                        getSelectionStyle(index)
+                      )}
+                    >
+                      {getSelection(index)}
+                    </Typography>
+                  )}
+                </StepLabel>
+              </Step>
+            )
+          })}
+        </Stepper>
+      </Grid>
+
+      <Grid item>
+        <IconButton
+          color="primary"
+          onClick={() => nextStep()}
+          className={classes.btnRight}
+        >
+          <ArrowForward />
+        </IconButton>
+      </Grid>
+    </Grid>
   )
 }
 

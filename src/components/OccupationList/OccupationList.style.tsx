@@ -81,7 +81,7 @@ const styles = makeStyles((theme) => ({
     position: 'absolute',
     left: '50%',
     transform: 'translateX(-50%)',
-    bottom: -8,
+    bottom: 0,
   },
 
   itemContainer: {

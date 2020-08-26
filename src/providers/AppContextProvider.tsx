@@ -10,7 +10,7 @@ export type ContextProps = {
 
 export type AppState = {
   appName: string
-  creatorStep: number
+  creatorStep?: number
   selectedArchetype?: Archetype
   selectedOccupation?: Occupation
   selectedTalent?: Array<Talent>
@@ -25,6 +25,7 @@ export type AppFunctions = {
   setAppState: Function
   nextStep: Function
   prevStep: Function
+  setStep: Function
   selectArchetype: Function
   selectOccupation: Function
   selectTalent: Function
@@ -40,18 +41,39 @@ export const AppContext = createContext<ContextValues | undefined>(undefined)
 const AppContextProvider: FC<ContextProps> = (props) => {
   const [state, setAppState] = useState<AppState>(defaultState)
 
-  const { creatorStep, selectedArchetype, selectedOccupation, selectedTalent } = state
+  const {
+    creatorStep,
+    selectedArchetype,
+    selectedOccupation,
+    selectedTalent,
+  } = state
 
   const nextStep = () => {
-    if (creatorStep < CreatorStepKeys.length - 1) {
+    if (creatorStep === undefined) {
+      setAppState({ ...state, creatorStep: 0 })
+    } else if (creatorStep < CreatorStepKeys.length - 1) {
       setAppState({ ...state, creatorStep: creatorStep + 1 })
     }
   }
 
   const prevStep = () => {
-    if (creatorStep > 0) {
+    if (creatorStep === undefined) {
+      setAppState({ ...state, creatorStep: 0 })
+    } else if (creatorStep > 0) {
       setAppState({ ...state, creatorStep: creatorStep - 1 })
     }
+  }
+
+  const setStep = (newStep: number | undefined) => {
+    // if (newStep > 0 && newStep < CreatorStepKeys.length) {
+    console.log('setStep', newStep)
+    if (creatorStep !== undefined && creatorStep === newStep) {
+      setAppState({ ...state, creatorStep: undefined })
+    } else {
+      setAppState({ ...state, creatorStep: newStep })
+    }
+
+    // }
   }
 
   const selectArchetype = (newSelection: Archetype) => {
@@ -90,6 +112,7 @@ const AppContextProvider: FC<ContextProps> = (props) => {
     selectArchetype,
     selectOccupation,
     selectTalent,
+    setStep,
   }
 
   return (

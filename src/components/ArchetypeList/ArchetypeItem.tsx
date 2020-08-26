@@ -12,6 +12,7 @@ import { Archetype } from '../../data/archetypes'
 import { useAppContext } from '../../providers/AppContextProvider'
 import { ReactComponent as Sigil } from '../../assets/Sigil_of_the_Gateway.svg'
 import clsx from 'clsx'
+import { red } from '../../providers/AppThemeProvider'
 
 type Props = {
   archetype: Archetype
@@ -45,7 +46,7 @@ const ArchetypeItem: FC<Props> = (props) => {
         >
           <div className={classes.itemContainer}>
             <Fade in={selected}>
-              <Sigil className={classes.sigil} />
+              <Sigil className={classes.sigil} fill={red} />
             </Fade>
 
             <Typography variant="h2" className={classes.title}>
