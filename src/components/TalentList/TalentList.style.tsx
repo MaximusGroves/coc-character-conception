@@ -93,11 +93,11 @@ const styles = makeStyles((theme) => ({
   },
 
   sigil: {
-    width: 80,
-    height: 80,
+    width: 70,
+    height: 70,
     position: 'absolute',
-    right: 12,
-    bottom: 12,
+    left: 5,
+    top: 5,
   },
 }));
 
