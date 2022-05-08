@@ -1,4 +1,4 @@
-import { makeStyles } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core';
 
 const styles = makeStyles({
   root: {
@@ -11,12 +11,12 @@ const styles = makeStyles({
     position: 'relative',
   },
 
-  drawerPaper: {},
+  drawerPaper: { overflow: 'hidden' },
 
   buttons: {
     position: 'absolute',
     bottom: 100,
   },
-})
+});
 
-export default styles
+export default styles;

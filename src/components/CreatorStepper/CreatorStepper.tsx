@@ -50,9 +50,18 @@ const CreatorStepper: FC = () => {
       case 0:
         return selectedArchetype?.name || '';
       case 1:
-        return selectedOccupation?.name || '';
+        const lines = selectedOccupation?.name.split(' ');
+        if (lines?.length === 2) {
+          return lines?.map((val) => (
+            <span style={{ display: 'block' }}>{val}</span>
+          ));
+        } else return selectedOccupation?.name || '';
       case 2:
-        return selectedTalent.map((val) => val.name).join(', ') || '';
+        return (
+          selectedTalent.map((val) => (
+            <span style={{ display: 'block' }}>{val.name}</span>
+          )) || ''
+        );
       case 3:
         return '';
       case 4:

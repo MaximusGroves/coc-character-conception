@@ -15,12 +15,10 @@ const styles = makeStyles((theme) => ({
   },
 
   fontScalar: {
-    transform: 'scale(.7,1)',
-    fontFamily: 'Indubitably',
-    fontSize: 42,
+    fontFamily: 'Playbill',
+    fontSize: 30,
     lineHeight: '44px',
     color: 'black',
-    letterSpacing: '2px',
     textTransform: 'uppercase',
     textAlign: 'center',
   },

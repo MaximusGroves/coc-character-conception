@@ -43,7 +43,7 @@ const styles = makeStyles((theme) => ({
   selectionStyle: {
     textAlign: 'left',
     lineHeight: '22px',
-    fontSize: 22,
+    fontSize: 14,
     marginLeft: 2,
     // marginRight: 2,
     marginTop: -5,
@@ -59,9 +59,7 @@ const styles = makeStyles((theme) => ({
 
   selectionStyleTalent: {
     fontFamily: 'Indubitably',
-    transform: 'scale(.7,1) translateX(-30%)',
-    fontSize: 20,
-    textTransform: 'uppercase',
+    fontSize: 16,
   },
 }));
 

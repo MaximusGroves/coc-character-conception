@@ -41,13 +41,13 @@ const styles = makeStyles((theme) => ({
 
   selectionStyleOccupation: {
     fontFamily: 'Diploma',
+    textAlign: 'center',
   },
 
   selectionStyleTalent: {
-    fontFamily: 'Indubitably',
-    transform: 'scale(.7,1)',
-    fontSize: 20,
-    textTransform: 'uppercase',
+    fontFamily: 'Playbill',
+    fontSize: 16,
+    textAlign: 'center',
   },
 
   btnLeft: {

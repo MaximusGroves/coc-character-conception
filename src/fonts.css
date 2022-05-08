@@ -24,11 +24,11 @@
   font-family: 'Playbill';
   font-style: normal;
   font-weight: 400;
-  src: url('/fonts/OPTILatin-BoldCondensed.ttf.eot') format('embedded-opentype'),
-    /* Super Modern Browsers */ url('/fonts/OPTILatin-BoldCondensed.ttf.woff')
+  src: url('/fonts/OPTILatin-Bold.ttf.eot') format('embedded-opentype'),
+    /* Super Modern Browsers */ url('/fonts/OPTILatin-Bold.ttf.woff')
       format('woff'),
     /* Modern Browsers url('/fonts/Diploma.ttf') format('truetype'), */
-      /* Safari, Android, iOS */ url('/fonts/OPTILatin-BoldCondensed.ttf.svg')
+      /* Safari, Android, iOS */ url('/fonts/OPTILatin-Bold.ttfsvg')
       format('svg'); /* Legacy iOS */
 }
 
@@ -36,7 +36,8 @@
   font-family: 'Indubitably';
   font-style: normal;
   font-weight: 400;
-  src:  /* Modern Browsers  */ url('/fonts/IndubitablyNF.ttf') format('truetype');
+  src:  /* Modern Browsers  */ url('/fonts/IndubitablyNF.ttf')
+    format('truetype');
 }
 
 @font-face {
