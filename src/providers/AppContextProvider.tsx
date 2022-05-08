@@ -1,137 +1,149 @@
-import React, { useState, createContext, FC } from 'react'
-import { CreatorStepKeys } from '../data/types'
-import { Archetype } from '../data/archetypes'
-import { Occupation } from '../data/occupations'
-import { Talent } from '../data/talents'
+import React, { useState, createContext, FC } from 'react';
+import { stepKeys } from '../data/types';
+import { ArchetypeOption } from '../data/archetypes';
+import { Occupation } from '../data/occupations';
+import { Talent } from '../data/talents';
 
 export type ContextProps = {
-  children: React.ReactNode
-}
+  children: React.ReactNode;
+};
 
 export type AppState = {
-  appName: string
-  creatorStep?: number
-  selectedArchetype?: Archetype
-  selectedOccupation?: Occupation
-  selectedTalent?: Array<Talent>
-}
+  appName: string;
+  creatorStep?: number;
+  selectedArchetype?: ArchetypeOption;
+  selectedOccupation?: Occupation;
+  selectedTalent: Array<Talent>;
+};
 
 const defaultState: AppState = {
   appName: 'Pulp Cthulhu - Character Conception',
   creatorStep: 0,
-}
+  selectedTalent: [],
+};
 
 export type AppFunctions = {
-  setAppState: Function
-  nextStep: Function
-  prevStep: Function
-  setStep: Function
-  selectArchetype: Function
-  selectOccupation: Function
-  selectTalent: Function
-}
+  setState: Function;
+  nextStep: Function;
+  prevStep: Function;
+  setStep: Function;
+  selectArchetype: Function;
+  selectOccupation: Function;
+  selectTalent: Function;
+};
 
 type ContextValues = {
-  state: AppState
-  api: AppFunctions
-}
+  state: AppState;
+  api: AppFunctions;
+};
 
-export const AppContext = createContext<ContextValues | undefined>(undefined)
+export const AppContext = createContext<ContextValues | undefined>(undefined);
 
 const AppContextProvider: FC<ContextProps> = (props) => {
-  const [state, setAppState] = useState<AppState>(defaultState)
+  const [state, setAppState] = useState<AppState>(defaultState);
+
+  const setState = (val: Partial<AppState>) => {
+    setAppState({ ...state, ...val });
+  };
 
   const {
     creatorStep,
     selectedArchetype,
     selectedOccupation,
     selectedTalent,
-  } = state
+  } = state;
 
   const nextStep = () => {
     if (creatorStep === undefined) {
-      setAppState({ ...state, creatorStep: 0 })
-    } else if (creatorStep < CreatorStepKeys.length - 1) {
-      setAppState({ ...state, creatorStep: creatorStep + 1 })
+      setState({ creatorStep: 0 });
+    } else if (creatorStep < stepKeys.list.length - 1) {
+      setState({ creatorStep: creatorStep + 1 });
     }
-  }
+  };
 
   const prevStep = () => {
     if (creatorStep === undefined) {
-      setAppState({ ...state, creatorStep: 0 })
+      setState({ creatorStep: 0 });
     } else if (creatorStep > 0) {
-      setAppState({ ...state, creatorStep: creatorStep - 1 })
+      setState({ creatorStep: creatorStep - 1 });
     }
-  }
+  };
 
   const setStep = (newStep: number | undefined) => {
-    // if (newStep > 0 && newStep < CreatorStepKeys.length) {
-    console.log('setStep', newStep)
+    // if (newStep > 0 && newStep < stepKeys.list.length) {
+    console.log('setStep', newStep);
     if (creatorStep !== undefined && creatorStep === newStep) {
-      setAppState({ ...state, creatorStep: undefined })
+      // setState({ creatorStep: undefined })
     } else {
-      setAppState({ ...state, creatorStep: newStep })
+      setState({ creatorStep: newStep });
     }
 
     // }
-  }
+  };
 
-  const selectArchetype = (newSelection: Archetype) => {
+  const selectArchetype = (newSelection: ArchetypeOption) => {
     if (newSelection === selectedArchetype) {
-      setAppState({ ...state, selectedArchetype: undefined })
+      setState({ selectedArchetype: undefined });
     } else {
-      setAppState({ ...state, selectedArchetype: newSelection })
+      setState({ selectedArchetype: newSelection });
     }
-  }
+  };
 
   const selectOccupation = (newSelection: Occupation) => {
     if (newSelection === selectedOccupation) {
-      setAppState({ ...state, selectedOccupation: undefined })
+      setState({ selectedOccupation: undefined });
     } else {
-      setAppState({ ...state, selectedOccupation: newSelection })
+      setState({ selectedOccupation: newSelection });
     }
-  }
+  };
 
   const selectTalent = (newSelection: Talent) => {
-    var _tempTalents = selectedTalent || new Array<Talent>(2)
-    const _talent = _tempTalents.indexOf(newSelection)
-    if (_talent === 0 || _talent === 1) {
-      if (_tempTalents && _tempTalents[0] === newSelection) delete _tempTalents[0]
-      if (_tempTalents && _tempTalents[1] === newSelection) delete _tempTalents[1]
+    const matchingIndex = selectedTalent.indexOf(newSelection);
+    if (matchingIndex === -1) {
+      // new entry
+      if (selectedTalent.length === 2) {
+        //deselect first element, add new one
+        setState({ selectedTalent: [selectedTalent[1], newSelection] });
+      } else {
+        // just add new element
+        setState({ selectedTalent: [...selectedTalent, newSelection] });
+      }
     } else {
-      if (_tempTalents && _tempTalents[0] === undefined && !(_tempTalents[1] && _tempTalents[1].type === newSelection.type)) _tempTalents[0] = newSelection
-      else if (_tempTalents && _tempTalents[1] === undefined && !(_tempTalents[0] && _tempTalents[0].type === newSelection.type)) _tempTalents[1] = newSelection
+      //deselect entry
+      const newArr = selectedTalent.filter(
+        (val) => val.key !== newSelection.key
+      );
+      setState({ selectedTalent: newArr });
     }
-    setAppState({ ...state, selectedTalent: _tempTalents })
-  }
+  };
 
   const api = {
-    setAppState,
+    setState,
     nextStep,
     prevStep,
     selectArchetype,
     selectOccupation,
     selectTalent,
     setStep,
-  }
+  };
 
   return (
     <AppContext.Provider value={{ state, api }}>
       {props.children}
     </AppContext.Provider>
-  )
-}
+  );
+};
 
 /****************************************************************
  * Allows us to skip some spammy TS code defining default values.
  * Must be used inside AppContextProvider
  ****************************************************************/
 export const useAppContext = (): ContextValues => {
-  const context = React.useContext(AppContext)
+  const context = React.useContext(AppContext);
   if (context === undefined) {
-    throw new Error('useAppContext must be used within a AppContextProvider')
+    throw new Error('useAppContext must be used within a AppContextProvider');
   }
-  return context as ContextValues
-}
+  return context as ContextValues;
+};
 
-export default AppContextProvider
+export default AppContextProvider;

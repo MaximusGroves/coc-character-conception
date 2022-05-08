@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC } from 'react';
 import {
   Grid,
   Typography,
@@ -6,61 +6,59 @@ import {
   Step,
   StepLabel,
   IconButton,
-} from '@material-ui/core'
-import styles from './CreatorStepper.style'
-import { useAppContext } from '../../providers/AppContextProvider'
-import { ArrowBack, ArrowForward } from '@material-ui/icons'
-import { CreatorSteps, CreatorStepKeys } from '../../data/types'
-import { useWidth } from '../../providers/AppThemeProvider'
-import clsx from 'clsx'
+  StepButton,
+} from '@material-ui/core';
+import styles from './CreatorStepper.style';
+import { useAppContext } from '../../providers/AppContextProvider';
+import { ArrowBack, ArrowForward } from '@material-ui/icons';
+import { CreatorSteps, stepKeys } from '../../data/types';
+import { useWidth } from '../../providers/AppThemeProvider';
+import clsx from 'clsx';
 
 const CreatorStepper: FC = () => {
-  const classes = styles()
+  const classes = styles();
 
-  const { state, api } = useAppContext()
+  const { state, api } = useAppContext();
   const {
     creatorStep,
     selectedArchetype,
     selectedOccupation,
     selectedTalent,
-  } = state
+  } = state;
 
-  const { nextStep, prevStep } = api
+  const { nextStep, prevStep, setStep } = api;
 
-  const currentWidth = useWidth()
+  const currentWidth = useWidth();
 
   const getSelection = (step: number) => {
     switch (step) {
       case 0:
-        return selectedArchetype?.name || ''
+        return selectedArchetype?.name || '';
       case 1:
-        return selectedOccupation?.name || ''
+        return selectedOccupation?.name || '';
       case 2:
-        if(selectedTalent && selectedTalent[0] && !selectedTalent[1]) return selectedTalent[0].name
-        else if(selectedTalent && selectedTalent[1] && !selectedTalent[0]) return selectedTalent[1].name
-        else if(selectedTalent && selectedTalent[0] && selectedTalent[1]) return (<Grid><Typography className={getSelectionStyle(2)}>{selectedTalent[0].name}</Typography><Typography className={getSelectionStyle(2)}>{selectedTalent[1].name}</Typography></Grid>)
-        return selectedTalent || '' 
+        return selectedTalent.map((val) => val.name).join(', ') || '';
       case 3:
-        return ''
+        return '';
       case 4:
-        return ''
+        return '';
     }
-  }
+  };
 
   const getSelectionStyle = (step: number) => {
     switch (step) {
       case 0:
-        return classes.selectionStyleArchetype
+        return classes.selectionStyleArchetype;
       case 1:
-        return classes.selectionStyleOccupation
+        return classes.selectionStyleOccupation;
       case 2:
-        return classes.selectionStyleTalent
+        return classes.selectionStyleTalent;
       case 3:
-        return classes.selectionStyle
+        return classes.selectionStyle;
       case 4:
-        return classes.selectionStyle
+        return classes.selectionStyle;
     }
-  }
+  };
 
   return (
     <Grid
@@ -86,33 +84,34 @@ const CreatorStepper: FC = () => {
           alternativeLabel={currentWidth === 'sm' || currentWidth === 'xs'}
           className={classes.stepper}
         >
-          {CreatorStepKeys.map((key, index) => {
-            const stepProps: { completed?: boolean } = {}
-            const labelProps: { optional?: React.ReactNode } = {}
-            // if (isStepOptional(index)) {
-            //   labelProps.optional = <Typography variant="caption">Optional</Typography>;
-            // }
-            // if (isStepSkipped(index)) {
-            //   stepProps.completed = false;
-            // }
+          {stepKeys.list.map((key, index) => {
             return (
-              <Step key={CreatorSteps[key]} {...stepProps}>
-                <StepLabel {...labelProps}>
-                  {(currentWidth !== 'xs' || index === creatorStep) &&
-                    CreatorSteps[key]}
-                  {(currentWidth !== 'xs' || index === creatorStep) && (
-                    <Typography
-                      className={clsx(
-                        classes.selectionStyle,
-                        getSelectionStyle(index)
-                      )}
-                    >
-                      {getSelection(index)}
-                    </Typography>
-                  )}
-                </StepLabel>
+              <Step key={CreatorSteps[key]}>
+                <StepButton
+                  onClick={() => {
+                    setStep(index);
+                  }}
+                  completed={getSelection(index) !== ''}
+                  disabled={false}
+                  className={classes.stepLabelBtn}
+                >
+                  <StepLabel>
+                    {(currentWidth !== 'xs' || index === creatorStep) &&
+                      CreatorSteps[key]}
+                    {(currentWidth !== 'xs' || index === creatorStep) && (
+                      <Typography
+                        className={clsx(
+                          classes.selectionStyle,
+                          getSelectionStyle(index)
+                        )}
+                      >
+                        {getSelection(index)}
+                      </Typography>
+                    )}
+                  </StepLabel>
+                </StepButton>
               </Step>
-            )
+            );
           })}
         </Stepper>
       </Grid>
@@ -127,7 +126,7 @@ const CreatorStepper: FC = () => {
         </IconButton>
       </Grid>
     </Grid>
-  )
-}
+  );
+};
 
-export default CreatorStepper
+export default CreatorStepper;

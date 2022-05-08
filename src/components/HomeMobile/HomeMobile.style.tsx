@@ -13,7 +13,7 @@ const styles = makeStyles((theme) => ({
     height: 'calc(100vh - 200px)',
   },
 
-  drawerPaper: {},
+  drawerPaper: { overflow: 'hidden' },
 
   mobileStepper: {
     backgroundColor: 'transparent',

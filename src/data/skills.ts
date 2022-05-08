@@ -1,8 +1,8 @@
 import {
-  Characteristic,
+  CharacteristicName,
   OccupationName,
   SkillName,
-  SkillNameKeys,
+  skillKeys,
   ArchetypeName,
 } from './types'
 

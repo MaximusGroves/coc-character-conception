@@ -8,24 +8,30 @@ import {
   Fade,
 } from '@material-ui/core'
 import styles from './ArchetypeList.style'
-import { Archetype } from '../../data/archetypes'
+import { ArchetypeOption } from '../../data/archetypes'
 import { useAppContext } from '../../providers/AppContextProvider'
 import { ReactComponent as Sigil } from '../../assets/Sigil_of_the_Gateway.svg'
 import clsx from 'clsx'
 import { red } from '../../providers/AppThemeProvider'
+import { TalentName, TalentKey } from '../../data/types'
 
 type Props = {
-  archetype: Archetype
+  archetype: ArchetypeOption
   keyName: string
 }
 
-const ArchetypeItem: FC<Props> = (props) => {
+const ArchetypeItem: FC<Props> = (props: Props) => {
   const classes = styles()
   const { archetype } = props
   const { state, api } = useAppContext()
   const { selectArchetype } = api
   const { selectedArchetype } = state
   const selected = selectedArchetype === archetype
+
+  const traitsText = archetype.traits.join(', ')
+  const talentsText = archetype.talents
+    .map((val) => TalentName[val as TalentKey])
+    .join(', ')
 
   return (
     <Grid item sm={12} md={6} lg={4}>
@@ -44,16 +50,17 @@ const ArchetypeItem: FC<Props> = (props) => {
             },
           }}
         >
-          <div className={classes.itemContainer}>
+          <Grid container direction="column" className={classes.itemContainer}>
             <Fade in={selected}>
               <Sigil className={classes.sigil} fill={red} />
             </Fade>
-
-            <Typography variant="h2" className={classes.title}>
-              {archetype.name}
-            </Typography>
-            <Divider className={classes.divider} />
-            <div className={classes.characteristic}>
+            <Grid item>
+              <Typography variant="h2" className={classes.title}>
+                {archetype.name}
+              </Typography>
+              <Divider className={classes.divider} />
+            </Grid>
+            <Grid item className={classes.characteristic}>
               <Typography variant="h5">
                 {archetype.core.map((characteristic, charIndex) => (
                   <span key={archetype.name + '-' + characteristic}>
@@ -62,11 +69,29 @@ const ArchetypeItem: FC<Props> = (props) => {
                   </span>
                 ))}
               </Typography>
-            </div>
-            <Typography variant="body2" className={classes.flavorText}>
-              {archetype.description}
-            </Typography>
-          </div>
+            </Grid>
+            {talentsText.length !== 0 && (
+              <Grid item>
+                <Typography variant="body1" className={classes.talentText}>
+                  <span>Suggested Talent: </span>
+                  <span className={classes.talentName}>{talentsText}</span>
+                </Typography>
+              </Grid>
+            )}
+            <Grid item>
+              <Typography variant="body2" className={classes.flavorText}>
+                {archetype.description}
+              </Typography>
+            </Grid>
+
+            <Grid item className={classes.toBottom}>
+              <Typography variant="body2" className={classes.traitText}>
+                {traitsText}
+              </Typography>
+            </Grid>
+          </Grid>
+
+          <div></div>
         </Button>
       </Paper>
     </Grid>

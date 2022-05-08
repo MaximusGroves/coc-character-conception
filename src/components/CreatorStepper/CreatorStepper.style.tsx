@@ -1,4 +1,4 @@
-import { makeStyles } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core';
 
 const styles = makeStyles((theme) => ({
   stepperRoot: {
@@ -31,6 +31,10 @@ const styles = makeStyles((theme) => ({
     },
   },
 
+  stepLabelBtn: {
+    padding: 16,
+  },
+
   selectionStyleArchetype: {
     fontFamily: 'SFComicScript',
   },
@@ -50,6 +54,6 @@ const styles = makeStyles((theme) => ({
   btnRight: {
     // marginRight: 24,
   },
-}))
+}));
 
-export default styles
+export default styles;

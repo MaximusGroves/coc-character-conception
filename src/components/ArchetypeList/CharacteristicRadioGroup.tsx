@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC } from 'react';
 import {
   Grid,
   Radio,
@@ -6,25 +6,25 @@ import {
   FormControlLabel,
   FormControl,
   FormLabel,
-} from '@material-ui/core'
+} from '@material-ui/core';
 // import styles from './ArchetypeList.style'
 
-import { Characteristic, CharacteristicKeys } from '../../data/types'
+import { charKeys } from '../../data/types';
 
 type Props = {
-  selection: string
-  onSelection: Function
-}
+  selection: string;
+  onSelection: Function;
+};
 
-const CharacteristicRadioGroup: FC<Props> = (props) => {
-  const { selection, onSelection } = props
+const CharacteristicRadioGroup: FC<Props> = (props: Props) => {
+  const { selection, onSelection } = props;
 
   return (
     <FormControl component="fieldset">
       <FormLabel component="legend">Filter by Core Characteristic</FormLabel>
       <RadioGroup
-        aria-label="Characteristic"
-        name="Characteristic"
+        aria-label="CharacteristicName"
+        name="CharacteristicName"
         value={selection}
         onChange={(e) => onSelection(e)}
       >
@@ -33,19 +33,15 @@ const CharacteristicRadioGroup: FC<Props> = (props) => {
             <FormControlLabel value="All" control={<Radio />} label="All" />
           </Grid>
 
-          {CharacteristicKeys.map((key) => (
+          {charKeys.list.map((key) => (
             <Grid item key={key}>
-              <FormControlLabel
-                value={Characteristic[key]}
-                control={<Radio />}
-                label={key}
-              />
+              <FormControlLabel value={key} control={<Radio />} label={key} />
             </Grid>
           ))}
         </Grid>
       </RadioGroup>
     </FormControl>
-  )
-}
+  );
+};
 
-export default CharacteristicRadioGroup
+export default CharacteristicRadioGroup;

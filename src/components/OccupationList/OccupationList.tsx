@@ -1,29 +1,29 @@
-import React, { FC } from 'react'
-import { Grid } from '@material-ui/core'
+import React, { FC } from 'react';
+import { Grid } from '@material-ui/core';
 // import styles from './OccupationList.style'
 // import { archetypeList } from '../../data/archetypes'
-import { OccupationName } from '../../data/types'
-import { occupationList, Occupation } from '../../data/occupations'
+import { OccupationKey } from '../../data/types';
+import { occupationList, Occupation } from '../../data/occupations';
 // import CharacteristicRadioGroup from './CharacteristicRadioGroup'
-import OccupationItem from './OccupationItem'
-import IdealOccupationSwitch from './IdealOccupationSwitch'
-import { useAppContext } from '../../providers/AppContextProvider'
+import OccupationItem from './OccupationItem';
+import IdealOccupationSwitch from './IdealOccupationSwitch';
+import { useAppContext } from '../../providers/AppContextProvider';
 
 const OccupationList: FC = () => {
-  const { state } = useAppContext()
-  const { selectedArchetype } = state
+  const { state } = useAppContext();
+  const { selectedArchetype } = state;
 
-  const [ideal, setIdeal] = React.useState<boolean>(true)
+  const [ideal, setIdeal] = React.useState<boolean>(true);
 
   const handleSwitch = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setIdeal(event.target.checked)
-  }
+    setIdeal(event.target.checked);
+  };
 
-  const switchDisabled = selectedArchetype === undefined
+  const switchDisabled = selectedArchetype === undefined;
 
-  let shownOccupations = occupationList
+  let shownOccupations = occupationList;
 
-  const archetypeOccs = selectedArchetype?.occupations || []
+  const archetypeOccs = selectedArchetype?.occupations || [];
 
   //recursive characteristic matching, slow, omits INT, CON
   // const coreOptions = selectedArchetype?.core || []
@@ -45,11 +45,11 @@ const OccupationList: FC = () => {
   //matching archetype listed occupations
   if (ideal && !switchDisabled) {
     shownOccupations = occupationList.filter((occ: Occupation) => {
-      const onList = archetypeOccs.find((archetypeOccName: OccupationName) => {
-        return occ.name === archetypeOccName
-      })
-      return onList !== undefined
-    })
+      const onList = archetypeOccs.find((archetypeOccKey: OccupationKey) => {
+        return occ.key === archetypeOccKey;
+      });
+      return onList !== undefined;
+    });
   }
 
   return (
@@ -66,7 +66,7 @@ const OccupationList: FC = () => {
         ))}
       </Grid>
     </div>
-  )
-}
+  );
+};
 
-export default OccupationList
+export default OccupationList;

@@ -1,24 +1,21 @@
-import React, { FC } from 'react'
-import { Grid } from '@material-ui/core'
-import { } from '@material-ui/core'
-
-import TalentListSection from './TalentListSection'
-import { talentListSections } from '../../data/talents'
+import React, { FC } from 'react';
+import { Grid } from '@material-ui/core';
+import { talentList } from '../../data/talents';
+import TalentItem from './TalentItem';
+import styles from './TalentList.style';
 
 const TalentList: FC = () => {
-
-  //const [charFilter, setCharFilter] = React.useState<string>('All')
+  const classes = styles();
 
   return (
-    <div>
-        {talentListSections.map((section) => (
-          <Grid container direction="row" spacing={3}>
-            <TalentListSection section={section} key={section.name}/>
-          </Grid>
-       ))}
+    <div className={classes.itemContainer}>
+      <Grid container direction="row" spacing={3}>
+        {talentList.map((talent) => (
+          <TalentItem talent={talent} key={talent.name} />
+        ))}
+      </Grid>
     </div>
-  )
-}
+  );
+};
 
-export default TalentList
- 
+export default TalentList;

@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC } from 'react';
 import {
   Typography,
   Divider,
@@ -6,36 +6,36 @@ import {
   Fade,
   Card,
   CardContent,
-} from '@material-ui/core'
-import styles from './TalentList.style'
-import { Talent } from '../../data/talents'
-import { useAppContext } from '../../providers/AppContextProvider'
-import { ReactComponent as Sigil } from '../../assets/Sigil_of_the_Gateway.svg'
-import clsx from 'clsx'
+} from '@material-ui/core';
+import styles from './TalentList.style';
+import { Talent } from '../../data/talents';
+import { useAppContext } from '../../providers/AppContextProvider';
+import { ReactComponent as Sigil } from '../../assets/Sigil_of_the_Gateway.svg';
+import clsx from 'clsx';
 
 type Props = {
-  talent: Talent
-}
+  talent: Talent;
+};
 
-const TalentItem: FC<Props> = (props) => {
-  const classes = styles()
-  const { talent } = props
-  const { state, api } = useAppContext()
-  const { selectTalent } = api
-  const { selectedTalent } = state
+const TalentItem: FC<Props> = (props: Props) => {
+  const classes = styles();
+  const { talent } = props;
+  const { state, api } = useAppContext();
+  const { selectTalent } = api;
+  const { selectedTalent } = state;
 
-  const selected = (selectedTalent && (selectedTalent[0] === talent || selectedTalent[1] === talent)) 
+  const selected =
+    selectedTalent.filter((val) => val.key === talent.key).length !== 0;
 
   return (
     <div>
-
-      <Card className={clsx(
-        classes.talentCard,
-        selected && classes.talentSelected)}>
+      <Card
+        className={clsx(classes.talentCard, selected && classes.talentSelected)}
+      >
         <Button
           className={classes.button}
           onClick={() => {
-            selectTalent(talent)
+            selectTalent(talent);
           }}
           TouchRippleProps={{
             classes: {
@@ -43,9 +43,12 @@ const TalentItem: FC<Props> = (props) => {
             },
           }}
         >
-
           <CardContent>
-            <Typography className={classes.title} color="textSecondary" gutterBottom>
+            <Typography
+              className={classes.title}
+              color="textSecondary"
+              gutterBottom
+            >
               {talent.name}
             </Typography>
             <Divider className={classes.divider} />
@@ -58,10 +61,8 @@ const TalentItem: FC<Props> = (props) => {
           </Fade>
         </Button>
       </Card>
-
     </div>
-  )
+  );
+};
 
-}
-
-export default TalentItem
+export default TalentItem;

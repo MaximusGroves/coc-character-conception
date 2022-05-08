@@ -1,29 +1,6 @@
 import { makeStyles } from '@material-ui/core'
 
 const styles = makeStyles((theme) => ({
-  title: {
-    fontFamily: 'SFComicScript',
-
-    // textAlign: 'left',
-  },
-  characteristic: {
-    paddingTop: 10,
-    paddingBottom: 10,
-  },
-  charText: {
-    fontWeight: 600,
-  },
-  flavorText: {
-    fontStyle: 'italic',
-  },
-  divider: {
-    marginLeft: -20,
-    marginRight: -20,
-    marginTop: 10,
-    color: 'black',
-    backgroundColor: 'rgba(0,0,0,0.3)',
-  },
-
   archetypeItem: {
     // padding: 20,
     backgroundImage: 'url(/img/pulp3.jpg)',
@@ -68,7 +45,49 @@ const styles = makeStyles((theme) => ({
 
   itemContainer: {
     position: 'relative',
-    paddingBottom: 80,
+    // paddingBottom: 80,
+    minHeight: 320,
+  },
+
+  title: {
+    fontFamily: 'SFComicScript',
+
+    // textAlign: 'left',
+  },
+  characteristic: {
+    paddingTop: 10,
+    paddingBottom: 10,
+  },
+  charText: {
+    fontWeight: 600,
+  },
+  flavorText: {
+    fontStyle: 'italic',
+  },
+  traitText: {
+    textTransform: 'capitalize',
+    fontWeight: 'bold',
+    paddingTop: 55,
+    paddingRight: 77,
+  },
+  toBottom: {
+    marginTop: 'auto',
+  },
+  divider: {
+    marginLeft: -20,
+    marginRight: -20,
+    marginTop: 10,
+    color: 'black',
+    backgroundColor: 'rgba(0,0,0,0.3)',
+  },
+
+  talentText: {
+    marginTop: -5,
+    paddingBottom: 5,
+  },
+
+  talentName: {
+    textDecoration: 'underline',
   },
 
   // item0: {

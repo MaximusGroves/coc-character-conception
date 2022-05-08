@@ -1,20 +1,41 @@
-function keyList<T>(arg: T): Array<keyof typeof arg> {
-  return Object.keys(arg).map((val) => {
-    return val as keyof typeof arg
-  })
+// function keyList<T>(arg: T): Array<keyof typeof arg> {
+//   return Object.keys(arg).map((val) => {
+//     return val as keyof typeof arg
+//   })
+// }
+
+// function keyObj<T>(arg: T): Record<keyof typeof arg, keyof typeof arg> {
+//   const retVal: Partial<Record<string, keyof typeof arg>> = {}
+//   Object.keys(arg).map((val) => (retVal[val] = val as keyof typeof arg))
+//   return retVal as Record<keyof typeof arg, keyof typeof arg>
+// }
+
+function keyReference<T>(
+  arg: T
+): Record<keyof typeof arg, keyof typeof arg> &
+  Record<'list', Array<keyof typeof arg>> {
+  const retVal: Partial<
+    Record<string, keyof typeof arg> & Record<'list', Array<keyof typeof arg>>
+  > = {};
+  Object.keys(arg).map((val) => (retVal[val] = val as keyof typeof arg));
+  retVal['list'] = Object.keys(arg).map((val) => {
+    return val as keyof typeof arg;
+  });
+  return retVal as Record<keyof typeof arg, keyof typeof arg> &
+    Record<'list', Array<keyof typeof arg>>;
 }
 
 export enum CreatorSteps {
   archetype = 'Select Archetype',
   occupation = 'Select Occupation',
-  talents = 'Select Talents',
+  talents = 'Select Talents (2)',
   characteristics = 'Roll Characteristics',
   skills = 'Allocate Skills',
 }
+export type CreatorStepKey = keyof typeof CreatorSteps;
+export const stepKeys = keyReference(CreatorSteps);
 
-export const CreatorStepKeys = keyList(CreatorSteps)
-
-export enum Characteristic {
+export enum CharacteristicName {
   STR = 'Strength',
   CON = 'Constitution',
   SIZ = 'Size',
@@ -24,8 +45,8 @@ export enum Characteristic {
   POW = 'Power',
   EDU = 'Education',
 }
-
-export const CharacteristicKeys = keyList(Characteristic)
+export type CharacteristicKey = keyof typeof CharacteristicName;
+export const charKeys = keyReference(CharacteristicName);
 
 export enum ArchetypeName {
   Adventurer = 'Adventurer',
@@ -51,8 +72,8 @@ export enum ArchetypeName {
   ThrillSeeker = 'Thrill Seeker',
   TwoFisted = 'Two-Fisted',
 }
-
-export const ArchetypeNameKeys = keyList(ArchetypeName)
+export type ArchetypeKey = keyof typeof ArchetypeName;
+export const archKeys = keyReference(ArchetypeName);
 
 export enum OccupationName {
   ActorFilm = 'Actor, Film',
@@ -124,8 +145,105 @@ export enum OccupationName {
   Yogi = 'Yogi',
   Zealot = 'Zealot',
 }
+export type OccupationKey = keyof typeof OccupationName;
+export const occKeys = keyReference(OccupationName);
 
-export const OccupationNameKeys = keyList(OccupationName)
+export enum TalentName {
+  KeenVision = 'Keen Vision',
+  QuickHealer = 'Quick Healer',
+  NightVision = 'Night Vision',
+  Endurance = 'Endurance',
+  PowerLifter = 'Power Lifter',
+  IronLiver = 'Iron Liver',
+  StoutConstitution = 'Stout Constitution',
+  ToughGuy = 'Tough Guy',
+  KeenHearing = 'Keen Hearing',
+  SmoothTalker = 'Smooth Talker',
+  Hardened = 'Hardened',
+  Resilient = 'Resilient',
+  StrongWilled = 'Strong Willed',
+  QuickStudy = 'Quick Study',
+  Linguist = 'Linguist',
+  ArcaneInsight = 'Arcane Insight',
+  PhotographicMemory = 'Photographic Memory',
+  Lore = 'Lore',
+  PsychicPower = 'Psychic Power',
+  SharpWitted = 'Sharp Witted',
+  Alert = 'Alert',
+  HeavyHitter = 'Heavy Hitter',
+  FastLoad = 'Fast Load',
+  Nimble = 'Nimble',
+  BeadyEye = 'Beady Eye',
+  Outmaneuver = 'Outmaneuver',
+  RapidAttack = 'Rapid Attack',
+  FleetFooted = 'Fleet Footed',
+  QuickDraw = 'Quick Draw',
+  RapidFire = 'Rapid Fire',
+  Scary = 'Scary',
+  Gadget = 'Gadget',
+  Lucky = 'Lucky',
+  MythosKnowledge = 'Mythos Knowledge',
+  WeirdScience = 'Weird Science',
+  Shadow = 'Shadow',
+  Handy = 'Handy',
+  AnimalCompanion = 'Animal Companion',
+  MasterOfDisguise = 'Master of Disguise',
+  Resourceful = 'Resourceful',
+}
+export type TalentKey = keyof typeof TalentName;
+export const talentKeys = keyReference(TalentName);
+
+export const talentsPhysical: Array<TalentKey> = [
+  talentKeys.KeenVision,
+  talentKeys.QuickHealer,
+  talentKeys.NightVision,
+  talentKeys.Endurance,
+  talentKeys.PowerLifter,
+  talentKeys.IronLiver,
+  talentKeys.StoutConstitution,
+  talentKeys.ToughGuy,
+  talentKeys.KeenHearing,
+  talentKeys.SmoothTalker,
+];
+
+export const talentsMental: Array<TalentKey> = [
+  talentKeys.Hardened,
+  talentKeys.Resilient,
+  talentKeys.StrongWilled,
+  talentKeys.QuickStudy,
+  talentKeys.Linguist,
+  talentKeys.ArcaneInsight,
+  talentKeys.PhotographicMemory,
+  talentKeys.Lore,
+  talentKeys.PsychicPower,
+  talentKeys.SharpWitted,
+];
+
+export const talentsCombat: Array<TalentKey> = [
+  talentKeys.Alert,
+  talentKeys.HeavyHitter,
+  talentKeys.FastLoad,
+  talentKeys.Nimble,
+  talentKeys.BeadyEye,
+  talentKeys.Outmaneuver,
+  talentKeys.RapidAttack,
+  talentKeys.FleetFooted,
+  talentKeys.QuickDraw,
+  talentKeys.RapidFire,
+];
+
+export const talentsOther: Array<TalentKey> = [
+  talentKeys.Scary,
+  talentKeys.Gadget,
+  talentKeys.Lucky,
+  talentKeys.MythosKnowledge,
+  talentKeys.WeirdScience,
+  talentKeys.Shadow,
+  talentKeys.Handy,
+  talentKeys.AnimalCompanion,
+  talentKeys.MasterOfDisguise,
+  talentKeys.Resourceful,
+];
 
 export enum SkillName {
   Accounting = 'Accounting',
@@ -225,46 +343,38 @@ export enum SkillName {
   Throw = 'Throw',
   Track = 'Track',
 }
+export type SkillKey = keyof typeof SkillName;
+export const skillKeys = keyReference(SkillName);
 
-export const SkillNameKeys = keyList(SkillName)
+export const skillsFighting: Array<SkillKey> = [
+  skillKeys.FightingCustom,
+  skillKeys.FightingGrappling,
+  skillKeys.FightingStriking,
+  skillKeys.FightingThrows,
+  skillKeys.FightingDirty,
+  skillKeys.FightingStreet,
+];
 
-export const allFighting = (): Array<SkillName> => {
-  return [
-    SkillName.FightingCustom,
-    SkillName.FightingGrappling,
-    SkillName.FightingStriking,
-    SkillName.FightingThrows,
-    SkillName.FightingDirty,
-    SkillName.FightingStreet,
-  ]
-}
+export const skillsFirearms: Array<SkillKey> = [
+  skillKeys.FirearmsCustom,
+  skillKeys.FirearmsHandgun,
+  skillKeys.FirearmsRifleShotgun,
+  skillKeys.FirearmsSubmachineGun,
+  skillKeys.FirearmsMachineGun,
+  skillKeys.FirearmsFlamethrower,
+];
 
-export const allFirearms = (): Array<SkillName> => {
-  return [
-    SkillName.FirearmsCustom,
-    SkillName.FirearmsHandgun,
-    SkillName.FirearmsRifleShotgun,
-    SkillName.FirearmsSubmachineGun,
-    SkillName.FirearmsMachineGun,
-    SkillName.FirearmsFlamethrower,
-  ]
-}
+export const skillsArtsCrafts: Array<SkillKey> = [
+  skillKeys.ArtCraftCustom,
+  skillKeys.ArtCraftActing,
+  skillKeys.ArtCraftPhotography,
+];
 
-export const allArtsCrafts = (): Array<SkillName> => {
-  return [
-    SkillName.ArtCraftCustom,
-    SkillName.ArtCraftActing,
-    SkillName.ArtCraftPhotography,
-  ]
-}
-
-export const allScience = (): Array<SkillName> => {
-  return [
-    SkillName.ScienceCustom,
-    SkillName.ScienceAstronomy,
-    SkillName.ScienceBiology,
-    SkillName.ScienceChemistry,
-    SkillName.ScienceGeology,
-    SkillName.SciencePhysics,
-  ]
-}
+export const skillsScience: Array<SkillKey> = [
+  skillKeys.ScienceCustom,
+  skillKeys.ScienceAstronomy,
+  skillKeys.ScienceBiology,
+  skillKeys.ScienceChemistry,
+  skillKeys.ScienceGeology,
+  skillKeys.SciencePhysics,
+];
