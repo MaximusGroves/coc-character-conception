@@ -1,4 +1,4 @@
-import { makeStyles } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core';
 
 const styles = makeStyles((theme) => ({
   root: {
@@ -58,8 +58,11 @@ const styles = makeStyles((theme) => ({
   },
 
   selectionStyleTalent: {
-    fontFamily: 'Lobster',
+    fontFamily: 'Indubitably',
+    transform: 'scale(.7,1) translateX(-30%)',
+    fontSize: 20,
+    textTransform: 'uppercase',
   },
-}))
+}));
 
-export default styles
+export default styles;

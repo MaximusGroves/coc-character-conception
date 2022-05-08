@@ -30,6 +30,21 @@ const CreatorStepper: FC = () => {
 
   const currentWidth = useWidth();
 
+  const getCompleted = (step: number) => {
+    switch (step) {
+      case 0:
+        return selectedArchetype !== undefined;
+      case 1:
+        return selectedOccupation !== undefined;
+      case 2:
+        return selectedTalent.length === 2;
+      case 3:
+        return false;
+      case 4:
+        return false;
+    }
+  };
+
   const getSelection = (step: number) => {
     switch (step) {
       case 0:
@@ -91,7 +106,7 @@ const CreatorStepper: FC = () => {
                   onClick={() => {
                     setStep(index);
                   }}
-                  completed={getSelection(index) !== ''}
+                  completed={getCompleted(index)}
                   disabled={false}
                   className={classes.stepLabelBtn}
                 >

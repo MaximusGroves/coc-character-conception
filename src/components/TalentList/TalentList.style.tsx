@@ -1,10 +1,28 @@
-import { makeStyles } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core';
 
 const styles = makeStyles((theme) => ({
- 
+  itemContainer: {
+    paddingBottom: 80,
+  },
+
   title: {
-    fontFamily: 'Lobster',
-    // textAlign: 'left',
+    backgroundColor: '#fde300',
+    margin: -20,
+    padding: 20,
+    paddingBottom: 0,
+    marginBottom: 0,
+    // marginBottom: ,
+  },
+
+  fontScalar: {
+    transform: 'scale(.7,1)',
+    fontFamily: 'Indubitably',
+    fontSize: 42,
+    lineHeight: '44px',
+    color: 'black',
+    letterSpacing: '2px',
+    textTransform: 'uppercase',
+    textAlign: 'center',
   },
   characteristic: {
     paddingTop: 10,
@@ -14,26 +32,24 @@ const styles = makeStyles((theme) => ({
     fontWeight: 600,
   },
   flavorText: {
-    fontStyle: 'italic',
+    fontFamily: 'Arial',
+    paddingTop: 20,
   },
   divider: {
     marginLeft: -20,
     marginRight: -20,
-    marginTop: 10,
+
     color: 'black',
     backgroundColor: 'rgba(0,0,0,0.3)',
   },
 
-  talentItem: {
-
-  },
+  talentItem: {},
 
   //  backgroundPosition: 'center top',
   talentCard: {
-//    backgroundImage: 'url(/img/bizcard.png)',
-//    backgroundSize: "120% 120%",
-    width: '200px',
-    margin: '20px',
+    //    backgroundImage: 'url(/img/bizcard.png)',
+    //    backgroundSize: "120% 120%",
+
     '&:hover': {
       boxShadow:
         '0px 7px 8px -4px rgba(22, 155, 30,0.4),0px 12px 17px 2px rgba(22, 155, 30,0.28),0px 5px 22px 4px rgba(22, 155, 30 ,0.24)',
@@ -41,7 +57,6 @@ const styles = makeStyles((theme) => ({
     },
     userSelect: 'none',
     transition: 'transform 0.3s, box-shadow 0.3s',
-
   },
 
   talentSection: {
@@ -61,11 +76,13 @@ const styles = makeStyles((theme) => ({
 
   button: {
     padding: 20,
+    overflow: 'hidden',
+    width: '100%',
+    minHeight: 250,
     textTransform: 'none',
     textAlign: 'left',
-    flexDirection: 'column',
+    alignItems: 'flex-start',
   },
-
 
   ripple: {
     color: theme.palette.secondary.main,
@@ -79,15 +96,9 @@ const styles = makeStyles((theme) => ({
     width: 80,
     height: 80,
     position: 'absolute',
-    right: -8,
-    bottom: -8,
+    right: 12,
+    bottom: 12,
   },
+}));
 
-  itemContainer: {
-    position: 'relative',
-    paddingBottom: 80,
-  },
-
-}))
-
-export default styles
+export default styles;

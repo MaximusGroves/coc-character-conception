@@ -4,8 +4,8 @@ import {
   Divider,
   Button,
   Fade,
-  Card,
-  CardContent,
+  Paper,
+  Grid,
 } from '@material-ui/core';
 import styles from './TalentList.style';
 import { Talent } from '../../data/talents';
@@ -28,8 +28,8 @@ const TalentItem: FC<Props> = (props: Props) => {
     selectedTalent.filter((val) => val.key === talent.key).length !== 0;
 
   return (
-    <div>
-      <Card
+    <Grid item sm={12} md={6} lg={4}>
+      <Paper
         className={clsx(classes.talentCard, selected && classes.talentSelected)}
       >
         <Button
@@ -43,25 +43,30 @@ const TalentItem: FC<Props> = (props: Props) => {
             },
           }}
         >
-          <CardContent>
-            <Typography
-              className={classes.title}
-              color="textSecondary"
-              gutterBottom
-            >
-              {talent.name}
-            </Typography>
-            <Divider className={classes.divider} />
-            <Typography variant="body2" className={classes.flavorText}>
-              {talent.description}
-            </Typography>
-          </CardContent>
+          <Grid container direction="column">
+            <Grid item className={classes.title}>
+              <Typography
+                className={classes.fontScalar}
+                color="textSecondary"
+                gutterBottom
+              >
+                {talent.name}
+              </Typography>
+
+              <Divider className={classes.divider} />
+            </Grid>
+            <Grid item>
+              <Typography variant="h5" className={classes.flavorText}>
+                {talent.description}
+              </Typography>
+            </Grid>
+          </Grid>
           <Fade in={selected}>
             <Sigil className={classes.sigil} />
           </Fade>
         </Button>
-      </Card>
-    </div>
+      </Paper>
+    </Grid>
   );
 };
 

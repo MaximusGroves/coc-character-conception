@@ -9,7 +9,7 @@ import {
 } from '@material-ui/core';
 // import styles from './ArchetypeList.style'
 
-import { charKeys } from '../../data/types';
+import { CharacteristicName, charKeys } from '../../data/types';
 
 type Props = {
   selection: string;
@@ -35,7 +35,11 @@ const CharacteristicRadioGroup: FC<Props> = (props: Props) => {
 
           {charKeys.list.map((key) => (
             <Grid item key={key}>
-              <FormControlLabel value={key} control={<Radio />} label={key} />
+              <FormControlLabel
+                value={key}
+                control={<Radio />}
+                label={CharacteristicName[key]}
+              />
             </Grid>
           ))}
         </Grid>

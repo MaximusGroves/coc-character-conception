@@ -44,7 +44,10 @@ const styles = makeStyles((theme) => ({
   },
 
   selectionStyleTalent: {
-    fontFamily: 'Lobster',
+    fontFamily: 'Indubitably',
+    transform: 'scale(.7,1)',
+    fontSize: 20,
+    textTransform: 'uppercase',
   },
 
   btnLeft: {
