@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC } from 'react';
 import {
   Grid,
   Paper,
@@ -6,32 +6,32 @@ import {
   Divider,
   Button,
   Fade,
-} from '@material-ui/core'
-import styles from './ArchetypeList.style'
-import { ArchetypeOption } from '../../data/archetypes'
-import { useAppContext } from '../../providers/AppContextProvider'
-import { ReactComponent as Sigil } from '../../assets/Sigil_of_the_Gateway.svg'
-import clsx from 'clsx'
-import { red } from '../../providers/AppThemeProvider'
-import { TalentName, TalentKey } from '../../data/types'
+} from '@material-ui/core';
+import styles from './ArchetypeList.style';
+import { ArchetypeOption } from '../../data/archetypes';
+import { useAppContext } from '../../providers/AppContextProvider';
+import { ReactComponent as Sigil } from '../../assets/Sigil_of_the_Gateway.svg';
+import clsx from 'clsx';
+import { red } from '../../providers/AppThemeProvider';
+import { TalentName, TalentKey } from '../../data/types';
 
 type Props = {
-  archetype: ArchetypeOption
-  keyName: string
-}
+  archetype: ArchetypeOption;
+  keyName: string;
+};
 
 const ArchetypeItem: FC<Props> = (props: Props) => {
-  const classes = styles()
-  const { archetype } = props
-  const { state, api } = useAppContext()
-  const { selectArchetype } = api
-  const { selectedArchetype } = state
-  const selected = selectedArchetype === archetype
+  const classes = styles();
+  const { archetype } = props;
+  const { state, api } = useAppContext();
+  const { selectArchetype } = api;
+  const { selectedArchetype } = state;
+  const selected = selectedArchetype === archetype;
 
-  const traitsText = archetype.traits.join(', ')
+  const traitsText = archetype.traits.join(', ');
   const talentsText = archetype.talents
     .map((val) => TalentName[val as TalentKey])
-    .join(', ')
+    .join(', ');
 
   return (
     <Grid item sm={12} md={6} lg={4}>
@@ -95,7 +95,7 @@ const ArchetypeItem: FC<Props> = (props: Props) => {
         </Button>
       </Paper>
     </Grid>
-  )
-}
+  );
+};
 
-export default ArchetypeItem
+export default ArchetypeItem;

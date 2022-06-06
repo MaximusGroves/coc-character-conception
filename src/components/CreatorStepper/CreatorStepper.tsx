@@ -52,14 +52,18 @@ const CreatorStepper: FC = () => {
       case 1:
         const lines = selectedOccupation?.name.split(' ');
         if (lines?.length === 2) {
-          return lines?.map((val) => (
-            <span style={{ display: 'block' }}>{val}</span>
+          return lines?.map((val, idx) => (
+            <span style={{ display: 'block' }} key={idx}>
+              {val}
+            </span>
           ));
         } else return selectedOccupation?.name || '';
       case 2:
         return (
-          selectedTalent.map((val) => (
-            <span style={{ display: 'block' }}>{val.name}</span>
+          selectedTalent.map((val, idx) => (
+            <span style={{ display: 'block' }} key={idx}>
+              {val.name}
+            </span>
           )) || ''
         );
       case 3:

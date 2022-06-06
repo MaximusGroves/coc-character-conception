@@ -5,6 +5,7 @@ import { useAppContext } from '../../providers/AppContextProvider';
 import ArchetypeList from '../ArchetypeList/ArchetypeList';
 import OccupationList from '../OccupationList/OccupationList';
 import TalentList from '../TalentList/TalentList';
+import Attributes from '../Attributes/Attributes';
 import {
   Grid,
   Typography,
@@ -40,7 +41,7 @@ const HomeMobile: FC = () => {
       case 2:
         return <TalentList />;
       case 3:
-        return <div style={{ height: '100vh' }} />;
+        return <Attributes />;
       case 4:
         return <div style={{ height: '100vh' }} />;
     }

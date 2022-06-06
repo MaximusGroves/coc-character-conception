@@ -9,12 +9,12 @@ import CoreCharacteristicRadioGroup from './CoreCharacteristicRadioGroup';
 
 const ArchetypeList: FC = () => {
   const [core, setCore] = React.useState<string>('all');
-  const [stats, setStats] = React.useState<Record<string, any> | undefined>(
+  const [stats, setStats] = React.useState<Record<string, number> | undefined>(
     undefined
   );
-  const [rolls, setRolls] = React.useState<Record<string, any> | undefined>(
-    undefined
-  );
+  const [rolls, setRolls] = React.useState<
+    Record<string, number[]> | undefined
+  >(undefined);
 
   const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setCore((event.target as HTMLInputElement).value);

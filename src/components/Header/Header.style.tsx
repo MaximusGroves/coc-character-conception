@@ -1,4 +1,4 @@
-import { makeStyles } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core';
 
 const styles = makeStyles((theme) => ({
   root: {},
@@ -12,6 +12,6 @@ const styles = makeStyles((theme) => ({
       fontSize: 22,
     },
   },
-}))
+}));
 
-export default styles
+export default styles;

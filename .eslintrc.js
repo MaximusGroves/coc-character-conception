@@ -32,5 +32,7 @@ module.exports = {
     // e.g. "@typescript-eslint/explicit-function-return-type": "off",
 
     'prettier/prettier': ['error', { endOfLine: 'auto' }],
+    'react/prop-types': 'off',
+    '@typescript-eslint/ban-types': 'off',
   },
-}
+};

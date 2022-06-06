@@ -1,25 +1,25 @@
-import React, { FC } from 'react'
-import { Grid } from '@material-ui/core'
+import React, { FC } from 'react';
+import { Grid } from '@material-ui/core';
 // import styles from './ArchetypeList.style'
-import { archetypeList } from '../../data/archetypes'
-import CharacteristicRadioGroup from './CharacteristicRadioGroup'
-import ArchetypeItem from './ArchetypeItem'
+import { archetypeList } from '../../data/archetypes';
+import CharacteristicRadioGroup from './CharacteristicRadioGroup';
+import ArchetypeItem from './ArchetypeItem';
 
 const ArchetypeList: FC = () => {
-  const [charFilter, setCharFilter] = React.useState<string>('All')
+  const [charFilter, setCharFilter] = React.useState<string>('All');
 
   const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setCharFilter((event.target as HTMLInputElement).value)
-  }
+    setCharFilter((event.target as HTMLInputElement).value);
+  };
 
   const filteredArchetypes = archetypeList.filter((archetype) => {
     return (
       charFilter === 'All' ||
       archetype.core.find((val) => {
-        return val === charFilter
+        return val === charFilter;
       })
-    )
-  })
+    );
+  });
 
   return (
     <div>
@@ -38,7 +38,7 @@ const ArchetypeList: FC = () => {
         ))}
       </Grid>
     </div>
-  )
-}
+  );
+};
 
-export default ArchetypeList
+export default ArchetypeList;
