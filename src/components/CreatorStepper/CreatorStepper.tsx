@@ -97,6 +97,7 @@ const CreatorStepper: FC = () => {
           color="primary"
           onClick={() => prevStep()}
           className={classes.btnLeft}
+          disabled={creatorStep === 0}
         >
           <ArrowBack />
         </IconButton>
@@ -145,6 +146,7 @@ const CreatorStepper: FC = () => {
           color="primary"
           onClick={() => nextStep()}
           className={classes.btnRight}
+          disabled={creatorStep === 4}
         >
           <ArrowForward />
         </IconButton>
