@@ -35,6 +35,7 @@ export type AppFunctions = {
 type ContextValues = {
   state: AppState;
   api: AppFunctions;
+  
 };
 
 export const AppContext = createContext<ContextValues | undefined>(undefined);

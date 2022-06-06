@@ -9,11 +9,16 @@ import {
 } from '@material-ui/core';
 // import styles from './ArchetypeList.style'
 
-import { CharacteristicName, charKeys } from '../../data/types';
+import {
+  CharacteristicKey,
+  CharacteristicName,
+  charKeys,
+} from '../../data/types';
 
 type Props = {
   selection: string;
-  onSelection: Function;
+  onSelection: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  priority?: CharacteristicKey[];
 };
 
 const CharacteristicRadioGroup: FC<Props> = (props: Props) => {

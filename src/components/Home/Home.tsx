@@ -1,18 +1,19 @@
-import React, { FC } from 'react'
-import styles from './Home.style'
-import CreatorStepper from '../CreatorStepper/CreatorStepper'
-import { useAppContext } from '../../providers/AppContextProvider'
-import ArchetypeList from '../ArchetypeList/ArchetypeList'
-import OccupationList from '../OccupationList/OccupationList'
-import TalentList from '../TalentList/TalentList'
-import { Drawer } from '@material-ui/core'
+import React, { FC } from 'react';
+import styles from './Home.style';
+import CreatorStepper from '../CreatorStepper/CreatorStepper';
+import { useAppContext } from '../../providers/AppContextProvider';
+import ArchetypeList from '../ArchetypeList/ArchetypeList';
+import OccupationList from '../OccupationList/OccupationList';
+import TalentList from '../TalentList/TalentList';
+import { Drawer } from '@material-ui/core';
+import Attributes from '../Attributes/Attributes';
 
 // import {useWidth} from '../../providers/AppThemeProvider'
 
 const Home: FC = () => {
-  const classes = styles()
-  const { state } = useAppContext()
-  const { creatorStep } = state
+  const classes = styles();
+  const { state } = useAppContext();
+  const { creatorStep } = state;
 
   // const size = useWidth();
 
@@ -21,6 +22,7 @@ const Home: FC = () => {
       {creatorStep === 0 && <ArchetypeList />}
       {creatorStep === 1 && <OccupationList />}
       {creatorStep === 2 && <TalentList />}
+      {creatorStep === 3 && <Attributes />}
 
       <Drawer
         variant="permanent"
@@ -32,7 +34,7 @@ const Home: FC = () => {
         <CreatorStepper />
       </Drawer>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
