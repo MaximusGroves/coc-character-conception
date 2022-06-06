@@ -142,6 +142,7 @@ const ArchetypeList: FC = () => {
         {stats && (
           <Grid item>
             <Typography>{JSON.stringify(stats)}</Typography>
+            <Typography>{JSON.stringify(rolls)}</Typography>
           </Grid>
         )}
       </Grid>
