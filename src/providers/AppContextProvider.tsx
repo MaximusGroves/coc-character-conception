@@ -1,7 +1,7 @@
 import React, { useState, createContext, FC } from 'react';
-import { stepKeys } from '../data/types';
+import { CharacteristicKey, stepKeys } from '../data/types';
 import { ArchetypeOption } from '../data/archetypes';
-import { Occupation } from '../data/occupations';
+import { Occupation, OccupationSkillFormula } from '../data/occupations';
 import { Talent } from '../data/talents';
 
 export type ContextProps = {
@@ -13,7 +13,12 @@ export type AppState = {
   creatorStep?: number;
   selectedArchetype?: ArchetypeOption;
   selectedOccupation?: Occupation;
-  selectedTalent: Array<Talent>;
+  selectedTalent?: Array<Talent>;
+  coreAttribute?: CharacteristicKey;
+  stats?: Record<CharacteristicKey, number>;
+  rolls?: Record<CharacteristicKey, number[]>;
+  skillFormula?: OccupationSkillFormula;
+  occPoints?: number;
 };
 
 const defaultState: AppState = {
@@ -98,19 +103,19 @@ const AppContextProvider: FC<ContextProps> = (props) => {
   };
 
   const selectTalent = (newSelection: Talent) => {
-    const matchingIndex = selectedTalent.indexOf(newSelection);
+    const matchingIndex = selectedTalent?.indexOf(newSelection);
     if (matchingIndex === -1) {
       // new entry
-      if (selectedTalent.length === 2) {
+      if (selectedTalent?.length === 2) {
         //deselect first element, add new one
         setState({ selectedTalent: [selectedTalent[1], newSelection] });
       } else {
         // just add new element
-        setState({ selectedTalent: [...selectedTalent, newSelection] });
+        setState({ selectedTalent: [...(selectedTalent || []), newSelection] });
       }
     } else {
       //deselect entry
-      const newArr = selectedTalent.filter(
+      const newArr = selectedTalent?.filter(
         (val) => val.key !== newSelection.key
       );
       setState({ selectedTalent: newArr });

@@ -58,3 +58,10 @@
   font-weight: 400;
   src: url('/fonts/Lobster-Regular.ttf') format('truetype');
 }
+
+@font-face {
+  font-family: 'Pervitina';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/Pervitina-Dex-FFP.ttf') format('truetype');
+}

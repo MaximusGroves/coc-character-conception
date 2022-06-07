@@ -8,16 +8,10 @@ import { useAppContext } from '../../providers/AppContextProvider';
 import CoreCharacteristicRadioGroup from './CoreCharacteristicRadioGroup';
 
 const ArchetypeList: FC = () => {
-  const [core, setCore] = React.useState<string>('all');
-  const [stats, setStats] = React.useState<Record<string, number> | undefined>(
-    undefined
-  );
-  const [rolls, setRolls] = React.useState<
-    Record<string, number[]> | undefined
-  >(undefined);
+  const { state, api } = useAppContext();
 
   const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setCore((event.target as HTMLInputElement).value);
+    api.setState({ coreAttribute: (event.target as HTMLInputElement).value });
   };
 
   const rolld6 = () => {
@@ -41,8 +35,6 @@ const ArchetypeList: FC = () => {
       [charKeys.STR]: [rolld6(), rolld6(), rolld6()],
     };
 
-    setRolls(newRolls);
-
     const newStats = {
       [charKeys.APP]: newRolls[charKeys.APP].reduce(add, 0) * 5,
       [charKeys.CON]: newRolls[charKeys.CON].reduce(add, 0) * 5,
@@ -54,12 +46,12 @@ const ArchetypeList: FC = () => {
       [charKeys.STR]: newRolls[charKeys.STR].reduce(add, 0) * 5,
     };
 
-    newStats[core] = (newRolls.core.reduce(add, 0) + 13) * 5;
+    if (state.coreAttribute) {
+      newStats[state.coreAttribute] = (newRolls.core.reduce(add, 0) + 13) * 5;
+    }
 
-    setStats(newStats);
+    api.setState({ stats: newStats, rolls: newRolls });
   };
-
-  const { state } = useAppContext();
 
   return (
     <div>
@@ -118,7 +110,7 @@ const ArchetypeList: FC = () => {
           <Typography>Select Core Attribute</Typography>
 
           <CoreCharacteristicRadioGroup
-            selection={core}
+            selection={state.coreAttribute}
             onSelection={handleRadioChange}
             priority={state?.selectedArchetype?.core}
           />
@@ -133,16 +125,16 @@ const ArchetypeList: FC = () => {
             onClick={() => {
               computeStats();
             }}
-            disabled={core === 'all'}
+            disabled={state.coreAttribute === undefined}
           >
             <Casino fontSize="large" style={{ paddingRight: 10 }} />
             Roll for Attributes
           </Button>
         </Grid>
-        {stats && (
+        {state.stats && (
           <Grid item>
-            <Typography>{JSON.stringify(stats)}</Typography>
-            <Typography>{JSON.stringify(rolls)}</Typography>
+            <Typography>{JSON.stringify(state.stats)}</Typography>
+            <Typography>{JSON.stringify(state.rolls)}</Typography>
           </Grid>
         )}
       </Grid>

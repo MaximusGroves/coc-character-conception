@@ -25,7 +25,7 @@ const TalentItem: FC<Props> = (props: Props) => {
   const { selectedTalent } = state;
 
   const selected =
-    selectedTalent.filter((val) => val.key === talent.key).length !== 0;
+    selectedTalent?.filter((val) => val.key === talent.key).length !== 0;
 
   return (
     <Grid item sm={12} md={6} lg={4}>

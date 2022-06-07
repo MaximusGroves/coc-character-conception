@@ -7,6 +7,7 @@ import OccupationList from '../OccupationList/OccupationList';
 import TalentList from '../TalentList/TalentList';
 import { Drawer } from '@material-ui/core';
 import Attributes from '../Attributes/Attributes';
+import SkillList from '../SkillList/SkillList';
 
 // import {useWidth} from '../../providers/AppThemeProvider'
 
@@ -23,6 +24,7 @@ const Home: FC = () => {
       {creatorStep === 1 && <OccupationList />}
       {creatorStep === 2 && <TalentList />}
       {creatorStep === 3 && <Attributes />}
+      {creatorStep === 4 && <SkillList />}
 
       <Drawer
         variant="permanent"

@@ -54,7 +54,7 @@ const HomeMobile: FC = () => {
       case 1:
         return selectedOccupation?.name || '';
       case 2:
-        return selectedTalent.map((val) => val.name).join(', ') || '';
+        return selectedTalent?.map((val) => val.name).join(', ') || '';
       case 3:
         return '';
       case 4:

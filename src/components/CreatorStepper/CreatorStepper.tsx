@@ -10,7 +10,7 @@ import {
 } from '@material-ui/core';
 import styles from './CreatorStepper.style';
 import { useAppContext } from '../../providers/AppContextProvider';
-import { ArrowBack, ArrowForward } from '@material-ui/icons';
+import { ArrowBack, ArrowForward, Casino, Done } from '@material-ui/icons';
 import { CreatorSteps, stepKeys } from '../../data/types';
 import { useWidth } from '../../providers/AppThemeProvider';
 import clsx from 'clsx';
@@ -24,6 +24,7 @@ const CreatorStepper: FC = () => {
     selectedArchetype,
     selectedOccupation,
     selectedTalent,
+    stats,
   } = state;
 
   const { nextStep, prevStep, setStep } = api;
@@ -37,9 +38,9 @@ const CreatorStepper: FC = () => {
       case 1:
         return selectedOccupation !== undefined;
       case 2:
-        return selectedTalent.length === 2;
+        return selectedTalent?.length === 2;
       case 3:
-        return false;
+        return stats !== undefined;
       case 4:
         return false;
     }
@@ -60,14 +61,32 @@ const CreatorStepper: FC = () => {
         } else return selectedOccupation?.name || '';
       case 2:
         return (
-          selectedTalent.map((val, idx) => (
+          selectedTalent?.map((val, idx) => (
             <span style={{ display: 'block' }} key={idx}>
               {val.name}
             </span>
           )) || ''
         );
       case 3:
-        return '';
+        return (
+          <div
+            style={{
+              width: '100%',
+              textAlign: 'center',
+              display: 'flex',
+              paddingLeft: 4,
+            }}
+          >
+            {state.coreAttribute}
+            {stats && (
+              <span style={{ margin: 'auto' }}>
+                <Casino color="primary" />
+                <Casino color="primary" />
+                <Casino color="primary" />
+              </span>
+            )}
+          </div>
+        );
       case 4:
         return '';
     }

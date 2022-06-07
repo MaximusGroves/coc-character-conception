@@ -18,7 +18,7 @@ import {
 import { difference, remove } from 'lodash';
 
 type Props = {
-  selection: string;
+  selection?: string;
   onSelection: (event: React.ChangeEvent<HTMLInputElement>) => void;
   priority?: CharacteristicKey[];
 };
