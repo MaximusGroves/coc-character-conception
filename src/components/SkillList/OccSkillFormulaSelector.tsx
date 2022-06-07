@@ -7,15 +7,7 @@ import {
   FormControl,
   FormLabel,
 } from '@material-ui/core';
-import styles from '../Attributes/Attribute.style';
 
-import {
-  CharacteristicKey,
-  CharacteristicName,
-  charKeys,
-} from '../../data/types';
-
-import { difference, remove } from 'lodash';
 import { OccupationSkillFormula } from '../../data/occupations';
 
 type Props = {
@@ -26,8 +18,6 @@ type Props = {
 
 const OccSkillFormulaSelector: FC<Props> = (props: Props) => {
   const { selection, onSelection } = props;
-
-  const classes = styles();
 
   const getLabel = (val: OccupationSkillFormula): string => {
     switch (val) {

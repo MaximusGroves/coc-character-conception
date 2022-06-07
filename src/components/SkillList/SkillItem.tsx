@@ -2,17 +2,12 @@ import React, { FC } from 'react';
 import {
   Typography,
   Divider,
-  Button,
-  Fade,
   Paper,
   Grid,
   IconButton,
 } from '@material-ui/core';
 import styles from './SkillList.style';
-import { Talent } from '../../data/talents';
-import { useAppContext } from '../../providers/AppContextProvider';
-import { ReactComponent as Sigil } from '../../assets/Sigil_of_the_Gateway.svg';
-import clsx from 'clsx';
+// import { useAppContext } from '../../providers/AppContextProvider';
 import { Skill } from '../../data/skills';
 import { Remove, Add } from '@material-ui/icons';
 
@@ -23,7 +18,7 @@ type Props = {
 const SkillItem: FC<Props> = (props: Props) => {
   const classes = styles();
   const { skill } = props;
-  const { state, api } = useAppContext();
+  // const { state, api } = useAppContext();
 
   const [points, setPoints] = React.useState(0);
 

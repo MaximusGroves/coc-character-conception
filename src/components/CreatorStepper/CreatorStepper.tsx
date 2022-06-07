@@ -10,7 +10,7 @@ import {
 } from '@material-ui/core';
 import styles from './CreatorStepper.style';
 import { useAppContext } from '../../providers/AppContextProvider';
-import { ArrowBack, ArrowForward, Casino, Done } from '@material-ui/icons';
+import { ArrowBack, ArrowForward, Casino } from '@material-ui/icons';
 import { CreatorSteps, stepKeys } from '../../data/types';
 import { useWidth } from '../../providers/AppThemeProvider';
 import clsx from 'clsx';
