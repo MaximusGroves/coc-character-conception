@@ -38,24 +38,25 @@ const SkillList: FC = () => {
   };
 
   return (
-    <Grid container direction="column" spacing={2}>
-      <Grid item>
-        <OccSkillFormulaSelector
-          options={state.selectedOccupation?.skillFormula || []}
-          onSelection={onSelection}
-        />
-      </Grid>
+    <div style={{ display: 'block' }}>
+      <Grid container direction="column" spacing={2}>
+        <Grid item>
+          <OccSkillFormulaSelector
+            options={state.selectedOccupation?.skillFormula || []}
+            onSelection={onSelection}
+          />
+        </Grid>
 
-      <Grid item>
-        <Typography>Total Occupational Points: {state.occPoints}</Typography>
+        <Grid item>
+          <Typography>Total Occupational Points: {state.occPoints}</Typography>
+        </Grid>
       </Grid>
-
       <Grid item container direction="row" spacing={3}>
         {skillList.map((skill) => (
           <SkillItem skill={skill} key={skill.name} />
         ))}
       </Grid>
-    </Grid>
+    </div>
   );
 };
 

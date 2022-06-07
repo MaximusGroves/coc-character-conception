@@ -11,6 +11,7 @@ const styles = makeStyles((theme) => ({
     position: 'relative',
     backgroundColor: 'transparent',
     height: 'calc(100vh - 200px)',
+    marginBottom: 100,
   },
 
   drawerPaper: { overflow: 'hidden' },
