@@ -18,6 +18,7 @@ import { ExpandMore } from '@material-ui/icons';
 import { CreatorSteps, stepKeys } from '../../data/types';
 // import {useWidth} from '../../providers/AppThemeProvider'
 import clsx from 'clsx';
+import SkillList from '../SkillList/SkillList';
 
 const HomeMobile: FC = () => {
   const classes = styles();
@@ -43,7 +44,7 @@ const HomeMobile: FC = () => {
       case 3:
         return <Attributes />;
       case 4:
-        return <div style={{ height: '100vh' }} />;
+        return <SkillList />;
     }
   };
 
