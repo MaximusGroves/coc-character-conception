@@ -22,7 +22,7 @@ export type AppState = {
 };
 
 const defaultState: AppState = {
-  appName: 'Pulp Cthulhu - Character Conception',
+  appName: 'Call of Character',
   creatorStep: 0,
   selectedTalent: [],
 };
@@ -61,7 +61,7 @@ const AppContextProvider: FC<ContextProps> = (props) => {
   const nextStep = () => {
     if (creatorStep === undefined) {
       setState({ creatorStep: 0 });
-    } else if (creatorStep < stepKeys.list.length - 1) {
+    } else if (creatorStep < stepKeys.list.length) {
       setState({ creatorStep: creatorStep + 1 });
     }
   };

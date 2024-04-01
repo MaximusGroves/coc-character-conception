@@ -107,75 +107,88 @@ const CreatorStepper: FC = () => {
     }
   };
 
-  return (
-    <Grid
-      container
-      direction="row"
-      alignItems="center"
-      justify="space-between"
-      className={classes.stepperRoot}
-    >
-      <Grid item>
-        <IconButton
-          color="primary"
-          onClick={() => prevStep()}
-          className={classes.btnLeft}
-          disabled={creatorStep === 0}
-        >
-          <ArrowBack />
-        </IconButton>
-      </Grid>
 
-      <Grid item className={classes.stepperParent}>
-        <Stepper
-          activeStep={creatorStep}
-          alternativeLabel={currentWidth === 'sm' || currentWidth === 'xs'}
-          className={classes.stepper}
-        >
-          {stepKeys.list.map((key, index) => {
-            return (
-              <Step key={CreatorSteps[key]}>
-                <StepButton
-                  onClick={() => {
-                    setStep(index);
-                  }}
-                  completed={getCompleted(index)}
-                  disabled={false}
-                  className={classes.stepLabelBtn}
-                >
-                  <StepLabel>
-                    {(currentWidth !== 'xs' || index === creatorStep) &&
-                      CreatorSteps[key]}
-                    {(currentWidth !== 'xs' || index === creatorStep) && (
-                      <Typography
-                        className={clsx(
-                          classes.selectionStyle,
-                          getSelectionStyle(index)
-                        )}
-                      >
-                        {getSelection(index)}
-                      </Typography>
-                    )}
-                  </StepLabel>
-                </StepButton>
-              </Step>
-            );
-          })}
-        </Stepper>
-      </Grid>
+  let thisStep = 0;
+  if (creatorStep) {
+    thisStep = creatorStep - 1;
+  }
 
-      <Grid item>
-        <IconButton
-          color="primary"
-          onClick={() => nextStep()}
-          className={classes.btnRight}
-          disabled={creatorStep === 4}
-        >
-          <ArrowForward />
-        </IconButton>
+  if (creatorStep === 0) {
+    return null
+  } else {
+
+
+
+    return (
+      <Grid
+        container
+        direction="row"
+        alignItems="center"
+        justify="space-between"
+        className={classes.stepperRoot}
+      >
+        <Grid item>
+          <IconButton
+            color="primary"
+            onClick={() => prevStep()}
+            className={classes.btnLeft}
+            disabled={creatorStep === 0}
+          >
+            <ArrowBack />
+          </IconButton>
+        </Grid>
+
+        <Grid item className={classes.stepperParent}>
+          <Stepper
+            activeStep={thisStep}
+            alternativeLabel={currentWidth === 'sm' || currentWidth === 'xs'}
+            className={classes.stepper}
+          >
+            {stepKeys.list.map((key, index) => {
+              return (
+                <Step key={CreatorSteps[key]}>
+                  <StepButton
+                    onClick={() => {
+                      setStep((index + 1));
+                    }}
+                    completed={getCompleted((index))}
+                    disabled={false}
+                    className={classes.stepLabelBtn}
+                  >
+                    <StepLabel>
+                      {(currentWidth !== 'xs' || (index) === thisStep) &&
+                        CreatorSteps[key]}
+                      {(currentWidth !== 'xs' || (index) === thisStep) && (
+                        <Typography
+                          className={clsx(
+                            classes.selectionStyle,
+                            getSelectionStyle((index))
+                          )}
+                        >
+                          {getSelection((index))}
+                        </Typography>
+                      )}
+                    </StepLabel>
+                  </StepButton>
+                </Step>
+              );
+            })}
+          </Stepper>
+        </Grid>
+
+        <Grid item>
+          <IconButton
+            color="primary"
+            onClick={() => nextStep()}
+            className={classes.btnRight}
+            disabled={creatorStep === 5}
+          >
+            <ArrowForward />
+          </IconButton>
+        </Grid>
       </Grid>
-    </Grid>
-  );
+    );
+  }
 };
 
 export default CreatorStepper;

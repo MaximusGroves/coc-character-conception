@@ -11,6 +11,15 @@ const styles = makeStyles({
     position: 'relative',
   },
 
+  splash: {
+    display: 'flex',
+    flexDirection: 'column',
+    maxWidth: 2000,
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    position: 'relative',
+  },
+
   drawerPaper: { overflow: 'hidden' },
 
   buttons: {

@@ -10,11 +10,12 @@ import styles from './App.style'
 
 const App: FC = () => {
   const { state } = useAppContext()
-  const { appName } = state
+  const { appName, creatorStep } = state
   const classes = styles()
 
+
   return (
-    <div className={classes.app}>
+    <div className={creatorStep === 0 ? classes.splash : classes.app}>
       <Header appName={appName} />
       <Hidden smDown>
         <Home />
