@@ -76,7 +76,9 @@ const CharacteristicList: FC = () => {
       textVal = hoverVal
     }
   }
-
+  if (imgVal === 'CON') {
+    imgVal = "COM";
+  }
 
 
 
