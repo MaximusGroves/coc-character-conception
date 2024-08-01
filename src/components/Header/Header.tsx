@@ -2,6 +2,8 @@ import React, { FC } from 'react'
 import { AppBar, Toolbar, Typography } from '@material-ui/core'
 import styles from './Header.style'
 import { useAppContext } from '../../providers/AppContextProvider'
+import CallOfCharacterTitle from '../CharacteristicList/CallOfCharacterTitle'
+import { CharacteristicName } from '../../data/types'
 
 type HeaderProps = {
   appName: string
@@ -11,7 +13,7 @@ const Header: FC<HeaderProps> = (props) => {
   const classes = styles()
   const { appName } = props
   const { state } = useAppContext()
-  const { creatorStep } = state
+  const { creatorStep, coreAttribute } = state
 
   if (creatorStep === 0) {
     return null
@@ -19,9 +21,8 @@ const Header: FC<HeaderProps> = (props) => {
     return (
       <AppBar position={'static'} className={classes.root}>
         <Toolbar>
-          <Typography variant="h2" className={classes.title}>
-            {appName}
-          </Typography>
+          <CallOfCharacterTitle style={{ paddingTop: 24 }} />
+          {state.coreAttribute && <Typography className={classes.charName}>{CharacteristicName[coreAttribute || 'APP']}</Typography>}
         </Toolbar>
       </AppBar>
     )

@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core';
 
-import { green, purple, darkPurple } from '../../providers/AppThemeProvider';
+import { green, purple, darkPurple, darkGreen, deepGreen } from '../../providers/AppThemeProvider';
 
 const styles = makeStyles((theme) => ({
   characteristicRoot: {
@@ -25,6 +25,9 @@ const styles = makeStyles((theme) => ({
     marginBottom: 20,
     textShadow: `1px 2px 4px ${purple}, 0px 3px 6px ${darkPurple}, 0px 0px 5px ${green}, 3px 3px 20px ${green}, -2px 1px 30px ${green}`
   },
+
+
+
   title1: {
     fontFamily: 'Cthulhumbus',
     color: 'white',
@@ -48,7 +51,21 @@ const styles = makeStyles((theme) => ({
   titleBigR: {
   },
 
-
+  sigil: {
+    width: 80,
+    height: 80,
+    fill: green,
+  },
+  arrow: {
+    width: 30,
+    height: 30,
+    fill: 'white'
+  },
+  spookyIcon: {
+    // filter: `drop-shadow(1px 2px 4px ${purple}, 0px 3px 6px ${darkPurple}, 0px 0px 5px ${green}, 3px 3px 20px ${green}, -2px 1px 30px ${green})`
+    // filter: 'drop-shadow(3px 5px 2px #000000) drop-shadow(3px 5px 2px #ff0000)'
+    filter: `drop-shadow(1px 1px 1px ${darkPurple}) drop-shadow(1px 1px 1px ${purple}) drop-shadow(3px 3px 10px ${deepGreen}55)`,
+  },
 
   speedDial: {
     position: 'absolute',
@@ -100,7 +117,7 @@ const styles = makeStyles((theme) => ({
     fontSize: 40,
     color: 'white',
     position: 'absolute',
-    bottom: '0%',
+    top: 60,
     left: '75%',
     transform: 'translate(-50%, -50%)'
   }

@@ -14,6 +14,15 @@ const styles = makeStyles((theme) => ({
     marginBottom: 100,
   },
 
+  splash: {
+    display: 'flex',
+    flexDirection: 'column',
+    maxWidth: 2000,
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    position: 'relative',
+  },
+
   drawerPaper: { overflow: 'hidden' },
 
   mobileStepper: {

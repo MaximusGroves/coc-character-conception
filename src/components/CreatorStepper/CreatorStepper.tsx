@@ -77,7 +77,7 @@ const CreatorStepper: FC = () => {
               paddingLeft: 4,
             }}
           >
-            {state.coreAttribute}
+            {/* {state.coreAttribute} */}
             {stats && (
               <span style={{ margin: 'auto' }}>
                 <Casino color="primary" />

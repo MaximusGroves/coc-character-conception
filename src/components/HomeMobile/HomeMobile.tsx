@@ -19,6 +19,7 @@ import { CreatorSteps, stepKeys } from '../../data/types';
 // import {useWidth} from '../../providers/AppThemeProvider'
 import clsx from 'clsx';
 import SkillList from '../SkillList/SkillList';
+import CharacteristicList from '../CharacteristicList/CharacteristicList';
 
 const HomeMobile: FC = () => {
   const classes = styles();
@@ -35,51 +36,51 @@ const HomeMobile: FC = () => {
 
   const getStepComponent = (stepNumber: number) => {
     switch (stepNumber) {
-      case 0:
-        return <ArchetypeList />;
       case 1:
-        return <OccupationList />;
+        return <ArchetypeList />;
       case 2:
-        return <TalentList />;
+        return <OccupationList />;
       case 3:
-        return <Attributes />;
+        return <TalentList />;
       case 4:
+        return <Attributes />;
+      case 5:
         return <SkillList />;
     }
   };
 
   const getSelection = (step: number) => {
     switch (step) {
-      case 0:
-        return selectedArchetype?.name || '';
       case 1:
-        return selectedOccupation?.name || '';
+        return selectedArchetype?.name || '';
       case 2:
-        return selectedTalent?.map((val) => val.name).join(', ') || '';
+        return selectedOccupation?.name || '';
       case 3:
-        return '';
+        return selectedTalent?.map((val) => val.name).join(', ') || '';
       case 4:
+        return '';
+      case 5:
         return '';
     }
   };
 
   const getSelectionStyle = (step: number) => {
     switch (step) {
-      case 0:
-        return classes.selectionStyleArchetype;
       case 1:
-        return classes.selectionStyleOccupation;
+        return classes.selectionStyleArchetype;
       case 2:
-        return classes.selectionStyleTalent;
+        return classes.selectionStyleOccupation;
       case 3:
-        return classes.selectionStyle;
+        return classes.selectionStyleTalent;
       case 4:
+        return classes.selectionStyle;
+      case 5:
         return classes.selectionStyle;
     }
   };
 
   return (
-    <div className={classes.root}>
+    <div className={creatorStep !== 0 ? classes.root : classes.splash}>
       {/* <Stepper activeStep={creatorStep} orientation="vertical" className={classes.mobileStepper}>
         {stepKeys.list.map((key, index) => (
           <Step key={CreatorSteps[key]}>
@@ -88,40 +89,50 @@ const HomeMobile: FC = () => {
           </Step>
         ))}
       </Stepper> */}
-      {stepKeys.list.map((key, index) => (
-        <Accordion
-          expanded={creatorStep === index}
-          TransitionProps={{ unmountOnExit: true }}
-          onChange={() => setStep(index)}
-          key="key"
-        >
-          <AccordionSummary
-            expandIcon={<ExpandMore />}
-            aria-controls="panel1bh-content"
-            id="panel1bh-header"
-            className={classes.summary}
-          >
-            <Grid container direction="column">
-              <Grid item>
-                <Typography>{CreatorSteps[key]}</Typography>
-              </Grid>
-              <Grid item>
-                <Typography
-                  className={clsx(
-                    classes.selectionStyle,
-                    getSelectionStyle(index)
-                  )}
+
+
+
+      {creatorStep === 0 && < CharacteristicList />}
+      {creatorStep !== 0 &&
+
+        <>
+          {
+            stepKeys.list.map((key, index) => (
+              <Accordion
+                expanded={creatorStep === index + 1}
+                TransitionProps={{ unmountOnExit: true }}
+                onChange={() => setStep(index + 1)}
+                key="key"
+              >
+                <AccordionSummary
+                  expandIcon={<ExpandMore />}
+                  aria-controls="panel1bh-content"
+                  id="panel1bh-header"
+                  className={classes.summary}
                 >
-                  {getSelection(index)}
-                </Typography>
-              </Grid>
-            </Grid>
-          </AccordionSummary>
-          <AccordionDetails className={classes.stepContent}>
-            {getStepComponent(index)}
-          </AccordionDetails>
-        </Accordion>
-      ))}
+                  <Grid container direction="column">
+                    <Grid item>
+                      <Typography>{CreatorSteps[key]}</Typography>
+                    </Grid>
+                    <Grid item>
+                      <Typography
+                        className={clsx(
+                          classes.selectionStyle,
+                          getSelectionStyle(index + 1)
+                        )}
+                      >
+                        {getSelection(index + 1)}
+                      </Typography>
+                    </Grid>
+                  </Grid>
+                </AccordionSummary>
+                <AccordionDetails className={classes.stepContent}>
+                  {getStepComponent(index + 1)}
+                </AccordionDetails>
+              </Accordion>
+            ))
+          }
+        </>}
     </div>
   );
 };

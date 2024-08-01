@@ -32,6 +32,7 @@ export type AppFunctions = {
   nextStep: Function;
   prevStep: Function;
   setStep: Function;
+  selectCoreAttribute: Function;
   selectArchetype: Function;
   selectOccupation: Function;
   selectTalent: Function;
@@ -56,6 +57,7 @@ const AppContextProvider: FC<ContextProps> = (props) => {
     selectedArchetype,
     selectedOccupation,
     selectedTalent,
+    coreAttribute
   } = state;
 
   const nextStep = () => {
@@ -84,6 +86,14 @@ const AppContextProvider: FC<ContextProps> = (props) => {
     }
 
     // }
+  };
+
+  const selectCoreAttribute = (newSelection: CharacteristicKey) => {
+    if (newSelection === coreAttribute) {
+      setState({ coreAttribute: undefined });
+    } else {
+      setState({ coreAttribute: newSelection });
+    }
   };
 
   const selectArchetype = (newSelection: ArchetypeOption) => {
@@ -126,6 +136,7 @@ const AppContextProvider: FC<ContextProps> = (props) => {
     setState,
     nextStep,
     prevStep,
+    selectCoreAttribute,
     selectArchetype,
     selectOccupation,
     selectTalent,

@@ -4,9 +4,13 @@ import { Grid } from '@material-ui/core';
 import { archetypeList } from '../../data/archetypes';
 import CharacteristicRadioGroup from './CharacteristicRadioGroup';
 import ArchetypeItem from './ArchetypeItem';
+import { useAppContext } from '../../providers/AppContextProvider';
 
 const ArchetypeList: FC = () => {
-  const [charFilter, setCharFilter] = React.useState<string>('All');
+
+  const { state } = useAppContext();
+
+  const [charFilter, setCharFilter] = React.useState<string>(state.coreAttribute || 'All');
 
   const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setCharFilter((event.target as HTMLInputElement).value);

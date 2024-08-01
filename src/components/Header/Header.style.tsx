@@ -12,6 +12,15 @@ const styles = makeStyles((theme) => ({
       fontSize: 22,
     },
   },
+  charName: {
+    fontFamily: 'CthulhusCalling',
+    fontSize: 40,
+    color: 'white',
+    position: 'absolute',
+    top: 60,
+    left: 'calc( 75% + 12px )',
+    transform: 'translate(-50%, -50%)'
+  }
 }));
 
 export default styles;
