@@ -11,7 +11,6 @@ type HeaderProps = {
 
 const Header: FC<HeaderProps> = (props) => {
   const classes = styles()
-  const { appName } = props
   const { state } = useAppContext()
   const { creatorStep, coreAttribute } = state
 

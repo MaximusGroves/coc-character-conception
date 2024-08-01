@@ -1,10 +1,8 @@
 import React, { FC, useRef } from 'react';
-import { Button, Icon, Typography } from '@material-ui/core';
-// import styles from './ArchetypeList.style'
-import CharacteristicRadioGroup from '../ArchetypeList/CharacteristicRadioGroup';
+import { Button, Typography } from '@material-ui/core';
 import { useAppContext } from '../../providers/AppContextProvider';
 import styles from './CharacteristicList.style';
-import { CharacteristicKey, CharacteristicName, charKeys } from '../../data/types';
+import { CharacteristicName, charKeys } from '../../data/types';
 import { ReactComponent as Sigil } from '../../assets/Sigil_of_the_Gateway.svg';
 import SpeedDial from '@material-ui/lab/SpeedDial';
 import SpeedDialIcon from '@material-ui/lab/SpeedDialIcon';
@@ -13,7 +11,6 @@ import CallOfCharacterTitle from './CallOfCharacterTitle';
 
 import { ArrowForward } from '@material-ui/icons';
 
-import { green, purple, darkPurple } from '../../providers/AppThemeProvider';
 import clsx from 'clsx';
 
 
@@ -92,7 +89,7 @@ const CharacteristicList: FC = () => {
 
 
 
-      {imgVal && (<img src={`/img/${imgVal}.jpg`} className={classes.formula} />)}
+      {imgVal && (<img src={`/img/${imgVal}.jpg`} className={classes.formula} alt='Medical Diagram of Characteristic' />)}
 
       {textVal && <Typography className={classes.charName}>{CharacteristicName[textVal]}</Typography>}
 
@@ -100,7 +97,7 @@ const CharacteristicList: FC = () => {
       <SpeedDial
         ariaLabel="Characteristic List"
         className={classes.speedDial}
-        icon={<img src='/img/compass.png' className={classes.compass} style={{ transition: 'transform 0.25s', transform: open ? 'rotate(45deg)' : 'none' }} />}
+        icon={<img src='/img/compass.png' className={classes.compass} alt='Compass selection tool' style={{ transition: 'transform 0.25s', transform: open ? 'rotate(45deg)' : 'none' }} />}
         classes={{ fab: classes.fab, actions: classes.actions }}
         onOpen={handleOpen}
         onClick={handleToggle}

@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core';
 
-import { green, purple, darkPurple, darkGreen, deepGreen } from '../../providers/AppThemeProvider';
+import { green, purple, darkPurple, deepGreen } from '../../providers/AppThemeProvider';
 
 const styles = makeStyles((theme) => ({
   characteristicRoot: {
