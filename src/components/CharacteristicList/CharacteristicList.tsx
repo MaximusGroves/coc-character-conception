@@ -6,13 +6,16 @@ import { useAppContext } from '../../providers/AppContextProvider';
 import styles from './CharacteristicList.style';
 import { CharacteristicKey, CharacteristicName } from '../../data/types';
 
+import SpeedDial from '@material-ui/lab/SpeedDial';
+import SpeedDialIcon from '@material-ui/lab/SpeedDialIcon';
+import SpeedDialAction from '@material-ui/lab/SpeedDialAction';
 
 const CharacteristicList: FC = () => {
 
   const { api } = useAppContext()
   const { nextStep } = api
 
-  const [charFilter, setCharFilter] = React.useState<string>('All');
+  const [charFilter, setCharFilter] = React.useState<string>('dexterity-xray');
 
   const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setCharFilter((event.target as HTMLInputElement).value);
@@ -20,7 +23,14 @@ const CharacteristicList: FC = () => {
 
   const classes = styles();
 
+  const [open, setOpen] = React.useState(false);
+  const handleClose = () => {
+    setOpen(false);
+  };
 
+  const handleOpen = () => {
+    setOpen(true);
+  };
 
   return (
     <div className={classes.characteristicRoot}>
@@ -29,15 +39,45 @@ const CharacteristicList: FC = () => {
       <Typography className={classes.titleBottom}><span className={classes.titleBigC}>C</span>HA<span className={classes.title1}>R</span>A<span className={classes.title1}>C</span>TE<span className={classes.titleBigR}>R</span></Typography>
 
 
+      <Typography className={classes.charName}>DEXTERITY</Typography>
+
+      {/* 
       <CharacteristicRadioGroup
         selection={charFilter}
         onSelection={handleRadioChange}
       />
-      <Button onClick={() => nextStep()} variant="contained" color="primary">Begin</Button>
+      <Button onClick={() => nextStep()} variant="contained" color="primary">Begin</Button> */}
 
-      <img src='/img/compass.png' className={classes.compass} />
-      {charFilter !== 'All' && (<img src={`/img/${CharacteristicName[charFilter as CharacteristicKey]}.jpg`} className={classes.formula} />)}
 
+      {/* <img src='/img/compass.png' className={classes.compass} /> */}
+
+
+
+      {charFilter !== 'All' && (<img src={`/img/${charFilter}.jpg`} className={classes.formula} />)}
+
+
+      <SpeedDial
+        ariaLabel="Characteristic List"
+
+        className={classes.speedDial}
+        // hidden={hidden}
+        icon={<img src='/img/compass.png' className={classes.compass} style={{ transition: 'transform 0.25s', transform: open ? 'rotate(45deg)' : 'none' }} />}
+        classes={{ fab: classes.fab, actions: classes.actions }}
+        // FabProps={{
+        // }}
+        onClose={handleClose}
+        onOpen={handleOpen}
+        open={open}
+        direction={'right'}
+      >
+        <SpeedDialAction
+          key={'strength'}
+          icon={<SpeedDialIcon />}
+          tooltipTitle={''}
+          onClick={handleClose}
+        />
+
+      </SpeedDial>
     </div>
   );
 };

@@ -6,10 +6,10 @@ const styles = makeStyles((theme) => ({
     backgroundColor: '#fafafa',
     width: '100vw',
     height: '100vh',
-    background: 'url(/img/scene2.png)',
+    background: 'url(/img/scene2tile.jpg)',
     // '-webkit-transform': 'scaleX(-1)',
     // transform: 'scaleX(-1)',
-    backgroundSize: 'contain',
+    backgroundSize: 'cover',
     backgroundPosition: 'center center',
   },
   app: {
