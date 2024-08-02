@@ -8,7 +8,7 @@ import { OccupationSkillFormula } from '../../data/occupations';
 
 const SkillList: FC = () => {
   const { state, api } = useAppContext();
-  const { stats } = state;
+  const { stats, selectedArchetype } = state;
 
   const onSelection = (val: OccupationSkillFormula) => {
     const occPoints = computeOccPoints(val);
@@ -19,7 +19,7 @@ const SkillList: FC = () => {
   const computeOccPoints = (val: OccupationSkillFormula) => {
     switch (val) {
       case OccupationSkillFormula.edu:
-        return stats?.EDU || 0 * 4;
+        return (stats?.EDU || 0 * 4);
       case OccupationSkillFormula.eduApp:
         return (stats?.EDU || 0) * 2 + (stats?.APP || 0) * 2;
       case OccupationSkillFormula.eduCon:
@@ -39,7 +39,9 @@ const SkillList: FC = () => {
 
   return (
     <div style={{ display: 'block' }}>
-      <Grid container direction="column" spacing={2}>
+      <Typography>Archetype Skills</Typography>
+      <Typography>{`Your Archetype of ${selectedArchetype?.name} affords you 100 points to upgrade any of these skills`}</Typography>
+      <Grid container direction="column" spacing={2} style={{ marginTop: 20 }}>
         <Grid item>
           <OccSkillFormulaSelector
             options={state.selectedOccupation?.skillFormula || []}

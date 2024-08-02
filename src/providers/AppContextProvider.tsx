@@ -36,6 +36,7 @@ export type AppFunctions = {
   selectArchetype: Function;
   selectOccupation: Function;
   selectTalent: Function;
+  currentStepName: Function;
 };
 
 type ContextValues = {
@@ -59,6 +60,18 @@ const AppContextProvider: FC<ContextProps> = (props) => {
     selectedTalent,
     coreAttribute
   } = state;
+
+
+  const currentStepName = () => {
+    switch (creatorStep) {
+      case 0: return "Characteristic";
+      case 1: return "Archetype";
+      case 2: return "Occupation";
+      case 3: return "Talent";
+      case 4: return "Attributes";
+      case 5: return "Skills";
+    }
+  }
 
   const nextStep = () => {
     if (creatorStep === undefined) {
@@ -141,6 +154,7 @@ const AppContextProvider: FC<ContextProps> = (props) => {
     selectOccupation,
     selectTalent,
     setStep,
+    currentStepName,
   };
 
   return (

@@ -1,10 +1,8 @@
 import React, { FC, useRef } from 'react';
-import { Button, Icon, Typography } from '@material-ui/core';
-// import styles from './ArchetypeList.style'
-import CharacteristicRadioGroup from '../ArchetypeList/CharacteristicRadioGroup';
+import { Button, Grid, Typography } from '@material-ui/core';
 import { useAppContext } from '../../providers/AppContextProvider';
 import styles from './CharacteristicList.style';
-import { CharacteristicKey, CharacteristicName, charKeys } from '../../data/types';
+import { CharacteristicName, charKeys } from '../../data/types';
 import { ReactComponent as Sigil } from '../../assets/Sigil_of_the_Gateway.svg';
 import SpeedDial from '@material-ui/lab/SpeedDial';
 import SpeedDialIcon from '@material-ui/lab/SpeedDialIcon';
@@ -13,7 +11,6 @@ import CallOfCharacterTitle from './CallOfCharacterTitle';
 
 import { ArrowForward } from '@material-ui/icons';
 
-import { green, purple, darkPurple } from '../../providers/AppThemeProvider';
 import clsx from 'clsx';
 
 
@@ -64,16 +61,19 @@ const CharacteristicList: FC = () => {
 
   let imgVal
   let textVal
+  let usedClass
 
   if (coreAttribute) {
     imgVal = coreAttribute + '-xray'
     textVal = coreAttribute
+    usedClass = classes.bigPic
   }
 
   if (hoverVal) {
     if (hoverVal !== coreAttribute) {
       imgVal = hoverVal
       textVal = hoverVal
+      usedClass = classes.normalPic
     }
   }
   if (imgVal === 'CON') {
@@ -85,62 +85,83 @@ const CharacteristicList: FC = () => {
 
   return (
 
-    <div className={classes.characteristicRoot}>
 
-      <CallOfCharacterTitle />
+    <Grid container direction="column" justifyContent='space-between' alignItems='flex-start' style={{ height: '95vh' }}>
+      <Grid item container direction="row" justifyContent='space-between' alignContent='flex-start' style={{ display: 'fixed' }}>
+        <Grid item >
+          <CallOfCharacterTitle style={{ marginRight: 'auto' }} />
+        </Grid>
+        <Grid item>
+          {textVal && <Typography className={classes.charName}>{CharacteristicName[textVal]}</Typography>}
+        </Grid>
+      </Grid>
+
+      <Grid item>
+        {imgVal && (<img src={`/img/${imgVal}.jpg`} className={usedClass} alt='current selection' />)}
+      </Grid>
+
+      <Grid item container direction="row" alignContent='flex-end' alignItems='flex-end'>
+        <Grid item>
+          <SpeedDial
+            ariaLabel="Characteristic List"
+            icon={<img src='/img/compass.png' className={classes.compass} style={{ transition: 'transform 0.25s', transform: open ? 'rotate(45deg)' : 'none' }} alt='make selection' />}
+            classes={{ root: classes.compassRoot, fab: classes.fab, actions: classes.actions }}
+            onOpen={handleOpen}
+            onClick={handleToggle}
+            open={open}
+            direction={'up'}
+            ref={compassRef}
+          >
+
+            {charList.map(val => (
+
+              <SpeedDialAction
+                key={val}
+                icon={<SpeedDialIcon />}
+                tooltipTitle={CharacteristicName[val]}
+                // tooltipTitle={val}
+                onClick={() => handleSelection(val)}
+                tooltipPlacement='right'
+                tooltipOpen
+                onMouseOver={() => setHoverVal(val)}
+                onMouseOut={() => setHoverVal(undefined)}
+                classes={{}}
+                TooltipClasses={{}}
+
+              />
+            ))}
+          </SpeedDial>
+
+        </Grid>
+        <Grid item>
+          <Typography onMouseOver={handleOpen} className={classes.promptText}
+            style={{
+              marginBottom: -4,
+              padding: '40px 0 40px 20px',
+            }}>What do you most desire?</Typography></Grid>
+        <Grid item style={{ marginLeft: 'auto' }}>
+          {
+            coreAttribute &&
+            <Button onClick={() => nextStep()} style={{ borderRadius: 1000 }}>
+              <Typography className={classes.promptText} style={{ fontSize: 20, textTransform: 'none', paddingRight: 15, paddingLeft: 10, marginTop: -10 }}>Create your identity</Typography>
+              <Sigil className={clsx(classes.sigil, classes.spookyIcon)} />
+              <ArrowForward className={clsx(classes.arrow, classes.spookyIcon)} />
+            </Button>
+          }
+        </Grid>
+      </Grid>
+
+
+
+    </Grid >
 
 
 
 
-      {imgVal && (<img src={`/img/${imgVal}.jpg`} className={classes.formula} />)}
-
-      {textVal && <Typography className={classes.charName}>{CharacteristicName[textVal]}</Typography>}
-
-
-      <SpeedDial
-        ariaLabel="Characteristic List"
-        className={classes.speedDial}
-        icon={<img src='/img/compass.png' className={classes.compass} style={{ transition: 'transform 0.25s', transform: open ? 'rotate(45deg)' : 'none' }} />}
-        classes={{ fab: classes.fab, actions: classes.actions }}
-        onOpen={handleOpen}
-        onClick={handleToggle}
-        open={open}
-        direction={'up'}
-        ref={compassRef}
-      >
-
-        {charList.map(val => (
-
-          <SpeedDialAction
-            key={val}
-            icon={<SpeedDialIcon />}
-            tooltipTitle={CharacteristicName[val]}
-            // tooltipTitle={val}
-            onClick={() => handleSelection(val)}
-            tooltipPlacement='right'
-            tooltipOpen
-            onMouseOver={() => setHoverVal(val)}
-            onMouseOut={() => setHoverVal(undefined)}
-            classes={{}}
-            TooltipClasses={{}}
-
-          />
-
-        ))}
 
 
 
-      </SpeedDial>
 
-      <Typography style={{ position: 'absolute', bottom: 60, left: 85, fontSize: 20 }} className={classes.titleTop}>What do you most desire?</Typography>
-
-      {coreAttribute && <Button onClick={() => nextStep()} style={{ position: 'absolute', right: 0, bottom: 27, borderRadius: 1000 }}>
-        <Typography className={classes.titleTop} style={{ fontSize: 20, textTransform: 'none', paddingRight: 10 }}>Create Your Identity</Typography>
-        <Sigil className={clsx(classes.sigil, classes.spookyIcon)} />
-        <ArrowForward className={clsx(classes.arrow, classes.spookyIcon)} />
-      </Button>}
-
-    </div >
   );
 };
 

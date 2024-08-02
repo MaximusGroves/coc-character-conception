@@ -20,7 +20,7 @@ import { difference, remove } from 'lodash';
 type Props = {
   selection?: string;
   onSelection: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  priority?: CharacteristicKey[];
+priority?: CharacteristicKey[];
 };
 
 const CharacteristicRadioGroup: FC<Props> = (props: Props) => {

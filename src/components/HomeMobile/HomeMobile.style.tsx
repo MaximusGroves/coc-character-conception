@@ -15,12 +15,8 @@ const styles = makeStyles((theme) => ({
   },
 
   splash: {
-    display: 'flex',
-    flexDirection: 'column',
-    maxWidth: 2000,
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    position: 'relative',
+    height: '100vh',
+    width: '100vw'
   },
 
   drawerPaper: { overflow: 'hidden' },

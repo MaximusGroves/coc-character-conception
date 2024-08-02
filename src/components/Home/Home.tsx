@@ -21,27 +21,31 @@ const Home: FC = () => {
 
   return (
     <div className={creatorStep !== 0 ? classes.root : classes.splash}>
-      {creatorStep === 0 && < CharacteristicList />}
-      {creatorStep === 1 && <ArchetypeList />}
-      {creatorStep === 2 && <OccupationList />}
-      {creatorStep === 3 && <TalentList />}
-      {creatorStep === 4 && <Attributes />}
-      {creatorStep === 5 && <SkillList />}
-
-      {creatorStep !== 0 && (
 
 
-        <Drawer
-          variant="permanent"
-          anchor="bottom"
-          classes={{
-            paper: classes.drawerPaper,
-          }}
-        >
-          <CreatorStepper />
-        </Drawer>
+      <div className={classes.container}>
+        {creatorStep === 0 && < CharacteristicList />}
+        {creatorStep === 1 && <ArchetypeList />}
+        {creatorStep === 2 && <OccupationList />}
+        {creatorStep === 3 && <TalentList />}
+        {creatorStep === 4 && <Attributes />}
+        {creatorStep === 5 && <SkillList />}
 
-      )}
+        {creatorStep !== 0 && (
+
+
+          <Drawer
+            variant="permanent"
+            anchor="bottom"
+            classes={{
+              paper: classes.drawerPaper,
+            }}
+          >
+            <CreatorStepper />
+          </Drawer>
+
+        )}
+      </div>
     </div>
   );
 };

@@ -15,10 +15,10 @@ export const hex2rgb = (hex: string): Record<string, number> | null => {
   const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
   return result
     ? {
-        r: parseInt(result[1], 16),
-        g: parseInt(result[2], 16),
-        b: parseInt(result[3], 16),
-      }
+      r: parseInt(result[1], 16),
+      g: parseInt(result[2], 16),
+      b: parseInt(result[3], 16),
+    }
     : null;
 };
 
@@ -26,6 +26,8 @@ export const green = '#169B1E';
 export const purple = '#7A28CB';
 export const red = '#A30015';
 export const gold = '#F1C40F';
+export const darkGold = '#D4AC0C';
+export const lightGold = '#F8E28B';
 export const darkPurple = '#290025';
 export const darkGreen = '#006400';
 export const deepGreen = '#008001';
@@ -33,6 +35,7 @@ export const brightGreen = '#2BAB27';
 
 const themeProps = {
   palette: {
+    type: "dark" as const,
     primary: {
       main: green,
     },

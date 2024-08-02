@@ -5,14 +5,9 @@ import { charKeys } from '../../data/types';
 import { Casino } from '@material-ui/icons';
 
 import { useAppContext } from '../../providers/AppContextProvider';
-import CoreCharacteristicRadioGroup from './CoreCharacteristicRadioGroup';
 
 const ArchetypeList: FC = () => {
   const { state, api } = useAppContext();
-
-  const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    api.setState({ coreAttribute: (event.target as HTMLInputElement).value });
-  };
 
   const rolld6 = () => {
     return Math.ceil(Math.random() * 6);
@@ -106,7 +101,7 @@ const ArchetypeList: FC = () => {
           </Typography>
         </Grid>
 
-        <Grid item>
+        {/* <Grid item>
           <Typography>Select Core Attribute</Typography>
 
           <CoreCharacteristicRadioGroup
@@ -114,7 +109,7 @@ const ArchetypeList: FC = () => {
             onSelection={handleRadioChange}
             priority={state?.selectedArchetype?.core}
           />
-        </Grid>
+        </Grid> */}
 
         <Grid item style={{ display: 'flex', width: '100%', margin: '40px 0' }}>
           <Button

@@ -1,14 +1,26 @@
 import { makeStyles } from '@material-ui/core';
 
-import { green, purple, darkPurple, darkGreen, deepGreen } from '../../providers/AppThemeProvider';
+import { green, purple, darkPurple, deepGreen } from '../../providers/AppThemeProvider';
 
 const styles = makeStyles((theme) => ({
   characteristicRoot: {
-    height: 'calc(100vh - 48px)',
-    width: 'calc(100vw - 48px)',
-    position: 'relative',
-    padding: 24,
+    // height: 'calc(100vh - 48px)',
+    // width: 'calc(100vw - 48px)',
+    maxWidth: 2000,
+    width: '100%',
+    height: '100vw',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    // display: 'flex',
+    // padding: 24,
   },
+
+  compassRoot: {
+    // marginRight: 'auto',
+    // alignItems: 'flex-start'
+  },
+
+
   titleTop: {
     fontFamily: 'Cthulhumbus',
     color: 'white',
@@ -59,7 +71,8 @@ const styles = makeStyles((theme) => ({
   arrow: {
     width: 30,
     height: 30,
-    fill: 'white'
+    fill: 'white!important',
+    marginBottom: 7,
   },
   spookyIcon: {
     // filter: `drop-shadow(1px 2px 4px ${purple}, 0px 3px 6px ${darkPurple}, 0px 0px 5px ${green}, 3px 3px 20px ${green}, -2px 1px 30px ${green})`
@@ -67,15 +80,20 @@ const styles = makeStyles((theme) => ({
     filter: `drop-shadow(1px 1px 1px ${darkPurple}) drop-shadow(1px 1px 1px ${purple}) drop-shadow(3px 3px 10px ${deepGreen}55)`,
   },
 
-  speedDial: {
-    position: 'absolute',
-    left: 20,
-    bottom: 20,
-  },
 
-  formula: {
+
+  normalPic: {
     width: 400,
     height: 400,
+    position: 'absolute',
+    top: '50%',
+    left: '75%',
+    transform: 'translate(-50%, -50%)'
+  },
+
+  bigPic: {
+    width: 525,
+    height: 525,
     position: 'absolute',
     top: '50%',
     left: '75%',
@@ -85,14 +103,12 @@ const styles = makeStyles((theme) => ({
   compass: {
     width: 100,
     height: 100,
-    // position: 'absolute',
-    // left: 90,
-    // bottom: 75
-    // left: 20,
-    // bottom: 20,
   },
 
+
+
   fab: {
+
     width: 100,
     height: 100,
     backgroundColor: 'unset',
@@ -110,6 +126,16 @@ const styles = makeStyles((theme) => ({
     // height: 100,
     // paddingTop: 22,
     paddingBottom: 10
+
+  },
+
+  promptText: {
+
+    fontSize: 20,
+    fontFamily: 'Cthulhumbus',
+    color: 'white',
+    textShadow: `1px 2px 4px ${purple}, 0px 3px 6px ${darkPurple}, 0px 0px 5px ${green}, 3px 3px 20px ${green}, -2px 1px 30px ${green}`
+
   },
 
   charName: {
@@ -119,7 +145,9 @@ const styles = makeStyles((theme) => ({
     position: 'absolute',
     top: 60,
     left: '75%',
-    transform: 'translate(-50%, -50%)'
+    transform: 'translate(-50%, -50%)',
+    filter: `drop-shadow(1px 1px 1px ${darkPurple}) drop-shadow(1px 1px 1px ${purple}) drop-shadow(3px 3px 1px ${deepGreen})`,
+
   }
 
 }));

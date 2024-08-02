@@ -10,19 +10,23 @@ import {
 // import styles from './ArchetypeList.style'
 
 import {
-  CharacteristicKey,
   CharacteristicName,
   charKeys,
 } from '../../data/types';
+import { useAppContext } from '../../providers/AppContextProvider';
+import styles from './ArchetypeList.style';
 
 type Props = {
   selection: string;
   onSelection: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  priority?: CharacteristicKey[];
 };
 
 const CharacteristicRadioGroup: FC<Props> = (props: Props) => {
   const { selection, onSelection } = props;
+
+  const { state } = useAppContext();
+
+  const classes = styles();
 
   return (
     <FormControl component="fieldset">
@@ -44,6 +48,7 @@ const CharacteristicRadioGroup: FC<Props> = (props: Props) => {
                 value={key}
                 control={<Radio />}
                 label={CharacteristicName[key]}
+                classes={{ label: state.coreAttribute === key ? classes.priority : classes.normal }}
               />
             </Grid>
           ))}

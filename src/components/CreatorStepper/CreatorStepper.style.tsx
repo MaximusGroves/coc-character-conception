@@ -16,7 +16,7 @@ const styles = makeStyles((theme) => ({
 
     minHeight: 42,
     [theme.breakpoints.down('sm')]: {
-      minHeight: 84,
+      minHeight: 'unset',
     },
   },
 
@@ -33,6 +33,10 @@ const styles = makeStyles((theme) => ({
 
   stepLabelBtn: {
     padding: 16,
+    [theme.breakpoints.down('sm')]: {
+      padding: '16px 16px 5px'
+    },
+
   },
 
   selectionStyleArchetype: {

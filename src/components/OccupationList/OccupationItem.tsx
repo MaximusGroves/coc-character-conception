@@ -14,8 +14,6 @@ import { ReactComponent as Sigil } from '../../assets/Sigil_of_the_Gateway.svg'
 import clsx from 'clsx'
 import { Occupation } from '../../data/occupations'
 
-import { gold } from '../../providers/AppThemeProvider'
-
 type Props = {
   occupation: Occupation
 }
@@ -50,7 +48,7 @@ const OccupationItem: FC<Props> = (props) => {
         >
           <div className={classes.itemContainer}>
             <Fade in={selected}>
-              <Sigil className={classes.sigil} fill={gold} />
+              <Sigil className={classes.sigil} />
             </Fade>
 
             <Typography variant="h2" className={classes.title}>

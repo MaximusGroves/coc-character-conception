@@ -3,7 +3,6 @@ import { AppBar, Toolbar, Typography } from '@material-ui/core'
 import styles from './Header.style'
 import { useAppContext } from '../../providers/AppContextProvider'
 import CallOfCharacterTitle from '../CharacteristicList/CallOfCharacterTitle'
-import { CharacteristicName } from '../../data/types'
 
 type HeaderProps = {
   appName: string
@@ -11,9 +10,9 @@ type HeaderProps = {
 
 const Header: FC<HeaderProps> = (props) => {
   const classes = styles()
-  const { appName } = props
-  const { state } = useAppContext()
-  const { creatorStep, coreAttribute } = state
+  const { state, api } = useAppContext()
+  const { creatorStep } = state
+  const { currentStepName } = api;
 
   if (creatorStep === 0) {
     return null
@@ -21,8 +20,12 @@ const Header: FC<HeaderProps> = (props) => {
     return (
       <AppBar position={'static'} className={classes.root}>
         <Toolbar>
-          <CallOfCharacterTitle style={{ paddingTop: 24 }} />
-          {state.coreAttribute && <Typography className={classes.charName}>{CharacteristicName[coreAttribute || 'APP']}</Typography>}
+          <div style={{ maxWidth: 2000, width: '100%', marginLeft: 'auto', marginRight: 'auto' }}>
+
+            <CallOfCharacterTitle style={{ paddingTop: 24, marginRight: 'auto' }} />
+            {/* {state.coreAttribute && <Typography className={classes.charName}>{CharacteristicName[coreAttribute || 'APP']}</Typography>} */}
+            <Typography className={classes.charName}>{currentStepName()}</Typography>
+          </div>
         </Toolbar>
       </AppBar>
     )

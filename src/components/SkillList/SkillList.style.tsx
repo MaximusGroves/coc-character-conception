@@ -97,6 +97,10 @@ const styles = makeStyles((theme) => ({
     left: 5,
     top: 5,
   },
+  selectionStyleArchetype: {
+    fontFamily: 'SFComicScript',
+  },
+
 }));
 
 export default styles;

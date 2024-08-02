@@ -156,9 +156,9 @@ const CreatorStepper: FC = () => {
                     className={classes.stepLabelBtn}
                   >
                     <StepLabel>
-                      {(currentWidth !== 'xs' || (index) === thisStep) &&
+                      {(currentWidth !== 'xs' && currentWidth !== 'sm') &&
                         CreatorSteps[key]}
-                      {(currentWidth !== 'xs' || (index) === thisStep) && (
+                      {(currentWidth !== 'xs' && currentWidth !== 'sm') && (
                         <Typography
                           className={clsx(
                             classes.selectionStyle,

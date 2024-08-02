@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core'
 const styles = makeStyles((theme) => ({
   title: {
     fontFamily: 'Diploma',
+    padding: '3px 20px 0',
     // wordBreak: 'break-word',
 
     // textAlign: 'left',
@@ -31,6 +32,11 @@ const styles = makeStyles((theme) => ({
     // padding: 20,
     // backgroundImage: 'url(/img/pulp3.jpg)',
     // backgroundPosition: 'center top',
+
+    backgroundImage: 'url(/img/degree1.png)',
+    backgroundPosition: 'center top',
+    backgroundSize: '25%',
+
     textAlign: 'center',
     '&:hover': {
       boxShadow:
@@ -41,8 +47,12 @@ const styles = makeStyles((theme) => ({
     transition: 'transform 0.3s, box-shadow 0.3s',
 
     border: '15px solid transparent',
-    borderImage: 'url(/img/diplomaBorder600.png) 50 round',
+    // borderImage: 'url(/img/diplomaBorder600-2.png) 100 round',
     backgroundColor: '#FFFDEB',
+    borderImage: 'url(/img/diplomaBorder600-2.png)',
+    borderImageSlice: '110 fill',
+    borderImageWidth: '29px'
+
   },
 
   occupationSelected: {
@@ -65,6 +75,7 @@ const styles = makeStyles((theme) => ({
     marginRight: '-15px',
     marginTop: '-15px',
     marginBottom: '-15px',
+    color: 'black'
   },
 
   ripple: {
@@ -76,12 +87,14 @@ const styles = makeStyles((theme) => ({
   },
 
   sigil: {
-    width: 80,
-    height: 80,
+    width: 70,
+    height: 70,
     position: 'absolute',
     left: '50%',
     transform: 'translateX(-50%)',
-    bottom: 0,
+    bottom: 17,
+    fill: `${'#FFD700'}`,
+    filter: `drop-shadow(1px 1px 1px #ffffff50) drop-shadow(1px 1px 17px #D4AC10f0) drop-shadow(1px 1px 3px #00000090)`,
   },
 
   itemContainer: {
