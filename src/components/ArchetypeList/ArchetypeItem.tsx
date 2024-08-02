@@ -43,6 +43,12 @@ const ArchetypeItem: FC<Props> = (props: Props) => {
       >
         <Button
           className={classes.button}
+          style={{
+            textTransform: 'none',
+            textAlign: 'left',
+            flexDirection: 'column',
+            color: 'black'
+          }}
           onClick={() => selectArchetype(archetype)}
           TouchRippleProps={{
             classes: {

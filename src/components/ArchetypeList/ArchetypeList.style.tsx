@@ -24,7 +24,7 @@ const styles = makeStyles((theme) => ({
   },
 
   button: {
-    padding: 20,
+    padding: '20px !important',
     textTransform: 'none',
     textAlign: 'left',
     flexDirection: 'column',
