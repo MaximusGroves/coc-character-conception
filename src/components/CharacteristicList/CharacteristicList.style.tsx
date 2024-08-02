@@ -109,11 +109,11 @@ const styles = makeStyles((theme) => ({
 
   fab: {
 
-    width: 100,
-    height: 100,
-    backgroundColor: 'unset',
+    width: '100px!important',
+    height: '100px!important',
+    backgroundColor: 'unset!important',
     '&:hover': {
-      backgroundColor: 'unset',
+      backgroundColor: 'unset!important',
 
     }
     // backgroundImage: 'url(/img/compass.png)', 
