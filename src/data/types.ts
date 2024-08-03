@@ -330,7 +330,7 @@ export enum SkillName {
 
   ScienceCustom = 'Science, Custom',
   ScienceAstronomy = 'Science, Astronomy',
-  ScienceBiology = 'Science, Geology',
+  ScienceBiology = 'Science, Biology',
   ScienceChemistry = 'Science, Chemistry',
   SciencePhysics = 'Science, Physics',
   ScienceGeology = 'Science, Geology',

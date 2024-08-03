@@ -1,4 +1,5 @@
 import { makeStyles } from '@material-ui/core'
+import { green, purple } from '../../providers/AppThemeProvider'
 
 const styles = makeStyles((theme) => ({
   title: {
@@ -29,10 +30,6 @@ const styles = makeStyles((theme) => ({
   },
 
   occupationItem: {
-    // padding: 20,
-    // backgroundImage: 'url(/img/pulp3.jpg)',
-    // backgroundPosition: 'center top',
-
     backgroundImage: 'url(/img/degree1.png)',
     backgroundPosition: 'center top',
     backgroundSize: '25%',
@@ -42,12 +39,12 @@ const styles = makeStyles((theme) => ({
       boxShadow:
         '0px 7px 8px -4px rgba(22, 155, 30,0.4),0px 12px 17px 2px rgba(22, 155, 30,0.28),0px 5px 22px 4px rgba(22, 155, 30 ,0.24)',
       cursor: 'pointer',
+      filter: `drop-shadow( 0px 0px 3px ${green})`
     },
     userSelect: 'none',
     transition: 'transform 0.3s, box-shadow 0.3s',
 
     border: '15px solid transparent',
-    // borderImage: 'url(/img/diplomaBorder600-2.png) 100 round',
     backgroundColor: '#FFFDEB',
     borderImage: 'url(/img/diplomaBorder600-2.png)',
     borderImageSlice: '110 fill',
@@ -57,8 +54,12 @@ const styles = makeStyles((theme) => ({
 
   occupationSelected: {
     boxShadow:
-      '0px 8px 9px -5px rgba(122, 40, 203,0.6),0px 15px 22px 2px rgba(122, 40, 203,0.42),0px 6px 28px 5px rgba(122, 40, 203,0.36)!important',
+      '0px 4px 9px -5px rgba(122, 40, 203,0.4),0px 7px 22px 2px rgba(122, 40, 203,0.28),0px 3px 28px 5px rgba(122, 40, 203,0.24)!important',
     transform: 'scale(102%)',
+    filter: `drop-shadow( 0px 0px 3px ${purple})`,
+    '&:hover': {
+      filter: `drop-shadow( 0px 0px 3px ${purple})`
+    },
   },
 
   gridParent: {

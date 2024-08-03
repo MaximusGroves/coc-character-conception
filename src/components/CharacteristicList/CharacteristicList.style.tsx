@@ -4,20 +4,15 @@ import { green, purple, darkPurple, deepGreen } from '../../providers/AppThemePr
 
 const styles = makeStyles((theme) => ({
   characteristicRoot: {
-    // height: 'calc(100vh - 48px)',
-    // width: 'calc(100vw - 48px)',
     maxWidth: 2000,
     width: '100%',
     height: '100vw',
     marginLeft: 'auto',
     marginRight: 'auto',
-    // display: 'flex',
-    // padding: 24,
   },
 
   compassRoot: {
-    // marginRight: 'auto',
-    // alignItems: 'flex-start'
+
   },
 
 

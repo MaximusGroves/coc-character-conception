@@ -1,5 +1,5 @@
 import React, { useState, createContext, FC } from 'react';
-import { CharacteristicKey, stepKeys } from '../data/types';
+import { CharacteristicKey, SkillName, stepKeys } from '../data/types';
 import { ArchetypeOption } from '../data/archetypes';
 import { Occupation, OccupationSkillFormula } from '../data/occupations';
 import { Talent } from '../data/talents';
@@ -8,23 +8,39 @@ export type ContextProps = {
   children: React.ReactNode;
 };
 
+export type Stats = {
+  [key in CharacteristicKey]: number;
+}
+
+export type Rolls = Stats[];
+
+
 export type AppState = {
   appName: string;
   creatorStep?: number;
+  coreAttribute?: CharacteristicKey;
   selectedArchetype?: ArchetypeOption;
   selectedOccupation?: Occupation;
-  selectedTalent?: Array<Talent>;
-  coreAttribute?: CharacteristicKey;
-  stats?: Record<CharacteristicKey, number>;
-  rolls?: Record<CharacteristicKey, number[]>;
+  selectedTalent?: Talent[];
+  stats?: Stats;
+  rolls?: Rolls;
   skillFormula?: OccupationSkillFormula;
+  archPoints?: number;
   occPoints?: number;
+  intPoints?: number;
+  archSkills: Record<SkillName, number> | {};
+  occSkills: Record<SkillName, number> | {};
+  intSkills: Record<SkillName, number> | {};
 };
 
 const defaultState: AppState = {
   appName: 'Call of Character',
   creatorStep: 0,
   selectedTalent: [],
+  archPoints: 100,
+  archSkills: {},
+  occSkills: {},
+  intSkills: {}
 };
 
 export type AppFunctions = {
@@ -37,6 +53,7 @@ export type AppFunctions = {
   selectOccupation: Function;
   selectTalent: Function;
   currentStepName: Function;
+  setStats: Function;
 };
 
 type ContextValues = {
@@ -72,6 +89,47 @@ const AppContextProvider: FC<ContextProps> = (props) => {
       case 5: return "Skills";
     }
   }
+
+  const computeOccPoints = (occVal: OccupationSkillFormula, statVal: Record<CharacteristicKey, number>) => {
+    switch (occVal) {
+      case OccupationSkillFormula.edu:
+        console.log(statVal?.EDU * 4)
+        return (statVal?.EDU * 4);
+      case OccupationSkillFormula.eduApp:
+        return (statVal?.EDU * 2) + (statVal?.APP) * 2;
+      case OccupationSkillFormula.eduCon:
+        return (statVal?.EDU) * 2 + (statVal?.CON) * 2;
+      case OccupationSkillFormula.eduDex:
+        return (statVal?.EDU) * 2 + (statVal?.DEX) * 2;
+      case OccupationSkillFormula.eduInt:
+        return (statVal?.EDU) * 2 + (statVal?.INT) * 2;
+      case OccupationSkillFormula.eduPow:
+        return (statVal?.EDU) * 2 + (statVal?.POW) * 2;
+      case OccupationSkillFormula.eduSiz:
+        return (statVal?.EDU) * 2 + (statVal?.SIZ) * 2;
+      case OccupationSkillFormula.eduStr:
+        return (statVal?.EDU) * 2 + (statVal?.STR) * 2;
+    }
+  };
+
+  const getMaxOccPoints = (occ: Occupation | undefined, stat: Stats | undefined) => {
+    if (occ === undefined || stat === undefined) {
+      return undefined;
+    }
+
+    let maxSkills = 0;
+    occ.skillFormula.map(val => {
+      const currentSkills = computeOccPoints(val, stat);
+      console.log(val);
+      console.log(currentSkills)
+      if (currentSkills > maxSkills) {
+        maxSkills = currentSkills;
+      }
+      return true;
+    })
+    return maxSkills;
+  }
+
 
   const nextStep = () => {
     if (creatorStep === undefined) {
@@ -111,19 +169,20 @@ const AppContextProvider: FC<ContextProps> = (props) => {
 
   const selectArchetype = (newSelection: ArchetypeOption) => {
     if (newSelection === selectedArchetype) {
-      setState({ selectedArchetype: undefined });
+      setState({ selectedArchetype: undefined, archPoints: 100, archSkills: {} });
     } else {
-      setState({ selectedArchetype: newSelection });
+      setState({ selectedArchetype: newSelection, archPoints: 100, archSkills: {} });
     }
   };
 
   const selectOccupation = (newSelection: Occupation) => {
     if (newSelection === selectedOccupation) {
-      setState({ selectedOccupation: undefined });
+      setState({ selectedOccupation: undefined, occPoints: undefined, occSkills: {} });
     } else {
-      setState({ selectedOccupation: newSelection });
+      setState({ selectedOccupation: newSelection, occPoints: getMaxOccPoints(newSelection, state?.stats), occSkills: {} });
     }
   };
+
 
   const selectTalent = (newSelection: Talent) => {
     const matchingIndex = selectedTalent?.indexOf(newSelection);
@@ -145,6 +204,11 @@ const AppContextProvider: FC<ContextProps> = (props) => {
     }
   };
 
+  const setStats = (newStats, newRolls) => {
+    const newOccPoints = getMaxOccPoints(selectedOccupation, newStats);
+    api.setState({ stats: newStats, rolls: newRolls, intPoints: newStats.INT * 2, occPoints: newOccPoints, occSkills: {}, intSkills: {} });
+  }
+
   const api = {
     setState,
     nextStep,
@@ -155,6 +219,7 @@ const AppContextProvider: FC<ContextProps> = (props) => {
     selectTalent,
     setStep,
     currentStepName,
+    setStats,
   };
 
   return (

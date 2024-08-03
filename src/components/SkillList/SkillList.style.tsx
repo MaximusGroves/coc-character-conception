@@ -1,4 +1,6 @@
 import { makeStyles } from '@material-ui/core';
+import { green, purple } from '../../providers/AppThemeProvider';
+
 
 const styles = makeStyles((theme) => ({
   itemContainer: {
@@ -20,6 +22,7 @@ const styles = makeStyles((theme) => ({
     lineHeight: '24px',
     color: '#fff',
     textAlign: 'center',
+    marginBottom: 0,
   },
   characteristic: {
     paddingTop: 10,
@@ -54,7 +57,7 @@ const styles = makeStyles((theme) => ({
       cursor: 'pointer',
     },
     userSelect: 'none',
-    transition: 'transform 0.3s, box-shadow 0.3s',
+    transition: 'transform 0.3s, box-shadow 0.3s, border 0.3s'
   },
 
   talentSection: {
@@ -63,20 +66,41 @@ const styles = makeStyles((theme) => ({
     marginTop: '20px',
     marginBottom: '50px',
 
-    transition: 'transform 0.3s, box-shadow 0.3s',
+
   },
 
   talentSelected: {
     boxShadow:
       '0px 8px 9px -5px rgba(122, 40, 203,0.6),0px 15px 22px 2px rgba(122, 40, 203,0.42),0px 6px 28px 5px rgba(122, 40, 203,0.36)!important',
     transform: 'scale(102%)',
+    border: `${purple} solid 3px !important`,
+    '&:hover': {
+      border: `solid 3px ${purple}`,
+    },
+  },
+
+  root: {// padding: 20,
+    overflow: 'hidden',
+    width: '100%',
+    height: '100%',
+    textTransform: 'none',
+    textAlign: 'left',
+    alignItems: 'flex-start',
+    border: `#00000000 solid 3px`,
+    transition: 'transform 0.3s, box-shadow 0.3s, border 0.3s',
+    '&:hover': {
+      boxShadow:
+        '0px 7px 8px -4px rgba(22, 155, 30,0.4),0px 12px 17px 2px rgba(22, 155, 30,0.28),0px 5px 22px 4px rgba(22, 155, 30 ,0.24)',
+      cursor: 'pointer',
+      border: `solid 3px ${green}`,
+    },
   },
 
   button: {
-    padding: 20,
+    paddingBottom: 40,
     overflow: 'hidden',
     width: '100%',
-    minHeight: 250,
+    height: '100%',
     textTransform: 'none',
     textAlign: 'left',
     alignItems: 'flex-start',

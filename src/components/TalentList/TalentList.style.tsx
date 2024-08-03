@@ -1,4 +1,5 @@
 import { makeStyles } from '@material-ui/core';
+import { green, purple } from '../../providers/AppThemeProvider';
 
 const styles = makeStyles((theme) => ({
   itemContainer: {
@@ -11,7 +12,6 @@ const styles = makeStyles((theme) => ({
     padding: 20,
     paddingBottom: 0,
     marginBottom: 0,
-    // marginBottom: ,
   },
 
   fontScalar: {
@@ -43,23 +43,20 @@ const styles = makeStyles((theme) => ({
 
   talentItem: {},
 
-  //  backgroundPosition: 'center top',
   talentCard: {
-    //    backgroundImage: 'url(/img/bizcard.png)',
-    //    backgroundSize: "120% 120%",
 
     '&:hover': {
       boxShadow:
         '0px 7px 8px -4px rgba(22, 155, 30,0.4),0px 12px 17px 2px rgba(22, 155, 30,0.28),0px 5px 22px 4px rgba(22, 155, 30 ,0.24)',
       cursor: 'pointer',
+      border: `3px solid ${green} !important`
     },
     userSelect: 'none',
-    transition: 'transform 0.3s, box-shadow 0.3s',
+    border: `3px solid #00000000`,
+    transition: 'transform 0.3s, box-shadow 0.3s, border 0.3s',
   },
 
   talentSection: {
-    //    backgroundImage: 'url(/img/talentpaper.jpg)',
-    //    backgroundPosition: 'center top',
     marginTop: '20px',
     marginBottom: '50px',
 
@@ -70,6 +67,10 @@ const styles = makeStyles((theme) => ({
     boxShadow:
       '0px 8px 9px -5px rgba(122, 40, 203,0.6),0px 15px 22px 2px rgba(122, 40, 203,0.42),0px 6px 28px 5px rgba(122, 40, 203,0.36)!important',
     transform: 'scale(102%)',
+    border: `3px solid ${purple}`,
+    '&:hover': {
+      border: `3px solid ${purple} !important`
+    },
   },
 
   button: {
@@ -91,11 +92,13 @@ const styles = makeStyles((theme) => ({
   },
 
   sigil: {
-    width: 70,
-    height: 70,
+    width: 120,
+    height: 120,
     position: 'absolute',
-    left: 5,
-    top: 5,
+    right: 5,
+    bottom: -20,
+    stroke: 'white!important',
+
   },
 }));
 

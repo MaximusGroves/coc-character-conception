@@ -8,6 +8,7 @@ import { useAppContext } from '../../providers/AppContextProvider';
 
 const ArchetypeList: FC = () => {
   const { state, api } = useAppContext();
+  const { setStats } = api;
 
   const rolld6 = () => {
     return Math.ceil(Math.random() * 6);
@@ -45,7 +46,9 @@ const ArchetypeList: FC = () => {
       newStats[state.coreAttribute] = (newRolls.core.reduce(add, 0) + 13) * 5;
     }
 
-    api.setState({ stats: newStats, rolls: newRolls });
+    setStats(newStats, newRolls);
+
+
   };
 
   return (

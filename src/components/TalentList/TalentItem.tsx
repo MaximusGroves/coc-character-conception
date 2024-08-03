@@ -10,7 +10,7 @@ import {
 import styles from './TalentList.style';
 import { Talent } from '../../data/talents';
 import { useAppContext } from '../../providers/AppContextProvider';
-import { ReactComponent as Sigil } from '../../assets/Sigil_of_the_Gateway.svg';
+import { ReactComponent as Sigil } from '../../assets/sigwhite.svg';
 import clsx from 'clsx';
 
 type Props = {

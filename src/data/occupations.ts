@@ -5,6 +5,7 @@ import {
   OccupationKey,
   OccupationName,
   SkillKey,
+  skillKeys,
   // ArchetypeName,
 } from './types';
 
@@ -79,7 +80,7 @@ const makeOccupation = (
   creditRatingMin: number,
   creditRatingMax: number,
   contacts: Array<string>,
-  skills: Array<SkillKey>
+  skills: Array<SkillKey>,
 ): Occupation => {
   const idealCharacteristics = getIdealCharacteristics(skillFormula);
   return {
@@ -102,8 +103,8 @@ const actorFilm = makeOccupation(
   100,
   ['film industry', 'media critics', 'writers'],
   [
-    //'Art/Craft (Acting), Disguise, Drive Auto, two interpersonal skills (Charm, Fast Talk,  Intimidate, or Persuade), Psychology,  any two other skills as personal or era specialties (e.g. Ride or Fighting).',
-  ]
+    skillKeys.CreditRating, skillKeys.ArtCraftActing, skillKeys.Disguise, skillKeys.DriveAuto, skillKeys.Charm, skillKeys.FastTalk, skillKeys.Intimidate, skillKeys.Persuade, skillKeys.Psychology,
+  ],
 );
 
 const actorStageRadio = makeOccupation(
@@ -114,8 +115,8 @@ const actorStageRadio = makeOccupation(
   100,
   ['theater industry', 'newspaper arts critics', 'actors guild/union'],
   [
-    //Art/Craft (Acting), Disguise, Fighting, History, two interpersonal skills (Charm, Fast Talk, Intimidate, or Persuade), Psychology, any one other skill as a personal or era specialty.
-  ]
+    skillKeys.CreditRating, skillKeys.ArtCraftActing, skillKeys.Disguise, skillKeys.FightingCustom, skillKeys.History, skillKeys.Charm, skillKeys.FastTalk, skillKeys.Intimidate, skillKeys.Persuade, skillKeys.Psychology
+  ],
 );
 
 const agencyDetective = makeOccupation(
@@ -126,11 +127,7 @@ const agencyDetective = makeOccupation(
   100,
   ['local law enforcement', 'clients'],
   [
-    /**
-     * One interpersonal skill (Charm, Fast Talk, Intimidate,
-or Persuade), Fighting (Brawl), Firearms, Law, Library Use,
-Psychology, Stealth, Track.
-     */
+    skillKeys.CreditRating, skillKeys.Charm, skillKeys.FastTalk, skillKeys.Intimidate, skillKeys.Persuade, skillKeys.FightingCustom, skillKeys.FirearmsCustom, skillKeys.Law, skillKeys.LibraryUse, skillKeys.Psychology, skillKeys.Stealth, skillKeys.Track
   ]
 );
 
@@ -142,9 +139,7 @@ const archaeologist = makeOccupation(
   100,
   [],
   [
-    /**
-Appraise, Archaeology, History, Other Language (any), Library Use, Spot Hidden, Mechanical Repair, Navigate or Science (e.g. chemistry, physics, geology, etc.)
-*/
+    skillKeys.CreditRating, skillKeys.Appraise, skillKeys.Archaeology, skillKeys.History, skillKeys.LanguageOther, skillKeys.LibraryUse, skillKeys.SpotHidden, skillKeys.MechanicalRepair, skillKeys.Navigate, skillKeys.ScienceCustom
   ]
 );
 
@@ -154,8 +149,11 @@ const artist = makeOccupation(
   [OccupationSkillFormula.eduDex, OccupationSkillFormula.eduPow],
   0,
   100,
-  [],
-  []
+  [
+  ],
+  [
+    skillKeys.CreditRating, skillKeys.ArtCraftCustom, skillKeys.History, skillKeys.NaturalWorld, skillKeys.Charm, skillKeys.FastTalk, skillKeys.Intimidate, skillKeys.Persuade, skillKeys.LanguageOther, skillKeys.Psychology, skillKeys.SpotHidden
+  ]
 );
 
 const athlete = makeOccupation(
@@ -165,7 +163,9 @@ const athlete = makeOccupation(
   0,
   100,
   [],
-  []
+  [
+    skillKeys.CreditRating, skillKeys.Climb, skillKeys.Jump, skillKeys.FightingCustom, skillKeys.Ride, skillKeys.Charm, skillKeys.FastTalk, skillKeys.Intimidate, skillKeys.Persuade, skillKeys.Swim, skillKeys.Throw
+  ]
 );
 
 const author = makeOccupation(
@@ -175,7 +175,10 @@ const author = makeOccupation(
   0,
   100,
   [],
-  []
+  [
+    skillKeys.CreditRating, skillKeys.ArtCraftCustom, skillKeys.History, skillKeys.LibraryUse, skillKeys.NaturalWorld, skillKeys.Occult, skillKeys.LanguageOther, skillKeys.LanguageOwn, skillKeys.Psychology
+
+  ]
 );
 
 const aviator = makeOccupation(
@@ -185,7 +188,9 @@ const aviator = makeOccupation(
   0,
   100,
   [],
-  []
+  [
+    skillKeys.CreditRating, skillKeys.Accounting, skillKeys.ElectricalRepair, skillKeys.Listen, skillKeys.MechanicalRepair, skillKeys.Navigate, skillKeys.Pilot, skillKeys.SpotHidden
+  ]
 );
 
 const bankRobber = makeOccupation(
@@ -195,7 +200,9 @@ const bankRobber = makeOccupation(
   0,
   100,
   [],
-  []
+  [
+    skillKeys.CreditRating, skillKeys.DriveAuto, skillKeys.ElectricalRepair, skillKeys.MechanicalRepair, skillKeys.FightingCustom, skillKeys.FirearmsCustom, skillKeys.Intimidate, skillKeys.Locksmith, skillKeys.HeavyMachinery
+  ]
 );
 
 const bartenderWaitress = makeOccupation(
@@ -205,7 +212,9 @@ const bartenderWaitress = makeOccupation(
   0,
   100,
   [],
-  []
+  [
+    skillKeys.CreditRating, skillKeys.Accounting, skillKeys.Charm, skillKeys.FastTalk, skillKeys.Intimidate, skillKeys.Persuade, skillKeys.FightingCustom, skillKeys.Listen, skillKeys.Psychology, skillKeys.SpotHidden
+  ]
 );
 
 const beatCop = makeOccupation(
@@ -215,7 +224,9 @@ const beatCop = makeOccupation(
   0,
   100,
   [],
-  []
+  [
+    skillKeys.CreditRating, skillKeys.FightingCustom, skillKeys.FirearmsCustom, skillKeys.FirstAid, skillKeys.Charm, skillKeys.FastTalk, skillKeys.Intimidate, skillKeys.Persuade, skillKeys.Law, skillKeys.Psychology, skillKeys.SpotHidden
+  ]
 );
 
 const bigGameHunter = makeOccupation(
@@ -225,7 +236,9 @@ const bigGameHunter = makeOccupation(
   0,
   100,
   [],
-  []
+  [
+    skillKeys.CreditRating, skillKeys.FirearmsCustom, skillKeys.Listen, skillKeys.SpotHidden, skillKeys.NaturalWorld, skillKeys.Navigate, skillKeys.LanguageOther, skillKeys.Survival, skillKeys.ScienceCustom, skillKeys.Stealth, skillKeys.Track
+  ]
 );
 
 const bountyHunter = makeOccupation(
@@ -235,7 +248,9 @@ const bountyHunter = makeOccupation(
   0,
   100,
   [],
-  []
+  [
+    skillKeys.CreditRating, skillKeys.DriveAuto, skillKeys.MechanicalRepair, skillKeys.ElectricalRepair, skillKeys.FightingCustom, skillKeys.FirearmsCustom, skillKeys.FastTalk, skillKeys.Charm, skillKeys.Intimidate, skillKeys.Persuade, skillKeys.Law, skillKeys.Psychology, skillKeys.Track, skillKeys.Stealth
+  ]
 );
 
 const boxerWrestler = makeOccupation(
@@ -245,7 +260,9 @@ const boxerWrestler = makeOccupation(
   0,
   100,
   [],
-  []
+  [
+    skillKeys.CreditRating, skillKeys.Dodge, skillKeys.FightingCustom, skillKeys.Intimidate, skillKeys.Jump, skillKeys.Psychology, skillKeys.SpotHidden
+  ]
 );
 
 const butler = makeOccupation(
@@ -255,7 +272,9 @@ const butler = makeOccupation(
   0,
   100,
   [],
-  []
+  [
+    skillKeys.CreditRating, skillKeys.Accounting, skillKeys.Appraise, skillKeys.ArtCraftCustom, skillKeys.FirstAid, skillKeys.Listen, skillKeys.LanguageOther, skillKeys.Psychology, skillKeys.SpotHidden
+  ]
 );
 
 const catBurglar = makeOccupation(
@@ -265,7 +284,9 @@ const catBurglar = makeOccupation(
   0,
   100,
   [],
-  []
+  [
+    skillKeys.CreditRating, skillKeys.Appraise, skillKeys.Climb, skillKeys.ElectricalRepair, skillKeys.MechanicalRepair, skillKeys.Listen, skillKeys.Locksmith, skillKeys.SleightOfHand, skillKeys.Stealth, skillKeys.SpotHidden
+  ]
 );
 
 const chauffeur = makeOccupation(
@@ -275,7 +296,9 @@ const chauffeur = makeOccupation(
   0,
   100,
   [],
-  []
+  [
+    skillKeys.CreditRating, skillKeys.DriveAuto, skillKeys.Charm, skillKeys.FastTalk, skillKeys.Intimidate, skillKeys.Persuade, skillKeys.Listen, skillKeys.MechanicalRepair, skillKeys.Navigate, skillKeys.SpotHidden
+  ]
 );
 
 const confidenceTrickster = makeOccupation(
@@ -285,7 +308,9 @@ const confidenceTrickster = makeOccupation(
   0,
   100,
   [],
-  []
+  [
+    skillKeys.CreditRating, skillKeys.Appraise, skillKeys.ArtCraftActing, skillKeys.Law, skillKeys.LanguageOther, skillKeys.Listen, skillKeys.Charm, skillKeys.Intimidate, skillKeys.FastTalk, skillKeys.Persuade, skillKeys.Psychology, skillKeys.SleightOfHand
+  ]
 );
 
 const criminal = makeOccupation(
@@ -295,7 +320,9 @@ const criminal = makeOccupation(
   0,
   100,
   [],
-  []
+  [
+    skillKeys.CreditRating, skillKeys.ArtCraftCustom, skillKeys.Disguise, skillKeys.Appraise, skillKeys.Charm, skillKeys.FastTalk, skillKeys.Intimidate, skillKeys.FightingCustom, skillKeys.FirearmsCustom, skillKeys.Locksmith, skillKeys.MechanicalRepair, skillKeys.Stealth, skillKeys.Psychology, skillKeys.SpotHidden
+  ]
 );
 
 const cultLeader = makeOccupation(
@@ -305,7 +332,9 @@ const cultLeader = makeOccupation(
   0,
   100,
   [],
-  []
+  [
+    skillKeys.CreditRating, skillKeys.Accounting, skillKeys.Charm, skillKeys.FastTalk, skillKeys.Intimidate, skillKeys.Persuade, skillKeys.Occult, skillKeys.Psychology, skillKeys.SpotHidden
+  ]
 );
 
 const dilettante = makeOccupation(
@@ -315,7 +344,9 @@ const dilettante = makeOccupation(
   0,
   100,
   [],
-  []
+  [
+    skillKeys.CreditRating, skillKeys.ArtCraftCustom, skillKeys.FirearmsCustom, skillKeys.LanguageOther, skillKeys.Ride, skillKeys.Charm, skillKeys.FastTalk, skillKeys.Intimidate, skillKeys.Persuade
+  ]
 );
 
 const doctorOfMedicine = makeOccupation(
@@ -325,7 +356,9 @@ const doctorOfMedicine = makeOccupation(
   0,
   100,
   [],
-  []
+  [
+    skillKeys.CreditRating, skillKeys.FirstAid, skillKeys.Medicine, skillKeys.LanguageOther, skillKeys.Psychology, skillKeys.ScienceCustom
+  ]
 );
 
 const drifter = makeOccupation(
@@ -339,7 +372,9 @@ const drifter = makeOccupation(
   0,
   100,
   [],
-  []
+  [
+    skillKeys.CreditRating, skillKeys.Climb, skillKeys.Jump, skillKeys.Listen, skillKeys.Navigate, skillKeys.Charm, skillKeys.FastTalk, skillKeys.Intimidate, skillKeys.Persuade, skillKeys.Stealth
+  ]
 );
 
 const electedOfficial = makeOccupation(
@@ -349,7 +384,9 @@ const electedOfficial = makeOccupation(
   0,
   100,
   [],
-  []
+  [
+    skillKeys.CreditRating, skillKeys.Charm, skillKeys.History, skillKeys.Intimidate, skillKeys.FastTalk, skillKeys.Listen, skillKeys.LanguageOwn, skillKeys.Persuade, skillKeys.Psychology
+  ]
 );
 
 const engineer = makeOccupation(
@@ -359,7 +396,9 @@ const engineer = makeOccupation(
   0,
   100,
   [],
-  []
+  [
+    skillKeys.CreditRating, skillKeys.ArtCraftCustom, skillKeys.ElectricalRepair, skillKeys.LibraryUse, skillKeys.MechanicalRepair, skillKeys.HeavyMachinery, skillKeys.ScienceCustom
+  ]
 );
 
 const entertainer = makeOccupation(
@@ -369,7 +408,9 @@ const entertainer = makeOccupation(
   0,
   100,
   [],
-  []
+  [
+    skillKeys.CreditRating, skillKeys.ArtCraftCustom, skillKeys.Disguise, skillKeys.Charm, skillKeys.FastTalk, skillKeys.Intimidate, skillKeys.Persuade, skillKeys.Listen, skillKeys.Psychology
+  ]
 );
 
 const exorcist = makeOccupation(
@@ -379,7 +420,9 @@ const exorcist = makeOccupation(
   0,
   100,
   [],
-  []
+  [
+    skillKeys.CreditRating, skillKeys.Anthropology, skillKeys.History, skillKeys.LibraryUse, skillKeys.Listen, skillKeys.Occult, skillKeys.LanguageOther, skillKeys.Psychology
+  ]
 );
 
 const explorer = makeOccupation(
@@ -393,7 +436,9 @@ const explorer = makeOccupation(
   0,
   100,
   [],
-  []
+  [
+    skillKeys.CreditRating, skillKeys.Climb, skillKeys.Swim, skillKeys.FirearmsCustom, skillKeys.History, skillKeys.Jump, skillKeys.NaturalWorld, skillKeys.Navigate, skillKeys.LanguageOther, skillKeys.Survival
+  ]
 );
 
 const federalAgent = makeOccupation(
@@ -403,7 +448,9 @@ const federalAgent = makeOccupation(
   0,
   100,
   [],
-  []
+  [
+    skillKeys.CreditRating, skillKeys.DriveAuto, skillKeys.FightingCustom, skillKeys.FirearmsCustom, skillKeys.Law, skillKeys.Persuade, skillKeys.Stealth, skillKeys.SpotHidden
+  ]
 );
 
 const gambler = makeOccupation(
@@ -413,7 +460,9 @@ const gambler = makeOccupation(
   0,
   100,
   [],
-  []
+  [
+    skillKeys.CreditRating, skillKeys.Accounting, skillKeys.ArtCraftActing, skillKeys.Charm, skillKeys.FastTalk, skillKeys.Intimidate, skillKeys.Persuade, skillKeys.Listen, skillKeys.Psychology, skillKeys.SleightOfHand, skillKeys.SpotHidden
+  ]
 );
 
 const gangsterBoss = makeOccupation(
@@ -423,7 +472,9 @@ const gangsterBoss = makeOccupation(
   0,
   100,
   [],
-  []
+  [
+    skillKeys.CreditRating, skillKeys.FightingCustom, skillKeys.FirearmsCustom, skillKeys.Law, skillKeys.Listen, skillKeys.Charm, skillKeys.FastTalk, skillKeys.Intimidate, skillKeys.Persuade, skillKeys.Psychology, skillKeys.SpotHidden
+  ]
 );
 
 const gangsterUnderling = makeOccupation(
@@ -433,7 +484,9 @@ const gangsterUnderling = makeOccupation(
   0,
   100,
   [],
-  []
+  [
+    skillKeys.CreditRating, skillKeys.DriveAuto, skillKeys.FightingCustom, skillKeys.FirearmsCustom, skillKeys.Charm, skillKeys.FastTalk, skillKeys.Intimidate, skillKeys.Persuade, skillKeys.Psychology
+  ]
 );
 
 const getAwayDriver = makeOccupation(
@@ -443,7 +496,9 @@ const getAwayDriver = makeOccupation(
   0,
   100,
   [],
-  []
+  [
+    skillKeys.CreditRating, skillKeys.Accounting, skillKeys.DriveAuto, skillKeys.Listen, skillKeys.Charm, skillKeys.FastTalk, skillKeys.Intimidate, skillKeys.Persuade, skillKeys.MechanicalRepair, skillKeys.Navigate, skillKeys.Psychology
+  ]
 );
 
 const gunMoll = makeOccupation(
@@ -453,7 +508,9 @@ const gunMoll = makeOccupation(
   0,
   100,
   [],
-  []
+  [
+    skillKeys.CreditRating, skillKeys.ArtCraftCustom, skillKeys.Charm, skillKeys.Intimidate, skillKeys.FastTalk, skillKeys.Persuade, skillKeys.FightingCustom, skillKeys.FirearmsCustom, skillKeys.DriveAuto, skillKeys.Listen, skillKeys.Stealth
+  ]
 );
 
 const gentlemanOrLady = makeOccupation(
@@ -463,7 +520,9 @@ const gentlemanOrLady = makeOccupation(
   0,
   100,
   [],
-  []
+  [
+    skillKeys.CreditRating, skillKeys.ArtCraftCustom, skillKeys.Charm, skillKeys.FastTalk, skillKeys.Intimidate, skillKeys.Persuade, skillKeys.FirearmsCustom, skillKeys.History, skillKeys.LanguageOther, skillKeys.Navigate, skillKeys.Ride
+  ]
 );
 
 const hiredMuscle = makeOccupation(
@@ -473,7 +532,9 @@ const hiredMuscle = makeOccupation(
   0,
   100,
   [],
-  []
+  [
+    skillKeys.CreditRating, skillKeys.DriveAuto, skillKeys.FightingCustom, skillKeys.FirearmsCustom, skillKeys.Charm, skillKeys.FastTalk, skillKeys.Intimidate, skillKeys.Persuade, skillKeys.Psychology, skillKeys.Stealth, skillKeys.SpotHidden
+  ]
 );
 
 const hitMan = makeOccupation(
@@ -483,7 +544,9 @@ const hitMan = makeOccupation(
   0,
   100,
   [],
-  []
+  [
+    skillKeys.CreditRating, skillKeys.Disguise, skillKeys.ElectricalRepair, skillKeys.FightingCustom, skillKeys.FirearmsCustom, skillKeys.Locksmith, skillKeys.MechanicalRepair, skillKeys.Stealth, skillKeys.Psychology
+  ]
 );
 
 const hobo = makeOccupation(
@@ -493,7 +556,9 @@ const hobo = makeOccupation(
   0,
   100,
   [],
-  []
+  [
+    skillKeys.CreditRating, skillKeys.ArtCraftCustom, skillKeys.Climb, skillKeys.Jump, skillKeys.Listen, skillKeys.Locksmith, skillKeys.SleightOfHand, skillKeys.Navigate, skillKeys.Stealth
+  ]
 );
 
 const hooker = makeOccupation(
@@ -503,7 +568,9 @@ const hooker = makeOccupation(
   0,
   100,
   [],
-  []
+  [
+    skillKeys.CreditRating, skillKeys.ArtCraftCustom, skillKeys.Charm, skillKeys.FastTalk, skillKeys.Intimidate, skillKeys.Persuade, skillKeys.Dodge, skillKeys.Psychology, skillKeys.SleightOfHand, skillKeys.Stealth
+  ]
 );
 
 const itinerantWorker = makeOccupation(
@@ -513,7 +580,9 @@ const itinerantWorker = makeOccupation(
   0,
   100,
   [],
-  []
+  [
+    skillKeys.CreditRating, skillKeys.ArtCraftCustom, skillKeys.Climb, skillKeys.SleightOfHand, skillKeys.MechanicalRepair, skillKeys.NaturalWorld, skillKeys.Navigate
+  ]
 );
 
 const investigativeJournalist = makeOccupation(
@@ -523,7 +592,9 @@ const investigativeJournalist = makeOccupation(
   0,
   100,
   [],
-  []
+  [
+    skillKeys.CreditRating, skillKeys.ArtCraftPhotography, skillKeys.Charm, skillKeys.FastTalk, skillKeys.Intimidate, skillKeys.Persuade, skillKeys.History, skillKeys.LibraryUse, skillKeys.LanguageOwn, skillKeys.Psychology
+  ]
 );
 
 const laborer = makeOccupation(
@@ -533,7 +604,9 @@ const laborer = makeOccupation(
   0,
   100,
   [],
-  []
+  [
+    skillKeys.CreditRating, skillKeys.DriveAuto, skillKeys.ElectricalRepair, skillKeys.FightingCustom, skillKeys.FirstAid, skillKeys.MechanicalRepair, skillKeys.HeavyMachinery, skillKeys.Throw
+  ]
 );
 
 const librarian = makeOccupation(
@@ -543,7 +616,9 @@ const librarian = makeOccupation(
   0,
   100,
   [],
-  []
+  [
+    skillKeys.CreditRating, skillKeys.Accounting, skillKeys.LibraryUse, skillKeys.LanguageOther, skillKeys.LanguageOwn
+  ]
 );
 
 const mechanic = makeOccupation(
@@ -553,7 +628,9 @@ const mechanic = makeOccupation(
   0,
   100,
   [],
-  []
+  [
+    skillKeys.CreditRating, skillKeys.ArtCraftCustom, skillKeys.Climb, skillKeys.DriveAuto, skillKeys.ElectricalRepair, skillKeys.MechanicalRepair, skillKeys.HeavyMachinery
+  ]
 );
 
 const militaryOfficer = makeOccupation(
@@ -563,7 +640,9 @@ const militaryOfficer = makeOccupation(
   0,
   100,
   [],
-  []
+  [
+    skillKeys.CreditRating, skillKeys.Accounting, skillKeys.FirearmsCustom, skillKeys.Navigate, skillKeys.FirstAid, skillKeys.Charm, skillKeys.FastTalk, skillKeys.Intimidate, skillKeys.Persuade, skillKeys.Psychology
+  ]
 );
 
 const missionary = makeOccupation(
@@ -573,7 +652,9 @@ const missionary = makeOccupation(
   0,
   100,
   [],
-  []
+  [
+    skillKeys.CreditRating, skillKeys.ArtCraftCustom, skillKeys.FirstAid, skillKeys.MechanicalRepair, skillKeys.Medicine, skillKeys.NaturalWorld, skillKeys.Charm, skillKeys.FastTalk, skillKeys.Intimidate, skillKeys.Persuade
+  ]
 );
 
 const musician = makeOccupation(
@@ -583,7 +664,9 @@ const musician = makeOccupation(
   0,
   100,
   [],
-  []
+  [
+    skillKeys.CreditRating, skillKeys.ArtCraftCustom, skillKeys.Charm, skillKeys.FastTalk, skillKeys.Intimidate, skillKeys.Persuade, skillKeys.Listen, skillKeys.Psychology
+  ]
 );
 
 const nurse = makeOccupation(
@@ -593,7 +676,9 @@ const nurse = makeOccupation(
   0,
   100,
   [],
-  []
+  [
+    skillKeys.CreditRating, skillKeys.FirstAid, skillKeys.Listen, skillKeys.Medicine, skillKeys.Charm, skillKeys.FastTalk, skillKeys.Intimidate, skillKeys.Persuade, skillKeys.Psychology, skillKeys.ScienceCustom, skillKeys.SpotHidden
+  ]
 );
 
 const occultist = makeOccupation(
@@ -603,7 +688,9 @@ const occultist = makeOccupation(
   0,
   100,
   [],
-  []
+  [
+    skillKeys.CreditRating, skillKeys.Anthropology, skillKeys.History, skillKeys.LibraryUse, skillKeys.Charm, skillKeys.FastTalk, skillKeys.Intimidate, skillKeys.Persuade, skillKeys.Occult, skillKeys.LanguageOther, skillKeys.ScienceAstronomy
+  ]
 );
 
 const parapsychologist = makeOccupation(
@@ -613,7 +700,9 @@ const parapsychologist = makeOccupation(
   0,
   100,
   [],
-  []
+  [
+    skillKeys.CreditRating, skillKeys.Anthropology, skillKeys.ArtCraftPhotography, skillKeys.History, skillKeys.LibraryUse, skillKeys.Occult, skillKeys.LanguageOther, skillKeys.Psychology
+  ]
 );
 
 const photographer = makeOccupation(
@@ -623,7 +712,9 @@ const photographer = makeOccupation(
   0,
   100,
   [],
-  []
+  [
+    skillKeys.CreditRating, skillKeys.ArtCraftPhotography, skillKeys.Charm, skillKeys.FastTalk, skillKeys.Intimidate, skillKeys.Persuade, skillKeys.Psychology, skillKeys.ScienceChemistry, skillKeys.Stealth, skillKeys.SpotHidden
+  ]
 );
 
 const policeDetective = makeOccupation(
@@ -633,7 +724,9 @@ const policeDetective = makeOccupation(
   0,
   100,
   [],
-  []
+  [
+    skillKeys.CreditRating, skillKeys.ArtCraftActing, skillKeys.Disguise, skillKeys.FirearmsCustom, skillKeys.Law, skillKeys.Listen, skillKeys.Charm, skillKeys.FastTalk, skillKeys.Intimidate, skillKeys.Persuade, skillKeys.Psychology, skillKeys.SpotHidden
+  ]
 );
 
 const priest = makeOccupation(
@@ -643,7 +736,9 @@ const priest = makeOccupation(
   0,
   100,
   [],
-  []
+  [
+    skillKeys.CreditRating, skillKeys.Accounting, skillKeys.History, skillKeys.LibraryUse, skillKeys.Listen, skillKeys.LanguageOther, skillKeys.Charm, skillKeys.FastTalk, skillKeys.Intimidate, skillKeys.Persuade, skillKeys.Psychology
+  ]
 );
 
 const privateInvestigator = makeOccupation(
@@ -653,7 +748,9 @@ const privateInvestigator = makeOccupation(
   0,
   100,
   [],
-  []
+  [
+    skillKeys.CreditRating, skillKeys.ArtCraftPhotography, skillKeys.Disguise, skillKeys.Law, skillKeys.LibraryUse, skillKeys.Charm, skillKeys.FastTalk, skillKeys.Intimidate, skillKeys.Persuade, skillKeys.Psychology, skillKeys.SpotHidden
+  ]
 );
 
 const professor = makeOccupation(
@@ -663,7 +760,9 @@ const professor = makeOccupation(
   0,
   100,
   [],
-  []
+  [
+    skillKeys.CreditRating, skillKeys.LibraryUse, skillKeys.LanguageOther, skillKeys.LanguageOwn, skillKeys.Psychology
+  ]
 );
 
 const ranger = makeOccupation(
@@ -673,7 +772,9 @@ const ranger = makeOccupation(
   0,
   100,
   [],
-  []
+  [
+    skillKeys.CreditRating, skillKeys.FirearmsCustom, skillKeys.FirstAid, skillKeys.Listen, skillKeys.NaturalWorld, skillKeys.Navigate, skillKeys.SpotHidden, skillKeys.Survival, skillKeys.Track
+  ]
 );
 
 const reporter = makeOccupation(
@@ -683,7 +784,9 @@ const reporter = makeOccupation(
   0,
   100,
   [],
-  []
+  [
+    skillKeys.CreditRating, skillKeys.ArtCraftActing, skillKeys.ArtCraftPhotography, skillKeys.History, skillKeys.Listen, skillKeys.LanguageOwn, skillKeys.Charm, skillKeys.FastTalk, skillKeys.Intimidate, skillKeys.Persuade, skillKeys.Psychology, skillKeys.Stealth, skillKeys.SpotHidden
+  ]
 );
 
 const sailor = makeOccupation(
@@ -693,7 +796,9 @@ const sailor = makeOccupation(
   0,
   100,
   [],
-  []
+  [
+    skillKeys.CreditRating, skillKeys.ElectricalRepair, skillKeys.MechanicalRepair, skillKeys.FightingCustom, skillKeys.FirearmsCustom, skillKeys.FirstAid, skillKeys.Navigate, skillKeys.Pilot, skillKeys.Survival, skillKeys.Swim
+  ]
 );
 
 const scientist = makeOccupation(
@@ -703,7 +808,9 @@ const scientist = makeOccupation(
   0,
   100,
   [],
-  []
+  [
+    skillKeys.CreditRating, skillKeys.ScienceCustom, skillKeys.ComputerUse, skillKeys.LibraryUse, skillKeys.LanguageOther, skillKeys.LanguageOwn, skillKeys.Charm, skillKeys.FastTalk, skillKeys.Intimidate, skillKeys.Persuade, skillKeys.SpotHidden
+  ]
 );
 
 const secretary = makeOccupation(
@@ -713,7 +820,9 @@ const secretary = makeOccupation(
   0,
   100,
   [],
-  []
+  [
+    skillKeys.CreditRating, skillKeys.Accounting, skillKeys.ArtCraftCustom, skillKeys.Charm, skillKeys.FastTalk, skillKeys.Intimidate, skillKeys.Persuade, skillKeys.LanguageOwn, skillKeys.LibraryUse, skillKeys.ComputerUse, skillKeys.Psychology
+  ]
 );
 
 const soldier = makeOccupation(
@@ -723,7 +832,9 @@ const soldier = makeOccupation(
   0,
   100,
   [],
-  []
+  [
+    skillKeys.CreditRating, skillKeys.Climb, skillKeys.Swim, skillKeys.Dodge, skillKeys.FightingCustom, skillKeys.FirearmsCustom, skillKeys.Stealth, skillKeys.Survival, skillKeys.FirstAid, skillKeys.MechanicalRepair, skillKeys.LanguageOther
+  ]
 );
 
 const spy = makeOccupation(
@@ -733,7 +844,9 @@ const spy = makeOccupation(
   0,
   100,
   [],
-  []
+  [
+    skillKeys.CreditRating, skillKeys.ArtCraftActing, skillKeys.Disguise, skillKeys.FirearmsCustom, skillKeys.Listen, skillKeys.LanguageOther, skillKeys.Charm, skillKeys.FastTalk, skillKeys.Intimidate, skillKeys.Persuade, skillKeys.Psychology, skillKeys.SleightOfHand, skillKeys.Stealth
+  ]
 );
 
 const streetPunk = makeOccupation(
@@ -743,7 +856,9 @@ const streetPunk = makeOccupation(
   0,
   100,
   [],
-  []
+  [
+    skillKeys.CreditRating, skillKeys.Climb, skillKeys.Charm, skillKeys.FastTalk, skillKeys.Intimidate, skillKeys.Persuade, skillKeys.FightingCustom, skillKeys.FirearmsCustom, skillKeys.Jump, skillKeys.SleightOfHand, skillKeys.Stealth, skillKeys.Throw
+  ]
 );
 
 const studentIntern = makeOccupation(
@@ -753,7 +868,9 @@ const studentIntern = makeOccupation(
   0,
   100,
   [],
-  []
+  [
+    skillKeys.CreditRating, skillKeys.LanguageOther, skillKeys.LanguageOwn, skillKeys.LibraryUse, skillKeys.Listen
+  ]
 );
 
 const tribeMember = makeOccupation(
@@ -763,7 +880,9 @@ const tribeMember = makeOccupation(
   0,
   100,
   [],
-  []
+  [
+    skillKeys.CreditRating, skillKeys.Climb, skillKeys.FightingCustom, skillKeys.Throw, skillKeys.Listen, skillKeys.NaturalWorld, skillKeys.Occult, skillKeys.SpotHidden, skillKeys.Swim, skillKeys.Survival
+  ]
 );
 
 const unionActivist = makeOccupation(
@@ -773,7 +892,9 @@ const unionActivist = makeOccupation(
   0,
   100,
   [],
-  []
+  [
+    skillKeys.CreditRating, skillKeys.Accounting, skillKeys.Charm, skillKeys.FastTalk, skillKeys.Intimidate, skillKeys.Persuade, skillKeys.FightingCustom, skillKeys.Law, skillKeys.Listen, skillKeys.HeavyMachinery, skillKeys.Psychology
+  ]
 );
 
 const yogi = makeOccupation(
@@ -783,7 +904,9 @@ const yogi = makeOccupation(
   6,
   60,
   [],
-  []
+  [
+    skillKeys.CreditRating, skillKeys.FirstAid, skillKeys.History, skillKeys.Charm, skillKeys.FastTalk, skillKeys.Intimidate, skillKeys.Persuade, skillKeys.NaturalWorld, skillKeys.Occult, skillKeys.LanguageOther
+  ]
 );
 
 const zealot = makeOccupation(
@@ -793,7 +916,9 @@ const zealot = makeOccupation(
   0,
   30,
   [],
-  []
+  [
+    skillKeys.CreditRating, skillKeys.History, skillKeys.Charm, skillKeys.FastTalk, skillKeys.Intimidate, skillKeys.Persuade, skillKeys.Psychology, skillKeys.Stealth
+  ]
 );
 
 export const occupations: {
