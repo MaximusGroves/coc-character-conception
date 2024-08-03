@@ -59,21 +59,22 @@ const CharacteristicList: FC = () => {
 
   const charList = Object.values(charKeys.list);
 
-  let imgVal
+  let imgVal = hoverVal
   let textVal
-  let usedClass
+
+  let hideBig = true;
+  let hideSmall = true;
 
   if (coreAttribute) {
-    imgVal = coreAttribute + '-xray'
     textVal = coreAttribute
-    usedClass = classes.bigPic
+    hideBig = false
   }
 
   if (hoverVal) {
     if (hoverVal !== coreAttribute) {
-      imgVal = hoverVal
       textVal = hoverVal
-      usedClass = classes.normalPic
+      hideSmall = false
+      hideBig = true;
     }
   }
   if (imgVal === 'CON') {
@@ -97,7 +98,8 @@ const CharacteristicList: FC = () => {
       </Grid>
 
       <Grid item>
-        {imgVal && (<img src={`/img/${imgVal}.jpg`} className={usedClass} alt='current selection' />)}
+        {!hideSmall && (<img src={`/img/${imgVal}.jpg`} className={clsx(classes.normalPic)} alt='current selection' />)}
+        {!hideBig && (<img src={`/img/${coreAttribute + '-xray'}.jpg`} className={clsx(classes.bigPic)} alt='current selection' />)}
       </Grid>
 
       <Grid item container direction="row" alignContent='flex-end' alignItems='flex-end'>
