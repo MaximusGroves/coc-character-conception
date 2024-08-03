@@ -93,14 +93,15 @@ const CharacteristicList: FC = () => {
           <CallOfCharacterTitle style={{ marginRight: 'auto' }} />
         </Grid>
         <Grid item>
+          {!hideSmall && (<img src={`/img/${imgVal}.jpg`} className={clsx(classes.normalPic)} alt='current selection' />)}
+          {!hideBig && (<img src={`/img/${coreAttribute + '-xray'}.jpg`} className={clsx(classes.bigPic)} alt='current selection' />)}
+        </Grid>
+        <Grid item>
           {textVal && <Typography className={classes.charName}>{CharacteristicName[textVal]}</Typography>}
         </Grid>
       </Grid>
 
-      <Grid item>
-        {!hideSmall && (<img src={`/img/${imgVal}.jpg`} className={clsx(classes.normalPic)} alt='current selection' />)}
-        {!hideBig && (<img src={`/img/${coreAttribute + '-xray'}.jpg`} className={clsx(classes.bigPic)} alt='current selection' />)}
-      </Grid>
+
 
       <Grid item container direction="row" alignContent='flex-end' alignItems='flex-end'>
         <Grid item>

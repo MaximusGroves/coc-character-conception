@@ -12,7 +12,9 @@ const styles = makeStyles((theme) => ({
   },
 
   compassRoot: {
-
+    position: 'absolute',
+    bottom: 25,
+    left: 15,
   },
 
 
@@ -125,7 +127,7 @@ const styles = makeStyles((theme) => ({
   },
 
   promptText: {
-
+    marginLeft: 85,
     fontSize: 20,
     fontFamily: 'Cthulhumbus',
     color: 'white',
