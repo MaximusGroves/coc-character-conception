@@ -1,5 +1,5 @@
 [build]
-  command = "npm install --legacy-peer-deps && npm run build"
+  command = "NODE_ENV=development npm install --legacy-peer-deps && npm run build"
   publish = "build"
   environment = { NODE_ENV = "development", NODE_VERSION = "16.16.0" }
 
