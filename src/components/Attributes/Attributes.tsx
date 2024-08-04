@@ -352,34 +352,34 @@ const ArchetypeList: FC = () => {
         </Grid>
         <Grid item xs container direction="column" spacing={3}>
           <Grid item >
-            <Typography>HP: <span style={{ fontWeight: 'bold', fontSize: 25 }}>{HP || '  '}</span></Typography>
-            <Typography>= ( CON + SIZ ) / 5</Typography>
+            <Typography style={{ textShadow: '1px 1px 1px #000' }}>HP: <span style={{ fontWeight: 'bold', fontSize: 25 }}>{HP || '  '}</span></Typography>
+            <Typography style={{ textShadow: '1px 1px 1px #000' }}>= ( CON + SIZ ) / 5</Typography>
           </Grid>
           <Grid item>
-            <Typography>Sanity: <span style={{ fontWeight: 'bold', fontSize: 25 }}>{stats?.POW || '  '}</span></Typography>
-            <Typography>= POW</Typography>
+            <Typography style={{ textShadow: '1px 1px 1px #000' }}>Sanity: <span style={{ fontWeight: 'bold', fontSize: 25 }}>{stats?.POW || '  '}</span></Typography>
+            <Typography style={{ textShadow: '1px 1px 1px #000' }}>= POW</Typography>
           </Grid>
           <Grid item>
-            <Typography>MP: <span style={{ fontWeight: 'bold', fontSize: 25 }}>{MP || '  '}</span></Typography>
-            <Typography>= POW / 5</Typography>
+            <Typography style={{ textShadow: '1px 1px 1px #000' }}>MP: <span style={{ fontWeight: 'bold', fontSize: 25 }}>{MP || '  '}</span></Typography>
+            <Typography style={{ textShadow: '1px 1px 1px #000' }}>= POW / 5</Typography>
           </Grid>
           <Grid item>
-            <Typography>Damage Bonus: <span style={{ fontWeight: 'bold', fontSize: 25 }}>{DB || '  '}</span></Typography>
-            <Typography>Table 1 page 23</Typography>
+            <Typography style={{ textShadow: '1px 1px 1px #000' }}>Damage Bonus: <span style={{ fontWeight: 'bold', fontSize: 25 }}>{DB || '  '}</span></Typography>
+            <Typography style={{ textShadow: '1px 1px 1px #000' }}>Table 1 page 23</Typography>
           </Grid>
           <Grid item>
-            <Typography>Build: <span style={{ fontWeight: 'bold', fontSize: 25 }}>{build || '  '}</span></Typography>
-            <Typography>Table 1 page 23 Pulp Cthulhu</Typography>
+            <Typography style={{ textShadow: '1px 1px 1px #000' }}>Build: <span style={{ fontWeight: 'bold', fontSize: 25 }}>{build || '  '}</span></Typography>
+            <Typography style={{ textShadow: '1px 1px 1px #000' }}>Table 1 page 23 Pulp Cthulhu</Typography>
           </Grid>
           <Grid item>
-            <Typography>Movement Rate: <span style={{ fontWeight: 'bold', fontSize: 25 }}>{movement || '  '}</span></Typography>
-            <Typography>Table 2 page 23 Pulp Cthulhu</Typography>
+            <Typography style={{ textShadow: '1px 1px 1px #000' }}>Movement Rate: <span style={{ fontWeight: 'bold', fontSize: 25 }}>{movement || '  '}</span></Typography>
+            <Typography style={{ textShadow: '1px 1px 1px #000' }}>Table 2 page 23 Pulp Cthulhu</Typography>
           </Grid>
           <Grid item>
-            <Typography>Luck <span style={{ fontWeight: 'bold', fontSize: 25 }}>{myLuck || '  '}</span></Typography>
-            <Typography>= ( 2d6 + 6 ) * 5</Typography>
+            <Typography style={{ textShadow: '1px 1px 1px #000' }}>Luck <span style={{ fontWeight: 'bold', fontSize: 25 }}>{myLuck || '  '}</span></Typography>
+            <Typography style={{ textShadow: '1px 1px 1px #000' }}>= ( 2d6 + 6 ) * 5</Typography>
             {luck ?
-              <Typography>{myPhrase}</Typography>
+              <Typography style={{ textShadow: '1px 1px 1px #000' }}>{myPhrase}</Typography>
               :
               <Button variant='contained' disabled={stats === undefined} onClick={computeLuck} className={classes.titleTop} style={{ marginTop: 20, backgroundColor: `${green}`, color: 'white', textTransform: 'none' }}>Roll for Luck Now!</Button>
             }

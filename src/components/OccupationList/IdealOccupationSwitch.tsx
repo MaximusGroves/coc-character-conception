@@ -18,24 +18,24 @@ const IdealOccupationSwitch: FC<Props> = (props) => {
 
   return (
     <FormControl component="fieldset">
-      <FormLabel component="legend">
-        {`Filter by Recommended Occupations for Archetype ${
-          disabled ? '- must select Archetype first' : ''
-        }`}
+      <FormLabel component="legend" style={{ textShadow: '1px 1px 1px #000' }}>
+        {`Filter by Recommended Occupations for Archetype ${disabled ? '- must select Archetype first' : ''
+          }`}
       </FormLabel>
 
       <Typography component="div">
         <Grid component="label" container alignItems="center" spacing={1}>
-          <Grid item>All</Grid>
+          <Grid item style={{ textShadow: '1px 1px 1px #000' }}>All</Grid>
           <Grid item>
             <Switch
               disabled={disabled}
               checked={checked && !disabled}
               onChange={(e) => onCheck(e)}
+              style={{ textShadow: '1px 1px 1px #000' }}
               name="idealChecked"
             />
           </Grid>
-          <Grid item>Recommended</Grid>
+          <Grid item style={{ textShadow: '1px 1px 1px #000' }}>Recommended</Grid>
         </Grid>
       </Typography>
     </FormControl>

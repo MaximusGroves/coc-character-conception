@@ -10,7 +10,7 @@ import { green } from '../../providers/AppThemeProvider';
 const SkillList: FC = () => {
   const { state, api } = useAppContext();
   const { stats, selectedArchetype, selectedOccupation, archPoints, occPoints, intPoints, archSkills, occSkills, intSkills } = state;
-  const { setState } = api;
+  const { setState, getMaxOccPoints } = api;
 
 
   const classes = styles()
@@ -75,8 +75,10 @@ const SkillList: FC = () => {
 
       {selectedArchetype && archPoints !== undefined ? <>
 
-        <Typography>Archetype Skills</Typography>
-        <Typography>{`Your Archetype of ${selectedArchetype?.name} affords you ${archPoints} points to upgrade any of these skills`}</Typography>
+        <Typography style={{ fontWeight: 'bold', textShadow: '1px 1px 1px #000' }}>Archetype Skills</Typography>
+        <Typography style={{ textShadow: '1px 1px 1px #000' }}>{`Your Archetype of ${selectedArchetype?.name} affords you 100 points to upgrade any of these skills`}</Typography>
+        <Typography className={classes.titleTop} style={{ fontWeight: 'bold', fontSize: 40, marginBottom: 0 }}>{archPoints}</Typography>
+        <Typography style={{ textShadow: '1px 1px 1px #000' }}>Points Remaining</Typography>
 
         <Grid item container direction="row" spacing={3}>
           {selectedArchetype?.bonusSkills.map((skill) => {
@@ -97,8 +99,8 @@ const SkillList: FC = () => {
       </> : <>
         <Grid container direction="column" spacing={2} style={{ marginTop: 20 }}>
           <Grid item>
-            <Typography>Archetype Skills</Typography>
-            <Typography>Select an Archetype to allocate skills</Typography>
+            <Typography style={{ fontWeight: 'bold', textShadow: '1px 1px 1px #000' }}>Archetype Skills</Typography>
+            <Typography style={{ textShadow: '1px 1px 1px #000' }}>Select an Archetype to allocate skills</Typography>
           </Grid>
         </Grid>
       </>}
@@ -109,8 +111,10 @@ const SkillList: FC = () => {
         <Grid container direction="column" spacing={2} style={{ marginTop: 20 }}>
 
           <Grid item>
-            <Typography>Occupation Skills</Typography>
-            <Typography>{`Your Occupation of ${selectedOccupation?.name} affords you ${occPoints} skill points to upgrade any of these skills`}</Typography>
+            <Typography style={{ fontWeight: 'bold', textShadow: '1px 1px 1px #000' }}>Occupation Skills</Typography>
+            <Typography style={{ textShadow: '1px 1px 1px #000' }}>{`Your Occupation of ${selectedOccupation?.name} and statistics affords you ${getMaxOccPoints(selectedOccupation, stats)} skill points to upgrade any of these skills`}</Typography>
+            <Typography className={classes.titleTop} style={{ fontWeight: 'bold', fontSize: 40, marginBottom: 0 }}>{occPoints}</Typography>
+            <Typography style={{ textShadow: '1px 1px 1px #000' }}>Points Remaining</Typography>
           </Grid>
         </Grid>
 
@@ -135,8 +139,8 @@ const SkillList: FC = () => {
       </> : <>
         <Grid container direction="column" spacing={2} style={{ marginTop: 20 }}>
           <Grid item>
-            <Typography>Occupation Skills</Typography>
-            <Typography>Select an Occupation and Roll Attributes to allocate skills</Typography>
+            <Typography style={{ fontWeight: 'bold', textShadow: '1px 1px 1px #000' }}>Occupation Skills</Typography>
+            <Typography style={{ textShadow: '1px 1px 1px #000' }}>Select an Occupation and Roll Attributes to allocate skills</Typography>
           </Grid>
         </Grid>
       </>}
@@ -150,9 +154,12 @@ const SkillList: FC = () => {
           <Grid container direction="column" spacing={2} style={{ marginTop: 20 }}>
 
             <Grid item>
-              <Typography>Personal Interest Skills</Typography>
-              <Typography>{`Your Intelligence score of ${stats.INT} affords you ${intPoints} personal interest skill points to upgrade any skill`}</Typography>
-              <Typography>{`Previously invested skills are listed first`}</Typography>
+              <Typography style={{ fontWeight: 'bold', textShadow: '1px 1px 1px #000' }}>Personal Interest Skills</Typography>
+              <Typography style={{ textShadow: '1px 1px 1px #000' }} >{`Your Intelligence stat of ${stats.INT} affords you ${stats.INT * 2} personal interest skill points to upgrade any skill`}</Typography>
+              <Typography className={classes.titleTop} style={{ fontWeight: 'bold', fontSize: 40, marginBottom: 0 }}>{intPoints}</Typography>
+              <Typography style={{ textShadow: '1px 1px 1px #000' }}>Points Remaining</Typography>
+              <Typography style={{ textShadow: '1px 1px 1px #000' }}>{`Previously invested skills are listed first, you may upgrade them or invest in something brand new`}</Typography>
+
             </Grid>
           </Grid>
 
@@ -174,7 +181,7 @@ const SkillList: FC = () => {
           <Grid container direction="column" spacing={2} style={{ marginTop: 20 }}>
 
             <Grid item>
-              <Typography>{`All other skills`}</Typography>
+              <Typography style={{ textShadow: '1px 1px 1px #000' }}>{`All other skills`}</Typography>
             </Grid>
           </Grid>
 
@@ -210,8 +217,8 @@ const SkillList: FC = () => {
         </> : <>
           <Grid container direction="column" spacing={2} style={{ marginTop: 20 }}>
             <Grid item>
-              <Typography>Personal Interest Skills</Typography>
-              <Typography>Roll Attributes to allocate skills</Typography>
+              <Typography style={{ fontWeight: 'bold', textShadow: '1px 1px 1px #000' }}>Personal Interest Skills</Typography>
+              <Typography style={{ textShadow: '1px 1px 1px #000' }}>Roll Attributes to allocate skills</Typography>
             </Grid>
           </Grid>
         </>

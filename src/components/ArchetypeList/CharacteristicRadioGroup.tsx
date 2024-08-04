@@ -30,7 +30,7 @@ const CharacteristicRadioGroup: FC<Props> = (props: Props) => {
 
   return (
     <FormControl component="fieldset">
-      <FormLabel component="legend">Filter by Core Characteristic</FormLabel>
+      <FormLabel component="legend" style={{ textShadow: '1px 1px 1px #000' }}>Filter by Core Characteristic</FormLabel>
       <RadioGroup
         aria-label="CharacteristicName"
         name="CharacteristicName"
@@ -48,6 +48,7 @@ const CharacteristicRadioGroup: FC<Props> = (props: Props) => {
                 value={key}
                 control={<Radio />}
                 label={CharacteristicName[key]}
+                style={{ textShadow: '1px 1px 1px #000' }}
                 classes={{ label: state.coreAttribute === key ? classes.priority : classes.normal }}
               />
             </Grid>

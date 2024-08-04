@@ -56,6 +56,7 @@ export type AppFunctions = {
   selectTalent: Function;
   currentStepName: Function;
   setStats: Function;
+  getMaxOccPoints: Function;
 };
 
 type ContextValues = {
@@ -222,6 +223,7 @@ const AppContextProvider: FC<ContextProps> = (props) => {
     setStep,
     currentStepName,
     setStats,
+    getMaxOccPoints
   };
 
   return (
