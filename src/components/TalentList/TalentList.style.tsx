@@ -1,5 +1,5 @@
 import { makeStyles } from '@material-ui/core';
-import { green, purple } from '../../providers/AppThemeProvider';
+import { green, purple, darkPurple } from '../../providers/AppThemeProvider';
 
 const styles = makeStyles((theme) => ({
   itemContainer: {
@@ -39,6 +39,14 @@ const styles = makeStyles((theme) => ({
 
     color: 'black',
     backgroundColor: 'rgba(0,0,0,0.3)',
+  },
+
+  titleTop: {
+    fontFamily: 'Cthulhumbus',
+    color: 'white',
+    fontSize: 20,
+    marginBottom: 20,
+    textShadow: `1px 2px 4px ${purple}, 0px 3px 6px ${darkPurple}, 0px 0px 5px ${green}, 3px 3px 20px ${green}, -2px 1px 30px ${green}`
   },
 
   talentItem: {},

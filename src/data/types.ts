@@ -17,7 +17,9 @@ function keyReference<T>(
   const retVal: Partial<
     Record<string, keyof typeof arg> & Record<'list', Array<keyof typeof arg>>
   > = {};
+  //@ts-ignore
   Object.keys(arg).map((val) => (retVal[val] = val as keyof typeof arg));
+  //@ts-ignore
   retVal['list'] = Object.keys(arg).map((val) => {
     return val as keyof typeof arg;
   });

@@ -44,7 +44,7 @@ const ArchetypeList: FC = () => {
         {filteredArchetypes.map((archetype) => (
           <ArchetypeItem
             archetype={archetype}
-            key={archetype.name}
+            // key={archetype.name}
             keyName={archetype.name}
           />
         ))}

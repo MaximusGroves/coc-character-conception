@@ -127,7 +127,7 @@ const styles = makeStyles((theme) => ({
   },
 
   promptText: {
-    marginLeft: 85,
+
     fontSize: 20,
     fontFamily: 'Cthulhumbus',
     color: 'white',

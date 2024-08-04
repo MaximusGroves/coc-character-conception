@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Grid } from '@material-ui/core';
+import { Grid, Typography } from '@material-ui/core';
 // import styles from './OccupationList.style'
 // import { archetypeList } from '../../data/archetypes'
 import { OccupationKey } from '../../data/types';
@@ -8,10 +8,13 @@ import { occupationList, Occupation } from '../../data/occupations';
 import OccupationItem from './OccupationItem';
 import IdealOccupationSwitch from './IdealOccupationSwitch';
 import { useAppContext } from '../../providers/AppContextProvider';
+import styles from './OccupationList.style';
 
 const OccupationList: FC = () => {
   const { state } = useAppContext();
   const { selectedArchetype } = state;
+
+  const classes = styles();
 
   const [ideal, setIdeal] = React.useState<boolean>(true);
 
@@ -25,22 +28,7 @@ const OccupationList: FC = () => {
 
   const archetypeOccs = selectedArchetype?.occupations || [];
 
-  //recursive characteristic matching, slow, omits INT, CON
-  // const coreOptions = selectedArchetype?.core || []
-  // if (ideal && !switchDisabled) {
-  //   shownOccupations = occupationList.filter((occ: Occupation) => {
-  //     const { idealCharacteristics } = occ
-  //     const matchingChar = idealCharacteristics.find(
-  //       (idealChar: Characteristic) => {
-  //         const matchingCore = coreOptions.find((coreChar) => {
-  //           return coreChar === idealChar
-  //         })
-  //         return matchingCore !== undefined
-  //       }
-  //     )
-  //     return matchingChar !== undefined
-  //   })
-  // }
+
 
   //matching archetype listed occupations
   if (ideal && !switchDisabled) {
@@ -54,6 +42,9 @@ const OccupationList: FC = () => {
 
   return (
     <div>
+
+      <Typography className={classes.titleTop}>How do you make a living?</Typography>
+
       <IdealOccupationSwitch
         checked={ideal}
         onCheck={handleSwitch}
@@ -62,7 +53,9 @@ const OccupationList: FC = () => {
 
       <Grid container direction="row" spacing={3}>
         {shownOccupations.map((occupation) => (
-          <OccupationItem occupation={occupation} key={occupation.name} />
+          <OccupationItem occupation={occupation}
+          // key={occupation.name} 
+          />
         ))}
       </Grid>
     </div>

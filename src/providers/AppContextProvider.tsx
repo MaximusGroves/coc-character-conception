@@ -23,7 +23,8 @@ export type AppState = {
   selectedOccupation?: Occupation;
   selectedTalent?: Talent[];
   stats?: Stats;
-  rolls?: Rolls;
+  rolls?: Array<number[]>;
+  // rolls?: Rolls;
   skillFormula?: OccupationSkillFormula;
   archPoints?: number;
   occPoints?: number;
@@ -31,6 +32,7 @@ export type AppState = {
   archSkills: Record<SkillName, number> | {};
   occSkills: Record<SkillName, number> | {};
   intSkills: Record<SkillName, number> | {};
+  luck?: number[];
 };
 
 const defaultState: AppState = {
@@ -161,9 +163,9 @@ const AppContextProvider: FC<ContextProps> = (props) => {
 
   const selectCoreAttribute = (newSelection: CharacteristicKey) => {
     if (newSelection === coreAttribute) {
-      setState({ coreAttribute: undefined });
+      setState({ coreAttribute: undefined, stats: undefined, rolls: undefined });
     } else {
-      setState({ coreAttribute: newSelection });
+      setState({ coreAttribute: newSelection, stats: undefined, rolls: undefined });
     }
   };
 
@@ -177,9 +179,9 @@ const AppContextProvider: FC<ContextProps> = (props) => {
 
   const selectOccupation = (newSelection: Occupation) => {
     if (newSelection === selectedOccupation) {
-      setState({ selectedOccupation: undefined, occPoints: undefined, occSkills: {} });
+      setState({ selectedOccupation: undefined, occPoints: undefined, occSkills: {}, intSkills: {}, intPoints: state.stats ? state.stats.INT * 2 : undefined });
     } else {
-      setState({ selectedOccupation: newSelection, occPoints: getMaxOccPoints(newSelection, state?.stats), occSkills: {} });
+      setState({ selectedOccupation: newSelection, occPoints: getMaxOccPoints(newSelection, state?.stats), occSkills: {}, intSkills: {}, intPoints: state.stats ? state.stats.INT * 2 : undefined });
     }
   };
 

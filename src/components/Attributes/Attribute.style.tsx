@@ -1,6 +1,5 @@
 import { makeStyles } from '@material-ui/core';
-import { green, purple } from '@material-ui/core/colors';
-import { darkPurple } from '../../providers/AppThemeProvider';
+import { darkPurple, green, purple } from '../../providers/AppThemeProvider';
 
 const styles = makeStyles(() => ({
   priority: {
@@ -8,7 +7,43 @@ const styles = makeStyles(() => ({
       fontWeight: 'bold',
     },
   },
-  
+
+  draglist: {
+    position: 'relative',
+  },
+
+  titleTop: {
+    fontFamily: 'Cthulhumbus',
+    color: 'white',
+    fontSize: 20,
+    marginBottom: 20,
+    textShadow: `1px 2px 4px ${purple}, 0px 3px 6px ${darkPurple}, 0px 0px 5px ${green}, 3px 3px 20px ${green}, -2px 1px 30px ${green}`
+  },
+
+  listContent: {
+    position: 'absolute',
+    // width: 300,
+    // height: 60,
+    // transformOrigin: '50% 50 % 0px',
+    borderRadius: 5,
+    color: 'white',
+    // lineHeight: '40px',
+    fontSize: '20px',
+    background: '#424242',
+    backgroundSize: '200%',
+    textTransform: 'uppercase',
+    letterSpacing: 2,
+    touchAction: 'none',
+    userSelect: 'none',
+    fontFamily: 'CthulhusCalling',
+    textShadow: `1px 2px 4px ${purple}, 0px 3px 6px ${darkPurple}, 0px 0px 2px ${green}`,
+    // textShadow: `1px 2px 4px ${purple}, 0px 3px 6px ${darkPurple}, 0px 0px 5px ${green}, 3px 3px 20px ${green}, -2px 1px 30px ${green}`,
+    padding: 10
+
+
+
+  },
+
 }));
 
 export default styles;

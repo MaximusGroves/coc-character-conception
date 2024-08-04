@@ -1,8 +1,10 @@
 import React, { FC } from 'react';
-import { Grid, Typography } from '@material-ui/core';
+import { Button, Grid, Typography } from '@material-ui/core';
 import { skillList, skills } from '../../data/skills';
 import SkillItem from './SkillItem';
 import { useAppContext } from '../../providers/AppContextProvider';
+import styles from './SkillList.style';
+import { green } from '../../providers/AppThemeProvider';
 
 
 const SkillList: FC = () => {
@@ -10,6 +12,8 @@ const SkillList: FC = () => {
   const { stats, selectedArchetype, selectedOccupation, archPoints, occPoints, intPoints, archSkills, occSkills, intSkills } = state;
   const { setState } = api;
 
+
+  const classes = styles()
 
   const setArchPoints = (skill, val, remaining) => {
     const newSkills = archSkills;
@@ -56,8 +60,18 @@ const SkillList: FC = () => {
     return (match === undefined)
   })
 
+  const recommitPoints = () => {
+    if (intPoints && occPoints) {
+      const sum = intPoints + occPoints;
+      setState({ intPoints: sum, occPoints: 0 })
+    }
+
+  }
+
   return (
     <div style={{ display: 'block' }}>
+
+      <Typography className={classes.titleTop}>What can you do?</Typography>
 
       {selectedArchetype && archPoints !== undefined ? <>
 
@@ -67,13 +81,15 @@ const SkillList: FC = () => {
         <Grid item container direction="row" spacing={3}>
           {selectedArchetype?.bonusSkills.map((skill) => {
             const thisSkill = skills[skill];
-            const thisName = thisSkill.name;
+            // const thisName = thisSkill.name;
             const occTotal = occSkills[skill] || 0;
             const intTotal = intSkills[skill] || 0
             const minPoints = thisSkill.startingValue + occTotal + intTotal
 
             return (
-              <SkillItem skill={thisSkill} key={thisName} pointsRemaining={archPoints} minPoints={minPoints} points={archSkills[skill] || 0} setPointsRemaining={setArchPoints} />
+              <SkillItem skill={thisSkill}
+                // key={thisName} 
+                pointsRemaining={archPoints} minPoints={minPoints} points={archSkills[skill] || 0} setPointsRemaining={setArchPoints} />
             )
           })}
         </Grid>
@@ -110,6 +126,10 @@ const SkillList: FC = () => {
               <SkillItem skill={thisSkill} key={thisName} pointsRemaining={occPoints} minPoints={minPoints} points={occSkills[skill] || 0} setPointsRemaining={setOccPoints} />
             )
           })}
+        </Grid>
+
+        <Grid item>
+          <Button variant='contained' onClick={recommitPoints} className={classes.titleTop} style={{ marginTop: 20, backgroundColor: `${green}`, color: 'white', textTransform: 'none' }}>Commit remainder of points to Personal Interests Below</Button>
         </Grid>
 
       </> : <>

@@ -1,5 +1,5 @@
 import { makeStyles } from '@material-ui/core'
-import { green, purple } from '../../providers/AppThemeProvider'
+import { green, purple, darkPurple } from '../../providers/AppThemeProvider'
 
 const styles = makeStyles((theme) => ({
   title: {
@@ -50,6 +50,14 @@ const styles = makeStyles((theme) => ({
     borderImageSlice: '110 fill',
     borderImageWidth: '29px'
 
+  },
+
+  titleTop: {
+    fontFamily: 'Cthulhumbus',
+    color: 'white',
+    fontSize: 20,
+    marginBottom: 20,
+    textShadow: `1px 2px 4px ${purple}, 0px 3px 6px ${darkPurple}, 0px 0px 5px ${green}, 3px 3px 20px ${green}, -2px 1px 30px ${green}`
   },
 
   occupationSelected: {
