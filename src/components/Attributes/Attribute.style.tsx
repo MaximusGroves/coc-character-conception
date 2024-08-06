@@ -59,6 +59,7 @@ const styles = makeStyles(() => ({
     position: 'absolute',
     touchAction: 'none',
     userSelect: 'none',
+    '-webkit-tap-highlight-color': 'transparent',
     // padding: 10,
 
 

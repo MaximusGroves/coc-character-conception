@@ -462,7 +462,9 @@ const ArchetypeList: FC = () => {
                 cursor: 'pointer',
                 borderRadius: '50px 16px 16px 50px',
                 width: 264,
-                transition: 'border 0.3s'
+                transition: 'border 0.3s',
+
+
               }}
               className={classes.lockList}
               children={
