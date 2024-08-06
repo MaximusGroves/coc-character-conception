@@ -403,14 +403,7 @@ const ArchetypeList: FC = () => {
         </Grid>
         <Grid container direction='row'>
           <Grid item xs sm container direction="column" >
-            {/* <Grid item>
-            <Typography style={{ maxWidth: 300 }} className={classes.titleTop}>What are you made of?</Typography>
-          </Grid> */}
-            {/* <Grid item container direction="column" spacing={2} style={{ marginTop: 26 }}> */}
-
-
-            {/* </Grid> */}
-            <Grid item style={{ paddingTop: 440, paddingLeft: 80 }}>
+            <Grid item style={{ paddingTop: 440, paddingLeft: 56 }}>
               <Button variant='contained' onClick={onRandomize} className={classes.titleTop} style={{ marginTop: 20, backgroundColor: `${green}`, color: 'white', textTransform: 'none' }}>Randomize</Button>
             </Grid>
           </Grid>
@@ -472,17 +465,19 @@ const ArchetypeList: FC = () => {
                 transition: 'border 0.3s'
               }}
               className={classes.lockList}
-              children={<div style={{}}>
-                <IconButton onClick={
-                  () => {
-                    const newList = [...lockedAtts];
-                    newList[i] = !lockedAtts[i];
-                    setLockedAtts(newList);
-                  }
-                }>
-                  {lockedAtts[i] ? <Lock fill='primary' /> : <LockOpen />}
+              children={
+                <IconButton
+                  color={lockedAtts[i] ? "primary" : "default"}
+                  onClick={
+                    () => {
+                      const newList = [...lockedAtts];
+                      newList[i] = !lockedAtts[i];
+                      setLockedAtts(newList);
+                    }
+                  }>
+                  {lockedAtts[i] ? <Lock /> : <LockOpen />}
                 </IconButton>
-              </div>}
+              }
 
             />
           ))}
