@@ -12,7 +12,7 @@ import clamp from 'lodash.clamp'
 import swap from 'lodash-move'
 import styles from './Attribute.style';
 
-import { green, purple } from '../../providers/AppThemeProvider';
+import { green } from '../../providers/AppThemeProvider';
 
 
 const ArchetypeList: FC = () => {
@@ -26,9 +26,6 @@ const ArchetypeList: FC = () => {
 
   let items1;
   let items2;
-
-  console.log('rerender');
-  console.log(stats);
 
   if (stats) {
 
@@ -50,22 +47,21 @@ const ArchetypeList: FC = () => {
   }
 
   const applyStats = () => {
+    console.log('applyStats')
 
     const newStats = {};
-    const newRolls = [[], []];
+    const newRolls = [[], [], []];
+
     for (var i = 0; i < items1.length; i++) {
+
       newStats[items1[order1.current[i]]] = items2[order2.current[i]];
       //@ts-ignore
       newRolls[0].push(order1.current[i])
       //@ts-ignore
       newRolls[1].push(order2.current[i])
+      //@ts-ignore
+      newRolls[2].push(order3.current[i])
     }
-
-    console.log(newStats);
-    console.log(newRolls);
-
-
-
     setStats(newStats, newRolls)
 
   }
@@ -79,42 +75,7 @@ const ArchetypeList: FC = () => {
     return Math.ceil(Math.random() * 6);
   };
 
-  // const add = (val: number, a: number) => {
-  //   return val + a;
-  // };
 
-  // const computeStats = () => {
-  //   const newRolls = {
-  //     core: [rolld6()],
-  //     [charKeys.APP]: [rolld6(), rolld6(), rolld6()],
-  //     [charKeys.CON]: [rolld6(), rolld6(), rolld6()],
-  //     [charKeys.DEX]: [rolld6(), rolld6(), rolld6()],
-  //     [charKeys.EDU]: [rolld6(), rolld6()],
-  //     [charKeys.INT]: [rolld6(), rolld6()],
-  //     [charKeys.POW]: [rolld6(), rolld6(), rolld6()],
-  //     [charKeys.SIZ]: [rolld6(), rolld6()],
-  //     [charKeys.STR]: [rolld6(), rolld6(), rolld6()],
-  //   };
-
-  //   const newStats = {
-  //     [charKeys.APP]: newRolls[charKeys.APP].reduce(add, 0) * 5,
-  //     [charKeys.CON]: newRolls[charKeys.CON].reduce(add, 0) * 5,
-  //     [charKeys.DEX]: newRolls[charKeys.DEX].reduce(add, 0) * 5,
-  //     [charKeys.EDU]: (newRolls[charKeys.EDU].reduce(add, 0) + 6) * 5,
-  //     [charKeys.INT]: (newRolls[charKeys.INT].reduce(add, 0) + 6) * 5,
-  //     [charKeys.POW]: newRolls[charKeys.POW].reduce(add, 0) * 5,
-  //     [charKeys.SIZ]: (newRolls[charKeys.SIZ].reduce(add, 0) + 6) * 5,
-  //     [charKeys.STR]: newRolls[charKeys.STR].reduce(add, 0) * 5,
-  //   };
-
-  //   if (state.coreAttribute) {
-  //     newStats[state.coreAttribute] = (newRolls.core.reduce(add, 0) + 13) * 5;
-  //   }
-
-  //   // setStats(newStats, newRolls);
-
-
-  // };
 
   const fn = (order: number[], active = false, originalIndex = 0, curIndex = 0, y = 0) => (index: number) =>
     active && index === originalIndex
@@ -122,8 +83,6 @@ const ArchetypeList: FC = () => {
         y: curIndex * buttonHeightAndPadding + y,
         scale: 1.1,
         zIndex: 1,
-        shadow: 8,
-        border: `2px solid ${purple}`,
         immediate: (key: string) => key === 'y' || key === 'zIndex',
 
       }
@@ -131,18 +90,24 @@ const ArchetypeList: FC = () => {
         y: order.indexOf(index) * buttonHeightAndPadding,
         scale: 1,
         zIndex: 0,
-        shadow: 0,
-        border: `2px solid #424242`,
         immediate: false,
         onRest: () => { if (restRef.current === true) { applyStats(); restRef.current = false; } },
       }
 
 
+  const softAlign = (order: number[]) => (index: number) => {
+    return ({
+      y: order.indexOf(index) * buttonHeightAndPadding,
+      scale: 1,
+      zIndex: 0,
+      immediate: false,
+    }
+    )
+  }
 
 
-
-
-  // const items = 'Lorem ipsum dolor sit'.split(' ');
+  const lastCurRow = useRef(undefined);
+  const lastRowLocked = useRef(undefined);
 
   const order1 = useRef(items1.map((_, index) => index)) // Store indicies as a local ref, this represents the item order
   if (rolls) {
@@ -153,10 +118,62 @@ const ArchetypeList: FC = () => {
   const bind1 = useGesture({
     onDrag: (({ args: [originalIndex], active, movement: [, y] }) => {
       const curIndex = order1.current.indexOf(originalIndex)
+      const lockIndex = order3.current[curIndex];
+      const rowLocked = lockedAtts[lockIndex]
+
+      if (lastRowLocked.current === undefined) {
+        //@ts-ignore
+        lastRowLocked.current = rowLocked;
+      }
+
+
       const curRow = clamp(Math.round((curIndex * buttonHeightAndPadding + y) / buttonHeightAndPadding), 0, items1.length - 1)
-      const newOrder = swap(order1.current, curIndex, curRow)
-      springApi1.start(fn(newOrder, active, originalIndex, curIndex, y)) // Feed springs new style data, they'll animate the view without causing a single render
-      if (!active) order1.current = newOrder
+      const newRowLocked = lockedAtts[order3.current[curRow]];
+
+      // console.log(newRowLocked);
+
+      let newOrder;
+      let newOrder2;
+      let newOrder3;
+
+      console.log(`${curRow} ${lastCurRow.current} ${rowLocked} ${newRowLocked}`)
+
+      newOrder = swap(order1.current, curIndex, curRow)
+      springApi1.start(fn(newOrder, active, originalIndex, curIndex, y))
+
+      if (rowLocked && lastRowLocked.current) {
+        //drag all rows together
+        const origIndex2 = order2.current[curIndex];
+        const origIndex3 = order3.current[curIndex];
+        newOrder2 = swap(order2.current, curIndex, curRow)
+        newOrder3 = swap(order3.current, curIndex, curRow)
+        springApi2.start(fn(newOrder2, active, origIndex2, curIndex, y))
+        springApi3.start(fn(newOrder3, active, origIndex3, curIndex, y))
+      } else if (newRowLocked && lastCurRow.current !== undefined && lastCurRow.current !== curRow) {
+        console.log('hmm?')
+        //nudge row when crossing locked one
+        //@ts-ignore
+        const nextDelta = lastCurRow.current > curRow ? 1 : -1;
+        newOrder2 = swap(order2.current, curRow + nextDelta, curRow)
+        newOrder3 = swap(order3.current, curRow + nextDelta, curRow)
+
+        springApi3.start(softAlign(newOrder3))
+        springApi2.start(softAlign(newOrder2))
+        order2.current = newOrder2
+        order3.current = newOrder3
+      }
+      lastCurRow.current = curRow;
+
+      if (!active) { //onRelease
+        order1.current = newOrder
+
+        if (rowLocked && lastRowLocked.current) {
+          //just for locked rows, 
+          order2.current = newOrder2
+          order3.current = newOrder3
+        }
+        lastRowLocked.current = undefined;
+      }
     }),
     onDragEnd: (() => { applyStats() }),
   })
@@ -170,17 +187,73 @@ const ArchetypeList: FC = () => {
   //@ts-ignore
   const bind2 = useGesture({
     onDrag: (({ args: [originalIndex], active, movement: [, y] }) => {
+      // const curIndex = order2.current.indexOf(originalIndex)
+      // const curRow = clamp(Math.round((curIndex * buttonHeightAndPadding + y) / buttonHeightAndPadding), 0, items2.length - 1)
+      // const newOrder = swap(order2.current, curIndex, curRow)
+      // springApi2.start(fn(newOrder, active, originalIndex, curIndex, y)) // Feed springs new style data, they'll animate the view without causing a single render
+      // if (!active) order2.current = newOrder
+
       const curIndex = order2.current.indexOf(originalIndex)
+      const lockIndex = order3.current[curIndex];
+      const rowLocked = lockedAtts[lockIndex]
+
+      if (lastRowLocked.current === undefined) {
+        //@ts-ignore
+        lastRowLocked.current = rowLocked;
+      }
+
       const curRow = clamp(Math.round((curIndex * buttonHeightAndPadding + y) / buttonHeightAndPadding), 0, items2.length - 1)
-      const newOrder = swap(order2.current, curIndex, curRow)
-      springApi2.start(fn(newOrder, active, originalIndex, curIndex, y)) // Feed springs new style data, they'll animate the view without causing a single render
-      if (!active) order2.current = newOrder
+      const newRowLocked = lockedAtts[order3.current[curRow]];
+
+      let newOrder;
+      let newOrder1;
+      let newOrder3;
+
+      newOrder = swap(order2.current, curIndex, curRow)
+      springApi2.start(fn(newOrder, active, originalIndex, curIndex, y))
+
+      if (rowLocked && lastRowLocked.current) {
+        //drag all rows together
+        const origIndex1 = order1.current[curIndex];
+        const origIndex3 = order3.current[curIndex];
+        newOrder1 = swap(order1.current, curIndex, curRow)
+        newOrder3 = swap(order3.current, curIndex, curRow)
+        springApi1.start(fn(newOrder1, active, origIndex1, curIndex, y))
+        springApi3.start(fn(newOrder3, active, origIndex3, curIndex, y))
+      } else if (newRowLocked && lastCurRow.current !== undefined && lastCurRow.current !== curRow) {
+        //nudge row when crossing locked one
+        //@ts-ignore
+        const nextDelta = lastCurRow.current > curRow ? 1 : -1;
+        newOrder1 = swap(order1.current, curRow + nextDelta, curRow)
+        newOrder3 = swap(order3.current, curRow + nextDelta, curRow)
+
+        springApi1.start(softAlign(newOrder1))
+        springApi3.start(softAlign(newOrder3))
+        order1.current = newOrder1
+        order3.current = newOrder3
+      }
+      lastCurRow.current = curRow;
+
+      if (!active) { //onRelease
+        order2.current = newOrder
+
+        if (rowLocked && lastRowLocked.current) {
+          //just for locked rows, 
+          order1.current = newOrder1
+          order3.current = newOrder3
+        }
+        lastRowLocked.current = undefined;
+      }
     }),
     onDragEnd: (() => { applyStats() }),
   })
 
-  console.log(order1.current)
-  console.log(order2.current)
+  const order3 = useRef(lockBtns.map((_, index) => index))
+  if (rolls) {
+    order3.current = rolls[2]
+  }
+  const [springs3, springApi3] = useSprings(lockBtns.length, softAlign(order3.current)) // Create springs, each corresponds to an item, controlling its transform, scale, etc.
+
 
   const onRandomize = () => {
     const newOrder1 = []
@@ -192,7 +265,7 @@ const ArchetypeList: FC = () => {
     let prevSpliced = 0;
 
     for (var i = 0; i < lockedAtts.length; i++) {
-      if (lockedAtts[i]) {
+      if (lockedAtts[order3.current[i]]) {
         lastOrder1.splice(i - prevSpliced, 1);
         lastOrder2.splice(i - prevSpliced, 1);
         prevSpliced++
@@ -220,7 +293,7 @@ const ArchetypeList: FC = () => {
     const finalOrder2 = []
 
     for (var j = 0; j < lockedAtts.length; j++) {
-      if (lockedAtts[j]) {
+      if (lockedAtts[order3.current[j]]) {
         const new1 = order1.current[j];
         const new2 = order2.current[j];
         //@ts-ignore
@@ -324,66 +397,58 @@ const ArchetypeList: FC = () => {
 
   return (
     <div style={{ display: 'flex' }}>
-
-      <Grid container direction='row'>
-        <Grid item xs container direction="column">
-          <Grid item>
-            <Typography style={{ maxWidth: 300 }} className={classes.titleTop}>What are you made of?</Typography>
-          </Grid>
-          {/* <Grid item container direction="column" spacing={2} style={{ marginTop: 26 }}> */}
-          {lockBtns.map(val => (
-            <Grid item style={{ paddingTop: 7.6 }}>
-              <IconButton onClick={
-                () => {
-                  const newList = [...lockedAtts];
-                  newList[val] = !lockedAtts[val];
-                  setLockedAtts(newList);
-                }
-              }>
-                {lockedAtts[val] ? <Lock /> : <LockOpen />}
-              </IconButton>
-            </Grid>
-          ))}
-
-          {/* </Grid> */}
-          <Grid item>
-            <Button variant='contained' onClick={onRandomize} className={classes.titleTop} style={{ marginTop: 20, backgroundColor: `${green}`, color: 'white', textTransform: 'none' }}>Randomize</Button>
-          </Grid>
+      <Grid container direction="column">
+        <Grid item>
+          <Typography style={{}} className={classes.titleTop}>What are you made of?</Typography>
         </Grid>
-        <Grid item xs container direction="column" spacing={3}>
-          <Grid item >
-            <Typography style={{ textShadow: '1px 1px 1px #000' }}>HP: <span style={{ fontWeight: 'bold', fontSize: 25 }}>{HP || '  '}</span></Typography>
-            <Typography style={{ textShadow: '1px 1px 1px #000' }}>= ( CON + SIZ ) / 5</Typography>
-          </Grid>
-          <Grid item>
-            <Typography style={{ textShadow: '1px 1px 1px #000' }}>Sanity: <span style={{ fontWeight: 'bold', fontSize: 25 }}>{stats?.POW || '  '}</span></Typography>
-            <Typography style={{ textShadow: '1px 1px 1px #000' }}>= POW</Typography>
-          </Grid>
-          <Grid item>
-            <Typography style={{ textShadow: '1px 1px 1px #000' }}>MP: <span style={{ fontWeight: 'bold', fontSize: 25 }}>{MP || '  '}</span></Typography>
-            <Typography style={{ textShadow: '1px 1px 1px #000' }}>= POW / 5</Typography>
-          </Grid>
-          <Grid item>
-            <Typography style={{ textShadow: '1px 1px 1px #000' }}>Damage Bonus: <span style={{ fontWeight: 'bold', fontSize: 25 }}>{DB || '  '}</span></Typography>
-            <Typography style={{ textShadow: '1px 1px 1px #000' }}>Table 1 page 23</Typography>
-          </Grid>
-          <Grid item>
-            <Typography style={{ textShadow: '1px 1px 1px #000' }}>Build: <span style={{ fontWeight: 'bold', fontSize: 25 }}>{build || '  '}</span></Typography>
-            <Typography style={{ textShadow: '1px 1px 1px #000' }}>Table 1 page 23 Pulp Cthulhu</Typography>
-          </Grid>
-          <Grid item>
-            <Typography style={{ textShadow: '1px 1px 1px #000' }}>Movement Rate: <span style={{ fontWeight: 'bold', fontSize: 25 }}>{movement || '  '}</span></Typography>
-            <Typography style={{ textShadow: '1px 1px 1px #000' }}>Table 2 page 23 Pulp Cthulhu</Typography>
-          </Grid>
-          <Grid item>
-            <Typography style={{ textShadow: '1px 1px 1px #000' }}>Luck <span style={{ fontWeight: 'bold', fontSize: 25 }}>{myLuck || '  '}</span></Typography>
-            <Typography style={{ textShadow: '1px 1px 1px #000' }}>= ( 2d6 + 6 ) * 5</Typography>
-            {luck ?
-              <Typography style={{ textShadow: '1px 1px 1px #000' }}>{myPhrase}</Typography>
-              :
-              <Button variant='contained' disabled={stats === undefined} onClick={computeLuck} className={classes.titleTop} style={{ marginTop: 20, backgroundColor: `${green}`, color: 'white', textTransform: 'none' }}>Roll for Luck Now!</Button>
-            }
+        <Grid container direction='row'>
+          <Grid item xs sm container direction="column" >
+            {/* <Grid item>
+            <Typography style={{ maxWidth: 300 }} className={classes.titleTop}>What are you made of?</Typography>
+          </Grid> */}
+            {/* <Grid item container direction="column" spacing={2} style={{ marginTop: 26 }}> */}
 
+
+            {/* </Grid> */}
+            <Grid item style={{ paddingTop: 440, paddingLeft: 80 }}>
+              <Button variant='contained' onClick={onRandomize} className={classes.titleTop} style={{ marginTop: 20, backgroundColor: `${green}`, color: 'white', textTransform: 'none' }}>Randomize</Button>
+            </Grid>
+          </Grid>
+          <Grid item sm container direction="column" spacing={3}>
+            <Grid item >
+              <Typography style={{ textShadow: '1px 1px 1px #000' }}>HP: <span style={{ fontWeight: 'bold', fontSize: 25 }}>{HP || '  '}</span></Typography>
+              <Typography style={{ textShadow: '1px 1px 1px #000' }}>= ( CON + SIZ ) / 5</Typography>
+            </Grid>
+            <Grid item>
+              <Typography style={{ textShadow: '1px 1px 1px #000' }}>Sanity: <span style={{ fontWeight: 'bold', fontSize: 25 }}>{stats?.POW || '  '}</span></Typography>
+              <Typography style={{ textShadow: '1px 1px 1px #000' }}>= POW</Typography>
+            </Grid>
+            <Grid item>
+              <Typography style={{ textShadow: '1px 1px 1px #000' }}>MP: <span style={{ fontWeight: 'bold', fontSize: 25 }}>{MP || '  '}</span></Typography>
+              <Typography style={{ textShadow: '1px 1px 1px #000' }}>= POW / 5</Typography>
+            </Grid>
+            <Grid item>
+              <Typography style={{ textShadow: '1px 1px 1px #000' }}>Damage Bonus: <span style={{ fontWeight: 'bold', fontSize: 25 }}>{DB || '  '}</span></Typography>
+              <Typography style={{ textShadow: '1px 1px 1px #000' }}>Table 1 page 23</Typography>
+            </Grid>
+            <Grid item>
+              <Typography style={{ textShadow: '1px 1px 1px #000' }}>Build: <span style={{ fontWeight: 'bold', fontSize: 25 }}>{build || '  '}</span></Typography>
+              <Typography style={{ textShadow: '1px 1px 1px #000' }}>Table 1 page 23 Pulp Cthulhu</Typography>
+            </Grid>
+            <Grid item>
+              <Typography style={{ textShadow: '1px 1px 1px #000' }}>Movement Rate: <span style={{ fontWeight: 'bold', fontSize: 25 }}>{movement || '  '}</span></Typography>
+              <Typography style={{ textShadow: '1px 1px 1px #000' }}>Table 2 page 23 Pulp Cthulhu</Typography>
+            </Grid>
+            <Grid item>
+              <Typography style={{ textShadow: '1px 1px 1px #000' }}>Luck <span style={{ fontWeight: 'bold', fontSize: 25 }}>{myLuck || '  '}</span></Typography>
+              <Typography style={{ textShadow: '1px 1px 1px #000' }}>= ( 2d6 + 6 ) * 5</Typography>
+              {luck ?
+                <Typography style={{ textShadow: '1px 1px 1px #000' }}>{myPhrase}</Typography>
+                :
+                <Button variant='contained' disabled={stats === undefined} onClick={computeLuck} className={classes.titleTop} style={{ marginTop: 20, backgroundColor: `${green}`, color: 'white', textTransform: 'none' }}>Roll for Luck Now!</Button>
+              }
+
+            </Grid>
           </Grid>
         </Grid>
       </Grid>
@@ -391,22 +456,50 @@ const ArchetypeList: FC = () => {
 
 
 
+      <div style={{ position: 'absolute', top: 77, left: 16 }}>
+        <div className={classes.draglist} style={{ height: items1.length * buttonHeightAndPadding }}>
+          {springs3.map(({ zIndex, y, scale }, i) => (
+            <animated.div
+              key={i}
+              style={{
+                zIndex,
+                y,
+                scale,
+                border: lockedAtts[i] ? `2px solid ${green}99` : '2px solid #ffffff00',
+                cursor: 'pointer',
+                borderRadius: '50px 16px 16px 50px',
+                width: 264,
+                transition: 'border 0.3s'
+              }}
+              className={classes.lockList}
+              children={<div style={{}}>
+                <IconButton onClick={
+                  () => {
+                    const newList = [...lockedAtts];
+                    newList[i] = !lockedAtts[i];
+                    setLockedAtts(newList);
+                  }
+                }>
+                  {lockedAtts[i] ? <Lock fill='primary' /> : <LockOpen />}
+                </IconButton>
+              </div>}
+
+            />
+          ))}
+        </div>
+      </div>
 
 
-      {/* Absolutely positioned */}
 
       <div style={{ position: 'absolute', top: 80, left: 80 }}>
         <div className={classes.draglist} style={{ height: items1.length * buttonHeightAndPadding }}>
-          {springs1.map(({ zIndex, shadow, y, scale, border }, i) => (
+          {springs1.map(({ zIndex, y, scale }, i) => (
             <animated.div
               {...bind1(i)}
               key={i}
               style={{
                 zIndex,
-                // boxShadow: shadow.to(s => `rgba(0, 0, 0, 1) 0px ${s}px ${2 * s}px 0px`),
-                boxShadow: shadow.to(s => `${purple} 0px ${(s) / 2}px ${2 * s}px 0px`),
                 y,
-                border,
                 scale,
                 cursor: 'pointer'
               }}
@@ -418,14 +511,12 @@ const ArchetypeList: FC = () => {
       </div>
       <div style={{ position: 'absolute', top: 80, left: 236 }}>
         <div className={classes.draglist} style={{ height: items1.length * buttonHeightAndPadding }}>
-          {springs2.map(({ zIndex, shadow, y, scale, border }, i) => (
+          {springs2.map(({ zIndex, y, scale }, i) => (
             <animated.div
               {...bind2(i)}
               key={i}
               style={{
                 zIndex,
-                boxShadow: shadow.to(s => `${purple} 0px ${(s) / 2}px ${2 * s}px 0px`),
-                border,
                 y,
                 scale,
                 fontSize: 30, padding: 4,
@@ -441,93 +532,131 @@ const ArchetypeList: FC = () => {
 
 
 
-
-      {/* <Grid container direction="column" spacing={3}>
-        <Grid item>
-          <Typography>
-            Your core attribute will be determined by rolling 1 die and
-            calculating (1d6+13)x5
-          </Typography>
-          <Typography>
-            Most of your interaction in the game will be expressed through this
-            property
-          </Typography>
-        </Grid>
-        <Grid item>
-          <Typography>The remaining attributes adopt this formula:</Typography>
-        </Grid>
-        <Grid item style={{ marginLeft: 20 }}>
-          <Typography>Strength (STR): roll 3D6 and multiply by 5</Typography>
-          <Typography>
-            Constitution (CON): roll 3D6 and multiply by 5
-          </Typography>
-          <Typography>Size (SIZ): roll 2D6+6 and multiply by 5</Typography>
-          <Typography>Dexterity (DEX): roll 3D6 and multiply by 5</Typography>
-          <Typography>Appearance (APP): roll 3D6 and multiply by 5</Typography>
-          <Typography>
-            Intelligence (INT): roll 2D6+6 and multiply by 5
-          </Typography>
-          <Typography>Power (POW): roll 3D6 and multiply by 5</Typography>
-          <Typography>Education (EDU): roll 2D6+6 and multiply by 5</Typography>
-        </Grid>
-        <Grid item>
-          <Typography>
-            After which, the following minor characteristics will be computed
-          </Typography>
-        </Grid>
-        <Grid item style={{ marginLeft: 20 }}>
-          <Typography>Luck: roll 2D6+6 and multiply by 5</Typography>
-          <Typography>Sanity points (SAN): equal to POW</Typography>
-          <Typography>
-            Hit points (HP): add CON and SIZ together, then divide the total by
-            5 (round down)
-          </Typography>
-          <Typography>Magic points (MP): equal to one-fifth of POW</Typography>
-          <Typography>
-            Damage Bonus (DB) and Build: add STR to SIZ together and look up the
-            total on Table 1: Damage Bonus and Build
-          </Typography>
-          <Typography>
-            Movement Rate (MOV): compare DEX, STR, and SIZ as per Table 2:
-            Movement Rates
-          </Typography>
-        </Grid> */}
-
-      {/* <Grid item>
-          <Typography>Select Core Attribute</Typography>
-
-          <CoreCharacteristicRadioGroup
-            selection={state.coreAttribute}
-            onSelection={handleRadioChange}
-            priority={state?.selectedArchetype?.core}
-          />
-        </Grid> */}
-
-      {/* <Grid item style={{ display: 'flex', width: '100%', margin: '40px 0' }}>
-        <Button
-          color="primary"
-          variant="contained"
-          size="large"
-          style={{ margin: 'auto' }}
-          onClick={() => {
-            computeStats();
-          }}
-          disabled={state.coreAttribute === undefined}
-        >
-          <Casino fontSize="large" style={{ paddingRight: 10 }} />
-          Roll for Attributes
-        </Button>
-      </Grid> */}
-      {/* {state.stats && (
-        <Grid item>
-          <Typography>{JSON.stringify(state.stats)}</Typography>
-          <Typography>{JSON.stringify(state.rolls)}</Typography>
-        </Grid>
-      )} */}
-
     </div >
   );
 };
 
 export default ArchetypeList;
 
+
+
+
+//  <Grid container direction="column" spacing={3}>
+//         <Grid item>
+//           <Typography>
+//             Your core attribute will be determined by rolling 1 die and
+//             calculating (1d6+13)x5
+//           </Typography>
+//           <Typography>
+//             Most of your interaction in the game will be expressed through this
+//             property
+//           </Typography>
+//         </Grid>
+//         <Grid item>
+//           <Typography>The remaining attributes adopt this formula:</Typography>
+//         </Grid>
+//         <Grid item style={{ marginLeft: 20 }}>
+//           <Typography>Strength (STR): roll 3D6 and multiply by 5</Typography>
+//           <Typography>
+//             Constitution (CON): roll 3D6 and multiply by 5
+//           </Typography>
+//           <Typography>Size (SIZ): roll 2D6+6 and multiply by 5</Typography>
+//           <Typography>Dexterity (DEX): roll 3D6 and multiply by 5</Typography>
+//           <Typography>Appearance (APP): roll 3D6 and multiply by 5</Typography>
+//           <Typography>
+//             Intelligence (INT): roll 2D6+6 and multiply by 5
+//           </Typography>
+//           <Typography>Power (POW): roll 3D6 and multiply by 5</Typography>
+//           <Typography>Education (EDU): roll 2D6+6 and multiply by 5</Typography>
+//         </Grid>
+//         <Grid item>
+//           <Typography>
+//             After which, the following minor characteristics will be computed
+//           </Typography>
+//         </Grid>
+//         <Grid item style={{ marginLeft: 20 }}>
+//           <Typography>Luck: roll 2D6+6 and multiply by 5</Typography>
+//           <Typography>Sanity points (SAN): equal to POW</Typography>
+//           <Typography>
+//             Hit points (HP): add CON and SIZ together, then divide the total by
+//             5 (round down)
+//           </Typography>
+//           <Typography>Magic points (MP): equal to one-fifth of POW</Typography>
+//           <Typography>
+//             Damage Bonus (DB) and Build: add STR to SIZ together and look up the
+//             total on Table 1: Damage Bonus and Build
+//           </Typography>
+//           <Typography>
+//             Movement Rate (MOV): compare DEX, STR, and SIZ as per Table 2:
+//             Movement Rates
+//           </Typography>
+//         </Grid>
+
+//  <Grid item>
+//           <Typography>Select Core Attribute</Typography>
+
+//           <CoreCharacteristicRadioGroup
+//             selection={state.coreAttribute}
+//             onSelection={handleRadioChange}
+//             priority={state?.selectedArchetype?.core}
+//           />
+//         </Grid>
+
+//  <Grid item style={{ display: 'flex', width: '100%', margin: '40px 0' }}>
+//         <Button
+//           color="primary"
+//           variant="contained"
+//           size="large"
+//           style={{ margin: 'auto' }}
+//           onClick={() => {
+//             computeStats();
+//           }}
+//           disabled={state.coreAttribute === undefined}
+//         >
+//           <Casino fontSize="large" style={{ paddingRight: 10 }} />
+//           Roll for Attributes
+//         </Button>
+//       </Grid>
+//  {state.stats && (
+//         <Grid item>
+//           <Typography>{JSON.stringify(state.stats)}</Typography>
+//           <Typography>{JSON.stringify(state.rolls)}</Typography>
+//         </Grid>
+
+
+// const add = (val: number, a: number) => {
+//   return val + a;
+// };
+
+// const computeStats = () => {
+//   const newRolls = {
+//     core: [rolld6()],
+//     [charKeys.APP]: [rolld6(), rolld6(), rolld6()],
+//     [charKeys.CON]: [rolld6(), rolld6(), rolld6()],
+//     [charKeys.DEX]: [rolld6(), rolld6(), rolld6()],
+//     [charKeys.EDU]: [rolld6(), rolld6()],
+//     [charKeys.INT]: [rolld6(), rolld6()],
+//     [charKeys.POW]: [rolld6(), rolld6(), rolld6()],
+//     [charKeys.SIZ]: [rolld6(), rolld6()],
+//     [charKeys.STR]: [rolld6(), rolld6(), rolld6()],
+//   };
+
+//   const newStats = {
+//     [charKeys.APP]: newRolls[charKeys.APP].reduce(add, 0) * 5,
+//     [charKeys.CON]: newRolls[charKeys.CON].reduce(add, 0) * 5,
+//     [charKeys.DEX]: newRolls[charKeys.DEX].reduce(add, 0) * 5,
+//     [charKeys.EDU]: (newRolls[charKeys.EDU].reduce(add, 0) + 6) * 5,
+//     [charKeys.INT]: (newRolls[charKeys.INT].reduce(add, 0) + 6) * 5,
+//     [charKeys.POW]: newRolls[charKeys.POW].reduce(add, 0) * 5,
+//     [charKeys.SIZ]: (newRolls[charKeys.SIZ].reduce(add, 0) + 6) * 5,
+//     [charKeys.STR]: newRolls[charKeys.STR].reduce(add, 0) * 5,
+//   };
+
+//   if (state.coreAttribute) {
+//     newStats[state.coreAttribute] = (newRolls.core.reduce(add, 0) + 13) * 5;
+//   }
+
+//   // setStats(newStats, newRolls);
+
+
+// };

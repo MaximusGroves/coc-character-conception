@@ -38,7 +38,28 @@ const styles = makeStyles(() => ({
     fontFamily: 'CthulhusCalling',
     textShadow: `1px 2px 4px ${purple}, 0px 3px 6px ${darkPurple}, 0px 0px 2px ${green}`,
     // textShadow: `1px 2px 4px ${purple}, 0px 3px 6px ${darkPurple}, 0px 0px 5px ${green}, 3px 3px 20px ${green}, -2px 1px 30px ${green}`,
-    padding: 10
+    padding: 10,
+
+
+    transition: 'box-shadow 0.3s, border 0.3s',
+    border: `2px solid #424242`,
+    '&:hover': {
+      boxShadow: `0px 0px 10px 3px ${green}99`,
+      border: `2px solid ${green}`,
+      // transition: 'boxShadow 0.3s',
+    },
+    '&:active': {
+      boxShadow: `0px 0px 10px 3px ${purple}`,
+      border: `2px solid ${purple}`,
+      // transition: 'box-shadow 0.3s',
+    },
+  },
+
+  lockList: {
+    position: 'absolute',
+    touchAction: 'none',
+    userSelect: 'none',
+    // padding: 10,
 
 
 
