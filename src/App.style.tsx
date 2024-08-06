@@ -23,9 +23,9 @@ const styles = makeStyles((theme) => ({
     // backgroundPosition: 'center center',
     // // backgroundSize: '100%',
 
-    [theme.breakpoints.down('sm')]: {
-      height: '100vh',
-    },
+    // [theme.breakpoints.down('sm')]: {
+    //   height: '100vh',
+    // },
   },
 }))
 
