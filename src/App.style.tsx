@@ -8,7 +8,7 @@ const styles = makeStyles((theme) => ({
     height: '100vh',
     background: 'url(/img/scene2tile.jpg)',
     backgroundSize: 'cover',
-    backgroundPosition: '66% center',
+    backgroundPosition: '65% center',
     overflowY: 'hidden',
     borderRadius: 0,
   },
@@ -18,6 +18,7 @@ const styles = makeStyles((theme) => ({
     width: '100vw',
     overflowY: 'auto',
     height: 'calc(100dvh - 60px)',
+    borderRadius: 0,
     [theme.breakpoints.down('md')]: {
       height: 'calc(100dvh - 48px)',
       overflowX: 'hidden',
