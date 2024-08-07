@@ -130,10 +130,12 @@ const styles = makeStyles((theme) => ({
   },
 
   leftText: {
-
     position: 'absolute',
     left: 135,
-    top: 'calc( 100dvh - 89px )'
+    top: 'calc( 100dvh - 89px )',
+    [theme.breakpoints.down('xs')]: {
+      left: 130
+    }
 
   },
 
