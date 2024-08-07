@@ -87,7 +87,7 @@ const CharacteristicList: FC = () => {
   return (
 
 
-    <Grid container direction="column" justifyContent='space-between' alignItems='flex-start' style={{ height: '95vh' }}>
+    <Grid container direction="column" justifyContent='space-between' alignItems='flex-start' style={{ height: '100dvh' }}>
       <Grid item container direction="row" justifyContent='space-between' alignContent='flex-start' style={{ display: 'fixed' }}>
         <Grid item >
           <CallOfCharacterTitle style={{ marginRight: 'auto' }} />
@@ -138,19 +138,17 @@ const CharacteristicList: FC = () => {
         </Grid>
         <Grid item>
           <Hidden smDown={coreAttribute !== undefined}>
-            <Typography onMouseOver={handleOpen} className={classes.promptText}
+            <Typography onMouseOver={handleOpen} className={clsx(classes.promptText, classes.leftText)}
               style={{
-                marginLeft: 85,
-                marginBottom: -4,
-                padding: '40px 0 40px 20px',
+
               }}>What do you most desire?</Typography>
           </Hidden>
         </Grid>
         <Grid item style={{ marginLeft: 'auto' }}>
           {
             coreAttribute &&
-            <Button onClick={() => nextStep()} style={{ borderRadius: 1000 }}>
-              <Typography className={classes.promptText} style={{ fontSize: 20, textTransform: 'none', paddingRight: 15, paddingLeft: 10, marginTop: -10 }}>Create your identity</Typography>
+            <Button onClick={() => nextStep()} style={{ borderRadius: 1000 }} className={classes.rightBtn}>
+              <Typography className={clsx(classes.promptText, classes.rightText)}>Create your identity</Typography>
               <Sigil className={clsx(classes.sigil, classes.spookyIcon)} />
               <ArrowForward className={clsx(classes.arrow, classes.spookyIcon)} />
             </Button>

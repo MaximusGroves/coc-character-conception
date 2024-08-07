@@ -17,9 +17,10 @@ const styles = makeStyles((theme) => ({
     // backgroundColor: '#fafafa',
     width: '100vw',
     overflowY: 'auto',
-    height: 'calc(100dvh - 62px)',
+    height: 'calc(100dvh - 60px)',
     [theme.breakpoints.down('md')]: {
-      height: 'calc(100dvh - 50px)',
+      height: 'calc(100dvh - 48px)',
+      overflowX: 'hidden',
     },
 
   },

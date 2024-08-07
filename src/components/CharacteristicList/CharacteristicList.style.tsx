@@ -7,7 +7,6 @@ const styles = makeStyles((theme) => ({
 
   compassRoot: {
     position: 'absolute',
-
     left: 15,
     top: 'calc( 100dvh - 564px - 23px)'
   },
@@ -127,6 +126,33 @@ const styles = makeStyles((theme) => ({
     fontFamily: 'Cthulhumbus',
     color: 'white',
     textShadow: `1px 2px 4px ${purple}, 0px 3px 6px ${darkPurple}, 0px 0px 5px ${green}, 3px 3px 20px ${green}, -2px 1px 30px ${green}`
+
+  },
+
+  leftText: {
+
+    position: 'absolute',
+    left: 135,
+    top: 'calc( 100dvh - 89px )'
+
+  },
+
+  rightText: {
+    textTransform: 'none',
+    paddingRight: 15,
+    marginTop: -7,
+    [theme.breakpoints.down('xs')]: {
+      width: 100,
+      paddingRight: 0,
+    }
+  },
+
+  rightBtn: {
+
+    position: 'absolute',
+    right: 20,
+    top: 'calc( 100dvh - 117px )',
+    marginLeft: 100,
 
   },
 
