@@ -147,7 +147,7 @@ const styles = makeStyles((theme) => ({
     }
   },
 
-  rightBtn: {
+  absoluteRightBtn: {
 
     position: 'absolute',
     right: 20,
