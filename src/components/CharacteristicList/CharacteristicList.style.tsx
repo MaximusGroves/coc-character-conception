@@ -142,7 +142,7 @@ const styles = makeStyles((theme) => ({
     paddingRight: 15,
     marginTop: -7,
     [theme.breakpoints.down('xs')]: {
-      width: 100,
+      width: 'calc( 100vw - 270px)',
       paddingRight: 0,
     }
   },
