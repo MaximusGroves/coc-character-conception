@@ -8,11 +8,16 @@ const styles = makeStyles((theme) => ({
     height: '100vh',
     background: 'url(/img/scene2tile.jpg)',
     backgroundSize: 'cover',
-    backgroundPosition: '67% center',
+    backgroundPosition: '69% center',
+    // backgroundPosition: 'calc(50% + -168px) center',
     overflowY: 'hidden',
     borderRadius: 0,
-    [theme.breakpoints.down('xs')]: {
-      backgroundPosition: '64% center',
+    [theme.breakpoints.down('md')]: {
+      // backgroundPosition: '64% center',
+      // backgroundPosition: 'calc(50% + -152px) center',
+      backgroundPosition: 'calc( 50% + 100dvh / 1632 * -290 ) center',
+
+
     },
   },
   app: {

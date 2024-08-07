@@ -47,8 +47,8 @@ const themeProps = {
     values: {
       xs: 0,
       sm: 450,
-      md: 800,
-      lg: 1000,
+      md: 768,
+      lg: 1024,
       xl: 1280,
     },
   },
