@@ -8,7 +8,7 @@ const styles = makeStyles((theme) => ({
     height: '100vh',
     background: 'url(/img/scene2tile.jpg)',
     backgroundSize: 'cover',
-    backgroundPosition: '66% center',
+    backgroundPosition: '67% center',
     overflowY: 'hidden',
     borderRadius: 0,
     [theme.breakpoints.down('xs')]: {
