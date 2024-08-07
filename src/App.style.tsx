@@ -5,7 +5,7 @@ const styles = makeStyles((theme) => ({
     margin: 0,
     backgroundColor: '#fafafa',
     width: '100vw',
-    height: '100vh',
+    height: '100dvh',
     background: 'url(/img/scene2tile.jpg)',
     backgroundSize: 'cover',
     backgroundPosition: 'center center',
@@ -17,9 +17,9 @@ const styles = makeStyles((theme) => ({
     // backgroundColor: '#fafafa',
     width: '100vw',
     overflowY: 'auto',
-    height: 'calc(100vh - 62px)',
+    height: 'calc(100dvh - 62px)',
     [theme.breakpoints.down('md')]: {
-      height: 'calc(100vh - 50px)',
+      height: 'calc(100dvh - 50px)',
     },
 
   },

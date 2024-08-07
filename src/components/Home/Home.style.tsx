@@ -18,7 +18,7 @@ const styles = makeStyles((theme) => ({
   },
 
   splash: {
-    height: '100vh',
+    height: '100dvh',
     width: '100vw'
   },
 
