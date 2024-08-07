@@ -10,11 +10,7 @@ const styles = makeStyles((theme) => ({
     backgroundSize: 'cover',
     backgroundPosition: '66% center',
     overflowY: 'hidden',
-    [theme.breakpoints.down('xs')]: {
-
-    },
-    // '-webkit-transform': 'scaleX(-1)',
-    // transform: 'scaleX(-1)',
+    borderRadius: 0,
   },
   app: {
     margin: 0,
