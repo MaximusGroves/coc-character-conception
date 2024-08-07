@@ -3,18 +3,13 @@ import { makeStyles } from '@material-ui/core';
 import { green, purple, darkPurple, deepGreen } from '../../providers/AppThemeProvider';
 
 const styles = makeStyles((theme) => ({
-  characteristicRoot: {
-    maxWidth: 2000,
-    width: '100%',
-    height: '100vw',
-    marginLeft: 'auto',
-    marginRight: 'auto',
-  },
+
 
   compassRoot: {
     position: 'absolute',
-    bottom: 25,
+
     left: 15,
+    top: 'calc( 100dvh - 564px - 23px)'
   },
 
 

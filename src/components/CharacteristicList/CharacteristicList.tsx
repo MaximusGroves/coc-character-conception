@@ -1,5 +1,5 @@
 import React, { FC, useRef } from 'react';
-import { Button, Grid, Typography } from '@material-ui/core';
+import { Button, Grid, Hidden, Typography } from '@material-ui/core';
 import { useAppContext } from '../../providers/AppContextProvider';
 import styles from './CharacteristicList.style';
 import { CharacteristicName, charKeys } from '../../data/types';
@@ -137,12 +137,15 @@ const CharacteristicList: FC = () => {
 
         </Grid>
         <Grid item>
-          <Typography onMouseOver={handleOpen} className={classes.promptText}
-            style={{
-              marginLeft: 85,
-              marginBottom: -4,
-              padding: '40px 0 40px 20px',
-            }}>What do you most desire?</Typography></Grid>
+          <Hidden smDown={coreAttribute !== undefined}>
+            <Typography onMouseOver={handleOpen} className={classes.promptText}
+              style={{
+                marginLeft: 85,
+                marginBottom: -4,
+                padding: '40px 0 40px 20px',
+              }}>What do you most desire?</Typography>
+          </Hidden>
+        </Grid>
         <Grid item style={{ marginLeft: 'auto' }}>
           {
             coreAttribute &&
