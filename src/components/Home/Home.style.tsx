@@ -1,14 +1,13 @@
 import { makeStyles } from '@material-ui/core';
 
-const styles = makeStyles({
-  root: {
+const styles = makeStyles((theme) => ({
 
+  root: {
     position: 'relative',
     background: 'url(/img/bg1.png)',
     backgroundPosition: 'center center',
     // backgroundSize: 'contain',
     minHeight: 'calc( 100% - 126px )'
-
   },
 
   splash: {
@@ -28,12 +27,20 @@ const styles = makeStyles({
 
   },
 
-  drawerPaper: { overflow: 'hidden' },
+  drawerPaper: {
+    overflow: 'hidden',
+    height: 61,
+
+    [theme.breakpoints.down('sm')]: {
+      height: 50,
+    },
+  },
 
   buttons: {
     position: 'absolute',
     bottom: 100,
   },
-});
+
+}));
 
 export default styles;

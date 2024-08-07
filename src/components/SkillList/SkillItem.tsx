@@ -108,7 +108,7 @@ const SkillItem: FC<Props> = (props: Props) => {
 
 
   return (
-    <Grid item container sm={4} md={3} lg={2} style={{ display: 'flex' }}>
+    <Grid item container xs={6} sm={4} md={3} lg={2} style={{ display: 'flex' }}>
       <Paper
         className={clsx(classes.root,
           selected && classes.talentSelected

@@ -155,9 +155,9 @@ const CreatorStepper: FC = () => {
                     disabled={false}
                     className={classes.stepLabelBtn}
                   >
-                    <StepLabel>
+                    <StepLabel style={{ marginTop: -4 }}>
                       {(currentWidth !== 'xs' && currentWidth !== 'sm') &&
-                        CreatorSteps[key]}
+                        <span style={{ marginTop: 0 }}>{CreatorSteps[key]}</span>}
                       {(currentWidth !== 'xs' && currentWidth !== 'sm') && (
                         <Typography
                           className={clsx(
