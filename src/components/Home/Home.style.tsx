@@ -6,7 +6,14 @@ const styles = makeStyles((theme) => ({
     position: 'relative',
     background: 'url(/img/bg1.png)',
     backgroundPosition: 'center center',
-    // backgroundSize: 'contain',
+    // backgroundSize: '816px 1456px',
+    backgroundSize: '408px 728px',
+    // [theme.breakpoints.down('sm')]: {
+    //   backgroundSize: '204px 364px',
+    // },
+    // [theme.breakpoints.down('sm')]: {
+    //   backgroundSize: '25%',
+    // },
     minHeight: 'calc( 100% - 126px )'
   },
 

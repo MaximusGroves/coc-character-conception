@@ -4,6 +4,7 @@ import { darkPurple, green, purple } from '../../providers/AppThemeProvider'
 const styles = makeStyles((theme) => ({
   archetypeItem: {
     backgroundImage: 'url(/img/parchment1.png)',
+    backgroundSize: '67%',
     backgroundPosition: 'center top',
     '&:hover': {
       boxShadow:
