@@ -102,59 +102,55 @@ const CharacteristicList: FC = () => {
       </Grid>
 
 
+      {/* Absolutely positioned */}
 
-      <Grid item container direction="row" alignContent='flex-end' alignItems='flex-end'>
-        <Grid item>
-          <SpeedDial
-            ariaLabel="Characteristic List"
-            icon={<img src='/img/compass.png' className={classes.compass} style={{ transition: 'transform 0.25s', transform: open ? 'rotate(45deg)' : 'none' }} alt='make selection' />}
-            classes={{ root: classes.compassRoot, fab: classes.fab, actions: classes.actions }}
-            onOpen={handleOpen}
-            onClick={handleToggle}
-            open={open}
-            direction={'up'}
-            ref={compassRef}
-          >
+      <SpeedDial
+        ariaLabel="Characteristic List"
+        icon={<img src='/img/compass.png' className={classes.compass} style={{ transition: 'transform 0.25s', transform: open ? 'rotate(45deg)' : 'none' }} alt='make selection' />}
+        classes={{ root: classes.compassRoot, fab: classes.fab, actions: classes.actions }}
+        onOpen={handleOpen}
+        onClick={handleToggle}
+        open={open}
+        direction={'up'}
+        ref={compassRef}
+      >
 
-            {charList.map(val => (
+        {charList.map(val => (
 
-              <SpeedDialAction
-                key={val}
-                icon={<SpeedDialIcon />}
-                tooltipTitle={CharacteristicName[val]}
-                // tooltipTitle={val}
-                onClick={() => handleSelection(val)}
-                tooltipPlacement='right'
-                tooltipOpen
-                onMouseOver={() => setHoverVal(val)}
-                onMouseOut={() => setHoverVal(undefined)}
-                classes={{}}
-                TooltipClasses={{}}
+          <SpeedDialAction
+            key={val}
+            icon={<SpeedDialIcon />}
+            tooltipTitle={CharacteristicName[val]}
+            // tooltipTitle={val}
+            onClick={() => handleSelection(val)}
+            tooltipPlacement='right'
+            tooltipOpen
+            onMouseOver={() => setHoverVal(val)}
+            onMouseOut={() => setHoverVal(undefined)}
+            classes={{}}
+            TooltipClasses={{}}
 
-              />
-            ))}
-          </SpeedDial>
+          />
+        ))}
+      </SpeedDial>
 
-        </Grid>
-        <Grid item>
-          <Hidden smDown={coreAttribute !== undefined}>
-            <Typography onMouseOver={handleOpen} className={clsx(classes.promptText, classes.leftText)}
-              style={{
 
-              }}>What do you most desire?</Typography>
-          </Hidden>
-        </Grid>
-        <Grid item style={{ marginLeft: 'auto' }}>
-          {
-            coreAttribute &&
-            <Button onClick={() => nextStep()} className={classes.rightBtn}>
-              <Typography className={clsx(classes.promptText, classes.rightText)}>Create your identity</Typography>
-              <Sigil className={clsx(classes.sigil, classes.spookyIcon)} />
-              <ArrowForward className={clsx(classes.arrow, classes.spookyIcon)} />
-            </Button>
-          }
-        </Grid>
-      </Grid>
+      <Hidden smDown={coreAttribute !== undefined}>
+        <Typography onMouseOver={handleOpen} className={clsx(classes.promptText, classes.leftText)}
+          style={{
+
+          }}>What do you most desire?</Typography>
+
+      </Hidden>
+
+      {coreAttribute !== undefined &&
+        <Button onClick={() => nextStep()} className={classes.rightBtn}>
+          <Typography className={clsx(classes.promptText, classes.rightText)}>Create your identity</Typography>
+          <Sigil className={clsx(classes.sigil, classes.spookyIcon)} />
+          <ArrowForward className={clsx(classes.arrow, classes.spookyIcon)} />
+        </Button>
+      }
+
 
 
 
