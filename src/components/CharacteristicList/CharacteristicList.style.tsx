@@ -153,6 +153,7 @@ const styles = makeStyles((theme) => ({
     right: 20,
     top: 'calc( 100dvh - 117px )',
     marginLeft: 100,
+    borderRadius: 1000
 
   },
 

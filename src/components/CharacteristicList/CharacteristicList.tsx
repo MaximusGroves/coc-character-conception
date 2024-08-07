@@ -147,7 +147,7 @@ const CharacteristicList: FC = () => {
         <Grid item style={{ marginLeft: 'auto' }}>
           {
             coreAttribute &&
-            <Button onClick={() => nextStep()} style={{ borderRadius: 1000 }} className={classes.rightBtn}>
+            <Button onClick={() => nextStep()} className={classes.rightBtn}>
               <Typography className={clsx(classes.promptText, classes.rightText)}>Create your identity</Typography>
               <Sigil className={clsx(classes.sigil, classes.spookyIcon)} />
               <ArrowForward className={clsx(classes.arrow, classes.spookyIcon)} />
