@@ -8,8 +8,11 @@ const styles = makeStyles((theme) => ({
     height: '100vh',
     background: 'url(/img/scene2tile.jpg)',
     backgroundSize: 'cover',
-    backgroundPosition: 'center center',
+    backgroundPosition: '66% center',
     overflowY: 'hidden',
+    [theme.breakpoints.down('xs')]: {
+
+    },
     // '-webkit-transform': 'scaleX(-1)',
     // transform: 'scaleX(-1)',
   },
