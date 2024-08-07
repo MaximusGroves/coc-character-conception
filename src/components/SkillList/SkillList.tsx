@@ -4,7 +4,7 @@ import { skillList, skills } from '../../data/skills';
 import SkillItem from './SkillItem';
 import { useAppContext } from '../../providers/AppContextProvider';
 import styles from './SkillList.style';
-import { green } from '../../providers/AppThemeProvider';
+import { green, useWidth } from '../../providers/AppThemeProvider';
 
 
 const SkillList: FC = () => {
@@ -12,6 +12,7 @@ const SkillList: FC = () => {
   const { stats, selectedArchetype, selectedOccupation, archPoints, occPoints, intPoints, archSkills, occSkills, intSkills } = state;
   const { setState, getMaxOccPoints } = api;
 
+  const currentWidth = useWidth();
 
   const classes = styles()
 
@@ -65,7 +66,16 @@ const SkillList: FC = () => {
       const sum = intPoints + occPoints;
       setState({ intPoints: sum, occPoints: 0 })
     }
+  }
 
+  const getSpacing = () => {
+    switch (currentWidth) {
+      case 'xl': return 3;
+      case 'lg': return 2;
+      case 'md': return 2;
+      case 'sm': return 2;
+      case 'xs': return 1;
+    }
   }
 
   return (
@@ -80,7 +90,7 @@ const SkillList: FC = () => {
         <Typography className={classes.titleTop} style={{ fontWeight: 'bold', fontSize: 40, marginBottom: 0 }}>{archPoints}</Typography>
         <Typography style={{ textShadow: '1px 1px 1px #000' }}>Points Remaining</Typography>
 
-        <Grid item container direction="row" spacing={3}>
+        <Grid item container direction="row" spacing={getSpacing()} className={classes.selectableGroup}>
           {selectedArchetype?.bonusSkills.map((skill) => {
             const thisSkill = skills[skill];
             // const thisName = thisSkill.name;
@@ -118,7 +128,7 @@ const SkillList: FC = () => {
           </Grid>
         </Grid>
 
-        <Grid item container direction="row" spacing={3}>
+        <Grid item container direction="row" spacing={getSpacing()} className={classes.selectableGroup}>
           {selectedOccupation.skills.map((skill) => {
             const thisSkill = skills[skill];
             const thisName = thisSkill.name;
@@ -164,7 +174,7 @@ const SkillList: FC = () => {
           </Grid>
 
 
-          <Grid item container direction="row" spacing={3}>
+          <Grid item container direction="row" spacing={getSpacing()} className={classes.selectableGroup}>
             {investedList.map((skill) => {
               const thisSkill = skills[skill];
               const thisName = thisSkill.name;
@@ -187,7 +197,7 @@ const SkillList: FC = () => {
 
 
 
-          <Grid item container direction="row" spacing={3}>
+          <Grid item container direction="row" spacing={getSpacing()} className={classes.selectableGroup}>
             {remainingList.map((skill) => {
               const thisName = skill.name;
               const matchingKey = Object.keys(skills).find(key => skills[key] === skill) || '';

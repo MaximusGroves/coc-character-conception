@@ -28,7 +28,7 @@ const TalentItem: FC<Props> = (props: Props) => {
     selectedTalent?.filter((val) => val.key === talent.key).length !== 0;
 
   return (
-    <Grid item xs={12} sm={12} md={6} lg={4}>
+    <Grid item xs={12} sm={12} md={6} lg={6} xl={4}>
       <Paper
         className={clsx(classes.talentCard, selected && classes.talentSelected)}
       >

@@ -60,6 +60,13 @@ const styles = makeStyles((theme) => ({
     textShadow: `1px 2px 4px ${purple}, 0px 3px 6px ${darkPurple}, 0px 0px 5px ${green}, 3px 3px 20px ${green}, -2px 1px 30px ${green}`
   },
 
+  listContainer: {
+    [theme.breakpoints.down('xs')]: {
+      marginLeft: -28,
+      width: 'calc( 100% + 56px )',
+    }
+  },
+
   occupationSelected: {
     boxShadow:
       '0px 4px 9px -5px rgba(122, 40, 203,0.4),0px 7px 22px 2px rgba(122, 40, 203,0.28),0px 3px 28px 5px rgba(122, 40, 203,0.24)!important',

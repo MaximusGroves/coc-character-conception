@@ -34,7 +34,7 @@ const ArchetypeItem: FC<Props> = (props: Props) => {
     .join(', ');
 
   return (
-    <Grid item sm={12} md={6} lg={4}>
+    <Grid item xs={12} sm={12} md={6} lg={6} xl={4}>
       <Paper
         className={clsx(
           classes.archetypeItem,

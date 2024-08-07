@@ -33,6 +33,7 @@ export type AppState = {
   occSkills: Record<SkillName, number> | {};
   intSkills: Record<SkillName, number> | {};
   luck?: number[];
+  smallNav: boolean;
 };
 
 const defaultState: AppState = {
@@ -42,7 +43,8 @@ const defaultState: AppState = {
   archPoints: 100,
   archSkills: {},
   occSkills: {},
-  intSkills: {}
+  intSkills: {},
+  smallNav: false,
 };
 
 export type AppFunctions = {

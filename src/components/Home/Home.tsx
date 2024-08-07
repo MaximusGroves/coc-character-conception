@@ -5,7 +5,7 @@ import { useAppContext } from '../../providers/AppContextProvider';
 import ArchetypeList from '../ArchetypeList/ArchetypeList';
 import OccupationList from '../OccupationList/OccupationList';
 import TalentList from '../TalentList/TalentList';
-import { Drawer } from '@material-ui/core';
+import { Drawer, useMediaQuery } from '@material-ui/core';
 import Attributes from '../Attributes/Attributes';
 import SkillList from '../SkillList/SkillList';
 import CharacteristicList from '../CharacteristicList/CharacteristicList';
@@ -18,6 +18,8 @@ const Home: FC = () => {
   const { creatorStep } = state;
 
   // const size = useWidth();
+
+  const fullTitles = useMediaQuery('(min-width:1000px)');
 
   return (
     <div className={creatorStep !== 0 ? classes.root : classes.splash}>
@@ -38,7 +40,7 @@ const Home: FC = () => {
             variant="permanent"
             anchor="bottom"
             classes={{
-              paper: classes.drawerPaper,
+              paper: fullTitles ? classes.drawerPaper : classes.drawerShort,
             }}
           >
             <CreatorStepper />

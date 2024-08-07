@@ -116,6 +116,13 @@ const styles = makeStyles((theme) => ({
 
   },
 
+  listContainer: {
+    [theme.breakpoints.down('xs')]: {
+      marginLeft: -28,
+      width: 'calc( 100% + 56px )',
+    }
+  },
+
 }))
 
 export default styles

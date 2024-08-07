@@ -12,7 +12,11 @@ const styles = makeStyles((theme) => ({
     padding: 20,
     paddingBottom: 0,
     marginBottom: 0,
+    [theme.breakpoints.down('xs')]: {
+      padding: '20px 0 0',
+    }
   },
+
 
   fontScalar: {
     fontFamily: 'Playbill',
@@ -39,6 +43,13 @@ const styles = makeStyles((theme) => ({
 
     color: 'black',
     backgroundColor: 'rgba(0,0,0,0.3)',
+  },
+
+  listContainer: {
+    [theme.breakpoints.down('xs')]: {
+      marginLeft: -28,
+      width: 'calc( 100% + 56px )',
+    }
   },
 
   titleTop: {

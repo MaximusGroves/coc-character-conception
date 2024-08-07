@@ -30,10 +30,10 @@ const styles = makeStyles((theme) => ({
   drawerPaper: {
     overflow: 'hidden',
     height: 61,
-
-    [theme.breakpoints.down('sm')]: {
-      height: 50,
-    },
+  },
+  drawerShort: {
+    overflow: 'hidden',
+    height: 50,
   },
 
   buttons: {

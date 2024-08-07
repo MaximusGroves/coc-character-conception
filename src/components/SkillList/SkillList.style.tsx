@@ -44,6 +44,13 @@ const styles = makeStyles((theme) => ({
     backgroundColor: 'rgba(0,0,0,0.3)',
   },
 
+  selectableGroup: {
+    [theme.breakpoints.down('xs')]: {
+      marginLeft: -28,
+      width: 'calc( 100% + 56px )',
+    }
+  },
+
   talentItem: {},
 
   //  backgroundPosition: 'center top',

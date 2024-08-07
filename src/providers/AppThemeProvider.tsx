@@ -27,7 +27,7 @@ export const purple = '#7A28CB';
 export const red = '#A30015';
 export const gold = '#F1C40F';
 export const darkGold = '#D4AC0C';
-export const lightGold = '#F8E28B';
+export const lightGold = '#F8E28B'
 export const darkPurple = '#290025';
 export const darkGreen = '#006400';
 export const deepGreen = '#008001';
@@ -46,10 +46,10 @@ const themeProps = {
   breakpoints: {
     values: {
       xs: 0,
-      sm: 600,
-      md: 940,
-      lg: 1280,
-      xl: 1920,
+      sm: 450,
+      md: 800,
+      lg: 1000,
+      xl: 1280,
     },
   },
   overrides: {

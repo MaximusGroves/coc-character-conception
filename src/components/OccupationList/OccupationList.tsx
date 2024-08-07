@@ -51,7 +51,7 @@ const OccupationList: FC = () => {
         disabled={switchDisabled}
       />
 
-      <Grid container direction="row" spacing={3}>
+      <Grid container direction="row" spacing={3} className={classes.listContainer}>
         {shownOccupations.map((occupation) => (
           <OccupationItem occupation={occupation}
           // key={occupation.name} 

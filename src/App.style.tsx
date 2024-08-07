@@ -18,18 +18,10 @@ const styles = makeStyles((theme) => ({
     width: '100vw',
     overflowY: 'auto',
     height: 'calc(100vh - 62px)',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       height: 'calc(100vh - 50px)',
     },
 
-
-    // background: 'url(/img/bg1.png)',
-    // backgroundPosition: 'center center',
-    // // backgroundSize: '100%',
-
-    // [theme.breakpoints.down('sm')]: {
-    //   height: '100vh',
-    // },
   },
 }))
 

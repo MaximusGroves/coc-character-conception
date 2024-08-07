@@ -12,6 +12,7 @@ import styles from './CreatorStepper.style';
 import { useAppContext } from '../../providers/AppContextProvider';
 import { ArrowBack, ArrowForward, Casino } from '@material-ui/icons';
 import { CreatorSteps, stepKeys } from '../../data/types';
+import { ReactComponent as Sigil } from '../../assets/Sigil_of_the_Gateway.svg';
 import { useWidth } from '../../providers/AppThemeProvider';
 import clsx from 'clsx';
 
@@ -25,11 +26,20 @@ const CreatorStepper: FC = () => {
     selectedOccupation,
     selectedTalent,
     stats,
+    archPoints,
+    occPoints,
+    intPoints
   } = state;
 
   const { nextStep, prevStep, setStep } = api;
 
   const currentWidth = useWidth();
+
+  let pointsTotal
+
+  if (archPoints !== undefined && occPoints !== undefined && intPoints !== undefined) {
+    pointsTotal = archPoints + occPoints + intPoints;
+  }
 
   const getCompleted = (step: number) => {
     switch (step) {
@@ -42,7 +52,7 @@ const CreatorStepper: FC = () => {
       case 3:
         return stats !== undefined;
       case 4:
-        return false;
+        return pointsTotal === 0;
     }
   };
 
@@ -88,22 +98,44 @@ const CreatorStepper: FC = () => {
           </div>
         );
       case 4:
-        return '';
+        // pointsTotal === undefined ? '?' : pointsTotal === 0 ? pointsTotal : pointsTotal;
+        return (<div
+          style={{
+            width: '100%',
+            textAlign: 'center',
+            display: 'flex',
+            paddingLeft: 4,
+          }}
+        >
+          {(pointsTotal === 0) ? (
+            <span style={{ margin: 'auto' }}>
+              <Sigil className={clsx(classes.sigil)} />
+            </span>
+          ) : (
+            <span style={{ margin: 'auto' }}><span>
+              {pointsTotal === undefined ? '?' : pointsTotal}
+              {/* <Sigil className={clsx(classes.sigil)} /> */}
+            </span><span style={{ fontSize: '0.875rem', paddingLeft: 5 }}>pts</span></span>
+          )}
+        </div>)
+
     }
   };
+
+
 
   const getSelectionStyle = (step: number) => {
     switch (step) {
       case 0:
-        return classes.selectionStyleArchetype;
+        return clsx(classes.selectionStyleArchetype, classes.titleShadow);
       case 1:
-        return classes.selectionStyleOccupation;
+        return clsx(classes.selectionStyleOccupation, classes.titleShadow);
       case 2:
-        return classes.selectionStyleTalent;
+        return clsx(classes.selectionStyleTalent, classes.titleShadow);
       case 3:
         return classes.selectionStyle;
       case 4:
-        return classes.selectionStyle;
+        return clsx(classes.pointText, pointsTotal !== undefined && classes.titleShadow);
     }
   };
 
@@ -141,7 +173,7 @@ const CreatorStepper: FC = () => {
         <Grid item className={classes.stepperParent}>
           <Stepper
             activeStep={thisStep}
-            alternativeLabel={currentWidth === 'sm' || currentWidth === 'xs'}
+            alternativeLabel={currentWidth === 'sm' || currentWidth === 'xs' || currentWidth === 'md'}
             className={classes.stepper}
           >
             {stepKeys.list.map((key, index) => {
@@ -156,9 +188,9 @@ const CreatorStepper: FC = () => {
                     className={classes.stepLabelBtn}
                   >
                     <StepLabel style={{ marginTop: -4 }}>
-                      {(currentWidth !== 'xs' && currentWidth !== 'sm') &&
+                      {(currentWidth !== 'xs' && currentWidth !== 'sm' && currentWidth !== 'md') &&
                         <span style={{ marginTop: 0 }}>{CreatorSteps[key]}</span>}
-                      {(currentWidth !== 'xs' && currentWidth !== 'sm') && (
+                      {(currentWidth !== 'xs' && currentWidth !== 'sm' && currentWidth !== 'md') && (
                         <Typography
                           className={clsx(
                             classes.selectionStyle,

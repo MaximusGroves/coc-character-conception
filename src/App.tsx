@@ -12,7 +12,6 @@ const App: FC = () => {
   const { appName, creatorStep } = state
   const classes = styles()
 
-
   return (
     <Paper className={creatorStep === 0 ? classes.splash : classes.app}>
       <Header appName={appName} />

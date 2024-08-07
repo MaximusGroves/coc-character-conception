@@ -1,5 +1,5 @@
 import React, { FC, useRef } from 'react';
-import { Button, Grid, IconButton, Typography } from '@material-ui/core';
+import { Button, Grid, IconButton, Typography, useMediaQuery } from '@material-ui/core';
 import { CharacteristicName, charKeys } from '../../data/types';
 
 import { Lock, LockOpen } from '@material-ui/icons';
@@ -272,8 +272,6 @@ const ArchetypeList: FC = () => {
       }
     }
 
-
-
     while (lastOrder1.length > 0) {
 
       const index = Math.floor(Math.random() * (lastOrder1.length))
@@ -370,9 +368,6 @@ const ArchetypeList: FC = () => {
     }
   }
 
-
-
-
   const [DB, build] = computeDamageBonus();
   const movement = computeMovementRate();
 
@@ -395,6 +390,10 @@ const ArchetypeList: FC = () => {
     myPhrase = `Rolled a ${myDie1} and a ${myDie2}`
   }
 
+  const singleRow = useMediaQuery('(min-width:600px)');
+
+  console.log(singleRow);
+
   return (
     <div style={{ display: 'flex' }}>
       <Grid container direction="column">
@@ -402,12 +401,12 @@ const ArchetypeList: FC = () => {
           <Typography style={{}} className={classes.titleTop}>What are you made of?</Typography>
         </Grid>
         <Grid container direction='row'>
-          <Grid item xs sm container direction="column" >
+          <Grid item sm md container direction="column" >
             <Grid item style={{ paddingTop: 440, paddingLeft: 56 }}>
               <Button variant='contained' onClick={onRandomize} className={classes.titleTop} style={{ marginTop: 20, backgroundColor: `${green}`, color: 'white', textTransform: 'none' }}>Randomize</Button>
             </Grid>
           </Grid>
-          <Grid item sm container direction="column" spacing={3}>
+          <Grid item md container direction="column" spacing={3} >
             <Grid item >
               <Typography style={{ textShadow: '1px 1px 1px #000' }}>HP: <span style={{ fontWeight: 'bold', fontSize: 25 }}>{HP || '  '}</span></Typography>
               <Typography style={{ textShadow: '1px 1px 1px #000' }}>= ( CON + SIZ ) / 5</Typography>

@@ -13,6 +13,7 @@ import { Skill, skills } from '../../data/skills';
 import { Remove, Add } from '@material-ui/icons';
 import clsx from 'clsx';
 import useLongPress from '../../providers/useLongPress';
+import { useWidth } from '../../providers/AppThemeProvider';
 
 type Props = {
   skill: Skill;
@@ -105,10 +106,10 @@ const SkillItem: FC<Props> = (props: Props) => {
   const longPressSubEvent = useLongPress(onLongPressSub, onLongPressUpSub, holdDur, subOne);
 
 
-
+  const currentWidth = useWidth();
 
   return (
-    <Grid item container xs={6} sm={4} md={3} lg={2} style={{ display: 'flex' }}>
+    <Grid item container xs={6} sm={6} md={3} lg={3} xl={2} style={{ display: 'flex', marginBottom: currentWidth === 'xs' ? 4 : 'unset' }}>
       <Paper
         className={clsx(classes.root,
           selected && classes.talentSelected

@@ -29,6 +29,8 @@ const ArchetypeList: FC = () => {
     );
   });
 
+
+
   return (
     <div>
 
@@ -40,7 +42,7 @@ const ArchetypeList: FC = () => {
         onSelection={handleRadioChange}
       />
 
-      <Grid container direction="row" spacing={3}>
+      <Grid container direction="row" spacing={3} className={classes.listContainer}>
         {filteredArchetypes.map((archetype) => (
           <ArchetypeItem
             archetype={archetype}

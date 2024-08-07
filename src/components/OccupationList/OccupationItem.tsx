@@ -28,7 +28,7 @@ const OccupationItem: FC<Props> = (props) => {
   const selected = selectedOccupation === occupation
 
   return (
-    <Grid item sm={12} md={6} lg={4} className={classes.gridParent}>
+    <Grid item xs={12} sm={12} md={6} lg={6} xl={4} className={classes.gridParent}>
       <Paper
         className={clsx(
           classes.occupationItem,

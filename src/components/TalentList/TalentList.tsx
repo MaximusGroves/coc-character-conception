@@ -13,7 +13,7 @@ const TalentList: FC = () => {
 
       <Typography className={classes.titleTop}>How are you exceptional?</Typography>
 
-      <Grid container direction="row" spacing={3}>
+      <Grid container direction="row" spacing={3} className={classes.listContainer}>
         {talentList.map((talent) => (
           <TalentItem talent={talent}
           // key={talent.name} 
