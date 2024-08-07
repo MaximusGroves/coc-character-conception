@@ -35,13 +35,14 @@ const styles = makeStyles((theme) => ({
   },
 
   drawerPaper: {
-    overflow: 'hidden',
+    overflow: 'hidden!important',
     height: 61,
+    [theme.breakpoints.down('md')]: {
+      overflow: 'hidden!important',
+      height: 50,
+    }
   },
-  drawerShort: {
-    overflow: 'hidden',
-    height: 50,
-  },
+
 
   buttons: {
     position: 'absolute',
