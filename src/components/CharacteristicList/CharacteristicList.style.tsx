@@ -150,10 +150,10 @@ const styles = makeStyles((theme) => ({
   absoluteRightBtn: {
 
     position: 'absolute',
-    right: 20,
-    top: 'calc( 100dvh - 117px )',
-    marginLeft: 100,
-    borderRadius: 1000
+    right: '20px !important',
+    top: 'calc( 100dvh - 117px ) !important',
+    marginLeft: '100px !important',
+    borderRadius: '1000 !important'
 
   },
 
