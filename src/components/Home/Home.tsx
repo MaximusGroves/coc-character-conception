@@ -20,7 +20,7 @@ const Home: FC = () => {
   // const size = useWidth();
 
   return (
-    <div className={creatorStep !== 0 ? classes.root : classes.splash}>
+    <div className={creatorStep !== 0 ? classes.root : classes.splash} id='root'>
 
 
       <div className={classes.container}>

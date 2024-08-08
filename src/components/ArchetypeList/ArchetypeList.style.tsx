@@ -53,7 +53,7 @@ const styles = makeStyles((theme) => ({
     position: 'absolute',
     right: -8,
     bottom: -8,
-    filter: `drop-shadow(0.5px 0.5px 0px #52000B)  drop-shadow(0.5px 0.5px 0px #000000)`,
+    filter: `drop-shadow(0.5px 0.5px 0px #52000B)  drop-shadow(1px 1px 1px #00000037)`,
     // filter: `drop-shadow(0.5px 0.5px 0px #52000B) drop-shadow(0.5px 0.5px 0px #000000) drop-shadow(1px 1px 1px #00000061)`,
   },
 

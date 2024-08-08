@@ -137,6 +137,13 @@ const AppContextProvider: FC<ContextProps> = (props) => {
 
 
   const nextStep = () => {
+    var el = document.getElementById("appRoot"); // Or whatever method to get the element
+    try {
+      //@ts-ignore
+      el.scrollTop = 0;
+    } catch (err) {
+      console.log('root was null')
+    }
     if (creatorStep === undefined) {
       setState({ creatorStep: 0 });
     } else if (creatorStep < stepKeys.list.length) {
@@ -145,6 +152,13 @@ const AppContextProvider: FC<ContextProps> = (props) => {
   };
 
   const prevStep = () => {
+    var el = document.getElementById("appRoot"); // Or whatever method to get the element
+    try {
+      //@ts-ignore
+      el.scrollTo(0, 0);
+    } catch (err) {
+      console.log('root was null')
+    }
     if (creatorStep === undefined) {
       setState({ creatorStep: 0 });
     } else if (creatorStep > 0) {
@@ -154,7 +168,15 @@ const AppContextProvider: FC<ContextProps> = (props) => {
 
   const setStep = (newStep: number | undefined) => {
     // if (newStep > 0 && newStep < stepKeys.list.length) {
-    console.log('setStep', newStep);
+    var el = document.getElementById("appRoot"); // 
+    try {
+      //@ts-ignore
+      el.scrollTop = 0;
+      console.log(el);
+    } catch (err) {
+      console.log('root was null')
+    }
+    // console.log('setStep', newStep);
     if (creatorStep !== undefined && creatorStep === newStep) {
       // setState({ creatorStep: undefined })
     } else {

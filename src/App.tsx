@@ -23,7 +23,7 @@ const App: FC = () => {
   // };
 
   return (
-    <Paper className={creatorStep === 0 ? classes.splash : classes.app}>
+    <Paper id="appRoot" className={creatorStep === 0 ? classes.splash : classes.app}>
       <Header appName={appName} />
       <Home />
     </Paper>
