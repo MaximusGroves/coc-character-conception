@@ -401,7 +401,7 @@ const ArchetypeList: FC = () => {
         <Grid item>
           <Typography style={{}} className={classes.titleTop}>What are you made of?</Typography>
         </Grid>
-        <Grid container direction='row' style={{ maxWidth: 1150, marginLeft: 'auto', marginRight: 'auto' }}>
+        <Grid container direction='row' style={{ maxWidth: 1100, marginLeft: 'auto', marginRight: 'auto' }}>
           <Grid item sm md container direction="column" alignItems='center' >
             <Grid item style={{ position: 'relative', marginLeft: '-308px' }}>
 
