@@ -8,6 +8,7 @@ const styles = makeStyles((theme) => ({
     backgroundPosition: 'center center',
     [theme.breakpoints.down('sm')]: {
       height: 170,
+      backgroundSize: '66% 66%',
     },
   },
 

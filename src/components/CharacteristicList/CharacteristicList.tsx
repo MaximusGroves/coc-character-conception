@@ -12,6 +12,14 @@ import CallOfCharacterTitle from './CallOfCharacterTitle';
 import { ArrowForward } from '@material-ui/icons';
 
 import clsx from 'clsx';
+import { archetypeList } from '../../data/archetypes';
+import ArchetypeItem from '../ArchetypeList/ArchetypeItem';
+import OccupationItem from '../OccupationList/OccupationItem';
+import { occupationList } from '../../data/occupations';
+import TalentItem from '../TalentList/TalentItem';
+import SkillItem from '../SkillList/SkillItem';
+import { talentList } from '../../data/talents';
+import { skillList } from '../../data/skills';
 
 
 const CharacteristicList: FC = () => {
@@ -80,7 +88,10 @@ const CharacteristicList: FC = () => {
   }
 
 
-
+  const fakeArch = archetypeList[0];
+  const fakeOcc = occupationList[0];
+  const fakeTalent = talentList[0];
+  const fakeSkill = skillList[0];
 
   return (
 
@@ -149,14 +160,28 @@ const CharacteristicList: FC = () => {
         </Button>
       }
 
+      <div style={{ opacity: 0, position: 'absolute', left: -1000, top: -1000, zIndex: -1000, height: 10, width: 10 }}>
+        <ArchetypeItem
+          archetype={fakeArch}
+          // key={archetype.name}
+          keyName={fakeArch.name}
+        />
+        <OccupationItem
+          occupation={fakeOcc}
+        />
+        <TalentItem talent={fakeTalent}
+
+        />
+        <SkillItem skill={fakeSkill}
+          // key={thisName} 
+          pointsRemaining={0} minPoints={0} points={0} setPointsRemaining={() => { }} />
+        <img src={'/img/bg1.png'} />
+        <img src={'/img/banner1.png'} />
 
 
+      </div>
 
-    </Grid >
-
-
-
-
+    </Grid>
 
 
 

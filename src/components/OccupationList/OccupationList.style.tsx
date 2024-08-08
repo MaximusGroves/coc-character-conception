@@ -112,9 +112,10 @@ const styles = makeStyles((theme) => ({
     left: '50%',
     transform: 'translateX(-50%)',
     bottom: 17,
-    fill: `${'#FFD700'}`,
+    fill: `${'#B3A369'}`,
     // filter: `drop-shadow(1px 1px 1px #ffffff50) drop-shadow(1px 1px 17px #D4AC10f0) drop-shadow(1px 1px 3px #00000090)`,
-    filter: `drop-shadow(0px 1px 0px #B3A369) drop-shadow(0px 1px 0px #B3A369) drop-shadow(2px 2px 1px #00000021)`
+    // filter: `drop-shadow(0px 1px 0px #B3A369) drop-shadow(0px 1px 0px #000000) drop-shadow(0px 1px 0px #FFD700) drop-shadow(0px 1px 0px #ffffff) drop-shadow(2px 2px 1px #00000021)`,
+    filter: `drop-shadow(0px 0px 0px #B3A36900) drop-shadow(0.5px 0.5px 0px #000000) drop-shadow(0.5px 0.5px 0px #FFD700e4) drop-shadow(1px 1px 2px #ffffff) drop-shadow(0px 0px 0px #00000074)`,
   },
 
   itemContainer: {
