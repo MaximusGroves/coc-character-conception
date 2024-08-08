@@ -86,8 +86,8 @@ const styles = makeStyles((theme) => ({
 
   normalPic: {
     width: 'auto',
-    height: '30vw',
-    maxHeight: '77vh',
+    height: '32vw',
+    maxHeight: '58vh',
     position: 'absolute',
     top: '47%',
     left: '75%',
@@ -95,9 +95,9 @@ const styles = makeStyles((theme) => ({
     [theme.breakpoints.down('sm')]: {
       left: '50%',
       width: 'auto',
-      height: '75vw',
+      height: '70vw',
       top: '47%',
-      maxHeight: '50vh'
+      maxHeight: '47vh'
     }
   },
 

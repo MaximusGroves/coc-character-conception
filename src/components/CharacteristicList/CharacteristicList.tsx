@@ -80,8 +80,9 @@ const CharacteristicList: FC = () => {
 
   if (hoverVal) {
     textVal = hoverVal
-    hideSmall = false
-    hideBig = true;
+    hideSmall = hoverVal === coreAttribute;
+    hideBig = false;
+
   }
   if (imgVal === 'CON') {
     imgVal = "COM";
@@ -102,8 +103,9 @@ const CharacteristicList: FC = () => {
           <CallOfCharacterTitle style={{ marginRight: 'auto' }} />
         </Grid>
         <Grid item>
+          {!hideBig && (<img src={`/img/${(coreAttribute || 'CON') + '-xray'}.jpg`} className={clsx(classes.bigPic)} alt='current selection' />)}
           {!hideSmall && (<img src={`/img/${imgVal}.jpg`} className={clsx(classes.normalPic)} alt='current selection' />)}
-          {!hideBig && (<img src={`/img/${coreAttribute + '-xray'}.jpg`} className={clsx(classes.bigPic)} alt='current selection' />)}
+
         </Grid>
         <Grid item>
           {textVal && <Typography className={classes.charName}>{CharacteristicName[textVal]}</Typography>}
