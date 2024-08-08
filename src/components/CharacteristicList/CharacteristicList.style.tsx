@@ -20,7 +20,7 @@ const styles = makeStyles((theme) => ({
   },
 
 
-  
+
 
 
   titleTop: {
@@ -85,30 +85,36 @@ const styles = makeStyles((theme) => ({
 
 
   normalPic: {
-    width: 400,
-    height: 400,
+    width: 'auto',
+    height: '30vw',
+    maxHeight: '77vh',
     position: 'absolute',
-    top: '50%',
+    top: '47%',
     left: '75%',
     transform: 'translate(-50%, -50%)',
     [theme.breakpoints.down('sm')]: {
       left: '50%',
-      width: '75vw',
+      width: 'auto',
       height: '75vw',
+      top: '47%',
+      maxHeight: '50vh'
     }
   },
 
   bigPic: {
-    width: 525,
-    height: 525,
+    width: 'auto',
+    height: '45vw',
+    maxHeight: '82vh',
     position: 'absolute',
-    top: '50%',
+    top: '47%',
     left: '75%',
     transform: 'translate(-50%, -50%)',
     [theme.breakpoints.down('sm')]: {
       left: '50%',
-      width: '95vw',
+      width: 'auto',
       height: '95vw',
+      top: '47%',
+      maxHeight: '65vh'
     }
   },
 
