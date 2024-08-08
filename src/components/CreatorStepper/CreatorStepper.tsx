@@ -72,7 +72,7 @@ const CreatorStepper: FC = () => {
       case 2:
         return (
           selectedTalent?.map((val, idx) => (
-            <span style={{ display: 'block' }} key={idx}>
+            <span style={{ display: 'block', whiteSpace: 'nowrap' }} key={idx}>
               {val.name}
             </span>
           )) || ''
@@ -140,6 +140,9 @@ const CreatorStepper: FC = () => {
   };
 
 
+  const smallView = currentWidth === 'sm' || currentWidth === 'xs' || currentWidth === 'md';
+
+
   let thisStep = 0;
   if (creatorStep) {
     thisStep = creatorStep - 1;
@@ -173,7 +176,7 @@ const CreatorStepper: FC = () => {
         <Grid item className={classes.stepperParent}>
           <Stepper
             activeStep={thisStep}
-            alternativeLabel={currentWidth === 'sm' || currentWidth === 'xs' || currentWidth === 'md'}
+            alternativeLabel={smallView}
             className={classes.stepper}
           >
             {stepKeys.list.map((key, index) => {
@@ -187,10 +190,19 @@ const CreatorStepper: FC = () => {
                     disabled={false}
                     className={classes.stepLabelBtn}
                   >
-                    <StepLabel style={{ marginTop: -4 }}>
-                      {(currentWidth !== 'xs' && currentWidth !== 'sm' && currentWidth !== 'md') &&
-                        <span style={{ marginTop: 0 }}>{CreatorSteps[key]}</span>}
-                      {(currentWidth !== 'xs' && currentWidth !== 'sm' && currentWidth !== 'md') && (
+                    <StepLabel style={{ marginTop: -4, maxHeight: 64 }}>
+                      {(!smallView && !getCompleted(index)) &&
+                        <span
+                          style={{
+                            // marginTop: -20,
+                            // left: '50%',
+                            // position: 'absolute',
+                            whiteSpace: 'nowrap',
+
+                          }}>
+                          {CreatorSteps[key]}
+                        </span>}
+                      {(!smallView) && (
                         <Typography
                           className={clsx(
                             classes.selectionStyle,

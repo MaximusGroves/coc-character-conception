@@ -33,13 +33,14 @@ const styles = makeStyles((theme) => ({
   },
 
   sigil: {
+    // position: 'absolute',
+    // top: -8,
+    // left: '42%',
+    // zIndex: -1,
     fill: green,
-    position: 'absolute',
-    top: -8,
-    width: 60,
-    height: 60,
-    left: '42%',
-    zIndex: -1,
+    marginTop: 3,
+    width: 55,
+    height: 55,
     filter: `drop-shadow(1px 1px 1px ${darkPurple}) drop-shadow(1px 1px 1px ${purple}) drop-shadow(3px 3px 10px ${deepGreen}55)`,
   },
 
@@ -63,17 +64,20 @@ const styles = makeStyles((theme) => ({
 
   selectionStyleArchetype: {
     fontFamily: 'SFComicScript',
+    paddingLeft: 10,
   },
 
   selectionStyleOccupation: {
     fontFamily: 'Diploma',
     textAlign: 'center',
+    paddingLeft: 10,
   },
 
   selectionStyleTalent: {
     fontFamily: 'Playbill',
     fontSize: 16,
     textAlign: 'center',
+    paddingLeft: 10,
   },
 
   btnLeft: {

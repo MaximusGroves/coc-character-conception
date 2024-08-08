@@ -22,7 +22,7 @@ const Header: FC<HeaderProps> = (props) => {
         <Toolbar>
           <div style={{ maxWidth: 2000, width: '100%', marginLeft: 'auto', marginRight: 'auto' }}>
 
-            <CallOfCharacterTitle style={{ paddingTop: 24, marginRight: 'auto' }} />
+            <CallOfCharacterTitle className={classes.headerTitleNudge} />
             {/* {state.coreAttribute && <Typography className={classes.charName}>{CharacteristicName[coreAttribute || 'APP']}</Typography>} */}
             <Typography className={classes.charName}>{currentStepName()}</Typography>
           </div>

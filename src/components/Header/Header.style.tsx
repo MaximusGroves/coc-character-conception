@@ -6,7 +6,11 @@ const styles = makeStyles((theme) => ({
     background: 'url(/img/banner1.png)',
     backgroundSize: 'contain',
     backgroundPosition: 'center center',
+    [theme.breakpoints.down('sm')]: {
+      height: 170,
+    },
   },
+
   title: {
     fontFamily: 'SFComicScript',
     fontSize: 50,
@@ -17,6 +21,16 @@ const styles = makeStyles((theme) => ({
       fontSize: 22,
     },
   },
+
+  headerTitleNudge: {
+    marginRight: 'auto',
+    paddingTop: 24,
+    [theme.breakpoints.down('sm')]: {
+      marginTop: -8,
+      paddingTop: 0,
+    }
+  },
+
   charName: {
     fontFamily: 'CthulhusCalling',
     fontSize: 40,
@@ -25,7 +39,15 @@ const styles = makeStyles((theme) => ({
     top: 60,
     left: 'calc( 75% + 12px )',
     transform: 'translate(-50%, -50%)',
-    textShadow: `1px 2px 4px ${purple}, 0px 3px 6px ${darkPurple}, 0px 0px 5px ${green}, 3px 3px 20px ${green}, -2px 1px 30px ${green}`
+    textShadow: `1px 2px 4px ${purple}, 0px 3px 6px ${darkPurple}, 0px 0px 5px ${green}, 3px 3px 20px ${green}, -2px 1px 30px ${green}`,
+    [theme.breakpoints.down('sm')]: {
+      top: 100,
+      left: '50%',
+      position: 'absolute',
+      transform: 'translateX(-50%)',
+    },
+
+
 
   }
 }));

@@ -4,7 +4,8 @@ import { skillList, skills } from '../../data/skills';
 import SkillItem from './SkillItem';
 import { useAppContext } from '../../providers/AppContextProvider';
 import styles from './SkillList.style';
-import { green, useWidth } from '../../providers/AppThemeProvider';
+import { useWidth } from '../../providers/AppThemeProvider';
+import clsx from 'clsx';
 
 
 const SkillList: FC = () => {
@@ -87,8 +88,8 @@ const SkillList: FC = () => {
 
         <Typography style={{ fontWeight: 'bold', textShadow: '1px 1px 1px #000' }}>Archetype Skills</Typography>
         <Typography style={{ textShadow: '1px 1px 1px #000' }}>{`Your Archetype of ${selectedArchetype?.name} affords you 100 points to upgrade any of these skills`}</Typography>
-        <Typography className={classes.titleTop} style={{ fontWeight: 'bold', fontSize: 40, marginBottom: 0 }}>{archPoints}</Typography>
-        <Typography style={{ textShadow: '1px 1px 1px #000' }}>Points Remaining</Typography>
+        <Typography className={clsx(classes.titleTop, classes.pointsLeft)} >{archPoints}</Typography>
+        <Typography className={classes.minorText}>Points Remaining</Typography>
 
         <Grid item container direction="row" spacing={getSpacing()} className={classes.selectableGroup}>
           {selectedArchetype?.bonusSkills.map((skill) => {
@@ -123,8 +124,8 @@ const SkillList: FC = () => {
           <Grid item>
             <Typography style={{ fontWeight: 'bold', textShadow: '1px 1px 1px #000' }}>Occupation Skills</Typography>
             <Typography style={{ textShadow: '1px 1px 1px #000' }}>{`Your Occupation of ${selectedOccupation?.name} and statistics affords you ${getMaxOccPoints(selectedOccupation, stats)} skill points to upgrade any of these skills`}</Typography>
-            <Typography className={classes.titleTop} style={{ fontWeight: 'bold', fontSize: 40, marginBottom: 0 }}>{occPoints}</Typography>
-            <Typography style={{ textShadow: '1px 1px 1px #000' }}>Points Remaining</Typography>
+            <Typography className={clsx(classes.titleTop, classes.pointsLeft)}>{occPoints}</Typography>
+            <Typography className={classes.minorText}>Points Remaining</Typography>
           </Grid>
         </Grid>
 
@@ -142,8 +143,8 @@ const SkillList: FC = () => {
           })}
         </Grid>
 
-        <Grid item>
-          <Button variant='contained' onClick={recommitPoints} className={classes.titleTop} style={{ marginTop: 20, backgroundColor: `${green}`, color: 'white', textTransform: 'none' }}>Commit remainder of points to Personal Interests Below</Button>
+        <Grid item style={{ marginLeft: 'auto', marginRight: 'auto' }}>
+          <Button variant='contained' onClick={recommitPoints} className={clsx(classes.titleTop, classes.recommitBtn)}>Commit remainder of points to Personal Interests Below</Button>
         </Grid>
 
       </> : <>
@@ -166,8 +167,8 @@ const SkillList: FC = () => {
             <Grid item>
               <Typography style={{ fontWeight: 'bold', textShadow: '1px 1px 1px #000' }}>Personal Interest Skills</Typography>
               <Typography style={{ textShadow: '1px 1px 1px #000' }} >{`Your Intelligence stat of ${stats.INT} affords you ${stats.INT * 2} personal interest skill points to upgrade any skill`}</Typography>
-              <Typography className={classes.titleTop} style={{ fontWeight: 'bold', fontSize: 40, marginBottom: 0 }}>{intPoints}</Typography>
-              <Typography style={{ textShadow: '1px 1px 1px #000' }}>Points Remaining</Typography>
+              <Typography className={clsx(classes.titleTop, classes.pointsLeft)}>{intPoints}</Typography>
+              <Typography className={classes.minorText}>Points Remaining</Typography>
               <Typography style={{ textShadow: '1px 1px 1px #000' }}>{`Previously invested skills are listed first, you may upgrade them or invest in something brand new`}</Typography>
 
             </Grid>

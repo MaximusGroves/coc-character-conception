@@ -14,7 +14,11 @@ const styles = makeStyles((theme) => ({
     // [theme.breakpoints.down('sm')]: {
     //   backgroundSize: '25%',
     // },
-    minHeight: 'calc( 100% - 126px )'
+    minHeight: 'calc( 100% - 126px )',
+    [theme.breakpoints.down('sm')]: {
+      minHeight: 'calc( 100% - 170px )',
+    }
+
   },
 
   splash: {

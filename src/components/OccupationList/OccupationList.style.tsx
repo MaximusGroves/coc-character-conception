@@ -57,7 +57,10 @@ const styles = makeStyles((theme) => ({
     color: 'white',
     fontSize: 20,
     marginBottom: 20,
-    textShadow: `1px 2px 4px ${purple}, 0px 3px 6px ${darkPurple}, 0px 0px 5px ${green}, 3px 3px 20px ${green}, -2px 1px 30px ${green}`
+    textShadow: `1px 2px 4px ${purple}, 0px 3px 6px ${darkPurple}, 0px 0px 5px ${green}, 3px 3px 20px ${green}, -2px 1px 30px ${green}`,
+    [theme.breakpoints.down('sm')]: {
+      textAlign: 'center',
+    }
   },
 
   listContainer: {
@@ -110,7 +113,8 @@ const styles = makeStyles((theme) => ({
     transform: 'translateX(-50%)',
     bottom: 17,
     fill: `${'#FFD700'}`,
-    filter: `drop-shadow(1px 1px 1px #ffffff50) drop-shadow(1px 1px 17px #D4AC10f0) drop-shadow(1px 1px 3px #00000090)`,
+    // filter: `drop-shadow(1px 1px 1px #ffffff50) drop-shadow(1px 1px 17px #D4AC10f0) drop-shadow(1px 1px 3px #00000090)`,
+    filter: `drop-shadow(0px 1px 0px #B3A369) drop-shadow(0px 1px 0px #B3A369) drop-shadow(2px 2px 1px #00000021)`
   },
 
   itemContainer: {

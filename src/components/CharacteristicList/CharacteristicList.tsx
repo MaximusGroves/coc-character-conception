@@ -71,11 +71,9 @@ const CharacteristicList: FC = () => {
   }
 
   if (hoverVal) {
-    if (hoverVal !== coreAttribute) {
-      textVal = hoverVal
-      hideSmall = false
-      hideBig = true;
-    }
+    textVal = hoverVal
+    hideSmall = false
+    hideBig = true;
   }
   if (imgVal === 'CON') {
     imgVal = "COM";
@@ -127,7 +125,7 @@ const CharacteristicList: FC = () => {
             tooltipOpen
             onMouseOver={() => setHoverVal(val)}
             onMouseOut={() => setHoverVal(undefined)}
-            classes={{}}
+            FabProps={{ classes: { root: classes.speedDialAction } }}
             TooltipClasses={{}}
 
           />

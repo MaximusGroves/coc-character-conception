@@ -16,6 +16,33 @@ const styles = makeStyles((theme) => ({
     // marginBottom: ,
   },
 
+  pointsLeft: {
+    fontWeight: 'bold',
+    fontSize: '60px!important',
+    marginBottom: '-10px!important',
+
+  },
+
+  minorText: {
+    textShadow: '1px 1px 1px #000',
+    paddingBottom: 16,
+    [theme.breakpoints.down('sm')]: {
+      textAlign: 'center'
+    }
+  },
+
+  recommitBtn: {
+    marginTop: 20,
+    backgroundColor: `${green}`,
+    color: 'white',
+    textTransform: 'none',
+    [theme.breakpoints.down('sm')]: {
+      marginLeft: 'auto',
+      marginRight: 'auto',
+      display: 'block'
+    }
+  },
+
   fontScalar: {
     fontFamily: 'Pervitina',
     fontSize: 20,
@@ -42,6 +69,13 @@ const styles = makeStyles((theme) => ({
 
     color: 'black',
     backgroundColor: 'rgba(0,0,0,0.3)',
+  },
+
+  pointHelpers: {
+    position: 'absolute',
+    bottom: 18,
+    fontSize: 20,
+    color: '#111'
   },
 
   selectableGroup: {
@@ -109,7 +143,10 @@ const styles = makeStyles((theme) => ({
     color: 'white',
     fontSize: 20,
     marginBottom: 20,
-    textShadow: `1px 2px 4px ${purple}, 0px 3px 6px ${darkPurple}, 0px 0px 5px ${green}, 3px 3px 20px ${green}, -2px 1px 30px ${green}`
+    textShadow: `1px 2px 4px ${purple}, 0px 3px 6px ${darkPurple}, 0px 0px 5px ${green}, 3px 3px 20px ${green}, -2px 1px 30px ${green}`,
+    [theme.breakpoints.down('sm')]: {
+      textAlign: 'center',
+    }
   },
 
   button: {

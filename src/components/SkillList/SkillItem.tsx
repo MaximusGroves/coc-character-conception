@@ -10,7 +10,7 @@ import {
 import styles from './SkillList.style';
 // import { useAppContext } from '../../providers/AppContextProvider';
 import { Skill, skills } from '../../data/skills';
-import { Remove, Add } from '@material-ui/icons';
+import { Remove, Add, GetApp, Publish } from '@material-ui/icons';
 import clsx from 'clsx';
 import useLongPress from '../../providers/useLongPress';
 import { useWidth } from '../../providers/AppThemeProvider';
@@ -75,6 +75,24 @@ const SkillItem: FC<Props> = (props: Props) => {
     }
   }
 
+  const addMax = () => {
+    if (pointsRemaining > 0 && points + minPoints < 99) {
+      if (minPoints + points + pointsRemaining < 99) {
+        setPointsRemaining(matchingKey, points + pointsRemaining, 0)
+      } else {
+        const remainingSpace = 99 - points - minPoints;
+        setPointsRemaining(matchingKey, 99 - minPoints, pointsRemaining - remainingSpace)
+      }
+    }
+  }
+
+  const subMax = () => {
+    if (points > 0) {
+      setPointsRemaining(matchingKey, 0, pointsRemaining + points)
+    }
+  }
+
+
   const [pointIncrementer, setIncrementer] = React.useState<NodeJS.Timeout | undefined>(undefined);
 
   const onLongPressAdd = () => {
@@ -127,10 +145,52 @@ const SkillItem: FC<Props> = (props: Props) => {
               child: selected ? classes.rippleDeselect : classes.ripple,
             },
           }}
-
         >
-          <Typography style={{ position: 'absolute', left: 3, bottom: 5, fontSize: 22, color: '#111' }}>{skill.startingValue}</Typography>
-          <Typography style={{ position: 'absolute', right: 3, bottom: 5, fontSize: 22, color: '#111' }}>{points}</Typography>
+
+          {/* absolute positions */}
+          <Typography style={{ left: 3 }} className={classes.pointHelpers}>{skill.startingValue}</Typography>
+          <Typography style={{ right: 3 }} className={classes.pointHelpers}>{points}</Typography>
+
+          <IconButton
+            disabled={!selected}
+            color={points > 0 ? "secondary" : 'default'}
+            style={
+              {
+                opacity: points > 0 ? 1 : 0.3,
+                borderRadius: 0,
+                padding: 0,
+                position: 'absolute',
+                left: 0,
+                bottom: 0,
+              }
+            }
+            onClick={(e) => { subMax(); e.stopPropagation() }}
+          >
+            <GetApp />
+          </IconButton>
+
+          <IconButton
+            disabled={!selected}
+            color={pointsRemaining > 0 && points + minPoints < 99 ? "primary" : 'default'}
+            style={
+              {
+                opacity: pointsRemaining > 0 && points + minPoints < 99 ? 1 : 0.3,
+                borderRadius: 0,
+                padding: 0,
+                position: 'absolute',
+                right: 0,
+                bottom: 0,
+              }
+            }
+            onClick={(e) => { addMax(); e.stopPropagation() }}
+          >
+
+            <Publish />
+
+
+          </IconButton>
+
+          {/* normal rendering */}
           <Grid item container direction="column" style={{}}>
             <Grid item className={classes.title}>
               <Typography
@@ -155,8 +215,9 @@ const SkillItem: FC<Props> = (props: Props) => {
               direction="row"
               alignItems="center"
               justify="center"
-              style={{ marginTop: 5, display: 'flex' }}
+              style={{ marginTop: 5, display: 'flex', position: 'relative' }}
             >
+
               <Grid item>
                 <IconButton
                   disabled={!selected}
@@ -168,10 +229,10 @@ const SkillItem: FC<Props> = (props: Props) => {
                   <Remove />
                 </IconButton>
               </Grid>
-              <Grid item>
+              <Grid item style={{ paddingLeft: 20 }}>
                 <Typography
                   variant="h4"
-                  style={{ color: points === 0 ? '#777' : 'inherit', transition: 'color 0.3s' }}
+                  style={{ color: points === 0 ? '#777' : 'inherit', transition: 'color 0.3s', position: 'absolute', bottom: 0, transform: 'translateX(-50%)', left: '50%' }}
                 >
                   {points + minPoints}
                 </Typography>
@@ -183,15 +244,17 @@ const SkillItem: FC<Props> = (props: Props) => {
                   style={{ opacity: pointsRemaining > 0 && points + minPoints < 99 ? 1 : 0.3 }}
                   {...longPressAddEvent}
                   onClick={e => e.stopPropagation()}
-
                 >
-
                   <Add />
                 </IconButton>
               </Grid>
+
+
+
             </Grid>
 
           </div>
+
 
 
         </Button>

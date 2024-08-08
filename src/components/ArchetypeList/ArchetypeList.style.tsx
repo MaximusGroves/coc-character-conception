@@ -53,6 +53,7 @@ const styles = makeStyles((theme) => ({
     position: 'absolute',
     right: -8,
     bottom: -8,
+    filter: `drop-shadow(1px 1px 0px #52000B)  drop-shadow(2px 2px 1px #00000021)`
   },
 
   itemContainer: {
@@ -104,9 +105,10 @@ const styles = makeStyles((theme) => ({
     color: 'white',
     fontSize: 20,
     marginBottom: 20,
-
-    textShadow: `1px 2px 4px ${purple}, 0px 3px 6px ${darkPurple}, 0px 0px 5px ${green}, 3px 3px 20px ${green}, -2px 1px 30px ${green}`
-
+    textShadow: `1px 2px 4px ${purple}, 0px 3px 6px ${darkPurple}, 0px 0px 5px ${green}, 3px 3px 20px ${green}, -2px 1px 30px ${green}`,
+    [theme.breakpoints.down('sm')]: {
+      textAlign: 'center'
+    }
   },
 
   priority: {

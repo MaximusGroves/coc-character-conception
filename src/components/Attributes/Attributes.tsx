@@ -13,6 +13,7 @@ import swap from 'lodash-move'
 import styles from './Attribute.style';
 
 import { green } from '../../providers/AppThemeProvider';
+import clsx from 'clsx';
 
 
 const ArchetypeList: FC = () => {
@@ -400,131 +401,158 @@ const ArchetypeList: FC = () => {
         <Grid item>
           <Typography style={{}} className={classes.titleTop}>What are you made of?</Typography>
         </Grid>
-        <Grid container direction='row'>
-          <Grid item sm md container direction="column" >
-            <Grid item style={{ paddingTop: 440, paddingLeft: 56 }}>
+        <Grid container direction='row' style={{ maxWidth: 1150, marginLeft: 'auto', marginRight: 'auto' }}>
+          <Grid item sm md container direction="column" alignItems='center' >
+            <Grid item style={{ position: 'relative', marginLeft: '-308px' }}>
+
+
+              <div style={{ position: 'absolute', left: 16, top: -3 }}>
+                <div className={classes.draglist} style={{ height: items1.length * buttonHeightAndPadding }}>
+                  {springs3.map(({ zIndex, y, scale }, i) => (
+                    <animated.div
+                      key={i}
+                      style={{
+                        zIndex,
+                        y,
+                        scale,
+                        border: lockedAtts[i] ? `2px solid ${green}99` : '2px solid #ffffff00',
+                        borderRadius: '50px 16px 16px 50px',
+                        width: 264,
+                        transition: 'border 0.3s',
+                      }}
+                      className={classes.lockList}
+                      children={
+                        <IconButton
+                          color={lockedAtts[i] ? "primary" : "default"}
+                          onClick={
+                            () => {
+                              const newList = [...lockedAtts];
+                              newList[i] = !lockedAtts[i];
+                              setLockedAtts(newList);
+                            }
+                          }>
+                          {lockedAtts[i] ? <Lock /> : <LockOpen />}
+                        </IconButton>
+                      }
+
+                    />
+                  ))}
+                </div>
+              </div>
+
+              <div style={{ position: 'absolute', left: 80 }}>
+                <div className={classes.draglist} style={{ height: items1.length * buttonHeightAndPadding }}>
+                  {springs1.map(({ zIndex, y, scale }, i) => (
+                    <animated.div
+                      {...bind1(i)}
+                      key={i}
+                      style={{
+                        zIndex,
+                        y,
+                        scale,
+                        cursor: 'pointer'
+                      }}
+                      className={classes.listContent}
+                      children={CharacteristicName[items1[i]]}
+                    />
+                  ))}
+                </div>
+              </div>
+              <div style={{ position: 'absolute', left: 236 }}>
+                <div className={classes.draglist} style={{ height: items1.length * buttonHeightAndPadding }}>
+                  {springs2.map(({ zIndex, y, scale }, i) => (
+                    <animated.div
+                      {...bind2(i)}
+                      key={i}
+                      style={{
+                        zIndex,
+                        y,
+                        scale,
+                        fontSize: 30, padding: 4,
+                        cursor: 'pointer',
+                        color: items2[i] === 90 ? green : 'white'
+                      }}
+                      className={classes.listContent}
+                      children={items2[i]}
+                    />
+                  ))}
+                </div>
+              </div>
+
+
+            </Grid>
+            <Grid item style={{ paddingTop: 440 }}>
               <Button variant='contained' onClick={onRandomize} className={classes.titleTop} style={{ marginTop: 20, backgroundColor: `${green}`, color: 'white', textTransform: 'none' }}>Randomize</Button>
             </Grid>
           </Grid>
-          <Grid item md container direction="column" spacing={3} >
-            <Grid item >
-              <Typography style={{ textShadow: '1px 1px 1px #000' }}>HP: <span style={{ fontWeight: 'bold', fontSize: 25 }}>{HP || '  '}</span></Typography>
-              <Typography style={{ textShadow: '1px 1px 1px #000' }}>= ( CON + SIZ ) / 5</Typography>
-            </Grid>
-            <Grid item>
-              <Typography style={{ textShadow: '1px 1px 1px #000' }}>Sanity: <span style={{ fontWeight: 'bold', fontSize: 25 }}>{stats?.POW || '  '}</span></Typography>
-              <Typography style={{ textShadow: '1px 1px 1px #000' }}>= POW</Typography>
-            </Grid>
-            <Grid item>
-              <Typography style={{ textShadow: '1px 1px 1px #000' }}>MP: <span style={{ fontWeight: 'bold', fontSize: 25 }}>{MP || '  '}</span></Typography>
-              <Typography style={{ textShadow: '1px 1px 1px #000' }}>= POW / 5</Typography>
-            </Grid>
-            <Grid item>
-              <Typography style={{ textShadow: '1px 1px 1px #000' }}>Damage Bonus: <span style={{ fontWeight: 'bold', fontSize: 25 }}>{DB || '  '}</span></Typography>
-              <Typography style={{ textShadow: '1px 1px 1px #000' }}>Table 1 page 23</Typography>
-            </Grid>
-            <Grid item>
-              <Typography style={{ textShadow: '1px 1px 1px #000' }}>Build: <span style={{ fontWeight: 'bold', fontSize: 25 }}>{build || '  '}</span></Typography>
-              <Typography style={{ textShadow: '1px 1px 1px #000' }}>Table 1 page 23 Pulp Cthulhu</Typography>
-            </Grid>
-            <Grid item>
-              <Typography style={{ textShadow: '1px 1px 1px #000' }}>Movement Rate: <span style={{ fontWeight: 'bold', fontSize: 25 }}>{movement || '  '}</span></Typography>
-              <Typography style={{ textShadow: '1px 1px 1px #000' }}>Table 2 page 23 Pulp Cthulhu</Typography>
-            </Grid>
-            <Grid item>
-              <Typography style={{ textShadow: '1px 1px 1px #000' }}>Luck <span style={{ fontWeight: 'bold', fontSize: 25 }}>{myLuck || '  '}</span></Typography>
-              <Typography style={{ textShadow: '1px 1px 1px #000' }}>= ( 2d6 + 6 ) * 5</Typography>
-              {luck ?
-                <Typography style={{ textShadow: '1px 1px 1px #000' }}>{myPhrase}</Typography>
-                :
-                <Button variant='contained' disabled={stats === undefined} onClick={computeLuck} className={classes.titleTop} style={{ marginTop: 20, backgroundColor: `${green}`, color: 'white', textTransform: 'none' }}>Roll for Luck Now!</Button>
-              }
+          <Grid item md container direction="column" spacing={3} alignItems='flex-start'
+            style={
+              {
+                marginLeft: 'auto',
+                marginRight: 'auto',
+                // textAlign: 'center'
+              }}>
+            <Grid item container direction="row" alignItems="center" justifyContent="center">
+              <Grid item>
+                <Typography style={{ display: 'inline', marginLeft: -20, }} className={clsx(classes.charName)}>HP:</Typography>
+                <Typography style={{ display: 'inline' }} className={clsx(classes.titleTop, classes.bigText)}>{HP || '  '}</Typography>
+              </Grid>
+
+              <Grid item>
+                <Typography style={{ display: 'inline' }} className={clsx(classes.charName)}>Sanity:</Typography>
+                <Typography style={{ display: 'inline' }} className={clsx(classes.titleTop, classes.bigText)}>{stats?.POW || '  '}</Typography>
+              </Grid>
+
+              <Grid item>
+                <Typography style={{ display: 'inline' }} className={clsx(classes.charName)}>MP:</Typography>
+                <Typography style={{ display: 'inline' }} className={clsx(classes.titleTop, classes.bigText)}>{MP || '  '}</Typography>
+              </Grid>
 
             </Grid>
+
+            <Grid item container direction="row" alignItems="center" justifyContent="center">
+              <Grid item>
+                <Typography style={{ display: 'inline', marginLeft: -20 }} className={clsx(classes.charName)}>Damage Bonus (DB):</Typography>
+                <Typography style={{ display: 'inline' }} className={clsx(classes.titleTop, classes.bigText)}>{DB || '  '}</Typography>
+              </Grid>
+
+              <Grid item>
+                <Typography style={{ display: 'inline' }} className={clsx(classes.charName)}>Build:</Typography>
+                <Typography style={{ display: 'inline' }} className={clsx(classes.titleTop, classes.bigText)}>{build || '  '}</Typography>
+              </Grid>
+
+              <Grid item>
+                <Typography style={{ display: 'inline' }} className={clsx(classes.charName)}>Movement:</Typography>
+                <Typography style={{ display: 'inline' }} className={clsx(classes.titleTop, classes.bigText)}>{movement || '  '}</Typography>
+              </Grid>
+
+            </Grid>
+
+            <Grid item container direction="row" alignItems="center" justifyContent="center">
+
+              <Grid item>
+                {luck ? <>
+                  <Typography style={{ display: 'inline' }} className={clsx(classes.charName)}>Luck:</Typography>
+                  <Typography style={{ display: 'inline' }} className={clsx(classes.titleTop, classes.bigText)}>{myLuck || '  '}</Typography>
+                  <Typography style={{ textShadow: '1px 1px 1px #000', textAlign: 'center' }}>{myPhrase}</Typography>
+                  <Typography style={{ textShadow: '1px 1px 1px #000', textAlign: 'center' }}>Luck = ( 2d6 + 6 ) * 5</Typography>
+                </>
+                  :
+                  <>
+                    <Button variant='contained' disabled={stats === undefined} onClick={computeLuck} className={classes.titleTop} style={{ marginTop: 20, backgroundColor: `${green}`, color: 'white', textTransform: 'none' }}>Roll for Luck Now!</Button>
+                    <Typography style={{ textShadow: '1px 1px 1px #000', textAlign: 'center' }}>Luck = ( 2d6 + 6 ) * 5</Typography>
+                  </>
+                }
+
+              </Grid>
+            </Grid>
+
+
           </Grid>
         </Grid>
       </Grid>
 
 
-
-
-      <div style={{ position: 'absolute', top: 77, left: 16 }}>
-        <div className={classes.draglist} style={{ height: items1.length * buttonHeightAndPadding }}>
-          {springs3.map(({ zIndex, y, scale }, i) => (
-            <animated.div
-              key={i}
-              style={{
-                zIndex,
-                y,
-                scale,
-                border: lockedAtts[i] ? `2px solid ${green}99` : '2px solid #ffffff00',
-                cursor: 'pointer',
-                borderRadius: '50px 16px 16px 50px',
-                width: 264,
-                transition: 'border 0.3s',
-
-
-              }}
-              className={classes.lockList}
-              children={
-                <IconButton
-                  color={lockedAtts[i] ? "primary" : "default"}
-                  onClick={
-                    () => {
-                      const newList = [...lockedAtts];
-                      newList[i] = !lockedAtts[i];
-                      setLockedAtts(newList);
-                    }
-                  }>
-                  {lockedAtts[i] ? <Lock /> : <LockOpen />}
-                </IconButton>
-              }
-
-            />
-          ))}
-        </div>
-      </div>
-
-
-
-      <div style={{ position: 'absolute', top: 80, left: 80 }}>
-        <div className={classes.draglist} style={{ height: items1.length * buttonHeightAndPadding }}>
-          {springs1.map(({ zIndex, y, scale }, i) => (
-            <animated.div
-              {...bind1(i)}
-              key={i}
-              style={{
-                zIndex,
-                y,
-                scale,
-                cursor: 'pointer'
-              }}
-              className={classes.listContent}
-              children={CharacteristicName[items1[i]]}
-            />
-          ))}
-        </div>
-      </div>
-      <div style={{ position: 'absolute', top: 80, left: 236 }}>
-        <div className={classes.draglist} style={{ height: items1.length * buttonHeightAndPadding }}>
-          {springs2.map(({ zIndex, y, scale }, i) => (
-            <animated.div
-              {...bind2(i)}
-              key={i}
-              style={{
-                zIndex,
-                y,
-                scale,
-                fontSize: 30, padding: 4,
-                cursor: 'pointer',
-                color: items2[i] === 90 ? green : 'white'
-              }}
-              className={classes.listContent}
-              children={items2[i]}
-            />
-          ))}
-        </div>
-      </div>
 
 
 
@@ -536,6 +564,40 @@ export default ArchetypeList;
 
 
 
+//             <Grid item >
+//               <Typography style={{ textShadow: '1px 1px 1px #000' }}>HP: <span style={{ fontWeight: 'bold', fontSize: 25 }}>{HP || '  '}</span></Typography>
+//               <Typography style={{ textShadow: '1px 1px 1px #000' }}>= ( CON + SIZ ) / 5</Typography>
+//             </Grid>
+//             <Grid item>
+//               <Typography style={{ textShadow: '1px 1px 1px #000' }}>Sanity: <span style={{ fontWeight: 'bold', fontSize: 25 }}>{stats?.POW || '  '}</span></Typography>
+//               <Typography style={{ textShadow: '1px 1px 1px #000' }}>= POW</Typography>
+//             </Grid>
+//             <Grid item>
+//               <Typography style={{ textShadow: '1px 1px 1px #000' }}>MP: <span style={{ fontWeight: 'bold', fontSize: 25 }}>{MP || '  '}</span></Typography>
+//               <Typography style={{ textShadow: '1px 1px 1px #000' }}>= POW / 5</Typography>
+//             </Grid>
+//             <Grid item>
+//               <Typography style={{ textShadow: '1px 1px 1px #000' }}>Damage Bonus: <span style={{ fontWeight: 'bold', fontSize: 25 }}>{DB || '  '}</span></Typography>
+//               <Typography style={{ textShadow: '1px 1px 1px #000' }}>Table 1 page 23</Typography>
+//             </Grid>
+//             <Grid item>
+//               <Typography style={{ textShadow: '1px 1px 1px #000' }}>Build: <span style={{ fontWeight: 'bold', fontSize: 25 }}>{build || '  '}</span></Typography>
+//               <Typography style={{ textShadow: '1px 1px 1px #000' }}>Table 1 page 23 Pulp Cthulhu</Typography>
+//             </Grid>
+//             <Grid item>
+//               <Typography style={{ textShadow: '1px 1px 1px #000' }}>Movement Rate: <span style={{ fontWeight: 'bold', fontSize: 25 }}>{movement || '  '}</span></Typography>
+//               <Typography style={{ textShadow: '1px 1px 1px #000' }}>Table 2 page 23 Pulp Cthulhu</Typography>
+//             </Grid>
+//             <Grid item>
+//               <Typography style={{ textShadow: '1px 1px 1px #000' }}>Luck <span style={{ fontWeight: 'bold', fontSize: 25 }}>{myLuck || '  '}</span></Typography>
+//               <Typography style={{ textShadow: '1px 1px 1px #000' }}>= ( 2d6 + 6 ) * 5</Typography>
+//               {luck ?
+//                 <Typography style={{ textShadow: '1px 1px 1px #000' }}>{myPhrase}</Typography>
+//                 :
+//                 <Button variant='contained' disabled={stats === undefined} onClick={computeLuck} className={classes.titleTop} style={{ marginTop: 20, backgroundColor: `${green}`, color: 'white', textTransform: 'none' }}>Roll for Luck Now!</Button>
+//               }
+
+//  </Grid>
 
 //  <Grid container direction="column" spacing={3}>
 //         <Grid item>

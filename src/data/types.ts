@@ -127,7 +127,7 @@ export enum OccupationName {
   Musician = 'Musician',
   Nurse = 'Nurse',
   Occultist = 'Occultist',
-  Parapsychologist = 'Parapsychologist',
+  Parapsychologist = 'Para-Psychologist',
   Photographer = 'Photographer',
   PoliceDetective = 'Police Detective',
   Priest = 'Priest',

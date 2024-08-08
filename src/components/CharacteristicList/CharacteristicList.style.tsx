@@ -11,6 +11,17 @@ const styles = makeStyles((theme) => ({
     top: 'calc( 100dvh - 564px - 23px)'
   },
 
+  titleRoot: {
+    [theme.breakpoints.down('sm')]: {
+      position: 'absolute',
+      left: '50%',
+      transform: 'translateX(-50%)'
+    }
+  },
+
+
+  
+
 
   titleTop: {
     fontFamily: 'Cthulhumbus',
@@ -79,7 +90,12 @@ const styles = makeStyles((theme) => ({
     position: 'absolute',
     top: '50%',
     left: '75%',
-    transform: 'translate(-50%, -50%)'
+    transform: 'translate(-50%, -50%)',
+    [theme.breakpoints.down('sm')]: {
+      left: '50%',
+      width: '75vw',
+      height: '75vw',
+    }
   },
 
   bigPic: {
@@ -88,8 +104,15 @@ const styles = makeStyles((theme) => ({
     position: 'absolute',
     top: '50%',
     left: '75%',
-    transform: 'translate(-50%, -50%)'
+    transform: 'translate(-50%, -50%)',
+    [theme.breakpoints.down('sm')]: {
+      left: '50%',
+      width: '95vw',
+      height: '95vw',
+    }
   },
+
+
 
   compass: {
     width: 100,
@@ -105,8 +128,7 @@ const styles = makeStyles((theme) => ({
     backgroundColor: 'unset!important',
     '&:hover': {
       backgroundColor: 'unset!important',
-
-    }
+    },
     // backgroundImage: 'url(/img/compass.png)', 
     // backgroundSize: '150px 150px', 
     // backgroundPosition: 'center center', 
@@ -117,11 +139,13 @@ const styles = makeStyles((theme) => ({
     // height: 100,
     // paddingTop: 22,
     paddingBottom: 10
+  },
 
+  speedDialAction: {
+    marginRight: 200
   },
 
   promptText: {
-
     fontSize: 20,
     fontFamily: 'Cthulhumbus',
     color: 'white',
@@ -168,6 +192,14 @@ const styles = makeStyles((theme) => ({
     left: '75%',
     transform: 'translate(-50%, -50%)',
     filter: `drop-shadow(1px 1px 1px ${darkPurple}) drop-shadow(1px 1px 1px ${purple}) drop-shadow(3px 3px 1px ${deepGreen})`,
+
+    [theme.breakpoints.down('sm')]: {
+      position: 'absolute',
+      left: '50%',
+      transform: 'translateX(-50%)',
+      top: 100
+
+    }
 
   }
 

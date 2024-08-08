@@ -12,6 +12,16 @@ const App: FC = () => {
   const { appName, creatorStep } = state
   const classes = styles()
 
+  // document.addEventListener("contextmenu", function(event) {
+  //   event.preventDefault();
+  // });
+
+  // document.ontouchstart = function (event) {
+  //   event.preventDefault();
+  //   event.stopPropagation();
+  //   return false;
+  // };
+
   return (
     <Paper className={creatorStep === 0 ? classes.splash : classes.app}>
       <Header appName={appName} />

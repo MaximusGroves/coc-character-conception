@@ -1,7 +1,7 @@
 import { makeStyles } from '@material-ui/core';
 import { darkPurple, green, purple } from '../../providers/AppThemeProvider';
 
-const styles = makeStyles(() => ({
+const styles = makeStyles((theme) => ({
   priority: {
     '& span': {
       fontWeight: 'bold',
@@ -17,7 +17,26 @@ const styles = makeStyles(() => ({
     color: 'white',
     fontSize: 20,
     marginBottom: 20,
-    textShadow: `1px 2px 4px ${purple}, 0px 3px 6px ${darkPurple}, 0px 0px 5px ${green}, 3px 3px 20px ${green}, -2px 1px 30px ${green}`
+    textShadow: `1px 2px 4px ${purple}, 0px 3px 6px ${darkPurple}, 0px 0px 5px ${green}, 3px 3px 20px ${green}, -2px 1px 30px ${green}`,
+    [theme.breakpoints.down('sm')]: {
+      textAlign: 'center',
+    }
+
+  },
+
+  bigText: {
+    fontSize: 50,
+    textAlign: 'center'
+  },
+
+  charName: {
+    fontFamily: 'Cthulhumbus',
+    color: 'white',
+    textShadow: `1px 2px 4px ${purple}, 0px 3px 6px ${darkPurple}, 0px 0px 5px ${green}, 3px 3px 20px ${green}, -2px 1px 30px ${green}`,
+    fontSize: 25,
+    paddingRight: 10,
+    paddingLeft: 20,
+    textAlign: 'center'
   },
 
   listContent: {
