@@ -10,7 +10,7 @@ const styles = makeStyles((theme) => ({
     backgroundSize: 'cover',
     backgroundPosition: '69% center',
     // backgroundPosition: 'calc(50% + -168px) center',
-    overflowY: 'hidden',
+    overflow: 'hidden',
     borderRadius: 0,
     [theme.breakpoints.down('md')]: {
       // backgroundPosition: '64% center',
