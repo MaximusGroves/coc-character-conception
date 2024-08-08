@@ -175,8 +175,8 @@ const CharacteristicList: FC = () => {
         <SkillItem skill={fakeSkill}
           // key={thisName} 
           pointsRemaining={0} minPoints={0} points={0} setPointsRemaining={() => { }} />
-        <img src={'/img/bg1.png'} />
-        <img src={'/img/banner1.png'} />
+        <img src={'/img/bg1.png'} alt="preloading asset" />
+        <img src={'/img/banner1.png'} alt="preloading asset" />
 
 
       </div>
