@@ -164,7 +164,8 @@ const CharacteristicList: FC = () => {
             icon={val === coreAttribute ? <Sigil className={classes.sigil} /> : <SpeedDialIcon />}
             tooltipTitle={
               <div
-                style={{ padding: '8px 200px 8px 90px', marginLeft: -60, cursor: 'pointer' }}>
+                className={classes.tooltipSpacer}
+                style={{  }}>
                 <Paper
                   style={{
                     padding: '4px 10px',

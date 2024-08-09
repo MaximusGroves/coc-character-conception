@@ -72,6 +72,15 @@ const styles = makeStyles((theme) => ({
   titleBigR: {
   },
 
+  tooltipSpacer: {
+    padding: '8px 200px 8px 90px',
+    marginLeft: -60,
+    cursor: 'pointer',
+    [theme.breakpoints.down('sm')]: {
+      padding: '8px 20px 8px 90px',
+    }
+  },
+
   sigil: {
     width: 80,
     height: 80,
