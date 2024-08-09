@@ -34,6 +34,8 @@ const CharacteristicList: FC = () => {
 
   const [lastCore, setLastCore] = React.useState<string | undefined>(undefined);
 
+  const [previewFrame, setPreviewFrame] = React.useState(false);
+
   const classes = styles();
 
   const [open, setOpen] = React.useState(false);
@@ -71,6 +73,7 @@ const CharacteristicList: FC = () => {
       setLastCore(coreAttribute)
       console.log(`animate fade out - ${val}`)
       setTimeout(setLastCore, 700, undefined)
+      handleClose();
     } else {
       setLastCore(val)
     }
@@ -133,9 +136,25 @@ const CharacteristicList: FC = () => {
           ))}
           {charList.map(val => (
 
-            <img src={`/img/${val}-frame.jpg`} style={{ opacity: hoverVal === val && coreAttribute !== hoverVal && open ? 1 : 0 }} className={clsx(classes.bigPic)} alt='current selection' />
+            <img src={`/img/${val}-frame.jpg`} style={{ opacity: (hoverVal === val && coreAttribute !== hoverVal && open) || (previewFrame && coreAttribute === val) ? 1 : 0 }} className={clsx(classes.bigPic)} alt='current selection' />
 
           ))}
+
+
+          <button
+            // src={`/img/${coreAttribute}-frame.jpg`}
+            // alt='acting as button'
+            className={classes.blockPic}
+            style={{ opacity: 0 }}
+            onMouseDown={() => { setPreviewFrame(true); handleClose() }}
+            onMouseUp={() => setPreviewFrame(false)}
+            onTouchStart={(e) => { setPreviewFrame(true); handleClose() }}
+            onTouchEnd={(e) => { setPreviewFrame(false); e.stopPropagation(); e.preventDefault(); }}
+            onContextMenu={(e) => { e.preventDefault(); e.stopPropagation() }}
+
+          />
+
+
 
         </Grid>
         <Grid item>
@@ -165,7 +184,7 @@ const CharacteristicList: FC = () => {
             tooltipTitle={
               <div
                 className={classes.tooltipSpacer}
-                style={{  }}>
+                style={{}}>
                 <Paper
                   style={{
                     padding: '4px 10px',

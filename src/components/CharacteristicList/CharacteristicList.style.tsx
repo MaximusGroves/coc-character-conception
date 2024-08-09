@@ -140,6 +140,26 @@ const styles = makeStyles((theme) => ({
     }
   },
 
+  blockPic: {
+    width: '45vw',
+    maxWidth: '82vh',
+    minHeight: '45vw',
+    maxHeight: '82vh',
+    position: 'absolute',
+    top: '47%',
+    left: '75%',
+    transition: 'opacity 0.2s',
+    transform: 'translate(-50%, -50%)',
+    [theme.breakpoints.down('sm')]: {
+      left: '50%',
+      width: '95vw',
+      maxWidth: '65vh',
+      minHeight: '95vw',
+      top: '47%',
+      maxHeight: '65vh'
+    }
+  },
+
   xRay: {
     transition: 'unset!important',
   },
