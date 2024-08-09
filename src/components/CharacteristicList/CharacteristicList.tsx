@@ -1,5 +1,5 @@
 import React, { FC, useRef } from 'react';
-import { Button, Grid, Hidden, Paper, Typography } from '@material-ui/core';
+import { Button, Grid, Paper, Typography } from '@material-ui/core';
 import { useAppContext } from '../../providers/AppContextProvider';
 import styles from './CharacteristicList.style';
 import { CharacteristicName, charKeys } from '../../data/types';
@@ -125,7 +125,7 @@ const CharacteristicList: FC = () => {
     <Grid container direction="column" justifyContent='space-between' alignItems='flex-start' style={{ height: '100dvh' }}>
       <Grid item container direction="row" justifyContent='space-between' alignContent='flex-start' style={{ display: 'fixed' }}>
         <Grid item >
-          <CallOfCharacterTitle style={{ marginRight: 'auto' }} />
+          <CallOfCharacterTitle style={{ marginRight: 'auto' }} className={classes.titleRoot} />
         </Grid>
         <Grid item>
 
@@ -202,7 +202,7 @@ const CharacteristicList: FC = () => {
               </div>
             }
             // tooltipTitle={val}
-            style={{ userSelect: 'none' }}
+            className={classes.unselectable}
             // onClick={() => handleSelection(val)}
             tooltipPlacement='right'
             tooltipOpen
@@ -219,14 +219,10 @@ const CharacteristicList: FC = () => {
         ))}
       </SpeedDial>
 
-
-      <Hidden smDown={coreAttribute !== undefined}>
-        <Typography onMouseOver={handleOpen} className={clsx(classes.promptText, classes.leftText)}
-          style={{
-            cursor: 'pointer'
-          }}>What do you most desire?</Typography>
-
-      </Hidden>
+      <Typography onMouseOver={handleOpen} className={clsx(classes.promptText, classes.leftText, coreAttribute !== undefined && classes.hiddenText)}
+        style={{
+          cursor: 'pointer'
+        }}>What do you most desire?</Typography>
 
       {coreAttribute !== undefined &&
         <Button onClick={() => nextStep()} className={classes.absoluteRightBtn} style={{ position: 'absolute' }}>

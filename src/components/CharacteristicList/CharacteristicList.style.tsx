@@ -12,6 +12,15 @@ const styles = makeStyles((theme) => ({
   },
 
   titleRoot: {
+    // [theme.breakpoints.down('sm')]: {
+    '@media (max-width: 769px)': {
+      position: 'absolute',
+      left: '50%',
+      transform: 'translateX(-50%)'
+    }
+  },
+
+  mainTitle: {
     [theme.breakpoints.down('sm')]: {
       position: 'absolute',
       left: '50%',
@@ -76,7 +85,8 @@ const styles = makeStyles((theme) => ({
     padding: '8px 200px 8px 90px',
     marginLeft: -60,
     cursor: 'pointer',
-    [theme.breakpoints.down('sm')]: {
+    // [theme.breakpoints.down('sm')]: {
+    '@media (max-width: 769px)': {
       padding: '8px 20px 8px 90px',
     }
   },
@@ -113,7 +123,8 @@ const styles = makeStyles((theme) => ({
     top: '47%',
     left: '75%',
     transform: 'translate(-50%, -50%)',
-    [theme.breakpoints.down('sm')]: {
+    // [theme.breakpoints.down('sm')]: {
+    '@media (max-width: 769px)': {
       left: '50%',
       width: 'auto',
       height: '70vw',
@@ -131,7 +142,8 @@ const styles = makeStyles((theme) => ({
     left: '75%',
     transition: 'opacity 0.2s',
     transform: 'translate(-50%, -50%)',
-    [theme.breakpoints.down('sm')]: {
+    // [theme.breakpoints.down('sm')]: {
+    '@media (max-width: 769px)': {
       left: '50%',
       width: 'auto',
       height: '95vw',
@@ -150,7 +162,8 @@ const styles = makeStyles((theme) => ({
     left: '75%',
     transition: 'opacity 0.2s',
     transform: 'translate(-50%, -50%)',
-    [theme.breakpoints.down('sm')]: {
+    // [theme.breakpoints.down('sm')]: {
+    '@media (max-width: 769px)': {
       left: '50%',
       width: '95vw',
       maxWidth: '65vh',
@@ -209,14 +222,27 @@ const styles = makeStyles((theme) => ({
 
   },
 
+  unselectable: {
+    userSelect: 'none',
+    '-webkit-user-select': 'none', /* disable selection/Copy of UIWebView */
+    '-webkit-touch-callout': 'none', /* disable the IOS popup when long-press on a link */
+  },
+
   leftText: {
     position: 'absolute',
     left: 135,
     top: 'calc( 100dvh - 89px )',
+
     [theme.breakpoints.down('xs')]: {
       left: 130
     }
 
+  },
+
+  hiddenText: {
+    '@media (max-width: 769px)': {
+      display: 'none',
+    }
   },
 
   rightText: {
@@ -249,7 +275,8 @@ const styles = makeStyles((theme) => ({
     transform: 'translate(-50%, -50%)',
     filter: `drop-shadow(1px 1px 1px ${darkPurple}) drop-shadow(1px 1px 1px ${purple}) drop-shadow(3px 3px 1px ${deepGreen})`,
 
-    [theme.breakpoints.down('sm')]: {
+    // [theme.breakpoints.down('sm')]: {
+    '@media (max-width: 769px)': {
       position: 'absolute',
       left: '50%',
       transform: 'translateX(-50%)',
