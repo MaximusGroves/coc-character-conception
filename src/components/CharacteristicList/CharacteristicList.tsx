@@ -1,5 +1,5 @@
 import React, { FC, useRef } from 'react';
-import { Button, Grid, Hidden, Typography } from '@material-ui/core';
+import { Button, Grid, Hidden, Paper, Typography } from '@material-ui/core';
 import { useAppContext } from '../../providers/AppContextProvider';
 import styles from './CharacteristicList.style';
 import { CharacteristicName, charKeys } from '../../data/types';
@@ -20,7 +20,7 @@ import TalentItem from '../TalentList/TalentItem';
 import SkillItem from '../SkillList/SkillItem';
 import { talentList } from '../../data/talents';
 import { skillList } from '../../data/skills';
-
+import swap from 'lodash-move'
 
 const CharacteristicList: FC = () => {
 
@@ -32,12 +32,15 @@ const CharacteristicList: FC = () => {
 
   const [hoverVal, setHoverVal] = React.useState<string | undefined>(undefined);
 
+  const [lastCore, setLastCore] = React.useState<string | undefined>(undefined);
+
   const classes = styles();
 
   const [open, setOpen] = React.useState(false);
   const handleClose = () => {
     setOpen(false);
     document.onmouseup = () => { }
+    setHoverVal(undefined);
   };
 
   const handleOpen = () => {
@@ -61,38 +64,55 @@ const CharacteristicList: FC = () => {
   }
 
   const handleSelection = (val) => {
+
+
+
+    if (val === coreAttribute) {
+      setLastCore(coreAttribute)
+      console.log(`animate fade out - ${val}`)
+      setTimeout(setLastCore, 700, undefined)
+    } else {
+      setLastCore(val)
+    }
+
     selectCoreAttribute(val);
   }
 
 
   const charList = Object.values(charKeys.list);
 
-  let imgVal = hoverVal
+
   let textVal
 
-  let hideBig = true;
-  let hideSmall = true;
 
   if (coreAttribute) {
     textVal = coreAttribute
-    hideBig = false
   }
 
   if (hoverVal) {
     textVal = hoverVal
-    hideSmall = hoverVal === coreAttribute;
-    hideBig = false;
+  }
 
-  }
-  if (imgVal === 'CON') {
-    imgVal = "COM";
-  }
 
 
   const fakeArch = archetypeList[0];
   const fakeOcc = occupationList[0];
   const fakeTalent = talentList[0];
   const fakeSkill = skillList[0];
+
+  let coreIndex;
+  let coreShuffle = [...charList];
+  if (coreAttribute) {
+    coreIndex = charList.indexOf(coreAttribute)
+    coreShuffle = swap(charList, coreIndex, 0);
+    // console.log(coreIndex)
+  } else {
+    // console.log('no shuffle')
+  }
+
+  console.log(`hover - ${hoverVal} | ${coreAttribute} - core | ${lastCore} - last`)
+
+
 
   return (
 
@@ -103,8 +123,19 @@ const CharacteristicList: FC = () => {
           <CallOfCharacterTitle style={{ marginRight: 'auto' }} />
         </Grid>
         <Grid item>
-          {!hideBig && (<img src={`/img/${(coreAttribute || 'CON') + '-xray'}.jpg`} className={clsx(classes.bigPic)} alt='current selection' />)}
-          {!hideSmall && (<img src={`/img/${imgVal}.jpg`} className={clsx(classes.normalPic)} alt='current selection' />)}
+
+          {lastCore && <img src={`/img/${lastCore}-xray.jpg`} style={{ opacity: !open && coreAttribute === undefined ? 0 : 1, }} className={clsx(classes.bigPic, classes.residualPic)} alt='current selection' />}
+
+          {coreShuffle.map(val => (
+
+            <img src={`/img/${val}-xray.jpg`} style={{ opacity: (open && hoverVal === val) || coreAttribute === val ? 1 : 0, }} className={clsx(classes.bigPic, classes.xRay)} alt='current selection' />
+
+          ))}
+          {charList.map(val => (
+
+            <img src={`/img/${val}-frame.jpg`} style={{ opacity: hoverVal === val && coreAttribute !== hoverVal && open ? 1 : 0 }} className={clsx(classes.bigPic)} alt='current selection' />
+
+          ))}
 
         </Grid>
         <Grid item>
@@ -130,16 +161,37 @@ const CharacteristicList: FC = () => {
 
           <SpeedDialAction
             key={val}
-            icon={<SpeedDialIcon />}
-            tooltipTitle={CharacteristicName[val]}
+            icon={val === coreAttribute ? <Sigil className={classes.sigil} /> : <SpeedDialIcon />}
+            tooltipTitle={
+              <div
+                style={{ padding: '8px 200px 8px 90px', marginLeft: -60, cursor: 'pointer' }}>
+                <Paper
+                  style={{
+                    padding: '4px 10px',
+                    marginLeft: 16,
+                    backgroundColor: val === coreAttribute ? '#333' : '#424242'
+                  }}>
+                  <Typography
+                    className={classes.fancyTitle}
+                  >
+                    {CharacteristicName[val]}
+                  </Typography>
+                </Paper>
+              </div>
+            }
             // tooltipTitle={val}
-            onClick={() => handleSelection(val)}
+            style={{ userSelect: 'none' }}
+            // onClick={() => handleSelection(val)}
             tooltipPlacement='right'
             tooltipOpen
+            onContextMenu={(e) => { e.preventDefault(); e.stopPropagation() }}
+            onTouchStart={(e) => { setHoverVal(val); }}
+            onTouchEnd={(e) => { handleSelection(val); e.stopPropagation(); e.preventDefault(); }}
+            onMouseUp={(e) => { handleSelection(val); e.stopPropagation(); e.preventDefault(); }}
             onMouseOver={() => setHoverVal(val)}
             onMouseOut={() => setHoverVal(undefined)}
-            FabProps={{ classes: { root: classes.speedDialAction } }}
-            TooltipClasses={{}}
+            FabProps={{ classes: { root: val === coreAttribute ? classes.speedDialAction : '' } }}
+            classes={{ staticTooltipLabel: classes.unsetTooltip }}
 
           />
         ))}
@@ -149,7 +201,7 @@ const CharacteristicList: FC = () => {
       <Hidden smDown={coreAttribute !== undefined}>
         <Typography onMouseOver={handleOpen} className={clsx(classes.promptText, classes.leftText)}
           style={{
-
+            cursor: 'pointer'
           }}>What do you most desire?</Typography>
 
       </Hidden>

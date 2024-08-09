@@ -22,6 +22,13 @@ const styles = makeStyles((theme) => ({
 
 
 
+  fancyTitle: {
+    fontFamily: 'Cthulhumbus',
+    color: 'white',
+    textShadow: `2px 2px 0px ${darkPurple}, -2px -1px 0px ${purple}, 0px 0px 6px ${green}`
+
+  },
+
 
   titleTop: {
     fontFamily: 'Cthulhumbus',
@@ -82,7 +89,12 @@ const styles = makeStyles((theme) => ({
     filter: `drop-shadow(1px 1px 1px ${darkPurple}) drop-shadow(1px 1px 1px ${purple}) drop-shadow(3px 3px 10px ${deepGreen}55)`,
   },
 
-
+  unsetTooltip: {
+    left: '0!important',
+    marginLeft: '!important',
+    backgroundColor: 'unset!important',
+    boxShadow: 'none!important'
+  },
 
   normalPic: {
     width: 'auto',
@@ -108,6 +120,7 @@ const styles = makeStyles((theme) => ({
     position: 'absolute',
     top: '47%',
     left: '75%',
+    transition: 'opacity 0.2s',
     transform: 'translate(-50%, -50%)',
     [theme.breakpoints.down('sm')]: {
       left: '50%',
@@ -116,6 +129,14 @@ const styles = makeStyles((theme) => ({
       top: '47%',
       maxHeight: '65vh'
     }
+  },
+
+  xRay: {
+    transition: 'unset!important',
+  },
+
+  residualPic: {
+    transition: 'opacity 0.7s!important',
   },
 
 
@@ -148,7 +169,7 @@ const styles = makeStyles((theme) => ({
   },
 
   speedDialAction: {
-    marginRight: 200
+    backgroundColor: '#333!important'
   },
 
   promptText: {

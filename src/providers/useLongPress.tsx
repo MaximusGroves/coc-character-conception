@@ -17,6 +17,7 @@ export default function useLongPress(callback = () => { }, release = () => { }, 
     }, [callback, ms, startLongPress]);
 
     return {
+        onContextMenu: (e) => { e.preventDefault(); e.stopPropagation() },
         onMouseDown: (e) => { e.stopPropagation(); press(); setStartLongPress(true) },
         onMouseUp: (e) => { e.stopPropagation(); if (startLongPress) { release() }; setStartLongPress(false) },
         onMouseLeave: (e) => { e.stopPropagation(); if (startLongPress) { release() }; setStartLongPress(false) },

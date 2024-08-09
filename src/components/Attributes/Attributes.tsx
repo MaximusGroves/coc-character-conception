@@ -424,13 +424,36 @@ const ArchetypeList: FC = () => {
                       children={
                         <IconButton
                           color={lockedAtts[i] ? "primary" : "default"}
-                          onClick={
-                            () => {
+                          onContextMenu={(e) => { e.preventDefault(); e.stopPropagation() }}
+                          onMouseUp={
+                            (e) => {
                               const newList = [...lockedAtts];
                               newList[i] = !lockedAtts[i];
                               setLockedAtts(newList);
+                              e.stopPropagation();
+                              e.preventDefault();
                             }
-                          }>
+                          }
+                          onTouchEnd={
+                            (e) => {
+                              const newList = [...lockedAtts];
+                              newList[i] = !lockedAtts[i];
+                              setLockedAtts(newList);
+                              e.stopPropagation();
+                              e.preventDefault();
+                            }
+                          }
+                        // onClick={
+                        //   (e) => {
+                        //     const newList = [...lockedAtts];
+                        //     newList[i] = !lockedAtts[i];
+                        //     setLockedAtts(newList);
+                        //     e.stopPropagation();
+                        //     e.preventDefault();
+                        //   }}
+
+
+                        >
                           {lockedAtts[i] ? <Lock /> : <LockOpen />}
                         </IconButton>
                       }
@@ -445,6 +468,9 @@ const ArchetypeList: FC = () => {
                   {springs1.map(({ zIndex, y, scale }, i) => (
                     <animated.div
                       {...bind1(i)}
+                      onContextMenu={(e) => { e.preventDefault(); e.stopPropagation() }}
+                      onTouchEnd={(e) => { e.stopPropagation(); e.preventDefault(); }}
+                      onMouseUp={(e) => { e.stopPropagation(); e.preventDefault(); }}
                       key={i}
                       style={{
                         zIndex,
@@ -463,6 +489,9 @@ const ArchetypeList: FC = () => {
                   {springs2.map(({ zIndex, y, scale }, i) => (
                     <animated.div
                       {...bind2(i)}
+                      onContextMenu={(e) => { e.preventDefault(); e.stopPropagation() }}
+                      onTouchEnd={(e) => { e.stopPropagation(); e.preventDefault(); }}
+                      onMouseUp={(e) => { e.stopPropagation(); e.preventDefault(); }}
                       key={i}
                       style={{
                         zIndex,
