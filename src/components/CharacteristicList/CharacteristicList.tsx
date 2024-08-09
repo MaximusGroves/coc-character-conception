@@ -34,6 +34,8 @@ const CharacteristicList: FC = () => {
 
   const [lastCore, setLastCore] = React.useState<string | undefined>(undefined);
 
+  const [touchHeld, setTouchHeld] = React.useState(false);
+
   const [previewFrame, setPreviewFrame] = React.useState(false);
 
   const classes = styles();
@@ -72,8 +74,8 @@ const CharacteristicList: FC = () => {
     if (val === coreAttribute) {
       setLastCore(coreAttribute)
       console.log(`animate fade out - ${val}`)
-      setTimeout(setLastCore, 700, undefined)
       handleClose();
+      setTimeout(setLastCore, 700, undefined)
     } else {
       setLastCore(val)
     }
@@ -184,7 +186,7 @@ const CharacteristicList: FC = () => {
             tooltipTitle={
               <div
                 className={classes.tooltipSpacer}
-                style={{}}>
+                style={{ opacity: touchHeld ? 0 : 1, transition: touchHeld ? 'opacity 0.3s 0.5s' : 'opacity 0.3s' }}>
                 <Paper
                   style={{
                     padding: '4px 10px',
@@ -205,8 +207,8 @@ const CharacteristicList: FC = () => {
             tooltipPlacement='right'
             tooltipOpen
             onContextMenu={(e) => { e.preventDefault(); e.stopPropagation() }}
-            onTouchStart={(e) => { setHoverVal(val); }}
-            onTouchEnd={(e) => { handleSelection(val); e.stopPropagation(); e.preventDefault(); }}
+            onTouchStart={(e) => { setHoverVal(val); setTouchHeld(true); }}
+            onTouchEnd={(e) => { handleSelection(val); setTouchHeld(false); e.stopPropagation(); e.preventDefault(); }}
             onMouseUp={(e) => { handleSelection(val); e.stopPropagation(); e.preventDefault(); }}
             onMouseOver={() => setHoverVal(val)}
             onMouseOut={() => setHoverVal(undefined)}
