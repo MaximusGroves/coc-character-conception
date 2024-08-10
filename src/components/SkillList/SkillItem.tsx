@@ -154,6 +154,7 @@ const SkillItem: FC<Props> = (props: Props) => {
           <IconButton
             disabled={!selected}
             color={points > 0 ? "secondary" : 'default'}
+            className={classes.unselectable}
             style={
               {
                 opacity: points > 0 ? 1 : 0.3,
@@ -172,6 +173,7 @@ const SkillItem: FC<Props> = (props: Props) => {
           <IconButton
             disabled={!selected}
             color={pointsRemaining > 0 && points + minPoints < 99 ? "primary" : 'default'}
+            className={classes.unselectable}
             style={
               {
                 opacity: pointsRemaining > 0 && points + minPoints < 99 ? 1 : 0.3,
@@ -221,6 +223,7 @@ const SkillItem: FC<Props> = (props: Props) => {
               <Grid item>
                 <IconButton
                   disabled={!selected}
+                  className={classes.unselectable}
                   color={points > 0 ? "secondary" : 'default'}
                   style={{ opacity: points > 0 ? 1 : 0.3 }}
                   {...longPressSubEvent}
@@ -240,6 +243,7 @@ const SkillItem: FC<Props> = (props: Props) => {
               <Grid item>
                 <IconButton
                   disabled={!selected}
+                  className={classes.unselectable}
                   color={pointsRemaining > 0 && points + minPoints < 99 ? "primary" : 'default'}
                   style={{ opacity: pointsRemaining > 0 && points + minPoints < 99 ? 1 : 0.3 }}
                   {...longPressAddEvent}

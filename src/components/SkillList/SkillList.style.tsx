@@ -7,6 +7,12 @@ const styles = makeStyles((theme) => ({
     paddingBottom: 80,
   },
 
+  unselectable: {
+    userSelect: 'none',
+    '-webkit-user-select': 'none', /* disable selection/Copy of UIWebView */
+    '-webkit-touch-callout': 'none', /* disable the IOS popup when long-press on a link */
+  },
+
   title: {
     backgroundColor: '#000',
     margin: -20,
