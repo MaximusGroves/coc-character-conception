@@ -129,16 +129,33 @@ const CharacteristicList: FC = () => {
         </Grid>
         <Grid item>
 
-          {lastCore && <img src={`/img/${lastCore}-xray.jpg`} style={{ opacity: !open && coreAttribute === undefined ? 0 : 1, }} className={clsx(classes.bigPic, classes.residualPic)} alt='current selection' />}
+          {lastCore &&
+            <img
+              src={`/img/${lastCore}-xray.jpg`}
+              style={{ opacity: !open && coreAttribute === undefined ? 0 : 1, }}
+              className={clsx(classes.bigPic, classes.residualPic, classes.unselectable)}
+              alt='current selection'
+            />
+          }
 
           {coreShuffle.map(val => (
 
-            <img src={`/img/${val}-xray.jpg`} style={{ opacity: (open && hoverVal === val) || coreAttribute === val ? 1 : 0, }} className={clsx(classes.bigPic, classes.xRay)} alt='current selection' />
+            <img
+              src={`/img/${val}-xray.jpg`}
+              style={{ opacity: (open && hoverVal === val) || coreAttribute === val ? 1 : 0, }}
+              className={clsx(classes.bigPic, classes.xRay, classes.unselectable)}
+              alt='current selection'
+            />
 
           ))}
           {charList.map(val => (
 
-            <img src={`/img/${val}-frame.jpg`} style={{ opacity: (hoverVal === val && coreAttribute !== hoverVal && open) || (previewFrame && coreAttribute === val) ? 1 : 0 }} className={clsx(classes.bigPic)} alt='current selection' />
+            <img
+              src={`/img/${val}-frame.jpg`}
+              style={{ opacity: (hoverVal === val && coreAttribute !== hoverVal && open) || (previewFrame && coreAttribute === val) ? 1 : 0 }}
+              className={clsx(classes.bigPic, classes.unselectable)}
+              alt='current selection'
+            />
 
           ))}
 
@@ -169,10 +186,23 @@ const CharacteristicList: FC = () => {
 
       <SpeedDial
         ariaLabel="Characteristic List"
-        icon={<img src='/img/compass.png' className={classes.compass} style={{ transition: 'transform 0.25s', transform: open ? 'rotate(45deg)' : 'none' }} alt='make selection' />}
-        classes={{ root: classes.compassRoot, fab: classes.fab, actions: classes.actions }}
+        icon={
+          <img src='/img/compass.png'
+            className={classes.compass}
+            style={{
+              transition: 'transform 0.25s',
+              transform: open ? 'rotate(45deg)' : 'none'
+            }}
+            alt='make selection' />}
+        classes={{
+          root: clsx(classes.compassRoot, classes.unselectable),
+          fab: clsx(classes.fab, classes.unselectable),
+          actions: classes.actions
+        }}
+        className={classes.unselectable}
         onOpen={handleOpen}
         onClick={handleToggle}
+        onContextMenu={(e) => { e.preventDefault(); e.stopPropagation() }}
         open={open}
         direction={'up'}
         ref={compassRef}
@@ -192,7 +222,10 @@ const CharacteristicList: FC = () => {
                     padding: '4px 10px',
                     marginLeft: 16,
                     backgroundColor: val === coreAttribute ? '#333' : '#424242'
-                  }}>
+                  }}
+                  className={classes.unselectable}
+
+                >
                   <Typography
                     className={classes.fancyTitle}
                   >
@@ -219,7 +252,9 @@ const CharacteristicList: FC = () => {
         ))}
       </SpeedDial>
 
-      <Typography onMouseOver={handleOpen} className={clsx(classes.promptText, classes.leftText, coreAttribute !== undefined && classes.hiddenText)}
+      <Typography
+        onMouseOver={handleOpen}
+        className={clsx(classes.promptText, classes.leftText, coreAttribute !== undefined && classes.hiddenText)}
         style={{
           cursor: 'pointer'
         }}>What do you most desire?</Typography>

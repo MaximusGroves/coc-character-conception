@@ -13,7 +13,7 @@ const styles = makeStyles((theme) => ({
 
   titleRoot: {
     // [theme.breakpoints.down('sm')]: {
-    '@media (max-width: 769px)': {
+    '@media (max-width: 800px)': {
       position: 'absolute',
       left: '50%',
       transform: 'translateX(-50%)'
@@ -21,6 +21,7 @@ const styles = makeStyles((theme) => ({
   },
 
   mainTitle: {
+    zIndex: 1000,
     [theme.breakpoints.down('sm')]: {
       position: 'absolute',
       left: '50%',
@@ -86,7 +87,7 @@ const styles = makeStyles((theme) => ({
     marginLeft: -60,
     cursor: 'pointer',
     // [theme.breakpoints.down('sm')]: {
-    '@media (max-width: 769px)': {
+    '@media (max-width: 800px)': {
       padding: '8px 20px 8px 90px',
     }
   },
@@ -124,7 +125,7 @@ const styles = makeStyles((theme) => ({
     left: '75%',
     transform: 'translate(-50%, -50%)',
     // [theme.breakpoints.down('sm')]: {
-    '@media (max-width: 769px)': {
+    '@media (max-width: 800px)': {
       left: '50%',
       width: 'auto',
       height: '70vw',
@@ -143,7 +144,7 @@ const styles = makeStyles((theme) => ({
     transition: 'opacity 0.2s',
     transform: 'translate(-50%, -50%)',
     // [theme.breakpoints.down('sm')]: {
-    '@media (max-width: 769px)': {
+    '@media (max-width: 800px)': {
       left: '50%',
       width: 'auto',
       height: '95vw',
@@ -163,7 +164,7 @@ const styles = makeStyles((theme) => ({
     transition: 'opacity 0.2s',
     transform: 'translate(-50%, -50%)',
     // [theme.breakpoints.down('sm')]: {
-    '@media (max-width: 769px)': {
+    '@media (max-width: 800px)': {
       left: '50%',
       width: '95vw',
       maxWidth: '65vh',
@@ -240,7 +241,8 @@ const styles = makeStyles((theme) => ({
   },
 
   hiddenText: {
-    '@media (max-width: 769px)': {
+    [theme.breakpoints.down('sm')]: {
+      // '@media (max-width: 800px)': {
       display: 'none',
     }
   },
@@ -276,7 +278,7 @@ const styles = makeStyles((theme) => ({
     filter: `drop-shadow(1px 1px 1px ${darkPurple}) drop-shadow(1px 1px 1px ${purple}) drop-shadow(3px 3px 1px ${deepGreen})`,
 
     // [theme.breakpoints.down('sm')]: {
-    '@media (max-width: 769px)': {
+    '@media (max-width: 800px)': {
       position: 'absolute',
       left: '50%',
       transform: 'translateX(-50%)',
