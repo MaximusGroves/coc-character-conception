@@ -163,7 +163,7 @@ const CharacteristicList: FC = () => {
           <button
             // src={`/img/${coreAttribute}-frame.jpg`}
             // alt='acting as button'
-            className={classes.blockPic}
+            className={clsx(classes.blockPic, classes.unselectable)}
             style={{ opacity: 0 }}
             onMouseDown={() => { setPreviewFrame(true); handleClose() }}
             onMouseUp={() => setPreviewFrame(false)}
