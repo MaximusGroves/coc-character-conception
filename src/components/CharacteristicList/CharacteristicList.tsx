@@ -323,7 +323,9 @@ const CharacteristicList: FC = () => {
 
       {
         coreAttribute !== undefined &&
-        <Button onClick={() => nextStep()} className={classes.absoluteRightBtn} >
+        <Button
+          style={{ position: 'absolute' }}
+          onClick={() => nextStep()} className={classes.absoluteRightBtn} >
           <Typography className={clsx(classes.promptText, classes.rightText)}>Create your identity</Typography>
           <Sigil className={clsx(classes.sigil, classes.spookyIcon)} />
           <ArrowForward className={clsx(classes.arrow, classes.spookyIcon)} />
