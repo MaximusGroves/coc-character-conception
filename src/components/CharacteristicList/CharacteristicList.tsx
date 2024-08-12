@@ -223,7 +223,7 @@ const CharacteristicList: FC = () => {
 
 
       <IconButton
-        style={{ opacity: smallWidth && coreAttribute && !open ? 1 : 0, transition: 'opacity 0.3s' }}
+        style={{ opacity: smallWidth && coreAttribute && !open ? 1 : 0, transition: 'opacity 0.3s', position: 'absolute' }}
         color="primary"
         className={clsx(classes.infobtn, classes.unselectable)}
         onMouseDown={() => setInfoDown(true)}
