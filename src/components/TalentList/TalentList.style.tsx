@@ -17,6 +17,16 @@ const styles = makeStyles((theme) => ({
     }
   },
 
+  
+  msgText: {
+    fontStyle: 'italic',
+    textShadow: '1px 1px 1px #000',
+    paddingBottom: 26,
+    [theme.breakpoints.down('sm')]: {
+      textAlign: 'center',
+    }
+  },
+
 
   fontScalar: {
     fontFamily: 'Playbill',
@@ -36,6 +46,7 @@ const styles = makeStyles((theme) => ({
   flavorText: {
     fontFamily: 'Arial',
     paddingTop: 20,
+    paddingBottom: 40,
   },
   divider: {
     marginLeft: -20,

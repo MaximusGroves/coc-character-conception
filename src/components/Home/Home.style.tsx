@@ -5,7 +5,7 @@ const styles = makeStyles((theme) => ({
   root: {
     position: 'relative',
     background: 'url(/img/bg1.png)',
-    backgroundPosition: 'top center',
+    backgroundPosition: 'center top',
     // backgroundSize: '816px 1456px',
     backgroundSize: '408px 728px',
     // [theme.breakpoints.down('sm')]: {

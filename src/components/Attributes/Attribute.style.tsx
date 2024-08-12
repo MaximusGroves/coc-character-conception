@@ -21,7 +21,15 @@ const styles = makeStyles((theme) => ({
     [theme.breakpoints.down('sm')]: {
       textAlign: 'center',
     }
+  },
 
+  msgText: {
+    fontStyle: 'italic',
+    textShadow: '1px 1px 1px #000',
+    paddingBottom: 26,
+    [theme.breakpoints.down('sm')]: {
+      textAlign: 'center',
+    }
   },
 
   bigText: {

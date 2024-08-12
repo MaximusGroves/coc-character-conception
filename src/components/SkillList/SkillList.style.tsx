@@ -22,6 +22,15 @@ const styles = makeStyles((theme) => ({
     // marginBottom: ,
   },
 
+  msgText: {
+    fontStyle: 'italic',
+    textShadow: '1px 1px 1px #000',
+    paddingBottom: 26,
+    [theme.breakpoints.down('sm')]: {
+      textAlign: 'center',
+    }
+  },
+
   pointsLeft: {
     fontWeight: 'bold',
     fontSize: '60px!important',

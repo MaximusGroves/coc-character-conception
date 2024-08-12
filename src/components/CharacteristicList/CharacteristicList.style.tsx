@@ -12,8 +12,8 @@ const styles = makeStyles((theme) => ({
   },
 
   titleRoot: {
-    // [theme.breakpoints.down('sm')]: {
-    '@media (max-width: 800px)': {
+    [theme.breakpoints.down('sm')]: {
+      // '@media (max-width: 800px)': {
       position: 'absolute',
       left: '50%',
       transform: 'translateX(-50%)'
@@ -30,7 +30,66 @@ const styles = makeStyles((theme) => ({
   },
 
 
+  attributeFlavorText: {
+    maxWidth: '20vw',
+    position: 'absolute',
+    top: '47%',
+    left: '30%',
+    transform: 'translate(-50%, -50%)',
+    padding: '30px 100px',
+    transition: 'opacity 0.3s',
+    background: '#ffffff22',
+    borderRadius: 12,
+    // zIndex: 2000,
+    [theme.breakpoints.down('md')]: {
+      padding: 30,
+      maxWidth: '30vw',
+    },
+    [theme.breakpoints.down('sm')]: {
+      // maxWidth: '20vw',
+      left: 'calc( 50%)',
+      width: 'calc( 95vw - 170px )',
+      maxWidth: 'calc( 65vh - 170px)',
+      // minHeight: '95vw',
+      top: 'unset',
+      bottom: '0',
+      transform: 'translate(-50%, 0%)',
+      // maxHeight: '65vh'
 
+      '@media (max-height: 719px)': {
+        top: '-13%!important',
+        bottom: 'unset!important'
+      }
+
+    },
+  },
+
+  infobtn: {
+    position: 'absolute',
+    bottom: '15%',
+    left: '50%',
+    zIndex: 2000,
+    transform: 'translateX(-50%)',
+    filter: `drop-shadow(1px 1px 1px ${darkPurple}) drop-shadow(1px 1px 1px ${purple}) drop-shadow(3px 3px 10px ${deepGreen}55)`,
+    [theme.breakpoints.down('xs')]: {
+      bottom: '21%',
+    }
+  },
+
+  flavorFont: {
+    pointerEvents: 'none',
+    fontFamily: 'Cthulhumbus',
+    color: 'white',
+    fontSize: 20,
+    textShadow: `1px 2px 4px ${purple}, 0px 3px 6px ${darkPurple}, 0px 0px 5px ${green}, 3px 3px 20px ${green}, -2px 1px 30px ${green}`,
+    [theme.breakpoints.down('sm')]: {
+      textAlign: 'center'
+    },
+
+    // '@media (min-width: 375px)': {
+    //   fontSize: '1px!important'
+    // }
+  },
 
   fancyTitle: {
     fontFamily: 'Cthulhumbus',
@@ -49,6 +108,7 @@ const styles = makeStyles((theme) => ({
     textShadow: `1px 2px 4px ${purple}, 0px 3px 6px ${darkPurple}, 0px 0px 5px ${green}, 3px 3px 20px ${green}, -2px 1px 30px ${green}`
 
   },
+
   titleBottom: {
     fontFamily: 'Cthulhumbus-alt2',
     color: 'white',
@@ -56,6 +116,8 @@ const styles = makeStyles((theme) => ({
     marginBottom: 20,
     textShadow: `1px 2px 4px ${purple}, 0px 3px 6px ${darkPurple}, 0px 0px 5px ${green}, 3px 3px 20px ${green}, -2px 1px 30px ${green}`
   },
+
+
 
 
 
@@ -83,11 +145,11 @@ const styles = makeStyles((theme) => ({
   },
 
   tooltipSpacer: {
-    padding: '8px 200px 8px 90px',
+    padding: '8px 100px 8px 90px',
     marginLeft: -60,
     cursor: 'pointer',
-    // [theme.breakpoints.down('sm')]: {
-    '@media (max-width: 800px)': {
+    [theme.breakpoints.down('sm')]: {
+      // '@media (max-width: 800px)': {
       padding: '8px 20px 8px 90px',
     }
   },
@@ -124,8 +186,8 @@ const styles = makeStyles((theme) => ({
     top: '47%',
     left: '75%',
     transform: 'translate(-50%, -50%)',
-    // [theme.breakpoints.down('sm')]: {
-    '@media (max-width: 800px)': {
+    [theme.breakpoints.down('sm')]: {
+      // '@media (max-width: 800px)': {
       left: '50%',
       width: 'auto',
       height: '70vw',
@@ -143,8 +205,8 @@ const styles = makeStyles((theme) => ({
     left: '75%',
     transition: 'opacity 0.2s',
     transform: 'translate(-50%, -50%)',
-    // [theme.breakpoints.down('sm')]: {
-    '@media (max-width: 800px)': {
+    [theme.breakpoints.down('sm')]: {
+      // '@media (max-width: 800px)': {
       left: '50%',
       width: 'auto',
       height: '95vw',
@@ -154,6 +216,8 @@ const styles = makeStyles((theme) => ({
   },
 
   blockPic: {
+    background: '#00000000',
+    border: 'none',
     width: '45vw',
     maxWidth: '82vh',
     minHeight: '45vw',
@@ -163,8 +227,8 @@ const styles = makeStyles((theme) => ({
     left: '75%',
     transition: 'opacity 0.2s',
     transform: 'translate(-50%, -50%)',
-    // [theme.breakpoints.down('sm')]: {
-    '@media (max-width: 800px)': {
+    [theme.breakpoints.down('sm')]: {
+      // '@media (max-width: 800px)': {
       left: '50%',
       width: '95vw',
       maxWidth: '65vh',
@@ -277,8 +341,8 @@ const styles = makeStyles((theme) => ({
     transform: 'translate(-50%, -50%)',
     filter: `drop-shadow(1px 1px 1px ${darkPurple}) drop-shadow(1px 1px 1px ${purple}) drop-shadow(3px 3px 1px ${deepGreen})`,
 
-    // [theme.breakpoints.down('sm')]: {
-    '@media (max-width: 800px)': {
+    [theme.breakpoints.down('sm')]: {
+      // '@media (max-width: 800px)': {
       position: 'absolute',
       left: '50%',
       transform: 'translateX(-50%)',

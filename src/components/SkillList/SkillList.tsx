@@ -6,6 +6,7 @@ import { useAppContext } from '../../providers/AppContextProvider';
 import styles from './SkillList.style';
 import { useWidth } from '../../providers/AppThemeProvider';
 import clsx from 'clsx';
+import { msgs } from '../../data/copy';
 
 
 const SkillList: FC = () => {
@@ -83,6 +84,7 @@ const SkillList: FC = () => {
     <div style={{ display: 'block' }}>
 
       <Typography className={classes.titleTop}>What can you do?</Typography>
+      <Typography className={classes.msgText}>{msgs.msgSkills}</Typography>
 
       {selectedArchetype && archPoints !== undefined ? <>
 
@@ -211,19 +213,6 @@ const SkillList: FC = () => {
             })}
           </Grid>
 
-
-
-          {/* <Grid item container direction="row" spacing={3}>
-            {skillList.map((skill) => {
-              const thisName = skill.name;
-              const archTotal = archSkills[thisName] || 0;
-              const occTotal = occSkills[thisName] || 0
-              const minPoints = skill.startingValue + archTotal + occTotal
-              return (
-                <SkillItem skill={skill} key={thisName} minPoints={minPoints} pointsRemaining={intPoints} points={intSkills[thisName] || 0} setPointsRemaining={setIntPoints} />
-              )
-            })}
-          </Grid> */}
 
         </> : <>
           <Grid container direction="column" spacing={2} style={{ marginTop: 20 }}>

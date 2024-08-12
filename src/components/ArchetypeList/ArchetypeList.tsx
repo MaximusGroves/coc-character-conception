@@ -6,6 +6,7 @@ import CharacteristicRadioGroup from './CharacteristicRadioGroup';
 import ArchetypeItem from './ArchetypeItem';
 import { useAppContext } from '../../providers/AppContextProvider';
 import styles from './ArchetypeList.style';
+import { msgs } from '../../data/copy';
 
 
 const ArchetypeList: FC = () => {
@@ -35,6 +36,8 @@ const ArchetypeList: FC = () => {
     <div>
 
       <Typography className={classes.titleTop}>How will you be remembered?</Typography>
+
+      <Typography className={classes.msgText}>{msgs.msgArchetype}</Typography>
 
 
       <CharacteristicRadioGroup

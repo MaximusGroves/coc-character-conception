@@ -1,11 +1,12 @@
 import React, { FC, useRef } from 'react';
-import { Button, Grid, Paper, Typography } from '@material-ui/core';
+import { Button, Grid, IconButton, Paper, Typography } from '@material-ui/core';
 import { useAppContext } from '../../providers/AppContextProvider';
 import styles from './CharacteristicList.style';
 import { CharacteristicName, charKeys } from '../../data/types';
 import { ReactComponent as Sigil } from '../../assets/Sigil_of_the_Gateway.svg';
 import SpeedDial from '@material-ui/lab/SpeedDial';
 import SpeedDialIcon from '@material-ui/lab/SpeedDialIcon';
+import InfoIcon from '@material-ui/icons/InfoOutlined';
 import SpeedDialAction from '@material-ui/lab/SpeedDialAction';
 import CallOfCharacterTitle from './CallOfCharacterTitle';
 
@@ -21,6 +22,8 @@ import SkillItem from '../SkillList/SkillItem';
 import { talentList } from '../../data/talents';
 import { skillList } from '../../data/skills';
 import swap from 'lodash-move'
+import { msgs } from '../../data/copy';
+import { useWidth } from '../../providers/AppThemeProvider';
 
 const CharacteristicList: FC = () => {
 
@@ -38,9 +41,15 @@ const CharacteristicList: FC = () => {
 
   const [previewFrame, setPreviewFrame] = React.useState(false);
 
+  const [infoDown, setInfoDown] = React.useState(false)
+
   const classes = styles();
 
+  const hoverTimerRef = useRef<number | undefined>();
+  // const touchHeldRef = useRef<number | undefined>();
+
   const [open, setOpen] = React.useState(false);
+
   const handleClose = () => {
     setOpen(false);
     document.onmouseup = () => { }
@@ -67,13 +76,17 @@ const CharacteristicList: FC = () => {
     open ? handleClose() : handleOpen();
   }
 
+
+  const setDelayedTouch = () => {
+    clearTimeout(hoverTimerRef.current)
+    hoverTimerRef.current = setTimeout(setTouchHeld, 1000, true);
+  }
+
   const handleSelection = (val) => {
-
-
 
     if (val === coreAttribute) {
       setLastCore(coreAttribute)
-      console.log(`animate fade out - ${val}`)
+      // console.log(`animate fade out - ${val}`)
       handleClose();
       setTimeout(setLastCore, 700, undefined)
     } else {
@@ -115,8 +128,10 @@ const CharacteristicList: FC = () => {
     // console.log('no shuffle')
   }
 
-  console.log(`hover - ${hoverVal} | ${coreAttribute} - core | ${lastCore} - last`)
+  // console.log(`hover - ${hoverVal} | ${coreAttribute} - core | ${lastCore} - last`)
 
+  const currentWidth = useWidth()
+  const smallWidth = currentWidth === 'xs' || currentWidth === 'sm'
 
 
   return (
@@ -164,14 +179,34 @@ const CharacteristicList: FC = () => {
             // src={`/img/${coreAttribute}-frame.jpg`}
             // alt='acting as button'
             className={clsx(classes.blockPic, classes.unselectable)}
-            style={{ opacity: 0 }}
+            // style={{ opacity: 1 }}
             onMouseDown={() => { setPreviewFrame(true); handleClose() }}
             onMouseUp={() => setPreviewFrame(false)}
             onTouchStart={(e) => { setPreviewFrame(true); handleClose() }}
             onTouchEnd={(e) => { setPreviewFrame(false); e.stopPropagation(); e.preventDefault(); }}
             onContextMenu={(e) => { e.preventDefault(); e.stopPropagation() }}
 
-          />
+          >
+            {smallWidth &&
+              <div className={classes.attributeFlavorText}
+                style={{
+                  opacity:
+                    hoverVal !== undefined ||
+                      (coreAttribute !== undefined && !smallWidth) ||
+                      infoDown
+                      ? 1 : 0,
+                  transition: (hoverVal !== undefined ||
+                    (coreAttribute !== undefined && !smallWidth))
+                    && !infoDown
+                    ? 'opacity 1s 0.9s' : 'opacity 0.3s'
+                }}>
+                <Typography className={classes.flavorFont}>
+                  {msgs[`msg${hoverVal || coreAttribute || lastCore}`]}
+                </Typography>
+              </div>
+            }
+
+          </button>
 
 
 
@@ -183,6 +218,30 @@ const CharacteristicList: FC = () => {
 
 
       {/* Absolutely positioned */}
+
+
+      <IconButton
+        style={{ opacity: smallWidth && coreAttribute && !open ? 1 : 0, transition: 'opacity 0.3s' }}
+        color="primary"
+        className={clsx(classes.infobtn, classes.unselectable)}
+        onMouseDown={() => setInfoDown(true)}
+        onMouseUp={() => setInfoDown(false)}
+        onTouchStart={() => setInfoDown(true)}
+        onTouchEnd={() => setInfoDown(false)}
+        onContextMenu={(e) => { e.preventDefault(); e.stopPropagation() }}
+      >
+        <InfoIcon style={{ width: 40, height: 'auto' }} className={classes.unselectable} />
+      </IconButton>
+
+
+      {
+        !smallWidth &&
+        <div className={classes.attributeFlavorText} style={{ opacity: hoverVal !== undefined || (coreAttribute !== undefined && !smallWidth) ? 1 : 0 }}>
+          <Typography className={classes.flavorFont}>
+            {msgs[`msg${hoverVal || coreAttribute || lastCore}`]}
+          </Typography>
+        </div>
+      }
 
       <SpeedDial
         ariaLabel="Characteristic List"
@@ -216,7 +275,8 @@ const CharacteristicList: FC = () => {
             tooltipTitle={
               <div
                 className={classes.tooltipSpacer}
-                style={{ opacity: touchHeld ? 0 : 1, transition: touchHeld ? 'opacity 0.3s 0.5s' : 'opacity 0.3s' }}>
+                // style={{ opacity: touchHeld ? 0 : 1, transition: touchHeld ? 'opacity 0.3s 0.5s' : 'opacity 0.3s' }}>
+                style={{ opacity: touchHeld ? 0 : 1, transition: 'opacity 0.7s' }}>
                 <Paper
                   style={{
                     padding: '4px 10px',
@@ -241,10 +301,10 @@ const CharacteristicList: FC = () => {
             tooltipOpen
             onContextMenu={(e) => { e.preventDefault(); e.stopPropagation() }}
             onTouchStart={(e) => { setHoverVal(val); setTouchHeld(true); }}
-            onTouchEnd={(e) => { handleSelection(val); setTouchHeld(false); e.stopPropagation(); e.preventDefault(); }}
-            onMouseUp={(e) => { handleSelection(val); e.stopPropagation(); e.preventDefault(); }}
-            onMouseOver={() => setHoverVal(val)}
-            onMouseOut={() => setHoverVal(undefined)}
+            onTouchEnd={(e) => { handleSelection(val); setTouchHeld(false); setHoverVal(undefined); e.stopPropagation(); e.preventDefault(); }}
+            onMouseUp={(e) => { handleSelection(val); e.stopPropagation(); e.preventDefault(); setTouchHeld(false); clearTimeout(hoverTimerRef.current) }}
+            onMouseOver={() => { setHoverVal(val); setDelayedTouch() }}
+            onMouseOut={() => { setHoverVal(undefined); setTouchHeld(false); clearTimeout(hoverTimerRef.current) }}
             FabProps={{ classes: { root: val === coreAttribute ? classes.speedDialAction : '' } }}
             classes={{ staticTooltipLabel: classes.unsetTooltip }}
 
@@ -259,14 +319,21 @@ const CharacteristicList: FC = () => {
           cursor: 'pointer'
         }}>What do you most desire?</Typography>
 
-      {coreAttribute !== undefined &&
-        <Button onClick={() => nextStep()} className={classes.absoluteRightBtn} style={{ position: 'absolute' }}>
+      {
+        coreAttribute !== undefined &&
+        <Button onClick={() => nextStep()} className={classes.absoluteRightBtn} >
           <Typography className={clsx(classes.promptText, classes.rightText)}>Create your identity</Typography>
           <Sigil className={clsx(classes.sigil, classes.spookyIcon)} />
           <ArrowForward className={clsx(classes.arrow, classes.spookyIcon)} />
         </Button>
       }
 
+
+
+
+
+
+      {/* this is a cheater way to preload all the assets used on other tabs to prevent pop-in */}
       <div style={{ opacity: 0, position: 'absolute', left: -1000, top: -1000, zIndex: -1000, height: 10, width: 10 }}>
         <ArchetypeItem
           archetype={fakeArch}
@@ -288,7 +355,9 @@ const CharacteristicList: FC = () => {
 
       </div>
 
-    </Grid>
+
+
+    </Grid >
 
 
 

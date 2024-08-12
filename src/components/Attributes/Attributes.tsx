@@ -1,5 +1,5 @@
 import React, { FC, useRef } from 'react';
-import { Button, Grid, IconButton, Typography, useMediaQuery } from '@material-ui/core';
+import { Button, Grid, IconButton, Typography } from '@material-ui/core';
 import { CharacteristicName, charKeys } from '../../data/types';
 
 import { Lock, LockOpen } from '@material-ui/icons';
@@ -14,6 +14,7 @@ import styles from './Attribute.style';
 
 import { green } from '../../providers/AppThemeProvider';
 import clsx from 'clsx';
+import { msgs } from '../../data/copy';
 
 
 const ArchetypeList: FC = () => {
@@ -391,15 +392,16 @@ const ArchetypeList: FC = () => {
     myPhrase = `Rolled a ${myDie1} and a ${myDie2}`
   }
 
-  const singleRow = useMediaQuery('(min-width:600px)');
-
-  console.log(singleRow);
+  // const singleRow = useMediaQuery('(min-width:600px)');
 
   return (
     <div style={{ display: 'flex' }}>
       <Grid container direction="column">
         <Grid item>
           <Typography style={{}} className={classes.titleTop}>What are you made of?</Typography>
+        </Grid>
+        <Grid item>
+          <Typography style={{}} className={classes.msgText}>{msgs.msgAttributes}</Typography>
         </Grid>
         <Grid container direction='row' style={{ maxWidth: 1100, marginLeft: 'auto', marginRight: 'auto' }}>
           <Grid item sm md container direction="column" alignItems='center' >

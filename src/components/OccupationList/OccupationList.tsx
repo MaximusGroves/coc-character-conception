@@ -9,6 +9,7 @@ import OccupationItem from './OccupationItem';
 import IdealOccupationSwitch from './IdealOccupationSwitch';
 import { useAppContext } from '../../providers/AppContextProvider';
 import styles from './OccupationList.style';
+import { msgs } from '../../data/copy';
 
 const OccupationList: FC = () => {
   const { state } = useAppContext();
@@ -43,7 +44,9 @@ const OccupationList: FC = () => {
   return (
     <div>
 
-      <Typography className={classes.titleTop}>How do you make a living?</Typography>
+      <Typography className={classes.titleTop}>What is the life you've known until now?</Typography>
+
+      <Typography className={classes.msgText}>{msgs.msgOccupation}</Typography>
 
       <IdealOccupationSwitch
         checked={ideal}

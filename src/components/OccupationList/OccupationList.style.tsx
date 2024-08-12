@@ -63,6 +63,15 @@ const styles = makeStyles((theme) => ({
     }
   },
 
+  msgText: {
+    fontStyle: 'italic',
+    textShadow: '1px 1px 1px #000',
+    paddingBottom: 26,
+    [theme.breakpoints.down('sm')]: {
+      textAlign: 'center',
+    }
+  },
+
   listContainer: {
     [theme.breakpoints.down('xs')]: {
       marginLeft: -28,

@@ -72,9 +72,20 @@ const styles = makeStyles((theme) => ({
   charText: {
     fontWeight: 600,
   },
+
+  msgText: {
+    fontStyle: 'italic',
+    textShadow: '1px 1px 1px #000',
+    paddingBottom: 26,
+    [theme.breakpoints.down('sm')]: {
+      textAlign: 'center',
+    }
+  },
+
   flavorText: {
     fontStyle: 'italic',
   },
+
   traitText: {
     textTransform: 'capitalize',
     fontWeight: 'bold',
