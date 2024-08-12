@@ -1,4 +1,4 @@
-export const msgSTR = "The means to shape the world with your will, bending reality to your forceful touch? Strength will grant you the might to move mountains, though the weight of such power is not lightly borne.";
+export const msgSTR = "The means to shape the world to your will, bending reality with your forceful touch? Strength will grant you the might to move mountains, though the weight of such power is not lightly borne.";
 export const msgCON = 'The fortitude to withstand all that the world throws at you, standing firm where others falter? Constitution will make you an unyielding pillar, but even the sturdiest structures face the fiercest storms.';
 export const msgSIZ = "The presence to dominate any room, to stand tall and command attention effortlessly? Size will elevate you above others, but the higher you stand, the farther you can fall.";
 export const msgDEX = 'The mastery to command body, weapons, and tools as extensions of your very self? Dexterity offers you unparalleled control, yet the pursuit of perfection may come with unforeseen costs.';
