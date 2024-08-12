@@ -78,8 +78,10 @@ const CharacteristicList: FC = () => {
 
 
   const setDelayedTouch = () => {
-    clearTimeout(hoverTimerRef.current)
-    hoverTimerRef.current = setTimeout(setTouchHeld, 1000, true);
+    if (!bigWidth) {
+      clearTimeout(hoverTimerRef.current)
+      hoverTimerRef.current = setTimeout(setTouchHeld, 1000, true);
+    }
   }
 
   const handleSelection = (val) => {
@@ -132,7 +134,7 @@ const CharacteristicList: FC = () => {
 
   const currentWidth = useWidth()
   const smallWidth = currentWidth === 'xs' || currentWidth === 'sm'
-
+  const bigWidth = currentWidth === 'xl' || currentWidth === 'lg'
 
   return (
 
