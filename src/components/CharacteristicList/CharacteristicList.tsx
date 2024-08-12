@@ -80,7 +80,7 @@ const CharacteristicList: FC = () => {
   const setDelayedTouch = () => {
     if (!bigWidth) {
       clearTimeout(hoverTimerRef.current)
-      hoverTimerRef.current = setTimeout(setTouchHeld, 1000, true);
+      hoverTimerRef.current = setTimeout(setTouchHeld, 500, true);
     }
   }
 
@@ -193,14 +193,10 @@ const CharacteristicList: FC = () => {
               <div className={classes.attributeFlavorText}
                 style={{
                   opacity:
-                    hoverVal !== undefined ||
-                      (coreAttribute !== undefined && !smallWidth) ||
-                      infoDown
+                    touchHeld || infoDown
                       ? 1 : 0,
-                  transition: (hoverVal !== undefined ||
-                    (coreAttribute !== undefined && !smallWidth))
-                    && !infoDown
-                    ? 'opacity 1s 0.9s' : 'opacity 0.3s'
+                  transition: touchHeld && !infoDown
+                    ? 'opacity  1s 1s' : 'opacity 0.3s'
                 }}>
                 <Typography className={classes.flavorFont}>
                   {msgs[`msg${hoverVal || coreAttribute || lastCore}`]}
