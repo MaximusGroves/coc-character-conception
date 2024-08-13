@@ -307,9 +307,10 @@ const CharacteristicList: FC = () => {
             }
             tooltipTitle={
               <div
-                className={classes.tooltipSpacer}
+                className={clsx(classes.tooltipSpacer, classes.unselectable)}
                 // style={{ opacity: touchHeld ? 0 : 1, transition: touchHeld ? 'opacity 0.3s 0.5s' : 'opacity 0.3s' }}>
-                style={{ opacity: touchHeld ? 0 : 1, transition: 'opacity 0.7s' }}>
+                // long duration fade out retriggers the animation on long hold haptic event
+                style={{ opacity: touchHeld ? 0 : 1, transition: 'opacity 0.3s' }}>
                 <Paper
                   style={{
                     padding: '4px 10px',
