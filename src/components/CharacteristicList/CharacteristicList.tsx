@@ -282,22 +282,26 @@ const CharacteristicList: FC = () => {
             icon={val === coreAttribute ?
               <Sigil className={classes.sigil}
                 onTouchStart={(e) => {
-
                   e.preventDefault();
                 }}
                 onMouseOver={(e) => {
-
                   e.preventDefault();
+                }}
+                onContextMenu={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation()
                 }}
               /> :
               <SpeedDialIcon
                 onTouchStart={(e) => {
-
                   e.preventDefault();
                 }}
                 onMouseOver={(e) => {
-
                   e.preventDefault();
+                }}
+                onContextMenu={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation()
                 }}
               />
             }
