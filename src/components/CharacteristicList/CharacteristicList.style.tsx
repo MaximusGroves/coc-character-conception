@@ -29,7 +29,7 @@ const styles = makeStyles((theme) => ({
     [theme.breakpoints.down('sm')]: {
       position: 'absolute',
       left: '50%',
-      transform: 'translateX(-50%)'
+      transform: 'translateX(-53%)'
     }
   },
 

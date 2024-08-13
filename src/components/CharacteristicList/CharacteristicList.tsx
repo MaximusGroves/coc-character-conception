@@ -59,7 +59,7 @@ const CharacteristicList: FC = () => {
   const handleOpen = () => {
     if (!open) {
 
-      console.log('handleOpen')
+      // console.log('handleOpen')
       // setHoverVal(undefined);
       // setLastCore(undefined);
       // setTouchHeld(false);

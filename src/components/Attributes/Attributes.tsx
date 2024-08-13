@@ -49,7 +49,7 @@ const ArchetypeList: FC = () => {
   }
 
   const applyStats = () => {
-    console.log('applyStats')
+    // console.log('applyStats')
 
     const newStats = {};
     const newRolls = [[], [], []];
@@ -138,7 +138,7 @@ const ArchetypeList: FC = () => {
       let newOrder2;
       let newOrder3;
 
-      console.log(`${curRow} ${lastCurRow.current} ${rowLocked} ${newRowLocked}`)
+      // console.log(`${curRow} ${lastCurRow.current} ${rowLocked} ${newRowLocked}`)
 
       newOrder = swap(order1.current, curIndex, curRow)
       springApi1.start(fn(newOrder, active, originalIndex, curIndex, y))
@@ -152,7 +152,7 @@ const ArchetypeList: FC = () => {
         springApi2.start(fn(newOrder2, active, origIndex2, curIndex, y))
         springApi3.start(fn(newOrder3, active, origIndex3, curIndex, y))
       } else if (newRowLocked && lastCurRow.current !== undefined && lastCurRow.current !== curRow) {
-        console.log('hmm?')
+        // console.log('hmm?')
         //nudge row when crossing locked one
         //@ts-ignore
         const nextDelta = lastCurRow.current > curRow ? 1 : -1;
