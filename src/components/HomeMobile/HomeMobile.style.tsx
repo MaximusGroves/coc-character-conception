@@ -10,12 +10,12 @@ const styles = makeStyles((theme) => ({
     marginRight: 'auto',
     position: 'relative',
     backgroundColor: 'transparent',
-    height: 'calc(100dvh - 200px)',
+    height: 'calc(100svh - 200px)',
     marginBottom: 100,
   },
 
   splash: {
-    height: '100dvh',
+    height: '100svh',
     width: '100vw'
   },
 
@@ -32,12 +32,12 @@ const styles = makeStyles((theme) => ({
   },
 
   stepContent: {
-    maxHeight: 'calc(100dvh - 350px)',
+    maxHeight: 'calc(100svh - 350px)',
     height: '100%',
     overflowY: 'auto',
     overflowX: 'hidden',
     [theme.breakpoints.down('xs')]: {
-      maxHeight: 'calc(100dvh - 342px)',
+      maxHeight: 'calc(100svh - 342px)',
     },
   },
 

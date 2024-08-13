@@ -4,7 +4,7 @@ const styles = makeStyles((theme) => ({
   splash: {
     margin: 0,
     width: '100vw',
-    height: '100dvh',
+    height: '100svh',
     background: 'url(/img/scene2tile.jpg)',
     backgroundSize: 'cover',
     backgroundPosition: '69% center',
@@ -15,7 +15,7 @@ const styles = makeStyles((theme) => ({
     [theme.breakpoints.down('md')]: {
       // backgroundPosition: '64% center',
       // backgroundPosition: 'calc(50% + -152px) center',
-      backgroundPosition: 'calc( 50% + 100dvh / 1632 * -290 ) center',
+      backgroundPosition: 'calc( 50% + 100svh / 1632 * -290 ) center',
     },
   },
   app: {
@@ -24,10 +24,10 @@ const styles = makeStyles((theme) => ({
     width: '100vw',
     backgroundColor: 'rgb(66, 66, 66)',
     overflowY: 'auto',
-    height: 'calc(100dvh - 60px)',
+    height: 'calc(100svh - 60px)',
     borderRadius: 0,
     [theme.breakpoints.down('md')]: {
-      height: 'calc(100dvh - 48px)',
+      height: 'calc(100svh - 48px)',
       overflowX: 'hidden',
     },
 

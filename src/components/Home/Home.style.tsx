@@ -24,7 +24,7 @@ const styles = makeStyles((theme) => ({
 
   splash: {
     // backgroundColor: 'rgb(66, 66, 66)',
-    height: '100dvh',
+    height: '100svh',
     width: '100vw'
   },
 

@@ -147,7 +147,7 @@ const CharacteristicList: FC = () => {
   return (
 
 
-    <Grid container direction="column" justifyContent='space-between' alignItems='flex-start' style={{ height: '100dvh' }}>
+    <Grid container direction="column" justifyContent='space-between' alignItems='flex-start' style={{ height: '100svh' }}>
       <Grid item container direction="row" justifyContent='space-between' alignContent='flex-start' style={{ display: 'fixed' }}>
         <Grid item >
           <CallOfCharacterTitle style={{ marginRight: 'auto' }} className={classes.titleRoot} />

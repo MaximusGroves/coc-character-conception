@@ -8,7 +8,7 @@ const styles = makeStyles((theme) => ({
   compassRoot: {
     position: 'absolute',
     left: 15,
-    top: 'calc( 100dvh - 564px - 23px)',
+    top: 'calc( 100svh - 564px - 23px)',
     [theme.breakpoints.down('sm')]: {
       left: 'unset',
       right: 15
@@ -305,7 +305,7 @@ const styles = makeStyles((theme) => ({
   leftText: {
     position: 'absolute',
     left: 135,
-    top: 'calc( 100dvh - 121px )',
+    top: 'calc( 100svh - 121px )',
     height: 100,
 
     [theme.breakpoints.down('sm')]: {
@@ -348,7 +348,7 @@ const styles = makeStyles((theme) => ({
 
     position: 'absolute',
     right: '0px !important',
-    top: 'calc( 100dvh - 117px ) !important',
+    top: 'calc( 100svh - 117px ) !important',
     marginLeft: '100px !important',
     borderRadius: '1000 !important',
     maxWidth: 338,
