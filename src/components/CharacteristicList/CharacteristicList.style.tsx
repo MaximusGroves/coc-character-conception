@@ -8,7 +8,11 @@ const styles = makeStyles((theme) => ({
   compassRoot: {
     position: 'absolute',
     left: 15,
-    top: 'calc( 100dvh - 564px - 23px)'
+    top: 'calc( 100dvh - 564px - 23px)',
+    [theme.breakpoints.down('sm')]: {
+      left: 'unset',
+      right: 15
+    }
   },
 
   titleRoot: {
@@ -146,11 +150,13 @@ const styles = makeStyles((theme) => ({
 
   tooltipSpacer: {
     padding: '8px 100px 8px 90px',
-    marginLeft: -60,
+    marginLeft: -100,
     cursor: 'pointer',
     [theme.breakpoints.down('sm')]: {
       // '@media (max-width: 800px)': {
-      padding: '8px 20px 8px 90px',
+      padding: '8px 90px 8px 20px',
+      marginLeft: 0,
+      marginRight: -100
     }
   },
 
@@ -172,10 +178,13 @@ const styles = makeStyles((theme) => ({
   },
 
   unsetTooltip: {
-    left: '0!important',
-    marginLeft: '!important',
+    // left: '0!important',
     backgroundColor: 'unset!important',
-    boxShadow: 'none!important'
+    boxShadow: 'none!important',
+    [theme.breakpoints.down('sm')]: {
+      // left: 'revert-layer',
+
+    }
   },
 
   normalPic: {
@@ -296,11 +305,20 @@ const styles = makeStyles((theme) => ({
   leftText: {
     position: 'absolute',
     left: 135,
-    top: 'calc( 100dvh - 89px )',
+    top: 'calc( 100dvh - 121px )',
+    height: 100,
 
+    [theme.breakpoints.down('sm')]: {
+      left: 'unset',
+      right: 135,
+      paddingLeft: 0,
+      textAlign: 'right',
+      maxWidth: 'calc( 100vw - 128px )',
+    },
     [theme.breakpoints.down('xs')]: {
-      left: 130
-    }
+      right: 122,
+      textAlign: 'center',
+    },
 
   },
 
@@ -313,22 +331,36 @@ const styles = makeStyles((theme) => ({
 
   rightText: {
     textTransform: 'none',
-    paddingRight: 15,
-    marginTop: -7,
-    [theme.breakpoints.down('xs')]: {
-      width: 'calc( 100vw - 270px)',
+    paddingRight: 6,
+    marginTop: -8,
+    [theme.breakpoints.down('sm')]: {
+      paddingLeft: 15,
       paddingRight: 0,
+    },
+    [theme.breakpoints.down('xs')]: {
+      width: 'calc( 100vw - 210px)',
+      paddingRight: 0,
+      paddingLeft: 0,
     }
   },
 
   absoluteRightBtn: {
 
     position: 'absolute',
-    right: '20px !important',
+    right: '0px !important',
     top: 'calc( 100dvh - 117px ) !important',
     marginLeft: '100px !important',
-    borderRadius: '1000 !important'
-
+    borderRadius: '1000 !important',
+    maxWidth: 338,
+    [theme.breakpoints.down('sm')]: {
+      maxWidth: 325,
+      right: 'unset',
+      left: '0px!important',
+      marginLeft: '0!important',
+    },
+    [theme.breakpoints.down('xs')]: {
+      maxWidth: 'calc( 100vw - 110px )',
+    },
   },
 
   charName: {

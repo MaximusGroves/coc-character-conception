@@ -1,5 +1,5 @@
 import React, { FC, useRef } from 'react';
-import { Button, Grid, IconButton, Paper, Typography } from '@material-ui/core';
+import { Button, Grid, Hidden, IconButton, Paper, Typography } from '@material-ui/core';
 import { useAppContext } from '../../providers/AppContextProvider';
 import styles from './CharacteristicList.style';
 import { CharacteristicName, charKeys } from '../../data/types';
@@ -314,7 +314,7 @@ const CharacteristicList: FC = () => {
                 <Paper
                   style={{
                     padding: '4px 10px',
-                    marginLeft: 16,
+                    // marginLeft: 16,
                     backgroundColor: val === coreAttribute ? '#333' : '#424242'
                   }}
                   className={classes.unselectable}
@@ -328,10 +328,8 @@ const CharacteristicList: FC = () => {
                 </Paper>
               </div>
             }
-            // tooltipTitle={val}
             className={classes.unselectable}
-            // onClick={() => handleSelection(val)}
-            tooltipPlacement='right'
+            tooltipPlacement={smallWidth ? 'left' : 'right'}
             tooltipOpen
             onContextMenu={(e) => {
               e.preventDefault();
@@ -383,21 +381,42 @@ const CharacteristicList: FC = () => {
         ))}
       </SpeedDial>
 
-      <Typography
+
+      <Grid
+        container
+        justifyContent={!smallWidth ? "flex-start" : currentWidth === "xs" ? "center" : "flex-end"}
+        alignItems="center"
         onMouseOver={handleOpen}
         className={clsx(classes.promptText, classes.leftText, coreAttribute !== undefined && classes.hiddenText)}
         style={{
-          cursor: 'pointer'
-        }}>What do you most desire?</Typography>
+          cursor: 'pointer',
+        }}>
+        <Grid item>
+          <Typography className={classes.promptText}>What do you most desire?</Typography>
+        </Grid>
+      </Grid>
+
 
       {
         coreAttribute !== undefined &&
         <Button
           style={{ position: 'absolute' }}
-          onClick={() => nextStep()} className={classes.absoluteRightBtn} >
-          <Typography className={clsx(classes.promptText, classes.rightText)}>Create your identity</Typography>
-          <Sigil className={clsx(classes.sigil, classes.spookyIcon)} />
-          <ArrowForward className={clsx(classes.arrow, classes.spookyIcon)} />
+          onClick={() => nextStep()}
+          className={classes.absoluteRightBtn}
+        >
+          <Grid container direction={smallWidth ? "row-reverse" : "row"} alignItems="center" justifyContent="flex-end">
+            <Grid item>
+              <Typography className={clsx(classes.promptText, classes.rightText)}>Create your identity</Typography>
+            </Grid>
+            <Grid item>
+              <Sigil className={clsx(classes.sigil, classes.spookyIcon)} />
+            </Grid>
+            <Hidden smDown >
+              <Grid item>
+                <ArrowForward className={clsx(classes.arrow, classes.spookyIcon)} />
+              </Grid>
+            </Hidden>
+          </Grid>
         </Button>
       }
 
