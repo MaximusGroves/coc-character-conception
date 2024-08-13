@@ -98,7 +98,7 @@ const AppContextProvider: FC<ContextProps> = (props) => {
   const computeOccPoints = (occVal: OccupationSkillFormula, statVal: Record<CharacteristicKey, number>) => {
     switch (occVal) {
       case OccupationSkillFormula.edu:
-        console.log(statVal?.EDU * 4)
+        // console.log(statVal?.EDU * 4)
         return (statVal?.EDU * 4);
       case OccupationSkillFormula.eduApp:
         return (statVal?.EDU * 2) + (statVal?.APP) * 2;
@@ -125,8 +125,8 @@ const AppContextProvider: FC<ContextProps> = (props) => {
     let maxSkills = 0;
     occ.skillFormula.map(val => {
       const currentSkills = computeOccPoints(val, stat);
-      console.log(val);
-      console.log(currentSkills)
+      // console.log(val);
+      // console.log(currentSkills)
       if (currentSkills > maxSkills) {
         maxSkills = currentSkills;
       }
@@ -172,7 +172,7 @@ const AppContextProvider: FC<ContextProps> = (props) => {
     try {
       //@ts-ignore
       el.scrollTop = 0;
-      console.log(el);
+      // console.log(el);
     } catch (err) {
       console.log('root was null')
     }

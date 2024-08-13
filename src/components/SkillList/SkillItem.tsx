@@ -216,7 +216,7 @@ const SkillItem: FC<Props> = (props: Props) => {
               container
               direction="row"
               alignItems="center"
-              justify="center"
+              justifyContent="center"
               style={{ marginTop: 5, display: 'flex', position: 'relative' }}
             >
 

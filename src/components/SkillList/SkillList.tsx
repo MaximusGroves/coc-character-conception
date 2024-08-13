@@ -103,7 +103,7 @@ const SkillList: FC = () => {
 
             return (
               <SkillItem skill={thisSkill}
-                // key={thisName} 
+                // key={thisName}
                 pointsRemaining={archPoints} minPoints={minPoints} points={archSkills[skill] || 0} setPointsRemaining={setArchPoints} />
             )
           })}

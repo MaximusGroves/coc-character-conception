@@ -159,7 +159,7 @@ const CreatorStepper: FC = () => {
         container
         direction="row"
         alignItems="center"
-        justify="space-between"
+        justifyContent="space-between"
         className={classes.stepperRoot}
       >
         <Grid item>

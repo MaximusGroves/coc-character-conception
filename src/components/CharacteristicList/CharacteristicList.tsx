@@ -158,6 +158,7 @@ const CharacteristicList: FC = () => {
           {coreShuffle.map(val => (
 
             <img
+              key={val + '-xray'}
               src={`/img/${val}-xray.jpg`}
               style={{ opacity: (open && hoverVal === val) || coreAttribute === val ? 1 : 0, }}
               className={clsx(classes.bigPic, classes.xRay, classes.unselectable)}
@@ -168,6 +169,7 @@ const CharacteristicList: FC = () => {
           {charList.map(val => (
 
             <img
+              key={val + '-frame'}
               src={`/img/${val}-frame.jpg`}
               style={{ opacity: (hoverVal === val && coreAttribute !== hoverVal && open) || (previewFrame && coreAttribute === val) ? 1 : 0 }}
               className={clsx(classes.bigPic, classes.unselectable)}
