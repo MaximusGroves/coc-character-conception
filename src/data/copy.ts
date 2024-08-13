@@ -1,4 +1,4 @@
-export const msgSTR = "The means to shape the world with your hands, aligning reality with your forceful grasp... Strength will grant you the might to move mountains, but be careful to not collapse under the weight your ambition.";
+export const msgSTR = "The means to shape the world with your hands, aligning reality with your forceful grasp... Strength will grant you the might to move mountains, but be careful to not collapse under the weight of your ambition.";
 export const msgCON = 'The fortitude to stand firm where others falter, enduring all that the world can throw at you... Constitution will make you an unyielding pillar, but can you outlast the storm that is coming?';
 export const msgSIZ = "The presence to effortlessly dominate, commanding the focus of all from such great heights... Size lifts you above the rest, but beware, tall trees are the first to be cut down.";
 export const msgDEX = 'The mastery to command body, weapons, and tools as extensions of your very self... Dexterity offers you unparalleled control, yet the pursuit of perfection comes with profound sacrifice.';
