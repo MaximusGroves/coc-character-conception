@@ -269,7 +269,28 @@ const CharacteristicList: FC = () => {
 
           <SpeedDialAction
             key={val}
-            icon={val === coreAttribute ? <Sigil className={classes.sigil} /> : <SpeedDialIcon />}
+            icon={val === coreAttribute ?
+              <Sigil className={classes.sigil}
+                onTouchStart={(e) => {
+
+                  e.preventDefault();
+                }}
+                onMouseOver={(e) => {
+
+                  e.preventDefault();
+                }}
+              /> :
+              <SpeedDialIcon
+                onTouchStart={(e) => {
+
+                  e.preventDefault();
+                }}
+                onMouseOver={(e) => {
+
+                  e.preventDefault();
+                }}
+              />
+            }
             tooltipTitle={
               <div
                 className={classes.tooltipSpacer}
