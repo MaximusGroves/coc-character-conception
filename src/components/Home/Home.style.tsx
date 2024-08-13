@@ -23,7 +23,7 @@ const styles = makeStyles((theme) => ({
   },
 
   splash: {
-    backgroundColor: 'rgb(66, 66, 66)',
+    // backgroundColor: 'rgb(66, 66, 66)',
     height: '100dvh',
     width: '100vw'
   },
