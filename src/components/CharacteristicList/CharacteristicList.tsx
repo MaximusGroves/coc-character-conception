@@ -337,8 +337,10 @@ const CharacteristicList: FC = () => {
               e.stopPropagation()
             }}
             onTouchStart={(e) => {
-              setHoverVal(val);
-              setTouchHeld(true);
+              if (val !== hoverVal) {
+                setHoverVal(val);
+                setTouchHeld(true);
+              }
               e.stopPropagation();
               e.preventDefault();
             }}
@@ -349,6 +351,22 @@ const CharacteristicList: FC = () => {
               e.stopPropagation();
               e.preventDefault();
             }}
+            onMouseOver={(e) => {
+              if (val !== hoverVal) {
+                setHoverVal(val);
+                setDelayedTouch()
+              }
+              e.stopPropagation();
+              e.preventDefault();
+            }}
+
+            onMouseOut={(e) => {
+              setHoverVal(undefined);
+              setTouchHeld(false);
+              clearTimeout(hoverTimerRef.current)
+              e.stopPropagation();
+              e.preventDefault();
+            }}
             onMouseUp={(e) => {
               handleSelection(val);
               setTouchHeld(false);
@@ -356,16 +374,7 @@ const CharacteristicList: FC = () => {
               e.stopPropagation();
               e.preventDefault();
             }}
-            onMouseOver={() => {
-              setHoverVal(val);
-              setDelayedTouch()
-            }}
 
-            onMouseOut={() => {
-              setHoverVal(undefined);
-              setTouchHeld(false);
-              clearTimeout(hoverTimerRef.current)
-            }}
             FabProps={{ classes: { root: val === coreAttribute ? classes.speedDialAction : '' } }}
             classes={{ staticTooltipLabel: classes.unsetTooltip }}
 
