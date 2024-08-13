@@ -325,7 +325,7 @@ const styles = makeStyles((theme) => ({
   hiddenText: {
     [theme.breakpoints.down('sm')]: {
       // '@media (max-width: 800px)': {
-      display: 'none',
+      display: 'none!important',
     }
   },
 
