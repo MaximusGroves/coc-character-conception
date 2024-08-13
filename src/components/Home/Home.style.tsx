@@ -15,6 +15,7 @@ const styles = makeStyles((theme) => ({
     //   backgroundSize: '25%',
     // },
     minHeight: 'calc( 100% - 126px )',
+    backgroundColor: 'rgb(66, 66, 66)',
     [theme.breakpoints.down('sm')]: {
       minHeight: 'calc( 100% - 170px )',
     }
@@ -22,6 +23,7 @@ const styles = makeStyles((theme) => ({
   },
 
   splash: {
+    backgroundColor: 'rgb(66, 66, 66)',
     height: '100dvh',
     width: '100vw'
   },
