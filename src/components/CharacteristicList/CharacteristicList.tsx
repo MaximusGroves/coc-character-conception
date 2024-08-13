@@ -338,7 +338,7 @@ const CharacteristicList: FC = () => {
               e.stopPropagation()
             }}
             onTouchStart={(e) => {
-              if (val !== hoverVal) {
+              if (val !== hoverVal || !touchHeld) {
                 setHoverVal(val);
                 setTouchHeld(true);
               }
