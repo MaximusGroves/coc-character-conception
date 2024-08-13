@@ -57,17 +57,25 @@ const CharacteristicList: FC = () => {
   };
 
   const handleOpen = () => {
-    setOpen(true);
+    if (!open) {
 
-    document.onmouseup = (e) => {
+      console.log('handleOpen')
+      // setHoverVal(undefined);
+      // setLastCore(undefined);
+      // setTouchHeld(false);
+      setOpen(true);
 
-      try {
-        // @ts-ignore
-        if (compassRef.current && !compassRef.current.contains(e.target)) {
-          handleClose()
+
+      document.onmouseup = (e) => {
+
+        try {
+          // @ts-ignore
+          if (compassRef.current && !compassRef.current.contains(e.target)) {
+            handleClose()
+          }
+        } catch (err) {
+          document.onmouseup = () => { }
         }
-      } catch (err) {
-        document.onmouseup = () => { }
       }
     }
   };
@@ -320,12 +328,40 @@ const CharacteristicList: FC = () => {
             // onClick={() => handleSelection(val)}
             tooltipPlacement='right'
             tooltipOpen
-            onContextMenu={(e) => { e.preventDefault(); e.stopPropagation() }}
-            onTouchStart={(e) => { setHoverVal(val); setTouchHeld(true); }}
-            onTouchEnd={(e) => { handleSelection(val); setTouchHeld(false); setHoverVal(undefined); e.stopPropagation(); e.preventDefault(); }}
-            onMouseUp={(e) => { handleSelection(val); e.stopPropagation(); e.preventDefault(); setTouchHeld(false); clearTimeout(hoverTimerRef.current) }}
-            onMouseOver={() => { setHoverVal(val); setDelayedTouch() }}
-            onMouseOut={() => { setHoverVal(undefined); setTouchHeld(false); clearTimeout(hoverTimerRef.current) }}
+            onContextMenu={(e) => {
+              e.preventDefault();
+              e.stopPropagation()
+            }}
+            onTouchStart={(e) => {
+              setHoverVal(val);
+              setTouchHeld(true);
+              e.stopPropagation();
+              e.preventDefault();
+            }}
+            onTouchEnd={(e) => {
+              handleSelection(val);
+              setTouchHeld(false);
+              setHoverVal(undefined);
+              e.stopPropagation();
+              e.preventDefault();
+            }}
+            onMouseUp={(e) => {
+              handleSelection(val);
+              setTouchHeld(false);
+              clearTimeout(hoverTimerRef.current)
+              e.stopPropagation();
+              e.preventDefault();
+            }}
+            onMouseOver={() => {
+              setHoverVal(val);
+              setDelayedTouch()
+            }}
+
+            onMouseOut={() => {
+              setHoverVal(undefined);
+              setTouchHeld(false);
+              clearTimeout(hoverTimerRef.current)
+            }}
             FabProps={{ classes: { root: val === coreAttribute ? classes.speedDialAction : '' } }}
             classes={{ staticTooltipLabel: classes.unsetTooltip }}
 

@@ -1,7 +1,7 @@
 export const msgSTR = "The means to shape the world with your hands, aligning reality with your forceful grasp... Strength will grant you the might to move mountains, but be careful to not collapse under the weight your ambition.";
 export const msgCON = 'The fortitude to stand firm where others falter, enduring all that the world can throw at you... Constitution will make you an unyielding pillar, but can you outlast the storm that is coming?';
 export const msgSIZ = "The presence to effortlessly dominate, commanding the focus of all from such great heights... Size lifts you above the rest, but beware, tall trees are the first to be cut down.";
-export const msgDEX = 'The mastery to command body, weapons, and tools as extensions of your very self... Dexterity offers you unparalleled control, yet the pursuit of perfection comes with unforeseen sacrifice.';
+export const msgDEX = 'The mastery to command body, weapons, and tools as extensions of your very self... Dexterity offers you unparalleled control, yet the pursuit of perfection comes with profound sacrifice.';
 export const msgAPP = 'The allure to enchant and captivate, crushing hearts with just a glance... Appearance opens doors and launches ships, igniting a wildfire of passion. Try not to get burned, your power is skin-deep, and knives cut deeper.';
 export const msgINT = 'The clarity to pierce the fog of deception, unravelling the deepest enigma by pure intuition alone... Intelligence will reveal the truth to you, though some truths are best left undiscovered.';
 export const msgPOW = 'The spiritual might to bend fate to your desires with the sheer force of your will... Power will flow through you like a river, but remember, the river can carve as well as drown.';
