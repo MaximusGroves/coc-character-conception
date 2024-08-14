@@ -21,14 +21,14 @@ const makeTalent = (
 const keenVision = makeTalent(
   talentKeys.KeenVision,
   TalentName.KeenVision,
-  'Natural healing is increased to +3 hit points per day',
+  'Gain a bonus to Spot Hidden rolls',
   'physical'
 );
 
 const quickHealer = makeTalent(
   talentKeys.QuickHealer,
   TalentName.QuickHealer,
-  'Gain a bonus to Spot Hidden rolls',
+  'Natural healing is increased to +3 hit points per day',
   'physical'
 );
 
