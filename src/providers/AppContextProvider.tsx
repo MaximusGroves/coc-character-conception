@@ -68,6 +68,14 @@ type ContextValues = {
 
 export const AppContext = createContext<ContextValues | undefined>(undefined);
 
+export const stepCharacteristic = 0;
+export const stepArchetype = 1;
+export const stepOccupation = 2;
+export const stepAttribute = 3;
+export const stepTalent = 4;
+export const stepSkill = 5;
+export const stepOnePage = 6;
+
 const AppContextProvider: FC<ContextProps> = (props) => {
   const [state, setAppState] = useState<AppState>(defaultState);
 
@@ -84,14 +92,16 @@ const AppContextProvider: FC<ContextProps> = (props) => {
   } = state;
 
 
+
+
   const currentStepName = () => {
     switch (creatorStep) {
-      case 0: return "Characteristic";
-      case 1: return "Archetype";
-      case 2: return "Occupation";
-      case 3: return "Talent";
-      case 4: return "Attributes";
-      case 5: return "Skills";
+      case stepCharacteristic: return "Characteristic";
+      case stepArchetype: return "Archetype";
+      case stepOccupation: return "Occupation";
+      case stepTalent: return "Talent";
+      case stepAttribute: return "Attributes";
+      case stepSkill: return "Skills";
     }
   }
 
@@ -145,7 +155,7 @@ const AppContextProvider: FC<ContextProps> = (props) => {
       console.log('root was null')
     }
     if (creatorStep === undefined) {
-      setState({ creatorStep: 0 });
+      setState({ creatorStep: stepCharacteristic });
     } else if (creatorStep < stepKeys.list.length) {
       setState({ creatorStep: creatorStep + 1 });
     }
@@ -160,7 +170,7 @@ const AppContextProvider: FC<ContextProps> = (props) => {
       console.log('root was null')
     }
     if (creatorStep === undefined) {
-      setState({ creatorStep: 0 });
+      setState({ creatorStep: stepCharacteristic });
     } else if (creatorStep > 0) {
       setState({ creatorStep: creatorStep - 1 });
     }

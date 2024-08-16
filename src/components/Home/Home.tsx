@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import styles from './Home.style';
 import CreatorStepper from '../CreatorStepper/CreatorStepper';
-import { useAppContext } from '../../providers/AppContextProvider';
+import { stepArchetype, stepAttribute, stepCharacteristic, stepOccupation, stepSkill, stepTalent, useAppContext } from '../../providers/AppContextProvider';
 import ArchetypeList from '../ArchetypeList/ArchetypeList';
 import OccupationList from '../OccupationList/OccupationList';
 import TalentList from '../TalentList/TalentList';
@@ -20,18 +20,18 @@ const Home: FC = () => {
   // const size = useWidth();
 
   return (
-    <div className={creatorStep !== 0 ? classes.root : classes.splash} id='root'>
+    <div className={creatorStep !== stepCharacteristic ? classes.root : classes.splash} id='root'>
 
 
       <div className={classes.container}>
-        {creatorStep === 0 && < CharacteristicList />}
-        {creatorStep === 1 && <ArchetypeList />}
-        {creatorStep === 2 && <OccupationList />}
-        {creatorStep === 3 && <TalentList />}
-        {creatorStep === 4 && <Attributes />}
-        {creatorStep === 5 && <SkillList />}
+        {creatorStep === stepCharacteristic && < CharacteristicList />}
+        {creatorStep === stepArchetype && <ArchetypeList />}
+        {creatorStep === stepOccupation && <OccupationList />}
+        {creatorStep === stepTalent && <TalentList />}
+        {creatorStep === stepAttribute && <Attributes />}
+        {creatorStep === stepSkill && <SkillList />}
 
-        {creatorStep !== 0 && (
+        {creatorStep !== stepCharacteristic && (
 
 
           <Drawer

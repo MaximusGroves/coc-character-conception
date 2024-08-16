@@ -3,7 +3,7 @@ import React, { FC } from 'react'
 import Header from './components/Header/Header'
 import Home from './components/Home/Home'
 import { Paper } from '@material-ui/core'
-import { useAppContext } from './providers/AppContextProvider'
+import { stepCharacteristic, useAppContext } from './providers/AppContextProvider'
 import './fonts.css'
 import styles from './App.style'
 
@@ -23,7 +23,7 @@ const App: FC = () => {
   // };
 
   return (
-    <Paper id="appRoot" className={creatorStep === 0 ? classes.splash : classes.app}>
+    <Paper id="appRoot" className={creatorStep === stepCharacteristic ? classes.splash : classes.app}>
       <Header appName={appName} />
       <Home />
     </Paper>

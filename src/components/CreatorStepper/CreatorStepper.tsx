@@ -9,12 +9,13 @@ import {
   StepButton,
 } from '@material-ui/core';
 import styles from './CreatorStepper.style';
-import { useAppContext } from '../../providers/AppContextProvider';
+import { stepArchetype, stepAttribute, stepOccupation, stepSkill, stepTalent, useAppContext } from '../../providers/AppContextProvider';
 import { ArrowBack, ArrowForward, Casino } from '@material-ui/icons';
-import { CreatorSteps, stepKeys } from '../../data/types';
+import { CreatorSteps } from '../../data/types';
 import { ReactComponent as Sigil } from '../../assets/Sigil_of_the_Gateway.svg';
 import { useWidth } from '../../providers/AppThemeProvider';
 import clsx from 'clsx';
+import { stepperLabels } from '../../data/copy';
 
 const CreatorStepper: FC = () => {
   const classes = styles();
@@ -43,24 +44,24 @@ const CreatorStepper: FC = () => {
 
   const getCompleted = (step: number) => {
     switch (step) {
-      case 0:
+      case (stepArchetype - 1):
         return selectedArchetype !== undefined;
-      case 1:
+      case (stepOccupation - 1):
         return selectedOccupation !== undefined;
-      case 2:
+      case (stepTalent - 1):
         return selectedTalent?.length === 2;
-      case 3:
+      case (stepAttribute - 1):
         return stats !== undefined;
-      case 4:
+      case (stepSkill - 1):
         return pointsTotal === 0;
     }
   };
 
   const getSelection = (step: number) => {
     switch (step) {
-      case 0:
+      case (stepArchetype - 1):
         return selectedArchetype?.name || '';
-      case 1:
+      case (stepOccupation - 1):
         const lines = selectedOccupation?.name.split(' ');
         if (lines?.length === 2) {
           return lines?.map((val, idx) => (
@@ -69,7 +70,7 @@ const CreatorStepper: FC = () => {
             </span>
           ));
         } else return selectedOccupation?.name || '';
-      case 2:
+      case (stepTalent - 1):
         return (
           selectedTalent?.map((val, idx) => (
             <span style={{ display: 'block', whiteSpace: 'nowrap' }} key={idx}>
@@ -77,7 +78,7 @@ const CreatorStepper: FC = () => {
             </span>
           )) || ''
         );
-      case 3:
+      case (stepAttribute - 1):
         return (
           <div
             style={{
@@ -97,7 +98,7 @@ const CreatorStepper: FC = () => {
             )}
           </div>
         );
-      case 4:
+      case (stepSkill - 1):
         // pointsTotal === undefined ? '?' : pointsTotal === 0 ? pointsTotal : pointsTotal;
         return (<div
           style={{
@@ -126,15 +127,15 @@ const CreatorStepper: FC = () => {
 
   const getSelectionStyle = (step: number) => {
     switch (step) {
-      case 0:
+      case (stepArchetype - 1):
         return clsx(classes.selectionStyleArchetype, classes.titleShadow);
-      case 1:
+      case (stepOccupation - 1):
         return clsx(classes.selectionStyleOccupation, classes.titleShadow);
-      case 2:
+      case (stepTalent - 1):
         return clsx(classes.selectionStyleTalent, classes.titleShadow);
-      case 3:
+      case (stepAttribute - 1):
         return classes.selectionStyle;
-      case 4:
+      case (stepSkill - 1):
         return clsx(classes.pointText, pointsTotal !== undefined && classes.titleShadow);
     }
   };
@@ -142,7 +143,7 @@ const CreatorStepper: FC = () => {
 
   const smallView = currentWidth === 'sm' || currentWidth === 'xs' || currentWidth === 'md';
 
-
+  //index of the stepper component that starts at zero
   let thisStep = 0;
   if (creatorStep) {
     thisStep = creatorStep - 1;
@@ -167,7 +168,6 @@ const CreatorStepper: FC = () => {
             color="primary"
             onClick={() => prevStep()}
             className={classes.btnLeft}
-            disabled={creatorStep === 0}
           >
             <ArrowBack />
           </IconButton>
@@ -179,7 +179,7 @@ const CreatorStepper: FC = () => {
             alternativeLabel={smallView}
             className={classes.stepper}
           >
-            {stepKeys.list.map((key, index) => {
+            {stepperLabels.map((key, index) => {
               return (
                 <Step key={CreatorSteps[key]}>
                   <StepButton

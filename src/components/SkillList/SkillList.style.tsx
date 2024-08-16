@@ -100,6 +100,11 @@ const styles = makeStyles((theme) => ({
     }
   },
 
+  titleLinked: {
+    fontWeight: 'bold',
+    textShadow: '1px 1px 1px #000',
+  },
+
   talentItem: {},
 
   //  backgroundPosition: 'center top',

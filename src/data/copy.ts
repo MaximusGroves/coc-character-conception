@@ -1,3 +1,5 @@
+import { stepArchetype, stepAttribute, stepOccupation, stepSkill, stepTalent } from "../providers/AppContextProvider";
+
 export const msgSTR = "The means to shape the world with your hands, aligning reality with your forceful grasp... Strength will grant you the might to move mountains; will you carry the team or collapse under the weight of your ambition?";
 export const msgCON = 'The fortitude to stand firm where others falter, enduring all that the world can throw at you... Constitution will make you an unyielding pillar, but can you outlast the storm that is coming?';
 export const msgSIZ = "The presence to effortlessly dominate, commanding the focus of all from such great heights... Size lifts you above the rest, but beware, tall trees are the first to be cut down.";
@@ -11,4 +13,20 @@ export const msgOccupation = 'Your occupation reflects the skills and perspectiv
 export const msgAttributes = 'The essence of your being is forged in the fires of your attributes, the building blocks of your potential. Each one is a testament to the strength, cunning, and resolve that will guide you through every challenge and triumph. You may drag the name or value to whichever placement you chose, or lock them in place to randomize the rest.';
 export const msgSkills = "Your skills are the agency you have over the world, the tools with which you shape your destiny. But beware—sharpen too few, and you may become a one-trick pony; adopt too many, and you'll be a master of none. You gain skill points from your archetype, occupation, and personal interests, all scaled by your current attributes, and they're selected in different sections below.";
 export const msgTalents = 'Talents are the sparks of brilliance that ignite your uniqueness, the feats that make you truly extraordinary. These gifts will define the moments when you rise above the ordinary, turning the tide in your favor when it matters most. You may select two and they can be used once per encounter.';
+
+export const labelArchetype = 'Select Archetype';
+export const labelOccupation = 'Select Occupation';
+export const labelTalents = 'Select Talents (2)';
+export const labelAttributes = 'Roll Characteristics';
+export const labelSkills = 'Allocate Skills';
+
+const orderedLabels: Array<string> = [];
+orderedLabels[stepArchetype - 1] = labelArchetype;
+orderedLabels[stepOccupation - 1] = labelOccupation;
+orderedLabels[stepTalent - 1] = labelTalents;
+orderedLabels[stepAttribute - 1] = labelAttributes;
+orderedLabels[stepSkill - 1] = labelSkills;
+
+export const stepperLabels = orderedLabels;
+
 export const msgs = { msgSTR, msgCON, msgSIZ, msgDEX, msgAPP, msgINT, msgPOW, msgEDU, msgArchetype, msgOccupation, msgAttributes, msgSkills, msgTalents }
