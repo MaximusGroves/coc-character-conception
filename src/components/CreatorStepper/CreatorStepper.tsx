@@ -11,7 +11,6 @@ import {
 import styles from './CreatorStepper.style';
 import { stepArchetype, stepAttribute, stepOccupation, stepSkill, stepTalent, useAppContext } from '../../providers/AppContextProvider';
 import { ArrowBack, ArrowForward, Casino } from '@material-ui/icons';
-import { CreatorSteps } from '../../data/types';
 import { ReactComponent as Sigil } from '../../assets/Sigil_of_the_Gateway.svg';
 import { useWidth } from '../../providers/AppThemeProvider';
 import clsx from 'clsx';
@@ -181,7 +180,7 @@ const CreatorStepper: FC = () => {
           >
             {stepperLabels.map((key, index) => {
               return (
-                <Step key={CreatorSteps[key]}>
+                <Step key={key}>
                   <StepButton
                     onClick={() => {
                       setStep((index + 1));
@@ -200,7 +199,7 @@ const CreatorStepper: FC = () => {
                             whiteSpace: 'nowrap',
 
                           }}>
-                          {CreatorSteps[key]}
+                          {key}
                         </span>}
                       {(!smallView) && (
                         <Typography

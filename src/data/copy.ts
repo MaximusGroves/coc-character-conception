@@ -29,4 +29,6 @@ orderedLabels[stepSkill - 1] = labelSkills;
 
 export const stepperLabels = orderedLabels;
 
+
+
 export const msgs = { msgSTR, msgCON, msgSIZ, msgDEX, msgAPP, msgINT, msgPOW, msgEDU, msgArchetype, msgOccupation, msgAttributes, msgSkills, msgTalents }
